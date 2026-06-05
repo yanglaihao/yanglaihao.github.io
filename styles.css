@@ -13,7 +13,7 @@
   --blue: #2f63a2;
   --gold: #c1922e;
   --shadow: 0 22px 55px rgba(13, 39, 33, 0.1);
-  --max: 1120px;
+  --max: 1440px;
   font-family:
     Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
     "Noto Sans SC", "PingFang SC", sans-serif;
@@ -222,16 +222,16 @@ button {
 .profile,
 .section,
 .footer {
-  width: min(var(--max), calc(100% - 32px));
+  width: min(var(--max), calc(100% - 48px));
   margin: 0 auto;
 }
 
 .hero {
-  min-height: calc(88svh - 72px);
+  min-height: calc(86svh - 72px);
   display: grid;
-  grid-template-columns: minmax(0, 1.02fr) minmax(360px, 0.9fr);
+  grid-template-columns: minmax(0, 1.12fr) minmax(420px, 0.88fr);
   align-items: center;
-  gap: clamp(2rem, 5vw, 5rem);
+  gap: clamp(2rem, 5vw, 6rem);
   padding: clamp(3rem, 6vw, 5rem) 0 3rem;
 }
 
@@ -511,7 +511,7 @@ h3 {
 }
 
 .section-heading {
-  max-width: 780px;
+  max-width: 960px;
   margin-bottom: 1.5rem;
 }
 
@@ -574,6 +574,162 @@ h3 {
   text-align: center;
   padding: 0.85rem 1.25rem;
   box-shadow: var(--shadow);
+}
+
+.research-switcher {
+  border: 1px solid var(--line);
+  background:
+    linear-gradient(180deg, color-mix(in srgb, var(--surface), transparent 0%), color-mix(in srgb, var(--surface-strong), transparent 45%));
+  box-shadow: var(--shadow);
+  padding: clamp(1rem, 2vw, 1.4rem);
+}
+
+.research-tabs {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.8rem;
+  margin-bottom: 1rem;
+}
+
+.research-tab {
+  display: grid;
+  grid-template-columns: 56px minmax(0, 1fr);
+  grid-template-areas:
+    "num title"
+    "num key";
+  align-items: center;
+  gap: 0 0.8rem;
+  border: 1px solid var(--line);
+  background: var(--surface);
+  color: var(--ink);
+  padding: 0.9rem;
+  text-align: left;
+  min-height: 92px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition:
+    transform 160ms ease,
+    border-color 160ms ease,
+    background 160ms ease;
+}
+
+.research-tab:hover,
+.research-tab:focus-visible {
+  transform: translateY(-1px);
+  border-color: var(--accent);
+}
+
+.research-tab.active {
+  border-color: var(--accent);
+  background: linear-gradient(135deg, var(--accent-soft), var(--surface));
+}
+
+.research-tab span {
+  grid-area: num;
+  width: 54px;
+  height: 54px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: color-mix(in srgb, var(--blue), transparent 18%);
+  color: white;
+  font-size: 1.35rem;
+  font-weight: 900;
+}
+
+.research-tab.diagnosis span {
+  background: #bfc3c8;
+}
+
+.research-tab.intervention span {
+  background: #9bc9f1;
+}
+
+.research-tab.embodied span {
+  background: #0b47ff;
+}
+
+.research-tab strong {
+  grid-area: title;
+  font-size: clamp(1.3rem, 2vw, 2rem);
+  line-height: 1.15;
+}
+
+.research-tab.intervention strong {
+  color: #e91515;
+}
+
+.research-tab.embodied strong {
+  color: #0b47ff;
+}
+
+.research-tab em {
+  grid-area: key;
+  color: var(--muted);
+  font-style: normal;
+  font-weight: 850;
+}
+
+.research-stage {
+  min-height: 500px;
+}
+
+.research-panel {
+  display: grid;
+  grid-template-columns: minmax(420px, 0.95fr) minmax(0, 1fr);
+  gap: clamp(1.2rem, 3vw, 3rem);
+  align-items: stretch;
+}
+
+.research-panel[hidden] {
+  display: none;
+}
+
+.research-media {
+  margin: 0;
+  min-height: 440px;
+  border: 1px solid var(--line);
+  background: #ffffff;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+}
+
+.research-media img {
+  width: 100%;
+  height: 100%;
+  min-height: 440px;
+  object-fit: contain;
+  object-position: center;
+}
+
+.research-detail {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: clamp(1rem, 2vw, 2rem);
+  background:
+    linear-gradient(110deg, color-mix(in srgb, var(--accent-soft), transparent 22%), transparent 48%),
+    var(--surface);
+  border: 1px solid var(--line);
+}
+
+.research-detail h3 {
+  font-size: clamp(1.6rem, 2.5vw, 2.45rem);
+}
+
+.research-detail p:not(.project-tag),
+.research-detail li {
+  color: var(--muted);
+}
+
+.research-detail ul {
+  margin: 1rem 0 0;
+  padding-left: 1.1rem;
+}
+
+.research-detail li + li {
+  margin-top: 0.45rem;
 }
 
 .research-triad,
@@ -723,6 +879,98 @@ h3 {
   margin: 0.8rem 0 0;
   padding-left: 1.1rem;
   color: var(--muted);
+}
+
+.member-directory {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.member-category {
+  border: 1px solid var(--line);
+  background:
+    linear-gradient(180deg, color-mix(in srgb, var(--surface), transparent 0%), color-mix(in srgb, var(--surface-strong), transparent 58%));
+  box-shadow: 0 14px 34px rgba(13, 39, 33, 0.06);
+  padding: 1rem;
+}
+
+.member-category.compact {
+  min-height: 170px;
+}
+
+.member-category.alumni {
+  grid-column: 1 / -1;
+}
+
+.member-category-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+  padding-bottom: 0.7rem;
+  border-bottom: 1px solid var(--line);
+}
+
+.member-category-head span {
+  color: var(--rust);
+  font-size: 0.78rem;
+  font-weight: 850;
+  text-transform: uppercase;
+}
+
+.member-list {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.75rem;
+  margin-top: 0.9rem;
+}
+
+.member-person {
+  min-height: 128px;
+  border: 1px solid color-mix(in srgb, var(--line), transparent 24%);
+  background: color-mix(in srgb, var(--surface), transparent 12%);
+  padding: 0.8rem;
+}
+
+.member-person strong,
+.alumni-list strong {
+  display: block;
+  font-size: 1.05rem;
+}
+
+.member-person span {
+  display: block;
+  color: var(--blue);
+  font-size: 0.88rem;
+  font-weight: 750;
+  margin-top: 0.15rem;
+}
+
+.member-person p,
+.member-note {
+  color: var(--muted);
+  margin: 0.55rem 0 0;
+}
+
+.alumni-list {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.75rem;
+  margin-top: 0.9rem;
+}
+
+.alumni-list p {
+  margin: 0;
+  border: 1px solid color-mix(in srgb, var(--line), transparent 24%);
+  background: color-mix(in srgb, var(--surface), transparent 12%);
+  padding: 0.8rem;
+}
+
+.alumni-list span {
+  display: block;
+  color: var(--muted);
+  margin-top: 0.25rem;
 }
 
 .achievement-list {
@@ -1086,12 +1334,27 @@ address a {
   .research-grid,
   .research-grid.expanded,
   .research-triad,
+  .research-tabs,
+  .research-panel,
   .project-grid,
   .info-grid,
   .two-column,
   .news-grid,
-  .member-grid {
+  .member-grid,
+  .member-directory,
+  .member-list,
+  .alumni-list {
     grid-template-columns: 1fr;
+  }
+
+  .research-stage,
+  .research-media,
+  .research-media img {
+    min-height: 320px;
+  }
+
+  .research-panel {
+    gap: 1rem;
   }
 
   .leader-card,
@@ -1144,6 +1407,21 @@ address a {
   .member-leader,
   .timeline article {
     grid-template-columns: 1fr;
+  }
+
+  .research-tab {
+    grid-template-columns: 48px minmax(0, 1fr);
+    min-height: 78px;
+  }
+
+  .research-tab span {
+    width: 48px;
+    height: 48px;
+  }
+
+  .research-media,
+  .research-media img {
+    min-height: 250px;
   }
 
   .publication,

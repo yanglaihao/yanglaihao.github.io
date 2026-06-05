@@ -91,7 +91,7 @@
             </div>
             <div>
               <dt>成果规模</dt>
-              <dd>论文 45+ / 项目 18+</dd>
+              <dd>论文 100+ / 专利 100+</dd>
             </div>
           </dl>
         </aside>
@@ -136,6 +136,18 @@
               <span>办公地点</span>
               <strong>创新港高端装备研究院 2号巨构 2-5137。</strong>
             </article>
+            <article class="info-card">
+              <span>成果规模</span>
+              <strong>主持项目 10余项，经费 3400万+；发表论文 100余篇，其中一作/通讯 SCI 论文 34篇。</strong>
+            </article>
+            <article class="info-card">
+              <span>知识产权</span>
+              <strong>公开发明专利 100余项，授权 50项，国际专利 7项，出版专著 1部。</strong>
+            </article>
+            <article class="info-card">
+              <span>人才培养</span>
+              <strong>博士、硕士、本科生共同参与连续体机器人、智能诊断、触觉传感与具身操作研究。</strong>
+            </article>
           </div>
         </div>
       </section>
@@ -149,52 +161,84 @@
           </p>
         </div>
 
-        <div class="research-ribbon">
-          <span>研究主线：高端装备智能检修机器人</span>
-        </div>
+        <div class="research-switcher" data-research-switcher>
+          <div class="research-ribbon">
+            <span>研究主线：高端装备智能检修机器人</span>
+          </div>
 
-        <div class="research-triad">
-          <article class="direction-card diagnosis">
-            <div class="direction-top">
+          <div class="research-tabs" role="tablist" aria-label="研究方向切换">
+            <button class="research-tab active diagnosis" type="button" role="tab" aria-selected="true" aria-controls="panel-diagnosis" id="tab-diagnosis" data-research-target="diagnosis">
               <span>01</span>
-              <h3>智能诊断</h3>
-            </div>
-            <figure>
-              <img src="assets/research-diagnosis.gif" alt="智能诊断方向动图" loading="lazy" />
-            </figure>
-            <p class="direction-key">判得准</p>
-            <p>
-              面向航发/燃机关键零部件损伤演化机理、非接触振动监测、叶尖定时、信号采集调理和损伤定量评估，构建融合物理模型与数据智能的诊断方法。
-            </p>
-          </article>
-
-          <article class="direction-card intervention">
-            <div class="direction-top">
+              <strong>智能诊断</strong>
+              <em>判得准</em>
+            </button>
+            <button class="research-tab intervention" type="button" role="tab" aria-selected="false" aria-controls="panel-intervention" id="tab-intervention" data-research-target="intervention">
               <span>02</span>
-              <h3>原位介入</h3>
-            </div>
-            <figure>
-              <img src="assets/research-intervention.gif" alt="原位介入方向动图" loading="lazy" />
-            </figure>
-            <p class="direction-key">进得去</p>
-            <p>
-              面向高端装备复杂深腔受限空间，发展原位介入连续体机器人、爬行机器人和柔顺控制理论，使机器人能够在狭窄、弯曲、遮挡和接触丰富环境中稳定抵达目标区域。
-            </p>
-          </article>
-
-          <article class="direction-card embodied">
-            <div class="direction-top">
+              <strong>原位介入</strong>
+              <em>进得去</em>
+            </button>
+            <button class="research-tab embodied" type="button" role="tab" aria-selected="false" aria-controls="panel-embodied" id="tab-embodied" data-research-target="embodied">
               <span>03</span>
-              <h3>具身操作</h3>
-            </div>
-            <figure>
-              <img src="assets/research-embodied.png" alt="具身操作方向图" loading="lazy" />
-            </figure>
-            <p class="direction-key">操作稳</p>
-            <p>
-              融合人形机器人、灵巧手、触觉感知、视觉检测和具身智能技术，面向高端装备精细操作、原位处置和复杂任务执行，提升机器人的稳定操作与环境适应能力。
-            </p>
-          </article>
+              <strong>具身操作</strong>
+              <em>操作稳</em>
+            </button>
+          </div>
+
+          <div class="research-stage">
+            <article class="research-panel active" id="panel-diagnosis" role="tabpanel" aria-labelledby="tab-diagnosis" data-research-panel="diagnosis">
+              <figure class="research-media">
+                <img src="assets/research-diagnosis.gif" alt="智能诊断方向动图" />
+              </figure>
+              <div class="research-detail">
+                <p class="project-tag">Intelligent Diagnosis</p>
+                <h3>智能诊断：从损伤机理到可解释状态评估</h3>
+                <p>
+                  面向航空发动机、燃机等高端装备关键零部件，研究裂纹、烧蚀、掉角、漏油等损伤的演化机理与多源信号表征，结合叶尖定时、非接触振动监测、信号采集调理和可解释深度学习，实现损伤位置、程度与风险的定量诊断。
+                </p>
+                <ul>
+                  <li>非接触振动监测、叶尖定时与多传感信号融合</li>
+                  <li>数字孪生驱动的转子叶片健康监测与在线评估</li>
+                  <li>物理模型约束的数据智能诊断和不确定性分析</li>
+                </ul>
+              </div>
+            </article>
+
+            <article class="research-panel" id="panel-intervention" role="tabpanel" aria-labelledby="tab-intervention" data-research-panel="intervention" hidden>
+              <figure class="research-media">
+                <img src="assets/research-intervention.gif" alt="原位介入方向动图" />
+              </figure>
+              <div class="research-detail">
+                <p class="project-tag">In-situ Intervention</p>
+                <h3>原位介入：让柔顺机器人进入复杂深腔</h3>
+                <p>
+                  面向高端装备内部狭窄、弯曲、遮挡和接触丰富的受限空间，发展连续体机器人、爬行机器人与柔顺关节创新设计，研究高效力学建模、运动规划和接触安全控制，使机器人能够原位抵达检测、维护和处置目标区域。
+                </p>
+                <ul>
+                  <li>连续体机器人结构设计、动力学建模与高精度控制</li>
+                  <li>深腔探入式检测机器人系统与路径规划方法</li>
+                  <li>复杂受限空间中的柔顺交互、接触感知与安全介入</li>
+                </ul>
+              </div>
+            </article>
+
+            <article class="research-panel" id="panel-embodied" role="tabpanel" aria-labelledby="tab-embodied" data-research-panel="embodied" hidden>
+              <figure class="research-media">
+                <img src="assets/research-embodied.png" alt="具身操作方向图" />
+              </figure>
+              <div class="research-detail">
+                <p class="project-tag">Embodied Manipulation</p>
+                <h3>具身操作：融合触觉、灵巧手与具身智能</h3>
+                <p>
+                  以“操作稳”为目标，融合人形机器人、灵巧手、触觉电子皮肤、视觉检测和具身智能决策技术，研究高端装备精细操作、原位处置和多机器人协同，使机器人不仅能够进入装备内部，还能够在复杂环境中稳定完成检测、打磨、夹持与处置任务。
+                </p>
+                <ul>
+                  <li>多维力触觉电子皮肤、柔性传感与操作反馈</li>
+                  <li>灵巧手和人形机器人辅助的精细操作策略</li>
+                  <li>视觉-触觉-力控融合的具身智能任务执行</li>
+                </ul>
+              </div>
+            </article>
+          </div>
         </div>
       </section>
 
@@ -250,7 +294,7 @@
           <p class="eyebrow">Members</p>
           <h2 id="members-title">团队成员</h2>
           <p>
-            团队围绕高端装备智能检修机器人形成多层次人才培养体系，覆盖教师、博士后、博士研究生、硕士研究生和本科生。当前公开页面先展示团队负责人及成员结构，具体成员名单可后续补充。
+            团队围绕高端装备智能检修机器人形成多层次人才培养体系，覆盖团队领导、教师/合作导师、博士后、博士研究生、硕士研究生、本科生和毕业生。以下名单根据学校教师主页公开成员信息整理。
           </p>
         </div>
 
@@ -270,30 +314,126 @@
             </div>
           </article>
 
-          <div class="member-grid">
-            <article class="member-card">
-              <span>教师 / 合作导师</span>
-              <p>围绕航空发动机健康管理、机器人检测、智能传感和数字孪生开展跨方向协同。</p>
+          <div class="member-directory">
+            <article class="member-category compact">
+              <div class="member-category-head">
+                <span>Teachers</span>
+                <h3>教师 / 合作导师</h3>
+              </div>
+              <p class="member-note">围绕航空发动机健康管理、机器人检测、智能传感和数字孪生开展跨方向协同；公开页面暂未列出更多教师姓名。</p>
             </article>
-            <article class="member-card">
-              <span>博士后</span>
-              <p>聚焦具身操作、机器人系统集成、物理智能诊断和 AI for Science 方法拓展。</p>
+
+            <article class="member-category compact">
+              <div class="member-category-head">
+                <span>Postdocs</span>
+                <h3>博士后</h3>
+              </div>
+              <p class="member-note">聚焦具身操作、机器人系统集成、物理智能诊断和 AI for Science 方法拓展；公开页面暂未列出博士后姓名。</p>
             </article>
-            <article class="member-card">
-              <span>博士研究生</span>
-              <p>承担连续体机器人、航发原位维护、结构动力学建模、稀疏诊断等核心研究。</p>
+
+            <article class="member-category">
+              <div class="member-category-head">
+                <span>PhD Students</span>
+                <h3>博士研究生</h3>
+              </div>
+              <div class="member-list">
+                <div class="member-person">
+                  <strong>杨浙帅</strong>
+                  <span>2020级 · 西安交通大学</span>
+                  <p>深腔探入式检测机器人系统设计与控制方法</p>
+                </div>
+                <div class="member-person">
+                  <strong>金若尘</strong>
+                  <span>2020级 · 山东大学</span>
+                  <p>航空发动机转子叶片可解释深度智能监测诊断</p>
+                </div>
+                <div class="member-person">
+                  <strong>胡华辉</strong>
+                  <span>2021级 · 华南理工</span>
+                  <p>数字孪生驱动的转子叶片健康监测</p>
+                </div>
+                <div class="member-person">
+                  <strong>杜祖鹏</strong>
+                  <span>2023级 · 重庆大学</span>
+                  <p>非结构化环境下仿生软体机器人柔顺操控</p>
+                </div>
+              </div>
             </article>
-            <article class="member-card">
-              <span>硕士研究生</span>
-              <p>参与智能传感、机器人设计、数据采集、控制算法、实验平台搭建和工程验证。</p>
+
+            <article class="member-category">
+              <div class="member-category-head">
+                <span>Master Students</span>
+                <h3>硕士研究生</h3>
+              </div>
+              <div class="member-list">
+                <div class="member-person">
+                  <strong>薛晨菲</strong>
+                  <span>2023级 · 长安大学</span>
+                  <p>超冗余机器人动力学控制</p>
+                </div>
+                <div class="member-person">
+                  <strong>姚晨彧</strong>
+                  <span>2023级 · 合肥工业大学</span>
+                  <p>连续体机器人柔顺关节创新设计</p>
+                </div>
+                <div class="member-person">
+                  <strong>李昊钢</strong>
+                  <span>2024级 · 四川大学</span>
+                  <p>连续体机器人动力学建模与控制</p>
+                </div>
+                <div class="member-person">
+                  <strong>李晨铭</strong>
+                  <span>2024级 · 东北大学</span>
+                  <p>主被动连续体机器人控制与传感</p>
+                </div>
+                <div class="member-person">
+                  <strong>钱行健</strong>
+                  <span>2024级 · 湖南大学</span>
+                  <p>连续体打磨机器人控制</p>
+                </div>
+                <div class="member-person">
+                  <strong>王怡博</strong>
+                  <span>2024级 · 华南理工大学</span>
+                  <p>插簧型连续体机器人设计与建模</p>
+                </div>
+                <div class="member-person">
+                  <strong>张亚鹏</strong>
+                  <span>2025级 · 湖南大学</span>
+                  <p>连续体机器人柔顺关节创新设计</p>
+                </div>
+              </div>
             </article>
-            <article class="member-card">
-              <span>本科生</span>
-              <p>欢迎参与机器人、机械设计、数学建模、嵌入式系统、视觉检测和科研训练项目。</p>
+
+            <article class="member-category">
+              <div class="member-category-head">
+                <span>Undergraduate</span>
+                <h3>本科生</h3>
+              </div>
+              <div class="member-list">
+                <div class="member-person">
+                  <strong>吕冠桥</strong>
+                  <span>2021级本科生</span>
+                  <p>水下仿生机器人</p>
+                </div>
+              </div>
             </article>
-            <article class="member-card">
-              <span>合作平台</span>
-              <p>依托航空发动机健康管理教育部重点实验室、机械制造系统工程国家重点实验室等平台。</p>
+
+            <article class="member-category alumni">
+              <div class="member-category-head">
+                <span>Alumni</span>
+                <h3>已毕业</h3>
+              </div>
+              <div class="alumni-list">
+                <p><strong>刘乙雪</strong><span>2025 · 硕士论文：折纸启发的磁性薄膜多维力触觉电子皮肤 · 毕业去向：比亚迪</span></p>
+                <p><strong>郑毅</strong><span>2025 · 硕士论文：多节连续体机器人控制策略研究与系统设计 · 毕业去向：华为</span></p>
+                <p><strong>罗旭良</strong><span>2025 · 硕士论文：模型约束下数据驱动的转子叶片监测诊断研究 · 毕业去向：中广核</span></p>
+                <p><strong>彭银冲</strong><span>2025 · 硕士论文：连续体机器人优化设计与高效力学建模 · 毕业去向：南瑞继保</span></p>
+                <p><strong>杨冬</strong><span>2024 · 硕士论文：超冗余连续型机器人高精度控制与运动规划方法研究 · 毕业去向：人本</span></p>
+                <p><strong>王景</strong><span>2024 · 硕士论文：基于非接触测量的航空发动机转子叶片在线监测研究 · 毕业去向：一飞院</span></p>
+                <p><strong>兰雨</strong><span>2023 · 硕士论文：航空发动机原位检测双芯柱连续体机器人运动控制研究 · 毕业去向：中兴</span></p>
+                <p><strong>庞丁</strong><span>2022 · 硕士论文：基于数字孪生的航空发动机转子叶片裂纹监测诊断研究 · 毕业去向：西安618所</span></p>
+                <p><strong>徐露</strong><span>2020 · 本科毕业设计：基于深度学习的冗余机器人位姿评估方法 · 毕业去向：本校直博</span></p>
+              </div>
             </article>
           </div>
         </div>
