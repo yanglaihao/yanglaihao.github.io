@@ -703,6 +703,21 @@ h3 {
   object-position: center;
 }
 
+.research-panel[data-research-panel="embodied"] .research-media img {
+  animation: embodied-focus 7s ease-in-out infinite;
+}
+
+@keyframes embodied-focus {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.035);
+  }
+}
+
 .research-detail {
   display: flex;
   flex-direction: column;
@@ -1375,6 +1390,12 @@ address a {
   address {
     justify-content: flex-start;
     margin-top: 1.2rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .research-panel[data-research-panel="embodied"] .research-media img {
+    animation: none;
   }
 }
 
