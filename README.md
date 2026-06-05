@@ -1,6 +1,6 @@
-# 杨来浩个人主页
+# 高端装备智能检修机器人团队主页
 
-一个偏学术研究方向的个人主页，当前围绕杨来浩老师的软体/连续体机器人、智能传感、航空发动机健康管理与 AI for Science 方向组织内容。
+一个团队主页静态站，当前围绕西安交通大学高端装备智能检修机器人团队组织内容，栏目包括首页、团队简介、研究方向、团队动态、团队成员、团队成果和联系方式。
 
 ## 本地预览
 
@@ -24,10 +24,11 @@ python3 -m http.server 4173
 - 学校主页：https://gr.xjtu.edu.cn/yanglaihao/
 - ResearchGate：https://www.researchgate.net/profile/Laihao-Yang-3
 - Google Scholar：https://scholar.google.com/citations?user=G1LcEO4AAAAJ&hl=zh-CN
+- 本地素材目录中的研究方向动图已整理到 `assets/`
 
 ## 后续建议补充内容
 
-- 正式个人照片或更贴合软体机器人/航空发动机检测的抽象视觉图
+- 具身操作方向如需动态效果，请补充对应 GIF 文件替换当前 PNG 素材
 - 论文 PDF、代码、数据集、专利全文或 BibTeX 链接
 - 学生团队名单、新闻动态、招生状态和课程/教学信息
 - `assets/hero-manuscript.png`、`assets/research-notes.png`、`assets/project-workflow.png` 是当前主页的生成视觉图
