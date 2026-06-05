@@ -703,21 +703,6 @@ h3 {
   object-position: center;
 }
 
-.research-panel[data-research-panel="embodied"] .research-media img {
-  animation: embodied-focus 7s ease-in-out infinite;
-}
-
-@keyframes embodied-focus {
-  0%,
-  100% {
-    transform: scale(1);
-  }
-
-  50% {
-    transform: scale(1.035);
-  }
-}
-
 .research-detail {
   display: flex;
   flex-direction: column;
@@ -898,8 +883,61 @@ h3 {
 
 .member-directory {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 1rem;
+}
+
+.member-tabs {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.75rem;
+}
+
+.member-category-toggle {
+  min-height: 88px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--surface);
+  color: var(--ink);
+  text-align: left;
+  padding: 0.85rem;
+  cursor: pointer;
+  transition:
+    transform 160ms ease,
+    border-color 160ms ease,
+    background 160ms ease;
+}
+
+.member-category-toggle:hover,
+.member-category-toggle:focus-visible {
+  transform: translateY(-1px);
+  border-color: var(--accent);
+}
+
+.member-category-toggle.active {
+  border-color: var(--accent);
+  background: linear-gradient(135deg, var(--accent-soft), var(--surface));
+}
+
+.member-category-toggle span,
+.member-category-toggle strong {
+  display: block;
+}
+
+.member-category-toggle span {
+  color: var(--rust);
+  font-size: 0.76rem;
+  font-weight: 850;
+  text-transform: uppercase;
+}
+
+.member-category-toggle strong {
+  margin-top: 0.35rem;
+  font-size: clamp(1.05rem, 1.5vw, 1.35rem);
+  line-height: 1.25;
+}
+
+.member-stage {
+  min-height: 220px;
 }
 
 .member-category {
@@ -908,6 +946,10 @@ h3 {
     linear-gradient(180deg, color-mix(in srgb, var(--surface), transparent 0%), color-mix(in srgb, var(--surface-strong), transparent 58%));
   box-shadow: 0 14px 34px rgba(13, 39, 33, 0.06);
   padding: 1rem;
+}
+
+.member-category[hidden] {
+  display: none;
 }
 
 .member-category.compact {
@@ -1351,6 +1393,7 @@ address a {
   .research-triad,
   .research-tabs,
   .research-panel,
+  .member-tabs,
   .project-grid,
   .info-grid,
   .two-column,
@@ -1390,12 +1433,6 @@ address a {
   address {
     justify-content: flex-start;
     margin-top: 1.2rem;
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .research-panel[data-research-panel="embodied"] .research-media img {
-    animation: none;
   }
 }
 

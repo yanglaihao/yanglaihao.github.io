@@ -223,7 +223,7 @@
 
             <article class="research-panel" id="panel-embodied" role="tabpanel" aria-labelledby="tab-embodied" data-research-panel="embodied" hidden>
               <figure class="research-media">
-                <img src="assets/research-embodied.png" alt="具身操作方向图" />
+                <img src="assets/research-embodied.gif" alt="具身操作方向动图" />
               </figure>
               <div class="research-detail">
                 <p class="project-tag">Embodied Manipulation</p>
@@ -314,127 +314,156 @@
             </div>
           </article>
 
-          <div class="member-directory">
-            <article class="member-category compact">
-              <div class="member-category-head">
+          <div class="member-directory" data-member-switcher>
+            <div class="member-tabs" role="tablist" aria-label="团队成员分组">
+              <button class="member-category-toggle active" type="button" role="tab" aria-selected="true" aria-controls="member-panel-teachers" id="member-tab-teachers" data-member-target="teachers">
                 <span>Teachers</span>
-                <h3>教师 / 合作导师</h3>
-              </div>
-              <p class="member-note">围绕航空发动机健康管理、机器人检测、智能传感和数字孪生开展跨方向协同；公开页面暂未列出更多教师姓名。</p>
-            </article>
-
-            <article class="member-category compact">
-              <div class="member-category-head">
+                <strong>教师 / 合作导师</strong>
+              </button>
+              <button class="member-category-toggle" type="button" role="tab" aria-selected="false" aria-controls="member-panel-postdocs" id="member-tab-postdocs" data-member-target="postdocs">
                 <span>Postdocs</span>
-                <h3>博士后</h3>
-              </div>
-              <p class="member-note">聚焦具身操作、机器人系统集成、物理智能诊断和 AI for Science 方法拓展；公开页面暂未列出博士后姓名。</p>
-            </article>
-
-            <article class="member-category">
-              <div class="member-category-head">
+                <strong>博士后</strong>
+              </button>
+              <button class="member-category-toggle" type="button" role="tab" aria-selected="false" aria-controls="member-panel-phd" id="member-tab-phd" data-member-target="phd">
                 <span>PhD Students</span>
-                <h3>博士研究生</h3>
-              </div>
-              <div class="member-list">
-                <div class="member-person">
-                  <strong>杨浙帅</strong>
-                  <span>2020级 · 西安交通大学</span>
-                  <p>深腔探入式检测机器人系统设计与控制方法</p>
-                </div>
-                <div class="member-person">
-                  <strong>金若尘</strong>
-                  <span>2020级 · 山东大学</span>
-                  <p>航空发动机转子叶片可解释深度智能监测诊断</p>
-                </div>
-                <div class="member-person">
-                  <strong>胡华辉</strong>
-                  <span>2021级 · 华南理工</span>
-                  <p>数字孪生驱动的转子叶片健康监测</p>
-                </div>
-                <div class="member-person">
-                  <strong>杜祖鹏</strong>
-                  <span>2023级 · 重庆大学</span>
-                  <p>非结构化环境下仿生软体机器人柔顺操控</p>
-                </div>
-              </div>
-            </article>
-
-            <article class="member-category">
-              <div class="member-category-head">
+                <strong>博士研究生</strong>
+              </button>
+              <button class="member-category-toggle" type="button" role="tab" aria-selected="false" aria-controls="member-panel-master" id="member-tab-master" data-member-target="master">
                 <span>Master Students</span>
-                <h3>硕士研究生</h3>
-              </div>
-              <div class="member-list">
-                <div class="member-person">
-                  <strong>薛晨菲</strong>
-                  <span>2023级 · 长安大学</span>
-                  <p>超冗余机器人动力学控制</p>
-                </div>
-                <div class="member-person">
-                  <strong>姚晨彧</strong>
-                  <span>2023级 · 合肥工业大学</span>
-                  <p>连续体机器人柔顺关节创新设计</p>
-                </div>
-                <div class="member-person">
-                  <strong>李昊钢</strong>
-                  <span>2024级 · 四川大学</span>
-                  <p>连续体机器人动力学建模与控制</p>
-                </div>
-                <div class="member-person">
-                  <strong>李晨铭</strong>
-                  <span>2024级 · 东北大学</span>
-                  <p>主被动连续体机器人控制与传感</p>
-                </div>
-                <div class="member-person">
-                  <strong>钱行健</strong>
-                  <span>2024级 · 湖南大学</span>
-                  <p>连续体打磨机器人控制</p>
-                </div>
-                <div class="member-person">
-                  <strong>王怡博</strong>
-                  <span>2024级 · 华南理工大学</span>
-                  <p>插簧型连续体机器人设计与建模</p>
-                </div>
-                <div class="member-person">
-                  <strong>张亚鹏</strong>
-                  <span>2025级 · 湖南大学</span>
-                  <p>连续体机器人柔顺关节创新设计</p>
-                </div>
-              </div>
-            </article>
-
-            <article class="member-category">
-              <div class="member-category-head">
+                <strong>硕士研究生</strong>
+              </button>
+              <button class="member-category-toggle" type="button" role="tab" aria-selected="false" aria-controls="member-panel-undergraduate" id="member-tab-undergraduate" data-member-target="undergraduate">
                 <span>Undergraduate</span>
-                <h3>本科生</h3>
-              </div>
-              <div class="member-list">
-                <div class="member-person">
-                  <strong>吕冠桥</strong>
-                  <span>2021级本科生</span>
-                  <p>水下仿生机器人</p>
-                </div>
-              </div>
-            </article>
-
-            <article class="member-category alumni">
-              <div class="member-category-head">
+                <strong>本科生</strong>
+              </button>
+              <button class="member-category-toggle" type="button" role="tab" aria-selected="false" aria-controls="member-panel-alumni" id="member-tab-alumni" data-member-target="alumni">
                 <span>Alumni</span>
-                <h3>已毕业</h3>
-              </div>
-              <div class="alumni-list">
-                <p><strong>刘乙雪</strong><span>2025 · 硕士论文：折纸启发的磁性薄膜多维力触觉电子皮肤 · 毕业去向：比亚迪</span></p>
-                <p><strong>郑毅</strong><span>2025 · 硕士论文：多节连续体机器人控制策略研究与系统设计 · 毕业去向：华为</span></p>
-                <p><strong>罗旭良</strong><span>2025 · 硕士论文：模型约束下数据驱动的转子叶片监测诊断研究 · 毕业去向：中广核</span></p>
-                <p><strong>彭银冲</strong><span>2025 · 硕士论文：连续体机器人优化设计与高效力学建模 · 毕业去向：南瑞继保</span></p>
-                <p><strong>杨冬</strong><span>2024 · 硕士论文：超冗余连续型机器人高精度控制与运动规划方法研究 · 毕业去向：人本</span></p>
-                <p><strong>王景</strong><span>2024 · 硕士论文：基于非接触测量的航空发动机转子叶片在线监测研究 · 毕业去向：一飞院</span></p>
-                <p><strong>兰雨</strong><span>2023 · 硕士论文：航空发动机原位检测双芯柱连续体机器人运动控制研究 · 毕业去向：中兴</span></p>
-                <p><strong>庞丁</strong><span>2022 · 硕士论文：基于数字孪生的航空发动机转子叶片裂纹监测诊断研究 · 毕业去向：西安618所</span></p>
-                <p><strong>徐露</strong><span>2020 · 本科毕业设计：基于深度学习的冗余机器人位姿评估方法 · 毕业去向：本校直博</span></p>
-              </div>
-            </article>
+                <strong>已毕业</strong>
+              </button>
+            </div>
+
+            <div class="member-stage">
+              <article class="member-category active" id="member-panel-teachers" role="tabpanel" aria-labelledby="member-tab-teachers" data-member-panel="teachers">
+                <div class="member-category-head">
+                  <span>Teachers</span>
+                  <h3>教师 / 合作导师</h3>
+                </div>
+                <p class="member-note">围绕航空发动机健康管理、机器人检测、智能传感和数字孪生开展跨方向协同；公开页面暂未列出更多教师姓名。</p>
+              </article>
+
+              <article class="member-category" id="member-panel-postdocs" role="tabpanel" aria-labelledby="member-tab-postdocs" data-member-panel="postdocs" hidden>
+                <div class="member-category-head">
+                  <span>Postdocs</span>
+                  <h3>博士后</h3>
+                </div>
+                <p class="member-note">聚焦具身操作、机器人系统集成、物理智能诊断和 AI for Science 方法拓展；公开页面暂未列出博士后姓名。</p>
+              </article>
+
+              <article class="member-category" id="member-panel-phd" role="tabpanel" aria-labelledby="member-tab-phd" data-member-panel="phd" hidden>
+                <div class="member-category-head">
+                  <span>PhD Students</span>
+                  <h3>博士研究生</h3>
+                </div>
+                <div class="member-list">
+                  <div class="member-person">
+                    <strong>杨浙帅</strong>
+                    <span>2020级 · 西安交通大学</span>
+                    <p>深腔探入式检测机器人系统设计与控制方法</p>
+                  </div>
+                  <div class="member-person">
+                    <strong>金若尘</strong>
+                    <span>2020级 · 山东大学</span>
+                    <p>航空发动机转子叶片可解释深度智能监测诊断</p>
+                  </div>
+                  <div class="member-person">
+                    <strong>胡华辉</strong>
+                    <span>2021级 · 华南理工</span>
+                    <p>数字孪生驱动的转子叶片健康监测</p>
+                  </div>
+                  <div class="member-person">
+                    <strong>杜祖鹏</strong>
+                    <span>2023级 · 重庆大学</span>
+                    <p>非结构化环境下仿生软体机器人柔顺操控</p>
+                  </div>
+                </div>
+              </article>
+
+              <article class="member-category" id="member-panel-master" role="tabpanel" aria-labelledby="member-tab-master" data-member-panel="master" hidden>
+                <div class="member-category-head">
+                  <span>Master Students</span>
+                  <h3>硕士研究生</h3>
+                </div>
+                <div class="member-list">
+                  <div class="member-person">
+                    <strong>薛晨菲</strong>
+                    <span>2023级 · 长安大学</span>
+                    <p>超冗余机器人动力学控制</p>
+                  </div>
+                  <div class="member-person">
+                    <strong>姚晨彧</strong>
+                    <span>2023级 · 合肥工业大学</span>
+                    <p>连续体机器人柔顺关节创新设计</p>
+                  </div>
+                  <div class="member-person">
+                    <strong>李昊钢</strong>
+                    <span>2024级 · 四川大学</span>
+                    <p>连续体机器人动力学建模与控制</p>
+                  </div>
+                  <div class="member-person">
+                    <strong>李晨铭</strong>
+                    <span>2024级 · 东北大学</span>
+                    <p>主被动连续体机器人控制与传感</p>
+                  </div>
+                  <div class="member-person">
+                    <strong>钱行健</strong>
+                    <span>2024级 · 湖南大学</span>
+                    <p>连续体打磨机器人控制</p>
+                  </div>
+                  <div class="member-person">
+                    <strong>王怡博</strong>
+                    <span>2024级 · 华南理工大学</span>
+                    <p>插簧型连续体机器人设计与建模</p>
+                  </div>
+                  <div class="member-person">
+                    <strong>张亚鹏</strong>
+                    <span>2025级 · 湖南大学</span>
+                    <p>连续体机器人柔顺关节创新设计</p>
+                  </div>
+                </div>
+              </article>
+
+              <article class="member-category" id="member-panel-undergraduate" role="tabpanel" aria-labelledby="member-tab-undergraduate" data-member-panel="undergraduate" hidden>
+                <div class="member-category-head">
+                  <span>Undergraduate</span>
+                  <h3>本科生</h3>
+                </div>
+                <div class="member-list">
+                  <div class="member-person">
+                    <strong>吕冠桥</strong>
+                    <span>2021级本科生</span>
+                    <p>水下仿生机器人</p>
+                  </div>
+                </div>
+              </article>
+
+              <article class="member-category" id="member-panel-alumni" role="tabpanel" aria-labelledby="member-tab-alumni" data-member-panel="alumni" hidden>
+                <div class="member-category-head">
+                  <span>Alumni</span>
+                  <h3>已毕业</h3>
+                </div>
+                <div class="alumni-list">
+                  <p><strong>刘乙雪</strong><span>2025 · 硕士论文：折纸启发的磁性薄膜多维力触觉电子皮肤 · 毕业去向：比亚迪</span></p>
+                  <p><strong>郑毅</strong><span>2025 · 硕士论文：多节连续体机器人控制策略研究与系统设计 · 毕业去向：华为</span></p>
+                  <p><strong>罗旭良</strong><span>2025 · 硕士论文：模型约束下数据驱动的转子叶片监测诊断研究 · 毕业去向：中广核</span></p>
+                  <p><strong>彭银冲</strong><span>2025 · 硕士论文：连续体机器人优化设计与高效力学建模 · 毕业去向：南瑞继保</span></p>
+                  <p><strong>杨冬</strong><span>2024 · 硕士论文：超冗余连续型机器人高精度控制与运动规划方法研究 · 毕业去向：人本</span></p>
+                  <p><strong>王景</strong><span>2024 · 硕士论文：基于非接触测量的航空发动机转子叶片在线监测研究 · 毕业去向：一飞院</span></p>
+                  <p><strong>兰雨</strong><span>2023 · 硕士论文：航空发动机原位检测双芯柱连续体机器人运动控制研究 · 毕业去向：中兴</span></p>
+                  <p><strong>庞丁</strong><span>2022 · 硕士论文：基于数字孪生的航空发动机转子叶片裂纹监测诊断研究 · 毕业去向：西安618所</span></p>
+                  <p><strong>徐露</strong><span>2020 · 本科毕业设计：基于深度学习的冗余机器人位姿评估方法 · 毕业去向：本校直博</span></p>
+                </div>
+              </article>
+            </div>
           </div>
         </div>
       </section>
@@ -444,10 +473,18 @@
           <div>
             <p class="eyebrow">Achievements</p>
             <h2 id="achievements-title">团队成果</h2>
+            <p>
+              论文列表按本地 Zotero <strong>A My Work</strong> 收藏夹整理，当前收录 60 篇唯一论文，并按 SCI 期刊、EI 期刊、EI 会议、预印本和其他论文分类展示。
+            </p>
           </div>
           <div class="filter-group" role="group" aria-label="Achievement filters">
             <button class="filter active" type="button" data-output-filter="all">全部</button>
             <button class="filter" type="button" data-output-filter="paper">论文</button>
+            <button class="filter" type="button" data-output-filter="paper-sci">SCI 期刊</button>
+            <button class="filter" type="button" data-output-filter="paper-ei-journal">EI 期刊</button>
+            <button class="filter" type="button" data-output-filter="paper-ei-conference">EI 会议</button>
+            <button class="filter" type="button" data-output-filter="paper-preprint">预印本</button>
+            <button class="filter" type="button" data-output-filter="paper-other">其他论文</button>
             <button class="filter" type="button" data-output-filter="patent">专利</button>
             <button class="filter" type="button" data-output-filter="book">专著</button>
             <button class="filter" type="button" data-output-filter="award">获奖</button>
@@ -455,38 +492,66 @@
         </div>
 
         <div class="achievement-list">
-          <article class="achievement" data-output-type="paper">
-            <div class="pub-year">2025</div>
-            <div class="pub-body">
-              <p class="pub-venue">IEEE Transactions on Instrumentation & Measurement</p>
-              <h3>Blade tip timing in-loop simulation system framework: from virtual to reality</h3>
-              <p class="authors">Huahui Hu, Laihao Yang*, Zhibo Yang*, Ruochen Jin, Shaohua Tian, Yu Sun, Xuefeng Chen</p>
-            </div>
-          </article>
-          <article class="achievement" data-output-type="paper">
-            <div class="pub-year">2025</div>
-            <div class="pub-body">
-              <p class="pub-venue">Measurement</p>
-              <h3>ACDE2LM: Autocorrelation-constrained dynamic ensemble extreme learning machine for real-time fault diagnostics of bearings</h3>
-              <p class="authors">Xin Zhang, Tian Hu, Yuanke Wu, Laihao Yang*, Jiaxu Wang, Jinfeng He</p>
-            </div>
-          </article>
-          <article class="achievement" data-output-type="paper">
-            <div class="pub-year">2024</div>
-            <div class="pub-body">
-              <p class="pub-venue">IEEE Robotics and Automation Letters</p>
-              <h3>Rigid-Soft Hybrid Suction Cups for Enhanced Anti-Torque and Energy-Efficient Attachment</h3>
-              <p class="authors">Qingkai Guo, Yu Sun*, Zipan Zhao, Jiajia Ning, Ling Wang, Yuxin Lv, Xuefeng Chen, Laihao Yang*</p>
-            </div>
-          </article>
-          <article class="achievement" data-output-type="paper">
-            <div class="pub-year">2024</div>
-            <div class="pub-body">
-              <p class="pub-venue">Mechanism and Machine Theory</p>
-              <h3>Coupling vibration mechanism of multistage blisk-rotor system with blade crack</h3>
-              <p class="authors">Lai-Hao Yang, Yu Sun, Zhi-Bo Yang, Zhu Mao, Xue-Feng Chen</p>
-            </div>
-          </article>
+          <article class="achievement" data-output-type="paper-sci"><div class="pub-year">2026</div><div class="pub-body"><p class="pub-venue">SCI 期刊 · IEEE Robotics and Automation Letters · <a href="https://doi.org/10.1109/LRA.2026.3664598" target="_blank" rel="noreferrer">DOI</a></p><h3>K-Track: A Kirigami-Inspired Tracked Robot with Negative Pressure Cooperative Adhesion for Wall-to-Wall Transition</h3><p class="authors">Yu Sun, Heng Ren, Jiajia Ning, Qingkai Guo, Xuefeng Chen, Shaojiang Dong et al.</p></div></article>
+          <article class="achievement" data-output-type="paper-sci"><div class="pub-year">2026</div><div class="pub-body"><p class="pub-venue">SCI 期刊 · Science Advances · <a href="https://doi.org/10.1126/sciadv.aec3263" target="_blank" rel="noreferrer">DOI</a></p><h3>Touching with torque enables human-level robotic dexterity</h3><p class="authors">Ling Wang, Yu Sun, Laihao Yang, Yuxuan Sun, Qingkai Guo, Yixue Liu et al.</p></div></article>
+          <article class="achievement" data-output-type="paper-sci"><div class="pub-year">2026</div><div class="pub-body"><p class="pub-venue">SCI 期刊 · Aerospace Science and Technology · <a href="https://doi.org/10.1016/j.ast.2026.111736" target="_blank" rel="noreferrer">DOI</a></p><h3>A deep learning-based off-grid frequency estimation method for blade tip timing signal</h3><p class="authors">Ruochen Jin, Laihao Yang, Zhibo Yang, Junnan Feng, Huan Zhang, Zhijun Yang et al.</p></div></article>
+          <article class="achievement" data-output-type="paper-ei-journal"><div class="pub-year">2026</div><div class="pub-body"><p class="pub-venue">EI 期刊 · 应用基础与工程科学学报 · <a href="https://doi.org/10.16058/j.issn.1005-0930.2026.01.001" target="_blank" rel="noreferrer">DOI</a></p><h3>工业微创手术：航空发动机原位检修连续体机器人技术及应用</h3><p class="authors">杨来浩, 孙瑜, 杨浙帅, 杜祖鹏, 彭银冲, 郑毅 et al.</p></div></article>
+          <article class="achievement" data-output-type="paper-ei-journal"><div class="pub-year">2026</div><div class="pub-body"><p class="pub-venue">EI 期刊 · 机械工程学报 · <a href="https://kns.cnki.net/KCMS/detail/detail.aspx?dbcode=CAPJ&amp;dbname=CAPJLASTDAY&amp;filename=JXXB2026052600K" target="_blank" rel="noreferrer">链接</a></p><h3>子母式连续体机器人：设计、建模与验证</h3><p class="authors">姚晨彧, 杨来浩, 孙瑜, 陈雪峰</p></div></article>
+          <article class="achievement" data-output-type="paper-ei-journal"><div class="pub-year">2026</div><div class="pub-body"><p class="pub-venue">EI 期刊 · 机械工程学报 · <a href="https://kns.cnki.net/KCMS/detail/detail.aspx?dbcode=CAPJ&amp;dbname=CAPJLAST&amp;filename=JXXB20260515001" target="_blank" rel="noreferrer">链接</a></p><h3>昆虫尺度多运动模式机器人研究进展与应用</h3><p class="authors">孙瑜, 郭庆凯, 张天祥, 赵子攀, 谢时雨, 南长峰 et al.</p></div></article>
+          <article class="achievement" data-output-type="paper-ei-journal"><div class="pub-year">2026</div><div class="pub-body"><p class="pub-venue">EI 期刊 · 振动、测试与诊断 · <a href="https://kns.cnki.net/KCMS/detail/detail.aspx?dbcode=CAPJ&amp;dbname=CAPJLAST&amp;filename=ZDCS20260128001" target="_blank" rel="noreferrer">链接</a></p><h3>数字孪生框架下叶片裂纹稀疏定量诊断方法</h3><p class="authors">杨来浩, 罗旭良, 南长峰, 杨志勃, 陈雪峰, 孙瑜</p></div></article>
+          <article class="achievement" data-output-type="paper-preprint"><div class="pub-year">2026</div><div class="pub-body"><p class="pub-venue">预印本 · Research Square · <a href="https://doi.org/10.21203/rs.3.rs-9497546/v1" target="_blank" rel="noreferrer">DOI</a></p><h3>Decentralized mechanical metawheelbot enabled by adaptive dynamic adhesion</h3><p class="authors">Yu Sun, Haofeng Liang, Chenjie Wang, Yafei Zhang, Laihao Yang, Xuefeng Chen</p></div></article>
+          <article class="achievement" data-output-type="paper-preprint"><div class="pub-year">2026</div><div class="pub-body"><p class="pub-venue">预印本 · Social Science Research Network · <a href="https://doi.org/10.2139/ssrn.6735271" target="_blank" rel="noreferrer">DOI</a></p><h3>Adaptive Sliding Mode Control of Cable-Driven Hyper-Redundant Manipulator for Hysteresis Compensation</h3><p class="authors">Laihao Yang, Chenfei Xue, Chenming Li, Yibo Wang, Zupeng Du, Ning Tan et al.</p></div></article>
+          <article class="achievement" data-output-type="paper-other"><div class="pub-year">2026</div><div class="pub-body"><p class="pub-venue">其他期刊 · 自动化与信息工程 · <a href="https://kns.cnki.net/KCMS/detail/detail.aspx?dbcode=CJFQ&amp;dbname=CJFDAUTO&amp;filename=GZXG202601003" target="_blank" rel="noreferrer">链接</a></p><h3>绳驱动超冗余连续体机器人全臂形闭环控制方法</h3><p class="authors">薛晨菲, 孙瑜, 文庆, 阳淼清, 刘洋, 陆凌云 et al.</p></div></article>
+          <article class="achievement" data-output-type="paper-sci"><div class="pub-year">2025</div><div class="pub-body"><p class="pub-venue">SCI 期刊 · Frontiers of Mechanical Engineering · <a href="https://doi.org/10.1007/s11465-025-0832-8" target="_blank" rel="noreferrer">DOI</a></p><h3>Novel claw-type continuum robots: design, modeling, and control</h3><p class="authors">Yinchong Peng, Laihao Yang, Yu Sun, Xuefeng Chen</p></div></article>
+          <article class="achievement" data-output-type="paper-sci"><div class="pub-year">2025</div><div class="pub-body"><p class="pub-venue">SCI 期刊 · Robotics and Autonomous Systems · <a href="https://doi.org/10.1016/j.robot.2025.104986" target="_blank" rel="noreferrer">DOI</a></p><h3>Online optimization enhanced closed-loop control of multi-section continuum robots</h3><p class="authors">Laihao Yang, Yi Zheng, Yu Sun, Xuefeng Chen</p></div></article>
+          <article class="achievement" data-output-type="paper-sci"><div class="pub-year">2025</div><div class="pub-body"><p class="pub-venue">SCI 期刊 · Neural Networks · <a href="https://doi.org/10.1016/j.neunet.2025.107437" target="_blank" rel="noreferrer">DOI</a></p><h3>FE reduced-order model-informed neural operator for structural dynamic response prediction</h3><p class="authors">Lai-Hao Yang, Xu-Liang Luo, Zhi-Bo Yang, Chang-Feng Nan, Xue-Feng Chen, Yu Sun</p></div></article>
+          <article class="achievement" data-output-type="paper-sci"><div class="pub-year">2025</div><div class="pub-body"><p class="pub-venue">SCI 期刊 · IEEE Transactions on Instrumentation and Measurement · <a href="https://doi.org/10.1109/TIM.2025.3565242" target="_blank" rel="noreferrer">DOI</a></p><h3>Adversarial regularized graph autoencoder for intelligent anomaly detection with multi-sensor signal fusion</h3><p class="authors">Yingchun Li, Yu Sun, Xuefeng Chen, Qingbo He, Xinhua Long, Zhike Peng et al.</p></div></article>
+          <article class="achievement" data-output-type="paper-sci"><div class="pub-year">2025</div><div class="pub-body"><p class="pub-venue">SCI 期刊 · IEEE Transactions on Instrumentation and Measurement · <a href="https://doi.org/10.1109/TIM.2025.3580879" target="_blank" rel="noreferrer">DOI</a></p><h3>An Incremental Learning Method With Feature-Attention Distillation and Logit Adjustment for Rotating Machinery Fault Diagnosis</h3><p class="authors">Yasong Li, Hong Xu, Yuangui Yang, Chenye Hu, Chuang Sun, Huimin Song et al.</p></div></article>
+          <article class="achievement" data-output-type="paper-sci"><div class="pub-year">2025</div><div class="pub-body"><p class="pub-venue">SCI 期刊 · IEEE Transactions on Instrumentation and Measurement · <a href="https://doi.org/10.1109/TIM.2025.3554904" target="_blank" rel="noreferrer">DOI</a></p><h3>Blade Tip Timing In-Loop Simulation System Framework: From Virtual to Reality</h3><p class="authors">Huahui Hu, Laihao Yang, Zhibo Yang, Ruochen Jin, Shaohua Tian, Yu Sun et al.</p></div></article>
+          <article class="achievement" data-output-type="paper-sci"><div class="pub-year">2025</div><div class="pub-body"><p class="pub-venue">SCI 期刊 · Measurement · <a href="https://doi.org/10.1016/j.measurement.2024.116608" target="_blank" rel="noreferrer">DOI</a></p><h3>ACDE2LM: Autocorrelation-constrained dynamic ensemble extreme learning machine for real-time fault diagnostics of bearings</h3><p class="authors">Xin Zhang, Tian Hu, Yuanke Wu, Laihao Yang, Jiaxu Wang, Jinfeng He</p></div></article>
+          <article class="achievement" data-output-type="paper-sci"><div class="pub-year">2025</div><div class="pub-body"><p class="pub-venue">SCI 期刊 · Chinese Journal of Aeronautics · <a href="https://doi.org/10.1016/j.cja.2025.103486" target="_blank" rel="noreferrer">DOI</a></p><h3>A two-stage off-grid estimation for BTT data</h3><p class="authors">Ruochen Jin, Huahui Hu, Laihao Yang, Zhibo Yang, Yu Sun, Huan Liu et al.</p></div></article>
+          <article class="achievement" data-output-type="paper-sci"><div class="pub-year">2025</div><div class="pub-body"><p class="pub-venue">SCI 期刊 · Mechanical Systems and Signal Processing · <a href="https://doi.org/10.1016/j.ymssp.2025.112869" target="_blank" rel="noreferrer">DOI</a></p><h3>Probe layout unconstrained gridless frequency estimation</h3><p class="authors">Ruochen Jin, Laihao Yang, Huahui Hu, Zhibo Yang, Yu Sun, Shaohua Tian et al.</p></div></article>
+          <article class="achievement" data-output-type="paper-ei-conference"><div class="pub-year">2025</div><div class="pub-body"><p class="pub-venue">EI 会议 · 2025 International Conference on Sensing, Measurement &amp; Data Analytics in the era of Artificial Intelligence (ICSMD) · <a href="https://doi.org/10.1109/ICSMD67131.2025.11365514" target="_blank" rel="noreferrer">DOI</a></p><h3>High-Fidelity 3D Reconstruction and Robust Point Cloud Registration for Aero-Engine Blades</h3><p class="authors">Huayue Luo, Laihao Yang, Ruqiang Yan</p></div></article>
+          <article class="achievement" data-output-type="paper-ei-conference"><div class="pub-year">2025</div><div class="pub-body"><p class="pub-venue">EI 会议 · Advances in Mechanism and Machine Science and Engineering in China · <a href="https://doi.org/10.1007/978-981-96-1464-6_5" target="_blank" rel="noreferrer">DOI</a></p><h3>In-Situ Mini-Invasive Maintenance Continuum Robots for Aero-Engines: Design, Modeling, and Validation</h3><p class="authors">Laihao Yang, Zheshuai Yang, Yu Sun, Xuefeng Chen</p></div></article>
+          <article class="achievement" data-output-type="paper-ei-conference"><div class="pub-year">2025</div><div class="pub-body"><p class="pub-venue">EI 会议 · Journal of Physics: Conference Series · <a href="https://doi.org/10.1088/1742-6596/3041/1/012012" target="_blank" rel="noreferrer">DOI</a></p><h3>Fourier neural operator-based data-driven method for predicting structural dynamic response</h3><p class="authors">Xuliang Luo, Laihao Yang, Changfeng Nan, Xuefeng Chen, Yu Sun</p></div></article>
+          <article class="achievement" data-output-type="paper-ei-conference"><div class="pub-year">2025</div><div class="pub-body"><p class="pub-venue">EI 会议 · Intelligent Robotics and Applications · <a href="https://doi.org/10.1007/978-981-96-0780-8_27" target="_blank" rel="noreferrer">DOI</a></p><h3>Motion Control for Continuum Robots: A Mini Review for Model-Free and Hybrid-Model Control</h3><p class="authors">Zupeng Du, Laihao Yang, Yu Sun, Xuefeng Chen</p></div></article>
+          <article class="achievement" data-output-type="paper-ei-conference"><div class="pub-year">2025</div><div class="pub-body"><p class="pub-venue">EI 会议 · Intelligent Robotics and Applications · <a href="https://doi.org/10.1007/978-981-96-0780-8_31" target="_blank" rel="noreferrer">DOI</a></p><h3>Variable Stiffness of Continuum Robotics: A Review</h3><p class="authors">Dongbao Huang, Laihao Yang, Yu Sun</p></div></article>
+          <article class="achievement" data-output-type="paper-ei-conference"><div class="pub-year">2025</div><div class="pub-body"><p class="pub-venue">EI 会议 · Intelligent Robotics and Applications · <a href="https://doi.org/10.1007/978-981-96-0780-8_32" target="_blank" rel="noreferrer">DOI</a></p><h3>Hyper-redundant Continuum Robot: System Development and Feedback Control</h3><p class="authors">Chenfei Xue, Dong Yang, Laihao Yang, Yu Sun</p></div></article>
+          <article class="achievement" data-output-type="paper-ei-conference"><div class="pub-year">2025</div><div class="pub-body"><p class="pub-venue">EI 会议 · 2025 IEEE International Instrumentation and Measurement Technology Conference (I2MTC) · <a href="https://doi.org/10.1109/I2MTC62753.2025.11079142" target="_blank" rel="noreferrer">DOI</a></p><h3>A novel parameter estimation method of BTT data without gridding error</h3><p class="authors">Ruochen Jin, Laihao Yang, Zhibo Yang, Huahui Hu, Xuefeng Chen, Lijiao Yang</p></div></article>
+          <article class="achievement" data-output-type="paper-other"><div class="pub-year">2025</div><div class="pub-body"><p class="pub-venue">其他会议 · Equipment intelligent operation and maintenance</p><h3>Estimation of recovery error of blade tip timing signal with influence of non-uniformity</h3><p class="authors">H. H. Hu, L. H. Yang, R. C. Jin, Z. B. Yang, L. Q. Lu, S. Q. You</p></div></article>
+          <article class="achievement" data-output-type="paper-sci"><div class="pub-year">2024</div><div class="pub-body"><p class="pub-venue">SCI 期刊 · IEEE Robotics and Automation Letters · <a href="https://doi.org/10.1109/LRA.2024.3430648" target="_blank" rel="noreferrer">DOI</a></p><h3>Kresling origami with differentiation flaw design for multidirectional crawling robot</h3><p class="authors">Yu Sun, Yuxin Lv, Shiyu Xie, Qingkai Guo, Ling Wang, Laihao Yang</p></div></article>
+          <article class="achievement" data-output-type="paper-sci"><div class="pub-year">2024</div><div class="pub-body"><p class="pub-venue">SCI 期刊 · Mechanism and Machine Theory · <a href="https://doi.org/10.1016/j.mechmachtheory.2024.105767" target="_blank" rel="noreferrer">DOI</a></p><h3>Coupling vibration mechanism of multistage blisk-rotor system with blade crack</h3><p class="authors">Lai-Hao Yang, Yu Sun, Zhi-Bo Yang, Zhu Mao, Xue-Feng Chen</p></div></article>
+          <article class="achievement" data-output-type="paper-sci"><div class="pub-year">2024</div><div class="pub-body"><p class="pub-venue">SCI 期刊 · IEEE/ASME Transactions on Mechatronics · <a href="https://doi.org/10.1109/TMECH.2024.3481314" target="_blank" rel="noreferrer">DOI</a></p><h3>Frequency focus sparse bayesian learning for nonuniform undersampled blade vibration signal parameter identification</h3><p class="authors">Jing Wang, Laihao Yang, Yu Sun, Huahui Hu, Ruochen Jin, Zhibo Yang et al.</p></div></article>
+          <article class="achievement" data-output-type="paper-sci"><div class="pub-year">2024</div><div class="pub-body"><p class="pub-venue">SCI 期刊 · IEEE Transactions on Instrumentation and Measurement · <a href="https://doi.org/10.1109/TIM.2024.3480226" target="_blank" rel="noreferrer">DOI</a></p><h3>Interpretable spectra PCA for condition monitoring of rotating machinery: Theoretical and experimental investigations</h3><p class="authors">Yingchun Li, Yu Sun, Zhiyuan Li, Xuefeng Chen, Laihao Yang</p></div></article>
+          <article class="achievement" data-output-type="paper-sci"><div class="pub-year">2024</div><div class="pub-body"><p class="pub-venue">SCI 期刊 · IEEE Transactions on Robotics · <a href="https://doi.org/10.1109/TRO.2024.3400944" target="_blank" rel="noreferrer">DOI</a></p><h3>A novel contact-aided continuum robotic system: design, modeling, and validation</h3><p class="authors">Zheshuai Yang, Laihao Yang, Yu Sun, Xuefeng Chen</p></div></article>
+          <article class="achievement" data-output-type="paper-sci"><div class="pub-year">2024</div><div class="pub-body"><p class="pub-venue">SCI 期刊 · Advanced Science · <a href="https://doi.org/10.1002/advs.202404404" target="_blank" rel="noreferrer">DOI</a></p><h3>Bistable insect-scale jumpers with tunable energy barriers for multimodal locomotion</h3><p class="authors">Qingkai Guo, Yu Sun, Tianxiang Zhang, Shiyu Xie, Xuefeng Chen, Zhuang Zhang et al.</p></div></article>
+          <article class="achievement" data-output-type="paper-sci"><div class="pub-year">2024</div><div class="pub-body"><p class="pub-venue">SCI 期刊 · Advanced Intelligent Systems · <a href="https://doi.org/10.1002/aisy.202400279" target="_blank" rel="noreferrer">DOI</a></p><h3>Liquid-amplified electrostatically driven octopus sucker-inspired suction cup</h3><p class="authors">Yu Sun, Lingjun Tang, Ling Wang, Qingkai Guo, Yuxin Lv, Laihao Yang</p></div></article>
+          <article class="achievement" data-output-type="paper-sci"><div class="pub-year">2024</div><div class="pub-body"><p class="pub-venue">SCI 期刊 · IEEE Transactions on Instrumentation and Measurement · <a href="https://doi.org/10.1109/TIM.2024.3428536" target="_blank" rel="noreferrer">DOI</a></p><h3>A single-probe blade tip timing method for fast extraction of blade natural frequency</h3><p class="authors">Huahui Hu, Laihao Yang, Zhibo Yang, Ruochen Jin, Shaohua Tian, Wenbo Li et al.</p></div></article>
+          <article class="achievement" data-output-type="paper-sci"><div class="pub-year">2024</div><div class="pub-body"><p class="pub-venue">SCI 期刊 · Thin-Walled Structures · <a href="https://doi.org/10.1016/j.tws.2024.112398" target="_blank" rel="noreferrer">DOI</a></p><h3>Coupling vibration mechanism of rotating shaft–disc–blade system with blade crack—a systematical investigation on the effect of crack, condition, and structure parameters</h3><p class="authors">Lai-Hao Yang, Yu Sun, Zhi-Bo Yang, Zhu Mao, Xue-Feng Chen</p></div></article>
+          <article class="achievement" data-output-type="paper-sci"><div class="pub-year">2024</div><div class="pub-body"><p class="pub-venue">SCI 期刊 · IEEE Robotics and Automation Letters · <a href="https://doi.org/10.1109/LRA.2024.3484157" target="_blank" rel="noreferrer">DOI</a></p><h3>Rigid-soft hybrid suction cups for enhanced anti-torque and energy-efficient attachment</h3><p class="authors">Qingkai Guo, Yu Sun, Zipan Zhao, Jiajia Ning, Ling Wang, Yuxin Lv et al.</p></div></article>
+          <article class="achievement" data-output-type="paper-sci"><div class="pub-year">2023</div><div class="pub-body"><p class="pub-venue">SCI 期刊 · Structural and Multidisciplinary Optimization · <a href="https://doi.org/10.1007/s00158-022-03436-1" target="_blank" rel="noreferrer">DOI</a></p><h3>The connection between digital-twin model and physical space for rotating blade: An atomic norm-based BTT undersampled signal reconstruction method</h3><p class="authors">Ruochen Jin, Laihao Yang, Zhibo Yang, Yu Sun, Zhu Mao, Ruqiang Yan et al.</p></div></article>
+          <article class="achievement" data-output-type="paper-sci"><div class="pub-year">2023</div><div class="pub-body"><p class="pub-venue">SCI 期刊 · Frontiers of Mechanical Engineering · <a href="https://doi.org/10.1007/s11465-023-0756-0" target="_blank" rel="noreferrer">DOI</a></p><h3>Comprehensive kinetostatic modeling and morphology characterization of cable-driven continuum robots for in-situ aero-engine maintenance</h3><p class="authors">Zheshuai Yang, Laihao Yang, Yu Sun, Xuefeng Chen</p></div></article>
+          <article class="achievement" data-output-type="paper-sci"><div class="pub-year">2023</div><div class="pub-body"><p class="pub-venue">SCI 期刊 · Journal of Dynamics, Monitoring and Diagnostics · <a href="https://ojs.istp-press.com/dmd/article/view/154" target="_blank" rel="noreferrer">链接</a></p><h3>Analytical modeling and mechanism analysis of time-varying excitation for surface defects in rolling element bearings</h3><p class="authors">Laihao Yang, Yu Sun, Ruobin Sun, Lixia Gao, Xuefeng Chen</p></div></article>
+          <article class="achievement" data-output-type="paper-sci"><div class="pub-year">2023</div><div class="pub-body"><p class="pub-venue">SCI 期刊 · Frontiers of Mechanical Engineering · <a href="https://doi.org/10.1007/s11465-023-0759-x" target="_blank" rel="noreferrer">DOI</a></p><h3>Improved minimum variance distortionless response spectrum method for efficient and robust non-uniform undersampled frequency identification in blade tip timing</h3><p class="authors">Ruochen Jin, Laihao Yang, Zhibo Yang, Shaohua Tian, Guangrong Teng, Xuefeng Chen</p></div></article>
+          <article class="achievement" data-output-type="paper-ei-conference"><div class="pub-year">2023</div><div class="pub-body"><p class="pub-venue">EI 会议 · Intelligent Robotics and Applications · <a href="https://doi.org/10.1007/978-981-99-6501-4_31" target="_blank" rel="noreferrer">DOI</a></p><h3>Kinetostatic and cable-hole friction modeling for cable-driven continuum robots</h3><p class="authors">Zheshuai Yang, Laihao Yang, Yu Sun, Xuefeng Chen, Guangrong Teng, Miaoqing Yang</p></div></article>
+          <article class="achievement" data-output-type="paper-ei-conference"><div class="pub-year">2023</div><div class="pub-body"><p class="pub-venue">EI 会议 · Advances in Mechanism, Machine Science and Engineering in China · <a href="https://doi.org/10.1007/978-981-19-9398-5_28" target="_blank" rel="noreferrer">DOI</a></p><h3>An optimized cable layout method for cable-driven continuum robots</h3><p class="authors">Zheshuai Yang, Laihao Yang, Dong Yang, Yu Lan, Yu Sun, Xuefeng Chen</p></div></article>
+          <article class="achievement" data-output-type="paper-ei-conference"><div class="pub-year">2023</div><div class="pub-body"><p class="pub-venue">EI 会议 · 2023 International Conference on Sensing, Measurement &amp; Data Analytics in the era of Artificial Intelligence (ICSMD) · <a href="https://doi.org/10.1109/ICSMD60522.2023.10491042" target="_blank" rel="noreferrer">DOI</a></p><h3>Design of claw-type continuum robot based on rigid flexible coupled structure</h3><p class="authors">Yinhong Peng, Laihao Yang, Yu Sun, Yi Zheng</p></div></article>
+          <article class="achievement" data-output-type="paper-ei-conference"><div class="pub-year">2023</div><div class="pub-body"><p class="pub-venue">EI 会议 · 2023 International Conference on Sensing, Measurement &amp; Data Analytics in the era of Artificial Intelligence (ICSMD) · <a href="https://doi.org/10.1109/ICSMD60522.2023.10490977" target="_blank" rel="noreferrer">DOI</a></p><h3>PID-based remote operated control system for continuum robots</h3><p class="authors">Yi Zheng, Yinchong Peng, Yu Sun, Laihao Yang</p></div></article>
+          <article class="achievement" data-output-type="paper-sci"><div class="pub-year">2022</div><div class="pub-body"><p class="pub-venue">SCI 期刊 · Mechanism and Machine Theory · <a href="https://doi.org/10.1016/j.mechmachtheory.2021.104542" target="_blank" rel="noreferrer">DOI</a></p><h3>Dynamic coupling vibration of rotating shaft–disc–blade system — Modeling, mechanism analysis and numerical study</h3><p class="authors">Laihao Yang, Zhu Mao, Xuefeng Chen, Ruqiang Yan, Jinsong Xie, Haifeng Hu</p></div></article>
+          <article class="achievement" data-output-type="paper-ei-conference"><div class="pub-year">2022</div><div class="pub-body"><p class="pub-venue">EI 会议 · 2022 International Conference on Sensing, Measurement &amp; Data Analytics in the era of Artificial Intelligence (ICSMD) · <a href="https://doi.org/10.1109/ICSMD57530.2022.10058280" target="_blank" rel="noreferrer">DOI</a></p><h3>Overview of the Development of Origami-inspired Robot Arms</h3><p class="authors">Yixue Liu, Laihao Yang, Yu Sun</p></div></article>
+          <article class="achievement" data-output-type="paper-ei-conference"><div class="pub-year">2022</div><div class="pub-body"><p class="pub-venue">EI 会议 · Journal of Physics: Conference Series · <a href="https://doi.org/10.1088/1742-6596/2184/1/012022" target="_blank" rel="noreferrer">DOI</a></p><h3>Digital twin-driven crack monitoring for rotating blade: An L1 regularization method</h3><p class="authors">Ding Pang, Laihao Yang, Ruqiang Yan, Xuefeng Chen, Zhibo Yang, Yu Sun</p></div></article>
+          <article class="achievement" data-output-type="paper-ei-conference"><div class="pub-year">2022</div><div class="pub-body"><p class="pub-venue">EI 会议 · 2022 International Conference on Sensing, Measurement &amp; Data Analytics in the era of Artificial Intelligence (ICSMD) · <a href="https://doi.org/10.1109/ICSMD57530.2022.10058327" target="_blank" rel="noreferrer">DOI</a></p><h3>Physical-guided deep learning surrogate model for the vibration analysis of dynamic system</h3><p class="authors">Ruochen Jin, Laihao Yang, Zhibo Yang, Jing Wang, Huahui Hu, Yu Sun</p></div></article>
+          <article class="achievement" data-output-type="paper-sci"><div class="pub-year">2021</div><div class="pub-body"><p class="pub-venue">SCI 期刊 · Materials · <a href="https://doi.org/10.3390/ma14205957" target="_blank" rel="noreferrer">DOI</a></p><h3>Initial stage carbonization of γ-fe(100) surface in C2H2 under high temperature: A molecular dynamic simulation</h3><p class="authors">Yu Sun, Ling Wang, Hao Wang, Ziqiang He, Laihao Yang, Xuefeng Chen</p></div></article>
+          <article class="achievement" data-output-type="paper-sci"><div class="pub-year">2021</div><div class="pub-body"><p class="pub-venue">SCI 期刊 · Nonlinear Dynamics · <a href="https://doi.org/10.1007/s11071-021-06645-3" target="_blank" rel="noreferrer">DOI</a></p><h3>Steady-state coupling vibration analysis of shaft–disk–blade system with blade crack</h3><p class="authors">Lai-Hao Yang, Zhu Mao, Shu-Ming Wu, Xue-Feng Chen, Ru-Qiang Yan</p></div></article>
+          <article class="achievement" data-output-type="paper-sci"><div class="pub-year">2021</div><div class="pub-body"><p class="pub-venue">SCI 期刊 · Journal of Vibration and Acoustics · <a href="https://doi.org/10.1115/1.4049385" target="_blank" rel="noreferrer">DOI</a></p><h3>Dynamic characteristic analysis of rotating blade with transverse crack—part I: Modeling, modification, and validation</h3><p class="authors">Lai-Hao Yang, Zhe-Shuai Yang, Zhu Mao, Shu-Ming Wu, Xue-Feng Chen, Ru-Qiang Yan</p></div></article>
+          <article class="achievement" data-output-type="paper-sci"><div class="pub-year">2021</div><div class="pub-body"><p class="pub-venue">SCI 期刊 · Frontiers of Mechanical Engineering · <a href="https://doi.org/10.1007/s11465-020-0609-z" target="_blank" rel="noreferrer">DOI</a></p><h3>Nonlinear dynamic behavior of rotating blade with breathing crack</h3><p class="authors">Laihao Yang, Zhu Mao, Shuming Wu, Xuefeng Chen, Ruqiang Yan</p></div></article>
+          <article class="achievement" data-output-type="paper-sci"><div class="pub-year">2021</div><div class="pub-body"><p class="pub-venue">SCI 期刊 · Journal of Low Frequency Noise, Vibration and Active Control · <a href="https://doi.org/10.1177/14613484211012602" target="_blank" rel="noreferrer">DOI</a></p><h3>An improved analytical dynamic model for rotating blade crack: With application to crack detection indicator analysis</h3><p class="authors">Laihao Yang, Meng Ma, Shuming Wu, Xuefeng Chen, Ruqiang Yan, Zhu Mao</p></div></article>
+          <article class="achievement" data-output-type="paper-sci"><div class="pub-year">2021</div><div class="pub-body"><p class="pub-venue">SCI 期刊 · Journal of Vibration and Acoustics · <a href="https://doi.org/10.1115/1.4049386" target="_blank" rel="noreferrer">DOI</a></p><h3>Dynamic characteristic analysis of rotating blade with transverse crack—part II: A comparison study of different crack models</h3><p class="authors">Lai-Hao Yang, Zhe-Shuai Yang, Zhu Mao, Shu-Ming Wu, Xue-Feng Chen, Ru-Qiang Yan</p></div></article>
+          <article class="achievement" data-output-type="paper-ei-conference"><div class="pub-year">2021</div><div class="pub-body"><p class="pub-venue">EI 会议 · Intelligent Robotics and Applications · <a href="https://doi.org/10.1007/978-3-030-89095-7_45" target="_blank" rel="noreferrer">DOI</a></p><h3>A continuum robot with twin-pivot structure: The kinematics and shape estimation</h3><p class="authors">Zheshuai Yang, Laihao Yang, Lu Xu, Xuefeng Chen, Yanjie Guo, Jinxin Liu et al.</p></div></article>
+          <article class="achievement" data-output-type="paper-ei-conference"><div class="pub-year">2021</div><div class="pub-body"><p class="pub-venue">EI 会议 · 2021 Global Reliability and Prognostics and Health Management (PHM-Nanjing) · <a href="https://doi.org/10.1109/PHM-Nanjing52125.2021.9613028" target="_blank" rel="noreferrer">DOI</a></p><h3>An analytical representation method for dynamic behavior of rotating blade with transverse crack</h3><p class="authors">Laihao Yang, Xuefeng Chen, Zheshuai Yang, Ruqiang Yan, Zhu Mao, Yu Sun</p></div></article>
+          <article class="achievement" data-output-type="paper-sci"><div class="pub-year">2018</div><div class="pub-body"><p class="pub-venue">SCI 期刊 · Proceedings of the Institution of Mechanical Engineers, Part C: Journal of Mechanical Engineering Science · <a href="https://doi.org/10.1177/0954406217748686" target="_blank" rel="noreferrer">DOI</a></p><h3>A novel amplitude-independent crack identification method for rotating shaft</h3><p class="authors">Laihao Yang, Xuefeng Chen, Shibin Wang</p></div></article>
+          <article class="achievement" data-output-type="paper-sci"><div class="pub-year">2017</div><div class="pub-body"><p class="pub-venue">SCI 期刊 · Journal of Vibration and Acoustics · <a href="https://doi.org/10.1115/1.4037509" target="_blank" rel="noreferrer">DOI</a></p><h3>Mechanism of Fast Time-Varying Vibration for Rotor–Stator Contact System: With Application to Fault Diagnosis</h3><p class="authors">Laihao Yang, Xuefeng Chen, Shibin Wang</p></div></article>
+          <article class="achievement" data-output-type="paper-ei-conference"><div class="pub-year">2017</div><div class="pub-body"><p class="pub-venue">EI 会议 · ASME 2016 International Mechanical Engineering Congress and Exposition · <a href="https://doi.org/10.1115/IMECE2016-65412" target="_blank" rel="noreferrer">DOI</a></p><h3>Rub-impact detection of rotor systems using time-frequency techniques</h3><p class="authors">Laihao Yang, Xuefeng Chen, Shibin Wang, Hao Zuo</p></div></article>
           <article class="achievement" data-output-type="patent">
             <div class="pub-year">2022</div>
             <div class="pub-body">

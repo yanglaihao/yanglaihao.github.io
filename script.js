@@ -8,6 +8,8 @@ const outputFilters = document.querySelectorAll("[data-output-filter]");
 const outputItems = document.querySelectorAll("[data-output-type]");
 const researchTabs = document.querySelectorAll("[data-research-target]");
 const researchPanels = document.querySelectorAll("[data-research-panel]");
+const memberTabs = document.querySelectorAll("[data-member-target]");
+const memberPanels = document.querySelectorAll("[data-member-panel]");
 
 let currentTheme = localStorage.getItem("theme") || "light";
 let researchRotation;
@@ -24,7 +26,9 @@ function applyFilter(buttons, items, buttonAttr, itemAttr, selected) {
   });
 
   items.forEach((item) => {
-    item.hidden = selected !== "all" && item.dataset[itemAttr] !== selected;
+    const itemValue = item.dataset[itemAttr];
+    const isPaperGroup = selected === "paper" && itemValue?.startsWith("paper");
+    item.hidden = selected !== "all" && itemValue !== selected && !isPaperGroup;
   });
 }
 
@@ -48,6 +52,20 @@ function rotateResearchPanel() {
   const activeIndex = tabs.findIndex((tab) => tab.classList.contains("active"));
   const nextTab = tabs[(activeIndex + 1) % tabs.length];
   showResearchPanel(nextTab.dataset.researchTarget);
+}
+
+function showMemberPanel(selected) {
+  memberTabs.forEach((tab) => {
+    const isActive = tab.dataset.memberTarget === selected;
+    tab.classList.toggle("active", isActive);
+    tab.setAttribute("aria-selected", String(isActive));
+  });
+
+  memberPanels.forEach((panel) => {
+    const isActive = panel.dataset.memberPanel === selected;
+    panel.hidden = !isActive;
+    panel.classList.toggle("active", isActive);
+  });
 }
 
 themeButton?.addEventListener("click", () => {
@@ -82,6 +100,12 @@ researchTabs.forEach((tab) => {
   tab.addEventListener("click", () => {
     window.clearInterval(researchRotation);
     showResearchPanel(tab.dataset.researchTarget);
+  });
+});
+
+memberTabs.forEach((tab) => {
+  tab.addEventListener("click", () => {
+    showMemberPanel(tab.dataset.memberTarget);
   });
 });
 
