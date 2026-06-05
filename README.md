@@ -30,7 +30,7 @@ python3 -m http.server 4173
 - ResearchGate：https://www.researchgate.net/profile/Laihao-Yang-3
 - Google Scholar：https://scholar.google.com/citations?user=G1LcEO4AAAAJ&hl=zh-CN
 - 本地素材目录中的研究方向动图已整理到 `assets/`
-- 论文列表参考 Google Scholar 主页链接，并结合学校论文页、ORCID 与公开 DOI 信息交叉整理；页面内按 SCI 期刊、EI 期刊、EI 会议、预印本和其他论文分类展示 60 篇代表性论文。
+- 论文列表参考 Google Scholar 与 ResearchGate 主页链接，并结合学校论文页、ORCID 与公开 DOI 信息交叉整理；页面内按 SCI 期刊、EI 期刊、EI 会议、预印本和其他论文分类展示 94 篇代表性论文。
 
 ## 后续建议补充内容
 

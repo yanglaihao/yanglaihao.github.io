@@ -12,11 +12,18 @@ function matchAll(pattern, source = html) {
 }
 
 const researchImages = matchAll(/<figure class="research-media">\s*<img src="([^"]+)"/g).map((match) => match[1]);
+const researchVideos = matchAll(/<figure class="research-media">\s*<video([^>]*)>[\s\S]*?<source src="([^"]+)"/g).map((match) => ({
+  attrs: match[1],
+  src: match[2],
+}));
 assert.deepEqual(
   researchImages.map((src) => path.extname(src).toLowerCase()),
-  [".gif", ".gif", ".gif"],
-  "all three research panels should use GIF assets",
+  [".gif", ".gif"],
+  "diagnosis and intervention research panels should use GIF assets",
 );
+assert.equal(researchVideos.length, 1, "embodied research panel should use one playable video");
+assert.equal(path.extname(researchVideos[0].src).toLowerCase(), ".mp4", "embodied research video should be MP4");
+assert.ok(researchVideos[0].attrs.includes("controls"), "embodied research video should expose playback controls");
 
 const memberCategoryButtons = matchAll(/data-member-target="([^"]+)"/g);
 assert.ok(memberCategoryButtons.length >= 6, "member categories should be rendered as collapsible buttons");
@@ -30,5 +37,5 @@ for (const filter of ["paper-sci", "paper-ei-journal", "paper-ei-conference", "p
 }
 
 const publicationCount = matchAll(/<article class="achievement" data-output-type="paper-/g).length;
-assert.equal(publicationCount, 60, `expected 60 classified representative publications from public profiles, found ${publicationCount}`);
-assert.ok(!styles.includes("embodied-focus"), "embodied research direction should use the GIF asset directly");
+assert.equal(publicationCount, 94, `expected 94 classified representative publications from public profiles, found ${publicationCount}`);
+assert.ok(!styles.includes("embodied-focus"), "embodied research direction should use the video asset directly");
