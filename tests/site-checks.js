@@ -30,5 +30,5 @@ for (const filter of ["paper-sci", "paper-ei-journal", "paper-ei-conference", "p
 }
 
 const publicationCount = matchAll(/<article class="achievement" data-output-type="paper-/g).length;
-assert.equal(publicationCount, 60, `expected 60 classified publications from Zotero A My Work, found ${publicationCount}`);
+assert.equal(publicationCount, 60, `expected 60 classified representative publications from public profiles, found ${publicationCount}`);
 assert.ok(!styles.includes("embodied-focus"), "embodied research direction should use the GIF asset directly");
