@@ -1040,6 +1040,83 @@ h3 {
   gap: 1rem;
 }
 
+.achievement-overview {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 1rem;
+  margin-bottom: 1.2rem;
+}
+
+.achievement-overview article,
+.achievement-board {
+  border: 1px solid var(--line);
+  background:
+    linear-gradient(180deg, color-mix(in srgb, var(--surface), transparent 0%), color-mix(in srgb, var(--surface-strong), transparent 54%));
+  box-shadow: 0 14px 34px rgba(13, 39, 33, 0.06);
+}
+
+.achievement-overview article {
+  min-height: 190px;
+  padding: 1rem;
+}
+
+.achievement-overview span {
+  color: var(--rust);
+  font-size: 0.78rem;
+  font-weight: 850;
+  text-transform: uppercase;
+}
+
+.achievement-overview strong {
+  display: block;
+  margin-top: 0.55rem;
+  font-size: clamp(1.2rem, 2vw, 1.75rem);
+  line-height: 1.15;
+}
+
+.achievement-overview p {
+  color: var(--muted);
+  margin: 0.7rem 0 0;
+}
+
+.achievement-board {
+  margin-bottom: 1rem;
+  padding: 1rem;
+}
+
+.output-toolbar {
+  display: grid;
+  gap: 0.8rem;
+}
+
+.output-primary-filters .filter {
+  min-height: 44px;
+  padding-inline: 1rem;
+  font-weight: 850;
+}
+
+.output-subfilters {
+  padding-top: 0.8rem;
+  border-top: 1px solid var(--line);
+}
+
+.output-subfilters[hidden] {
+  display: none;
+}
+
+.achievement-block-title {
+  margin-top: 1rem;
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.achievement-block-title h3,
+.achievement-block-title p {
+  margin: 0;
+}
+
 .achievement {
   display: grid;
   grid-template-columns: 92px minmax(0, 1fr);
@@ -1398,6 +1475,7 @@ address a {
   .research-triad,
   .research-tabs,
   .research-panel,
+  .achievement-overview,
   .member-tabs,
   .project-grid,
   .info-grid,

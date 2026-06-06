@@ -187,7 +187,10 @@
           <div class="research-stage">
             <article class="research-panel active" id="panel-diagnosis" role="tabpanel" aria-labelledby="tab-diagnosis" data-research-panel="diagnosis">
               <figure class="research-media">
-                <img src="assets/research-diagnosis.gif" alt="智能诊断方向动图" />
+                <video controls autoplay muted loop playsinline poster="assets/research-diagnosis.gif" aria-label="智能诊断方向视频">
+                  <source src="assets/research-diagnosis.mp4" type="video/mp4" />
+                  您的浏览器暂不支持视频播放。
+                </video>
               </figure>
               <div class="research-detail">
                 <p class="project-tag">Intelligent Diagnosis</p>
@@ -205,7 +208,10 @@
 
             <article class="research-panel" id="panel-intervention" role="tabpanel" aria-labelledby="tab-intervention" data-research-panel="intervention" hidden>
               <figure class="research-media">
-                <img src="assets/research-intervention.gif" alt="原位介入方向动图" />
+                <video controls autoplay muted loop playsinline poster="assets/research-intervention.gif" aria-label="原位介入方向视频">
+                  <source src="assets/research-intervention.mp4" type="video/mp4" />
+                  您的浏览器暂不支持视频播放。
+                </video>
               </figure>
               <div class="research-detail">
                 <p class="project-tag">In-situ Intervention</p>
@@ -302,24 +308,13 @@
         </div>
 
         <div class="member-layout">
-          <article class="member-leader">
-            <img src="assets/leader-yang.png" alt="杨来浩副研究员照片" />
-            <div>
-              <p class="project-tag">团队领导</p>
-              <h3>杨来浩</h3>
-              <p>副研究员，博士。西安交通大学机械工程学院、航空发动机研究所。</p>
-              <ul>
-                <li>中国振动工程学会动态信号分析专业委员会理事</li>
-                <li>中国计算机学会智能机器人专业委员会委员</li>
-                <li>IFToMM 中国委员会委员</li>
-                <li>多个期刊青年编委或编辑任职</li>
-              </ul>
-            </div>
-          </article>
-
           <div class="member-directory" data-member-switcher>
             <div class="member-tabs" role="tablist" aria-label="团队成员分组">
-              <button class="member-category-toggle active" type="button" role="tab" aria-selected="true" aria-controls="member-panel-teachers" id="member-tab-teachers" data-member-target="teachers">
+              <button class="member-category-toggle active" type="button" role="tab" aria-selected="true" aria-controls="member-panel-leader" id="member-tab-leader" data-member-target="leader">
+                <span>Leader</span>
+                <strong>团队领导</strong>
+              </button>
+              <button class="member-category-toggle" type="button" role="tab" aria-selected="false" aria-controls="member-panel-teachers" id="member-tab-teachers" data-member-target="teachers">
                 <span>Teachers</span>
                 <strong>教师 / 合作导师</strong>
               </button>
@@ -346,7 +341,24 @@
             </div>
 
             <div class="member-stage">
-              <article class="member-category active" id="member-panel-teachers" role="tabpanel" aria-labelledby="member-tab-teachers" data-member-panel="teachers">
+              <article class="member-category active" id="member-panel-leader" role="tabpanel" aria-labelledby="member-tab-leader" data-member-panel="leader">
+                <div class="member-leader">
+                  <img src="assets/leader-yang.png" alt="杨来浩副研究员照片" />
+                  <div>
+                    <p class="project-tag">团队领导</p>
+                    <h3>杨来浩</h3>
+                    <p>副研究员，博士。西安交通大学机械工程学院、航空发动机研究所。</p>
+                    <ul>
+                      <li>中国振动工程学会动态信号分析专业委员会理事</li>
+                      <li>中国计算机学会智能机器人专业委员会委员</li>
+                      <li>IFToMM 中国委员会委员</li>
+                      <li>多个期刊青年编委或编辑任职</li>
+                    </ul>
+                  </div>
+                </div>
+              </article>
+
+              <article class="member-category" id="member-panel-teachers" role="tabpanel" aria-labelledby="member-tab-teachers" data-member-panel="teachers" hidden>
                 <div class="member-category-head">
                   <span>Teachers</span>
                   <h3>教师 / 合作导师</h3>
@@ -472,25 +484,57 @@
       </section>
 
       <section class="section" id="achievements" aria-labelledby="achievements-title">
-        <div class="section-heading split">
-          <div>
-            <p class="eyebrow">Achievements</p>
-            <h2 id="achievements-title">团队成果</h2>
-            <p>
-              论文列表参考 Google Scholar 与 ResearchGate 主页链接，并结合学校论文页、ORCID 与公开 DOI 信息交叉整理；当前收录 94 篇代表性论文，并按 SCI 期刊、EI 期刊、EI 会议、预印本和其他论文分类展示。
-            </p>
+        <div class="section-heading">
+          <p class="eyebrow">Achievements</p>
+          <h2 id="achievements-title">团队成果</h2>
+          <p>
+            团队主持国家自然科学基金项目 2 项、大科学装置培育项目等 10 余项，主持项目经费超过 3400 万；出版专著 1 部，发表 Science Advances、IEEE T-RO、Advanced Science、IEEE TMECH、MSSP、MMT、ND 等学术论文 100 余篇，其中一作/通讯 SCI 论文 34 篇；公开发明专利 100 余项，授权 50 项、国际专利 7 项。
+          </p>
+        </div>
+
+        <div class="achievement-overview">
+          <article>
+            <span>项目</span>
+            <strong>10余项</strong>
+            <p>国家自然科学基金项目 2 项、大科学装置培育项目等，主持经费 3400 万+。</p>
+          </article>
+          <article>
+            <span>论文与专著</span>
+            <strong>100余篇 / 1部</strong>
+            <p>发表高水平论文 100 余篇，其中一作/通讯 SCI 论文 34 篇，出版专著 1 部。</p>
+          </article>
+          <article>
+            <span>知识产权</span>
+            <strong>专利 100余项</strong>
+            <p>公开发明专利 100 余项，授权 50 项，国际专利 7 项。</p>
+          </article>
+          <article>
+            <span>奖励与传播</span>
+            <strong>多项省部级/行业奖励</strong>
+            <p>获中国振动工程学会科学技术奖二等奖、陕西高校科技一等奖、机器人科学引领奖等，并被 CCTV7、China Daily、陕西新闻联播等报道。</p>
+          </article>
+        </div>
+
+        <div class="achievement-board">
+          <div class="output-toolbar">
+            <div class="filter-group output-primary-filters" role="tablist" aria-label="成果一级板块">
+              <button class="filter active" type="button" role="tab" aria-selected="true" data-output-filter="paper" data-output-root="paper">论文</button>
+              <button class="filter" type="button" role="tab" aria-selected="false" data-output-filter="patent">专利</button>
+              <button class="filter" type="button" role="tab" aria-selected="false" data-output-filter="book">专著</button>
+              <button class="filter" type="button" role="tab" aria-selected="false" data-output-filter="award">获奖</button>
+            </div>
+            <div class="filter-group output-subfilters" role="group" aria-label="论文二级分类" data-paper-subfilters>
+              <button class="filter active" type="button" data-output-filter="paper">全部论文</button>
+              <button class="filter" type="button" data-output-filter="paper-sci">SCI 期刊</button>
+              <button class="filter" type="button" data-output-filter="paper-ei-journal">EI 期刊</button>
+              <button class="filter" type="button" data-output-filter="paper-ei-conference">EI 会议</button>
+              <button class="filter" type="button" data-output-filter="paper-preprint">预印本</button>
+              <button class="filter" type="button" data-output-filter="paper-other">其他论文</button>
+            </div>
           </div>
-          <div class="filter-group" role="group" aria-label="Achievement filters">
-            <button class="filter active" type="button" data-output-filter="all">全部</button>
-            <button class="filter" type="button" data-output-filter="paper">论文</button>
-            <button class="filter" type="button" data-output-filter="paper-sci">SCI 期刊</button>
-            <button class="filter" type="button" data-output-filter="paper-ei-journal">EI 期刊</button>
-            <button class="filter" type="button" data-output-filter="paper-ei-conference">EI 会议</button>
-            <button class="filter" type="button" data-output-filter="paper-preprint">预印本</button>
-            <button class="filter" type="button" data-output-filter="paper-other">其他论文</button>
-            <button class="filter" type="button" data-output-filter="patent">专利</button>
-            <button class="filter" type="button" data-output-filter="book">专著</button>
-            <button class="filter" type="button" data-output-filter="award">获奖</button>
+          <div class="achievement-block-title">
+            <p class="project-tag">Output List</p>
+            <h3>成果条目</h3>
           </div>
         </div>
 

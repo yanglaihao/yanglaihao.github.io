@@ -6,6 +6,7 @@ const newsFilters = document.querySelectorAll("[data-news-filter]");
 const newsItems = document.querySelectorAll("[data-news-type]");
 const outputFilters = document.querySelectorAll("[data-output-filter]");
 const outputItems = document.querySelectorAll("[data-output-type]");
+const paperSubfilters = document.querySelector("[data-paper-subfilters]");
 const researchTabs = document.querySelectorAll("[data-research-target]");
 const researchPanels = document.querySelectorAll("[data-research-panel]");
 const memberTabs = document.querySelectorAll("[data-member-target]");
@@ -22,7 +23,13 @@ function applyTheme(theme) {
 
 function applyFilter(buttons, items, buttonAttr, itemAttr, selected) {
   buttons.forEach((button) => {
-    button.classList.toggle("active", button.dataset[buttonAttr] === selected);
+    const buttonValue = button.dataset[buttonAttr];
+    const isPaperButtonGroup = button.dataset.outputRoot === "paper" && selected?.startsWith("paper");
+    const isActive = buttonValue === selected || isPaperButtonGroup;
+    button.classList.toggle("active", isActive);
+    if (button.getAttribute("role") === "tab") {
+      button.setAttribute("aria-selected", String(isActive));
+    }
   });
 
   items.forEach((item) => {
@@ -30,6 +37,14 @@ function applyFilter(buttons, items, buttonAttr, itemAttr, selected) {
     const isPaperGroup = selected === "paper" && itemValue?.startsWith("paper");
     item.hidden = selected !== "all" && itemValue !== selected && !isPaperGroup;
   });
+}
+
+function showOutputCategory(selected) {
+  const isPaperSelection = selected?.startsWith("paper");
+  if (paperSubfilters) {
+    paperSubfilters.hidden = !isPaperSelection;
+  }
+  applyFilter(outputFilters, outputItems, "outputFilter", "outputType", selected);
 }
 
 function showResearchPanel(selected) {
@@ -92,7 +107,7 @@ newsFilters.forEach((filter) => {
 
 outputFilters.forEach((filter) => {
   filter.addEventListener("click", () => {
-    applyFilter(outputFilters, outputItems, "outputFilter", "outputType", filter.dataset.outputFilter);
+    showOutputCategory(filter.dataset.outputFilter);
   });
 });
 
@@ -114,3 +129,4 @@ if (researchTabs.length > 1) {
 }
 
 applyTheme(currentTheme);
+showOutputCategory("paper");
