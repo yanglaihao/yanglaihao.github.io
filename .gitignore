@@ -1,1 +1,6 @@
 Codex-Chrome-Extension
+.DS_Store
+
+# Local source materials kept outside the published site.
+素材/
+references.bib

@@ -2,7 +2,7 @@
 
 一个团队主页静态站，当前围绕西安交通大学高端装备智能检修机器人团队组织内容，栏目包括首页、团队简介、研究方向、团队动态、团队成员、团队成果和联系方式。
 
-页面已按学校团队主页的宽版结构优化：研究方向使用可点击切换的可播放视频模块，团队成员改为分组点击展开，团队成果改为“成果简介 + 论文/专利/专著/获奖板块”，个人简介成果规模已更新为论文 100余篇、专利 100余项、主持项目 10余项等口径。
+页面已按学校团队主页的宽版结构优化：研究方向使用可点击切换的可播放视频模块，团队成员改为分组点击展开，团队成果改为“成果简介 + 论文/项目/专利/专著/获奖/社会任职板块”，获奖按学校主页分类展示，首页导航增加中英文切换，个人简介成果规模已更新为论文 100余篇、专利 100余项、主持项目 10余项等口径。
 
 ## 本地预览
 
@@ -26,6 +26,10 @@ python3 -m http.server 4173
 - 学校主页：https://gr.xjtu.edu.cn/yanglaihao/
 - 个人简介与成果规模：https://gr.xjtu.edu.cn/yanglaihao/zh_CN/zhym/994631/list/index.htm
 - 团队成员公开信息：https://gr.xjtu.edu.cn/yanglaihao/zh_CN/zhym/994626/list/index.htm
+- 科研项目：https://gr.xjtu.edu.cn/yanglaihao/zh_CN/kyxm/316901/list/index.htm
+- 获奖分类：https://gr.xjtu.edu.cn/yanglaihao/zh_CN/zhym/994622/list/index.htm
+- 社会任职：https://gr.xjtu.edu.cn/yanglaihao/zh_CN/zdylm/1036903/list/index.htm
+- 孙瑜招生信息：https://faculty.xjtu.edu.cn/yu.sun/zh_CN/zdylm/980524/list/index.htm
 - 参考排版：https://gr.xjtu.edu.cn/embodied_robotics/zh_CN/zhym/1072424/list/index.htm
 - ResearchGate：https://www.researchgate.net/profile/Laihao-Yang-3
 - Google Scholar：https://scholar.google.com/citations?user=G1LcEO4AAAAJ&hl=zh-CN

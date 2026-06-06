@@ -6,6 +6,7 @@ const root = path.resolve(__dirname, "..");
 const html = fs.readFileSync(path.join(root, "index.html"), "utf8");
 const script = fs.readFileSync(path.join(root, "script.js"), "utf8");
 const styles = fs.readFileSync(path.join(root, "styles.css"), "utf8");
+const handoff = fs.readFileSync(path.join(root, "HANDOFF.md"), "utf8");
 
 function matchAll(pattern, source = html) {
   return Array.from(source.matchAll(pattern));
@@ -34,11 +35,36 @@ for (const filter of ["paper-sci", "paper-ei-journal", "paper-ei-conference", "p
   assert.ok(html.includes(`data-output-type="${filter}"`), `missing publication items for: ${filter}`);
 }
 
-for (const filter of ["paper", "patent", "book", "award"]) {
+for (const filter of ["paper", "project", "patent", "book", "award", "service"]) {
   assert.ok(html.includes(`data-output-filter="${filter}"`), `missing achievement board filter: ${filter}`);
 }
 assert.ok(html.includes("achievement-overview"), "achievement section should include a summary overview");
 assert.ok(html.includes("data-paper-subfilters"), "paper section should include clickable secondary categories");
+assert.ok(html.includes("data-award-subfilters"), "award section should include clickable secondary categories");
+
+for (const filter of ["award-tech", "award-paper", "award-student", "award-social", "award-thesis"]) {
+  assert.ok(html.includes(`data-output-filter="${filter}"`), `missing award filter: ${filter}`);
+  assert.ok(html.includes(`data-output-type="${filter}"`), `missing award items for: ${filter}`);
+}
+
+const projectCount = matchAll(/<article class="achievement" data-output-type="project">/g).length;
+assert.equal(projectCount, 18, `expected 18 projects from the public profile, found ${projectCount}`);
+
+const awardCount = matchAll(/<article class="achievement" data-output-type="award-/g).length;
+assert.equal(awardCount, 17, `expected 17 categorized awards from the public profile, found ${awardCount}`);
+
+const serviceCount = matchAll(/<article class="achievement" data-output-type="service">/g).length;
+assert.equal(serviceCount, 11, `expected 11 social service entries from the public profile, found ${serviceCount}`);
+
+assert.ok(html.includes("学术型博士（1-2人/年）"), "Sun Yu mentor card should include PhD enrollment direction details");
+assert.ok(!html.includes("学硕型硕士"), "Sun Yu mentor card should normalize the master's enrollment label");
+assert.ok(html.includes("航空发动机与航天器先进传感及健康管理"), "Sun Yu mentor card should include detailed recruitment directions");
+assert.ok(html.includes("data-language-toggle"), "home page should include a Chinese/English language toggle");
+assert.ok(html.includes("data-i18n=\"nav.home\""), "key navigation text should be language-switchable");
+assert.ok(script.includes("applyLanguage"), "script should implement language switching");
+assert.ok(handoff.includes("项目、专利、专著、获奖、社会任职"), "handoff should describe the updated achievement categories");
+assert.ok(handoff.includes("孙瑜"), "handoff should mention the added Sun Yu mentor entry");
+assert.ok(handoff.includes("中英文切换"), "handoff should mention the language toggle");
 
 const publicationCount = matchAll(/<article class="achievement" data-output-type="paper-/g).length;
 assert.equal(publicationCount, 94, `expected 94 classified representative publications from public profiles, found ${publicationCount}`);

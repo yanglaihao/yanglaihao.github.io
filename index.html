@@ -26,8 +26,8 @@
         <a class="brand" href="#home" aria-label="回到首页">
           <span class="brand-mark" aria-hidden="true">AIR</span>
           <span>
-            <strong>高端装备智能检修机器人团队</strong>
-            <small>西安交通大学 · 机械工程学院</small>
+            <strong data-i18n="brand.title">高端装备智能检修机器人团队</strong>
+            <small data-i18n="brand.unit">西安交通大学 · 机械工程学院</small>
           </span>
         </a>
 
@@ -38,16 +38,19 @@
         </button>
 
         <div class="nav-links" data-nav-links>
-          <a href="#home">首页</a>
-          <a href="#about">团队简介</a>
-          <a href="#research">研究方向</a>
-          <a href="#news">团队动态</a>
-          <a href="#members">团队成员</a>
-          <a href="#achievements">团队成果</a>
-          <a href="#contact">联系方式</a>
+          <a href="#home" data-i18n="nav.home">首页</a>
+          <a href="#about" data-i18n="nav.about">团队简介</a>
+          <a href="#research" data-i18n="nav.research">研究方向</a>
+          <a href="#news" data-i18n="nav.news">团队动态</a>
+          <a href="#members" data-i18n="nav.members">团队成员</a>
+          <a href="#achievements" data-i18n="nav.achievements">团队成果</a>
+          <a href="#contact" data-i18n="nav.contact">联系方式</a>
         </div>
 
         <div class="nav-actions">
+          <button class="control-button language-toggle" type="button" data-language-toggle aria-label="Switch language">
+            <span data-language-label>EN</span>
+          </button>
           <button class="icon-button" type="button" data-theme-toggle aria-label="Toggle theme">
             <svg aria-hidden="true" viewBox="0 0 24 24">
               <path d="M12 3v2.2M12 18.8V21M5.6 5.6l1.6 1.6M16.8 16.8l1.6 1.6M3 12h2.2M18.8 12H21M5.6 18.4l1.6-1.6M16.8 7.2l1.6-1.6" />
@@ -62,19 +65,19 @@
       <section class="hero" id="home" aria-labelledby="home-title">
         <div class="hero-copy">
           <p class="eyebrow">Intelligent Maintenance Robotics</p>
-          <h1 id="home-title">高端装备智能检修机器人团队</h1>
-          <p class="subtitle">
+          <h1 id="home-title" data-i18n="hero.title">高端装备智能检修机器人团队</h1>
+          <p class="subtitle" data-i18n="hero.subtitle">
             面向航空发动机等高端装备的复杂深腔、受限空间和关键零部件损伤问题，团队围绕“判得准、进得去、操作稳”构建智能诊断、原位介入与具身操作一体化研究体系。
           </p>
           <div class="meta-list" aria-label="团队概览">
-            <span>智能诊断</span>
-            <span>原位介入</span>
-            <span>具身操作</span>
-            <span>软体/连续体机器人</span>
+            <span data-i18n="hero.meta.diagnosis">智能诊断</span>
+            <span data-i18n="hero.meta.intervention">原位介入</span>
+            <span data-i18n="hero.meta.embodied">具身操作</span>
+            <span data-i18n="hero.meta.continuum">软体/连续体机器人</span>
           </div>
           <div class="cta-row">
-            <a class="button primary" href="#research">查看研究主线</a>
-            <a class="button secondary" href="mailto:yanglaihao@xjtu.edu.cn">联系团队</a>
+            <a class="button primary" href="#research" data-i18n="hero.cta.research">查看研究主线</a>
+            <a class="button secondary" href="mailto:yanglaihao@xjtu.edu.cn" data-i18n="hero.cta.contact">联系团队</a>
           </div>
         </div>
 
@@ -82,16 +85,16 @@
           <img src="assets/team-profile.jpg" alt="团队相关研究展示图" />
           <dl>
             <div>
-              <dt>团队负责人</dt>
-              <dd>杨来浩 副研究员</dd>
+              <dt data-i18n="hero.facts.leader.label">团队负责人</dt>
+              <dd data-i18n="hero.facts.leader.value">杨来浩 副研究员</dd>
             </div>
             <div>
-              <dt>依托单位</dt>
-              <dd>西安交通大学机械工程学院</dd>
+              <dt data-i18n="hero.facts.unit.label">依托单位</dt>
+              <dd data-i18n="hero.facts.unit.value">西安交通大学机械工程学院</dd>
             </div>
             <div>
-              <dt>成果规模</dt>
-              <dd>论文 100+ / 专利 100+</dd>
+              <dt data-i18n="hero.facts.outputs.label">成果规模</dt>
+              <dd data-i18n="hero.facts.outputs.value">论文 100+ / 专利 100+</dd>
             </div>
           </dl>
         </aside>
@@ -363,7 +366,17 @@
                   <span>Teachers</span>
                   <h3>教师 / 合作导师</h3>
                 </div>
-                <p class="member-note">围绕航空发动机健康管理、机器人检测、智能传感和数字孪生开展跨方向协同；公开页面暂未列出更多教师姓名。</p>
+                <div class="member-list">
+                  <div class="member-person">
+                    <strong>孙瑜</strong>
+                    <span>副教授 · 博士生导师 / 硕士生导师</span>
+                    <p>机械工程学院。主要研究方向包括软体/可折展机器人、触觉传感与交互、智能检测与诊断、航空发动机健康管理；每年计划招收硕士 3-4 名、博士 1-2 名，并欢迎本科生 2-3 名参与科研。</p>
+                    <p>学术型硕士（3人/年）：新一代人工智能与传感、航空发动机机器人检测技术、航空发动机先进传感与健康管理。</p>
+                    <p>专业型硕士（1-2人/年）：高端/智能制造装备与系统、重大装备运行性能与智能维护。</p>
+                    <p>学术型博士（1-2人/年）：新一代人工智能与传感、航空发动机机器人检测技术、航空发动机与航天器先进传感及健康管理、智能检测、诊断与控制技术。</p>
+                  </div>
+                </div>
+                <p class="member-note">以上信息根据孙瑜老师学校主页招生信息整理；更多教师/合作导师信息可继续补充。</p>
               </article>
 
               <article class="member-category" id="member-panel-postdocs" role="tabpanel" aria-labelledby="member-tab-postdocs" data-member-panel="postdocs" hidden>
@@ -519,9 +532,11 @@
           <div class="output-toolbar">
             <div class="filter-group output-primary-filters" role="tablist" aria-label="成果一级板块">
               <button class="filter active" type="button" role="tab" aria-selected="true" data-output-filter="paper" data-output-root="paper">论文</button>
+              <button class="filter" type="button" role="tab" aria-selected="false" data-output-filter="project" data-output-root="project">项目</button>
               <button class="filter" type="button" role="tab" aria-selected="false" data-output-filter="patent">专利</button>
               <button class="filter" type="button" role="tab" aria-selected="false" data-output-filter="book">专著</button>
-              <button class="filter" type="button" role="tab" aria-selected="false" data-output-filter="award">获奖</button>
+              <button class="filter" type="button" role="tab" aria-selected="false" data-output-filter="award" data-output-root="award">获奖</button>
+              <button class="filter" type="button" role="tab" aria-selected="false" data-output-filter="service" data-output-root="service">社会任职</button>
             </div>
             <div class="filter-group output-subfilters" role="group" aria-label="论文二级分类" data-paper-subfilters>
               <button class="filter active" type="button" data-output-filter="paper">全部论文</button>
@@ -530,6 +545,14 @@
               <button class="filter" type="button" data-output-filter="paper-ei-conference">EI 会议</button>
               <button class="filter" type="button" data-output-filter="paper-preprint">预印本</button>
               <button class="filter" type="button" data-output-filter="paper-other">其他论文</button>
+            </div>
+            <div class="filter-group output-subfilters" role="group" aria-label="获奖二级分类" data-award-subfilters hidden>
+              <button class="filter" type="button" data-output-filter="award">全部获奖</button>
+              <button class="filter" type="button" data-output-filter="award-tech">科学技术奖</button>
+              <button class="filter" type="button" data-output-filter="award-paper">科技论文获奖</button>
+              <button class="filter" type="button" data-output-filter="award-student">学生竞赛获奖</button>
+              <button class="filter" type="button" data-output-filter="award-social">社会奖励</button>
+              <button class="filter" type="button" data-output-filter="award-thesis">学位论文获奖</button>
             </div>
           </div>
           <div class="achievement-block-title">
@@ -665,28 +688,372 @@
               <p class="authors">孙瑜, 杨丹卉, 杨来浩 · 西北工业大学出版社</p>
             </div>
           </article>
-          <article class="achievement" data-output-type="award">
+          <article class="achievement" data-output-type="project">
             <div class="pub-year">2025</div>
             <div class="pub-body">
-              <p class="pub-venue">荣誉奖励</p>
-              <h3>中国振动工程学会科学技术奖基础研究类二等奖</h3>
-              <p class="authors">学校主页公开荣誉信息</p>
+              <p class="pub-venue">国家自然科学基金项目 · 2025.01-2028.12</p>
+              <h3>航空发动机原位维护连续体机器人</h3>
+              <p class="authors">52475129 · 国家自然科学基金</p>
             </div>
           </article>
-          <article class="achievement" data-output-type="award">
+          <article class="achievement" data-output-type="project">
             <div class="pub-year">2024</div>
             <div class="pub-body">
-              <p class="pub-venue">荣誉奖励</p>
-              <h3>第五届中国机器人学术年会最佳海报奖</h3>
-              <p class="authors">学校主页公开荣誉信息</p>
+              <p class="pub-venue">国家自然科学基金项目 · 2024.01-2027.12</p>
+              <h3>剪纸启发的复杂曲面顺应可控仿生干粘附设计</h3>
+              <p class="authors">52375125 · 纵向项目</p>
             </div>
           </article>
-          <article class="achievement" data-output-type="award">
+          <article class="achievement" data-output-type="project">
             <div class="pub-year">2023</div>
             <div class="pub-body">
-              <p class="pub-venue">荣誉奖励</p>
+              <p class="pub-venue">中央引导科技发展资金 · 2023.05-2024.12</p>
+              <h3>***智能检测关键技术与系统研发</h3>
+              <p class="authors">XXX · 纵向项目</p>
+            </div>
+          </article>
+          <article class="achievement" data-output-type="project">
+            <div class="pub-year">2023</div>
+            <div class="pub-body">
+              <p class="pub-venue">大科学装置群 · 2023.04-2025.04</p>
+              <h3>主轴承XXX</h3>
+              <p class="authors">XXX · 横向项目</p>
+            </div>
+          </article>
+          <article class="achievement" data-output-type="project">
+            <div class="pub-year">2022</div>
+            <div class="pub-body">
+              <p class="pub-venue">十四五预研项目 · 2022.12-2025.12</p>
+              <h3>XXX机器人设计与柔顺控制</h3>
+              <p class="authors">XXX · 纵向项目</p>
+            </div>
+          </article>
+          <article class="achievement" data-output-type="project">
+            <div class="pub-year">2022</div>
+            <div class="pub-body">
+              <p class="pub-venue">国务院各部委项目 · 2022.10-2024.10</p>
+              <h3>XXX关键部件稀疏智能健康管理方法研究</h3>
+              <p class="authors">HT-P2022 · 纵向项目</p>
+            </div>
+          </article>
+          <article class="achievement" data-output-type="project">
+            <div class="pub-year">2022</div>
+            <div class="pub-body">
+              <p class="pub-venue">重点实验室开放基金 · 2022.09-2024.07</p>
+              <h3>数字孪生框架下航空发动机转子叶片裂纹稀疏定量监测诊断</h3>
+              <p class="authors">pkl20220001 · 纵向项目</p>
+            </div>
+          </article>
+          <article class="achievement" data-output-type="project">
+            <div class="pub-year">2022</div>
+            <div class="pub-body">
+              <p class="pub-venue">自由探索 · 2022.06-2023.12</p>
+              <h3>物理驱动的航空发动机转子叶片裂纹可解释深度智能监测诊断</h3>
+              <p class="authors">xzy012022058 · 纵向项目</p>
+            </div>
+          </article>
+          <article class="achievement" data-output-type="project">
+            <div class="pub-year">2022</div>
+            <div class="pub-body">
+              <p class="pub-venue">国家自然科学基金项目 · 2022.01-2024.12</p>
+              <h3>旋转叶片裂纹的叶端定时物理模型-连续压缩感知协同监测研究</h3>
+              <p class="authors">52105117 · 纵向项目</p>
+            </div>
+          </article>
+          <article class="achievement" data-output-type="project">
+            <div class="pub-year">2021</div>
+            <div class="pub-body">
+              <p class="pub-venue">青年学术骨干培植项目 · 2021.07-2021.12</p>
+              <h3>深度网络驱动的航空发动机叶片损伤视觉智能检测方法研究</h3>
+              <p class="authors">xpt012021030 · 纵向项目</p>
+            </div>
+          </article>
+          <article class="achievement" data-output-type="project">
+            <div class="pub-year">2021</div>
+            <div class="pub-body">
+              <p class="pub-venue">国家自然科学基金项目 · 2021.01-2024.12</p>
+              <h3>数字孪生驱动的航空发动机转子叶片健康监测</h3>
+              <p class="authors">52075414 · 纵向项目</p>
+            </div>
+          </article>
+          <article class="achievement" data-output-type="project">
+            <div class="pub-year">2021</div>
+            <div class="pub-body">
+              <p class="pub-venue">国家自然科学基金项目 · 2021.01-2024.12</p>
+              <h3>航空发动机主轴承及传动系统故障智能诊断研究</h3>
+              <p class="authors">92060302 · 纵向项目</p>
+            </div>
+          </article>
+          <article class="achievement" data-output-type="project">
+            <div class="pub-year">2020</div>
+            <div class="pub-body">
+              <p class="pub-venue">中国航发四川燃气涡轮研究院 · 2020.12-2022.12</p>
+              <h3>面向空地一致性的航空发动机主轴承服役性能分析技术</h3>
+              <p class="authors">J202012057 · 横向项目</p>
+            </div>
+          </article>
+          <article class="achievement" data-output-type="project">
+            <div class="pub-year">2020</div>
+            <div class="pub-body">
+              <p class="pub-venue">中国航空沈阳飞机设计研究所 · 2020.11-2021.11</p>
+              <h3>运动机构及机械传动系统仿真评估软件</h3>
+              <p class="authors">J202101007 · 横向项目</p>
+            </div>
+          </article>
+          <article class="achievement" data-output-type="project">
+            <div class="pub-year">2020</div>
+            <div class="pub-body">
+              <p class="pub-venue">国务院各部委项目 · 2020.04-2025.04</p>
+              <h3>***检测机器人系统基础研究</h3>
+              <p class="authors">2019-XXXX-XX-XXX-XX · 纵向项目</p>
+            </div>
+          </article>
+          <article class="achievement" data-output-type="project">
+            <div class="pub-year">2018</div>
+            <div class="pub-body">
+              <p class="pub-venue">国家攻关项目 · 2018.08-2021.12</p>
+              <h3>***叶片裂纹***</h3>
+              <p class="authors">2017-V-0009 · 纵向项目</p>
+            </div>
+          </article>
+          <article class="achievement" data-output-type="project">
+            <div class="pub-year">2017</div>
+            <div class="pub-body">
+              <p class="pub-venue">国家自然科学基金项目 · 2017.01-2019.12</p>
+              <h3>航空发动机快变信号稀疏时频诊断方法研究</h3>
+              <p class="authors">51605366 · 纵向项目</p>
+            </div>
+          </article>
+          <article class="achievement" data-output-type="project">
+            <div class="pub-year">2015</div>
+            <div class="pub-body">
+              <p class="pub-venue">973项目 · 2015.01-2019.12</p>
+              <h3>航空发动机运行安全基础研究</h3>
+              <p class="authors">2015CB057400 · 纵向项目</p>
+            </div>
+          </article>
+          <article class="achievement" data-output-type="award-tech">
+            <div class="pub-year">2026</div>
+            <div class="pub-body">
+              <p class="pub-venue">科学技术奖</p>
+              <h3>陕西省科技进步一等奖</h3>
+              <p class="authors">个人主页 Awards 页面公开信息</p>
+            </div>
+          </article>
+          <article class="achievement" data-output-type="award-tech">
+            <div class="pub-year">2025</div>
+            <div class="pub-body">
+              <p class="pub-venue">科学技术奖</p>
+              <h3>中国振动工程学会科学技术奖二等奖（基础研究类，排 1）</h3>
+              <p class="authors">个人主页 Awards 页面公开信息</p>
+            </div>
+          </article>
+          <article class="achievement" data-output-type="award-tech">
+            <div class="pub-year">2023</div>
+            <div class="pub-body">
+              <p class="pub-venue">科学技术奖</p>
               <h3>陕西省高等学校科学技术奖一等奖</h3>
-              <p class="authors">学校主页公开荣誉信息</p>
+              <p class="authors">个人主页 Awards 页面公开信息</p>
+            </div>
+          </article>
+          <article class="achievement" data-output-type="award-paper">
+            <div class="pub-year">2025</div>
+            <div class="pub-body">
+              <p class="pub-venue">科技论文获奖</p>
+              <h3>2025航空装备智能制造大会，优秀论文报告</h3>
+              <p class="authors">个人主页 Awards 页面公开信息</p>
+            </div>
+          </article>
+          <article class="achievement" data-output-type="award-paper">
+            <div class="pub-year">2025</div>
+            <div class="pub-body">
+              <p class="pub-venue">科技论文获奖</p>
+              <h3>第十六届全国振动理论及应用学术会议，高水平论文奖</h3>
+              <p class="authors">个人主页 Awards 页面公开信息</p>
+            </div>
+          </article>
+          <article class="achievement" data-output-type="award-paper">
+            <div class="pub-year">2025</div>
+            <div class="pub-body">
+              <p class="pub-venue">科技论文获奖</p>
+              <h3>ICSMD 2025，Best Paper Award</h3>
+              <p class="authors">个人主页 Awards 页面公开信息</p>
+            </div>
+          </article>
+          <article class="achievement" data-output-type="award-paper">
+            <div class="pub-year">2024</div>
+            <div class="pub-body">
+              <p class="pub-venue">科技论文获奖</p>
+              <h3>CMMNO 2024，Best Paper Award</h3>
+              <p class="authors">个人主页 Awards 页面公开信息</p>
+            </div>
+          </article>
+          <article class="achievement" data-output-type="award-paper">
+            <div class="pub-year">2024</div>
+            <div class="pub-body">
+              <p class="pub-venue">科技论文获奖</p>
+              <h3>第五届中国机器人学术年会最佳海报奖</h3>
+              <p class="authors">个人主页 Awards 页面公开信息</p>
+            </div>
+          </article>
+          <article class="achievement" data-output-type="award-paper">
+            <div class="pub-year">2024</div>
+            <div class="pub-body">
+              <p class="pub-venue">科技论文获奖</p>
+              <h3>2024年中国航天大会航天超材料与超结构技术专题论坛高水平论文奖</h3>
+              <p class="authors">个人主页 Awards 页面公开信息</p>
+            </div>
+          </article>
+          <article class="achievement" data-output-type="award-student">
+            <div class="pub-year">2025</div>
+            <div class="pub-body">
+              <p class="pub-venue">学生竞赛获奖</p>
+              <h3>第十届软体机器人大会软体机器人创新设计竞赛二等奖</h3>
+              <p class="authors">个人主页 Awards 页面公开信息</p>
+            </div>
+          </article>
+          <article class="achievement" data-output-type="award-student">
+            <div class="pub-year">2024</div>
+            <div class="pub-body">
+              <p class="pub-venue">学生竞赛获奖</p>
+              <h3>第三届中国空天动力创新创业大赛二等奖</h3>
+              <p class="authors">个人主页 Awards 页面公开信息</p>
+            </div>
+          </article>
+          <article class="achievement" data-output-type="award-student">
+            <div class="pub-year">2024</div>
+            <div class="pub-body">
+              <p class="pub-venue">学生竞赛获奖</p>
+              <h3>第九届软体机器人大会软体机器人创新设计竞赛二等奖（2项）、优秀奖1项</h3>
+              <p class="authors">个人主页 Awards 页面公开信息</p>
+            </div>
+          </article>
+          <article class="achievement" data-output-type="award-student">
+            <div class="pub-year">2023</div>
+            <div class="pub-body">
+              <p class="pub-venue">学生竞赛获奖</p>
+              <h3>中国大学生机械工程创新创意大赛“明石杯”微纳传感技术与智能应用初赛二等奖</h3>
+              <p class="authors">个人主页 Awards 页面公开信息</p>
+            </div>
+          </article>
+          <article class="achievement" data-output-type="award-social">
+            <div class="pub-year">2025</div>
+            <div class="pub-body">
+              <p class="pub-venue">社会奖励</p>
+              <h3>应用基础与工程科学学报优秀青年编委</h3>
+              <p class="authors">个人主页 Awards 页面公开信息</p>
+            </div>
+          </article>
+          <article class="achievement" data-output-type="award-social">
+            <div class="pub-year">2024</div>
+            <div class="pub-body">
+              <p class="pub-venue">社会奖励</p>
+              <h3>第五届中国机器人行业年会“机器人科学引领奖”（排1）</h3>
+              <p class="authors">个人主页 Awards 页面公开信息</p>
+            </div>
+          </article>
+          <article class="achievement" data-output-type="award-thesis">
+            <div class="pub-year">2025</div>
+            <div class="pub-body">
+              <p class="pub-venue">学位论文获奖</p>
+              <h3>中国机械行业卓越工程师教育联盟第八届“精雕杯”毕业设计大赛铜奖</h3>
+              <p class="authors">个人主页 Awards 页面公开信息</p>
+            </div>
+          </article>
+          <article class="achievement" data-output-type="award-thesis">
+            <div class="pub-year">2025</div>
+            <div class="pub-body">
+              <p class="pub-venue">学位论文获奖</p>
+              <h3>西安交通大学优秀硕士学位论文</h3>
+              <p class="authors">个人主页 Awards 页面公开信息</p>
+            </div>
+          </article>
+          <article class="achievement" data-output-type="service">
+            <div class="pub-year">2026</div>
+            <div class="pub-body">
+              <p class="pub-venue">社会任职 · 青年编委</p>
+              <h3>SmartBot 青年编委</h3>
+              <p class="authors">个人主页 Academic 页面公开信息</p>
+            </div>
+          </article>
+          <article class="achievement" data-output-type="service">
+            <div class="pub-year">2026</div>
+            <div class="pub-body">
+              <p class="pub-venue">社会任职 · 青年编委</p>
+              <h3>南航学报（自科版、英文版）青年编委</h3>
+              <p class="authors">个人主页 Academic 页面公开信息</p>
+            </div>
+          </article>
+          <article class="achievement" data-output-type="service">
+            <div class="pub-year">2025</div>
+            <div class="pub-body">
+              <p class="pub-venue">社会任职 · 青年编委</p>
+              <h3>西安交通大学学报（EI，核心）青年编委</h3>
+              <p class="authors">个人主页 Academic 页面公开信息</p>
+            </div>
+          </article>
+          <article class="achievement" data-output-type="service">
+            <div class="pub-year">2025</div>
+            <div class="pub-body">
+              <p class="pub-venue">社会任职 · 青年编委</p>
+              <h3>应用基础与工程科学学报（EI，核心）青年编委</h3>
+              <p class="authors">个人主页 Academic 页面公开信息</p>
+            </div>
+          </article>
+          <article class="achievement" data-output-type="service">
+            <div class="pub-year">2025</div>
+            <div class="pub-body">
+              <p class="pub-venue">社会任职 · 青年编委</p>
+              <h3>Biomimetic Intelligence and Robotics（ESCI）青年编委</h3>
+              <p class="authors">个人主页 Academic 页面公开信息</p>
+            </div>
+          </article>
+          <article class="achievement" data-output-type="service">
+            <div class="pub-year">2025</div>
+            <div class="pub-body">
+              <p class="pub-venue">社会任职 · 编辑任职</p>
+              <h3>International Journal of Advanced Robotic Systems 副主编</h3>
+              <p class="authors">个人主页 Academic 页面公开信息</p>
+            </div>
+          </article>
+          <article class="achievement" data-output-type="service">
+            <div class="pub-year">2025</div>
+            <div class="pub-body">
+              <p class="pub-venue">社会任职 · 科技服务</p>
+              <h3>江苏省科技副总</h3>
+              <p class="authors">个人主页 Academic 页面公开信息</p>
+            </div>
+          </article>
+          <article class="achievement" data-output-type="service">
+            <div class="pub-year">2025</div>
+            <div class="pub-body">
+              <p class="pub-venue">社会任职 · 学术组织</p>
+              <h3>第六届 IFToMM 中国委员会委员</h3>
+              <p class="authors">个人主页 Academic 页面公开信息</p>
+            </div>
+          </article>
+          <article class="achievement" data-output-type="service">
+            <div class="pub-year">2024</div>
+            <div class="pub-body">
+              <p class="pub-venue">社会任职 · 青年编委</p>
+              <h3>Soft Science（ESCI）青年编委</h3>
+              <p class="authors">个人主页 Academic 页面公开信息</p>
+            </div>
+          </article>
+          <article class="achievement" data-output-type="service">
+            <div class="pub-year">2023</div>
+            <div class="pub-body">
+              <p class="pub-venue">社会任职 · 学术组织</p>
+              <h3>中国计算机学会智能机器人专业委员会委员</h3>
+              <p class="authors">个人主页 Academic 页面公开信息</p>
+            </div>
+          </article>
+          <article class="achievement" data-output-type="service">
+            <div class="pub-year">2022</div>
+            <div class="pub-body">
+              <p class="pub-venue">社会任职 · 学术组织</p>
+              <h3>中国振动工程学会动态信号分析专业委员会理事</h3>
+              <p class="authors">个人主页 Academic 页面公开信息</p>
             </div>
           </article>
         </div>
