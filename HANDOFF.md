@@ -4,7 +4,7 @@
 
 更新时间：2026-06-06 21:56 CST
 
-本文件已创建并更新到当前项目状态。需要特别注意：本轮本地继续修改了英文切换、团队动态、成果默认顺序、二维码和首页简介，但尚未部署；线上最近一次已部署提交是 `b27d8ccb96fb2f657ae54f40ca49110290ceeb91`。
+本文件已创建并更新到当前项目状态。最新一轮已部署英文切换、团队动态、成果默认顺序、二维码和首页简介优化；线上最近一次已部署提交是 `5e08ac14b9c682fd2d74a0df0873e684e840882c`。
 
 当前本地工作区仍是 dirty 状态：
 
@@ -28,7 +28,7 @@ https://yanglaihao.github.io/
 
 最近一次已部署提交：
 
-https://github.com/yanglaihao/yanglaihao.github.io/commit/b27d8ccb96fb2f657ae54f40ca49110290ceeb91
+https://github.com/yanglaihao/yanglaihao.github.io/commit/5e08ac14b9c682fd2d74a0df0873e684e840882c
 
 部署方式：由于本地目录没有配置 Git remote，之前使用 GitHub CLI + GitHub Git Data API 直接把文件提交到了 `yanglaihao/yanglaihao.github.io` 的 `main` 分支。
 
@@ -131,6 +131,7 @@ node tests/site-checks.js
 线上验证过：
 
 - GitHub Pages 状态为 `built`。
+- 最新部署提交：`5e08ac14b9c682fd2d74a0df0873e684e840882c`。
 - 线上 HTML 包含：
   - `research-diagnosis.mp4`
   - `research-intervention.mp4`
@@ -138,7 +139,10 @@ node tests/site-checks.js
   - `achievement-overview`
   - `data-paper-subfilters`
   - `data-member-target="leader"`
+  - `assets/site-qr.svg`
+  - `团队关于触觉传感和灵巧操作的研究工作发表于Science 子刊`
 - 三个线上视频均返回 `HTTP/2 200` 和 `content-type: video/mp4`。
+- 二维码资源 `assets/site-qr.svg` 线上返回 `HTTP/2 200` 和 `content-type: image/svg+xml`。
 
 ## 当前本地状态
 
