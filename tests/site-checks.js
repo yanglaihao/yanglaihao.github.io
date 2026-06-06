@@ -38,6 +38,9 @@ for (const filter of ["paper-sci", "paper-ei-journal", "paper-ei-conference", "p
 for (const filter of ["paper", "project", "patent", "book", "award", "service"]) {
   assert.ok(html.includes(`data-output-filter="${filter}"`), `missing achievement board filter: ${filter}`);
 }
+const primaryFilterOrder = matchAll(/class="filter(?: active)?" type="button" role="tab" aria-selected="(?:true|false)" data-output-filter="([^"]+)"/g).map((match) => match[1]);
+assert.equal(primaryFilterOrder[0], "project", "project should be the first achievement category");
+assert.ok(script.includes('showOutputCategory("project")'), "project should be the default achievement view");
 assert.ok(html.includes("achievement-overview"), "achievement section should include a summary overview");
 assert.ok(html.includes("data-paper-subfilters"), "paper section should include clickable secondary categories");
 assert.ok(html.includes("data-award-subfilters"), "award section should include clickable secondary categories");
@@ -62,9 +65,20 @@ assert.ok(html.includes("航空发动机与航天器先进传感及健康管理"
 assert.ok(html.includes("data-language-toggle"), "home page should include a Chinese/English language toggle");
 assert.ok(html.includes("data-i18n=\"nav.home\""), "key navigation text should be language-switchable");
 assert.ok(script.includes("applyLanguage"), "script should implement language switching");
-assert.ok(handoff.includes("项目、专利、专著、获奖、社会任职"), "handoff should describe the updated achievement categories");
+assert.ok(script.includes("textTranslations"), "language switching should include full-page static text translations");
+assert.ok(script.includes("translateStaticText"), "language switching should translate non-navigation page text");
+assert.ok(script.includes('language === "en" ? "ZH" : "EN"'), "English mode language toggle should avoid Chinese text");
+assert.ok(handoff.includes("项目、论文、专利、专著、获奖、社会任职"), "handoff should describe the updated achievement categories");
 assert.ok(handoff.includes("孙瑜"), "handoff should mention the added Sun Yu mentor entry");
 assert.ok(handoff.includes("中英文切换"), "handoff should mention the language toggle");
+
+assert.ok(html.includes("团队关于触觉传感和灵巧操作的研究工作发表于Science 子刊"), "news should include current profile news from the school site");
+assert.ok(html.includes("https://faculty.xjtu.edu.cn/content.jsp?urltype=news.NewsContentUrl"), "news should retain source links");
+assert.ok(!html.includes("个人主页 Awards 页面公开信息"), "award source boilerplate should be removed");
+assert.ok(!html.includes("个人主页 Academic 页面公开信息"), "service source boilerplate should be removed");
+assert.ok(!html.includes("以上信息根据孙瑜老师学校主页招生信息整理"), "teacher notes should be removed from the member panel");
+assert.ok(html.includes("https://faculty.xjtu.edu.cn/yu.sun/zh_CN/index.htm"), "Sun Yu card should link to her profile");
+assert.ok(html.includes("assets/site-qr.svg"), "contact area should reference the team site QR code");
 
 const publicationCount = matchAll(/<article class="achievement" data-output-type="paper-/g).length;
 assert.equal(publicationCount, 94, `expected 94 classified representative publications from public profiles, found ${publicationCount}`);

@@ -2,14 +2,14 @@
 
 ## 最新更新
 
-更新时间：2026-06-06 21:15 CST
+更新时间：2026-06-06 21:56 CST
 
-本文件已创建并更新到当前项目状态。需要特别注意：`HANDOFF.md` 目前只存在于本地工作区，尚未部署到 GitHub Pages 仓库远端；线上最近一次功能更新仍是提交 `4a2ea2f5b115b665342eb7209a7c1d053905099f`。
+本文件已创建并更新到当前项目状态。需要特别注意：本轮本地继续修改了英文切换、团队动态、成果默认顺序、二维码和首页简介，但尚未部署；线上最近一次已部署提交是 `b27d8ccb96fb2f657ae54f40ca49110290ceeb91`。
 
 当前本地工作区仍是 dirty 状态：
 
 - 已修改：`.gitignore`、`README.md`、`index.html`、`script.js`、`styles.css`
-- 未跟踪：`HANDOFF.md`、`tests/`、研究方向视频与图片资源、`assets/leader-yang.png`、`assets/team-profile.jpg`
+- 未跟踪：`HANDOFF.md`、`tests/`、研究方向视频与图片资源、`assets/leader-yang.png`、`assets/team-profile.jpg`、`assets/site-qr.svg`
 - 远端 `yanglaihao/yanglaihao.github.io` 已包含上一次通过 GitHub API 部署的页面功能文件和视频资源；本地 git 历史未同步这些部署提交。
 
 本轮已补充 `.gitignore`，忽略 `.DS_Store`、`素材/` 和 `references.bib`，避免把本地噪声或原始素材目录误提交。如果下一步希望让 `HANDOFF.md` 也进入远端仓库，需要单独提交/部署它。
@@ -28,7 +28,7 @@ https://yanglaihao.github.io/
 
 最近一次已部署提交：
 
-https://github.com/yanglaihao/yanglaihao.github.io/commit/4a2ea2f5b115b665342eb7209a7c1d053905099f
+https://github.com/yanglaihao/yanglaihao.github.io/commit/b27d8ccb96fb2f657ae54f40ca49110290ceeb91
 
 部署方式：由于本地目录没有配置 Git remote，之前使用 GitHub CLI + GitHub Git Data API 直接把文件提交到了 `yanglaihao/yanglaihao.github.io` 的 `main` 分支。
 
@@ -61,13 +61,15 @@ https://github.com/yanglaihao/yanglaihao.github.io/commit/4a2ea2f5b115b665342eb7
 
 当前成员信息主要来自学校主页公开信息。教师 / 合作导师分组已加入孙瑜副教授条目，博士后部分仍为描述性占位，未列出更多姓名。
 
+本轮已移除教师分组中的来源说明文字，并为孙瑜副教授条目加入个人主页链接按钮。
+
 ### 团队成果
 
 团队成果区已重构为：
 
 1. 成果简介
 2. 关键数字概览卡片
-3. 一级成果板块：论文、项目、专利、专著、获奖、社会任职
+3. 一级成果板块：项目、论文、专利、专著、获奖、社会任职
 4. 论文二级分类：全部论文、SCI 期刊、EI 期刊、EI 会议、预印本、其他论文
 5. 获奖二级分类：科学技术奖、科技论文获奖、学生竞赛获奖、社会奖励、学位论文获奖
 
@@ -81,7 +83,13 @@ https://github.com/yanglaihao/yanglaihao.github.io/commit/4a2ea2f5b115b665342eb7
 
 资料来源参考了学校主页、ResearchGate、Google Scholar 链接、ORCID 和公开 DOI 信息。Google Scholar 自动访问在当前环境中不稳定，ResearchGate 也存在 Cloudflare 限制，因此最终以 ResearchGate / ORCID / 学校主页 / 公开 DOI 信息交叉整理为主。
 
-项目列表已按个人主页“科研项目”页整理 18 条；获奖列表已按个人主页 Awards 页分类整理 17 条；社会任职已按个人主页 Academic / 社会任职页整理 11 条。首页导航已增加中英文切换按钮，当前主要覆盖品牌、导航、首页英雄区等关键入口文本。
+项目列表已按个人主页“科研项目”页整理 18 条，并在成果栏默认优先显示；获奖列表已按个人主页 Awards 页分类整理 17 条；社会任职已按个人主页 Academic / 社会任职页整理 11 条。获奖和社会任职条目下方的“个人主页公开信息”类来源说明已移除。
+
+### 团队动态与英文切换
+
+团队动态已并入个人主页“我的新闻”第一页中的学校新闻条目，当前展示 9 条去重后的近期新闻。首页简介已重新润色，强调“状态感知-原位进入-精准操作”的高端装备智能检修链路。
+
+中英文切换已扩展为全页面静态文本翻译：核心文案使用精确英文翻译，未逐条人工翻译的少量中文成果文本在英文模式下使用英文类型说明兜底。浏览器验证显示英文模式可见中文文本数量为 0，图片和视频内容未处理。
 
 ## 关键文件
 
@@ -95,6 +103,7 @@ https://github.com/yanglaihao/yanglaihao.github.io/commit/4a2ea2f5b115b665342eb7
 - `assets/research-embodied.mp4`：具身操作方向视频。
 - `assets/leader-yang.png`：杨来浩老师照片。
 - `assets/team-profile.jpg`：首页团队/研究展示图。
+- `assets/site-qr.svg`：团队主页二维码。
 - `素材/`：用户原始素材目录，不建议直接部署到线上。
 
 ## 验证记录
@@ -106,16 +115,18 @@ node --check script.js
 node tests/site-checks.js
 ```
 
-最近一次复验：2026-06-06 21:15 CST，以上两条命令均以退出码 0 结束。
+最近一次复验：2026-06-06 21:56 CST，以上两条命令均以退出码 0 结束。
 
 本地浏览器验证过：
 
 - 三个研究方向视频 `readyState=4`，可播放。
 - 团队成员默认只展开“团队领导”。
 - 点击“硕士研究生”后只显示硕士面板。
-- 成果默认显示论文板块。
+- 成果默认显示项目板块，项目可见条目 18 条。
 - 点击“获奖”后只显示获奖条目，并隐藏论文二级分类、显示获奖二级分类。
 - 切回论文后点击“SCI 期刊”，只显示 65 篇 SCI 论文。
+- 英文模式下可见中文文本数量为 0，语言按钮显示 `ZH`。
+- 联系区二维码 `assets/site-qr.svg` 正常加载。
 
 线上验证过：
 
@@ -151,6 +162,7 @@ node tests/site-checks.js
 - 未跟踪：`assets/research-embodied.gif`
 - 未跟踪：`assets/research-embodied.png`
 - 未跟踪：`assets/research-embodied.mp4`
+- 未跟踪：`assets/site-qr.svg`
 
 当前已通过 `.gitignore` 忽略、不建议部署的内容包括：
 

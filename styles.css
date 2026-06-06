@@ -1383,6 +1383,23 @@ address a {
   font-weight: 760;
 }
 
+.site-qr {
+  margin: 0;
+  display: grid;
+  gap: 0.45rem;
+  justify-items: center;
+  color: var(--muted);
+  font-size: 0.82rem;
+}
+
+.site-qr img {
+  width: 112px;
+  aspect-ratio: 1;
+  border: 1px solid var(--line);
+  background: #fff;
+  padding: 0.45rem;
+}
+
 .bib-dialog {
   width: min(720px, calc(100% - 32px));
   border: 1px solid var(--line);
@@ -1516,6 +1533,11 @@ address a {
 
   address {
     justify-content: flex-start;
+    margin-top: 1.2rem;
+  }
+
+  .site-qr {
+    justify-items: start;
     margin-top: 1.2rem;
   }
 }
