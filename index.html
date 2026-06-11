@@ -82,7 +82,15 @@
         </div>
 
         <aside class="hero-visual" aria-label="团队研究图像">
-          <img src="assets/team-profile.jpg" alt="团队相关研究展示图" />
+          <img
+            src="assets/team-profile.jpg"
+            sizes="(max-width: 768px) 100vw, min(680px, 50vw)"
+            width="960"
+            height="720"
+            alt="团队相关研究展示图"
+            decoding="async"
+            fetchpriority="high"
+          />
           <dl>
             <div>
               <dt data-i18n="hero.facts.leader.label">团队负责人</dt>
@@ -111,7 +119,14 @@
 
         <div class="about-layout">
           <article class="leader-card">
-            <img src="assets/leader-yang.png" alt="杨来浩副研究员照片" />
+            <img
+              src="assets/leader-yang.png"
+              sizes="180px"
+              width="180"
+              height="225"
+              alt="杨来浩副研究员照片"
+              decoding="async"
+            />
             <div>
               <p class="project-tag">Team Leader</p>
               <h3>杨来浩 副研究员</h3>
@@ -360,7 +375,14 @@
             <div class="member-stage">
               <article class="member-category active" id="member-panel-leader" role="tabpanel" aria-labelledby="member-tab-leader" data-member-panel="leader">
                 <div class="member-leader">
-                  <img src="assets/leader-yang.png" alt="杨来浩副研究员照片" />
+                  <img
+                    src="assets/leader-yang.png"
+                    sizes="180px"
+                    width="180"
+                    height="225"
+                    alt="杨来浩副研究员照片"
+                    decoding="async"
+                  />
                   <div>
                     <p class="project-tag">团队领导</p>
                     <h3>杨来浩</h3>
@@ -926,6 +948,13 @@
             </div>
           </article>
           <article class="achievement" data-output-type="award-student">
+            <div class="pub-year">2026</div>
+            <div class="pub-body">
+              <p class="pub-venue">学生竞赛获奖</p>
+              <h3>首届“太行杯”航空动力创新大赛优胜奖</h3>
+            </div>
+          </article>
+          <article class="achievement" data-output-type="award-student">
             <div class="pub-year">2024</div>
             <div class="pub-body">
               <p class="pub-venue">学生竞赛获奖</p>
@@ -1064,8 +1093,19 @@
         <img src="assets/site-qr.svg" alt="团队主页二维码" />
         <figcaption>扫码访问团队主页</figcaption>
       </figure>
+      <div class="visitor-stats" aria-label="站点访问统计">
+        <span>
+          <strong>浏览量</strong>
+          <em id="busuanzi_value_site_pv">--</em>
+        </span>
+        <span>
+          <strong>访客数</strong>
+          <em id="busuanzi_value_site_uv">--</em>
+        </span>
+      </div>
     </footer>
 
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
     <script src="script.js"></script>
   </body>
 </html>

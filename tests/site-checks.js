@@ -54,7 +54,9 @@ const projectCount = matchAll(/<article class="achievement" data-output-type="pr
 assert.equal(projectCount, 18, `expected 18 projects from the public profile, found ${projectCount}`);
 
 const awardCount = matchAll(/<article class="achievement" data-output-type="award-/g).length;
-assert.equal(awardCount, 17, `expected 17 categorized awards from the public profile, found ${awardCount}`);
+assert.equal(awardCount, 18, `expected 18 categorized awards after adding the Taihang Cup item, found ${awardCount}`);
+assert.ok(html.includes("首届“太行杯”航空动力创新大赛优胜奖"), "student competition awards should include the first Taihang Cup aviation power innovation award");
+assert.ok(html.includes('<div class="pub-year">2026</div>\n            <div class="pub-body">\n              <p class="pub-venue">学生竞赛获奖</p>\n              <h3>首届“太行杯”航空动力创新大赛优胜奖</h3>'), "Taihang Cup award should use the 2026 award year format");
 
 const serviceCount = matchAll(/<article class="achievement" data-output-type="service">/g).length;
 assert.equal(serviceCount, 11, `expected 11 social service entries from the public profile, found ${serviceCount}`);
@@ -79,6 +81,16 @@ assert.ok(!html.includes("个人主页 Academic 页面公开信息"), "service s
 assert.ok(!html.includes("以上信息根据孙瑜老师学校主页招生信息整理"), "teacher notes should be removed from the member panel");
 assert.ok(html.includes("https://faculty.xjtu.edu.cn/yu.sun/zh_CN/index.htm"), "Sun Yu card should link to her profile");
 assert.ok(html.includes("assets/site-qr.svg"), "contact area should reference the team site QR code");
+assert.ok(html.includes('src="assets/team-profile.jpg"'), "hero image should keep a direct asset fallback for non-Netlify hosts");
+assert.ok(!html.includes("/.netlify/images?url="), "GitHub Pages deployment should not depend on Netlify Image CDN URLs");
+assert.ok(html.includes("busuanzi_value_site_pv"), "footer should expose site page-view statistics");
+assert.ok(html.includes("busuanzi_value_site_uv"), "footer should expose site visitor statistics");
+assert.ok(html.includes("busuanzi.pure.mini.js"), "static site should load the Busuanzi counter script");
+assert.ok(script.includes("attributeTranslations"), "language switching should translate important accessibility attributes and metadata");
+assert.ok(script.includes("translateAttributes"), "language switching should update image alt text and aria labels");
+assert.ok(script.includes('"meta.description"'), "English mode should translate the page meta description");
+assert.ok(script.includes('"一种连续体机械臂重建方法"'), "English mode should translate representative Chinese patent titles directly");
+assert.ok(script.includes('"首届“太行杯”航空动力创新大赛优胜奖"'), "English mode should translate the Taihang Cup award directly");
 
 const publicationCount = matchAll(/<article class="achievement" data-output-type="paper-/g).length;
 assert.equal(publicationCount, 94, `expected 94 classified representative publications from public profiles, found ${publicationCount}`);

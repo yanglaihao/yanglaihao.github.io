@@ -3,6 +3,9 @@ const themeButton = document.querySelector("[data-theme-toggle]");
 const languageButton = document.querySelector("[data-language-toggle]");
 const languageLabel = document.querySelector("[data-language-label]");
 const i18nElements = document.querySelectorAll("[data-i18n]");
+const metaDescription = document.querySelector('meta[name="description"]');
+const ogTitle = document.querySelector('meta[property="og:title"]');
+const ogDescription = document.querySelector('meta[property="og:description"]');
 const menuButton = document.querySelector(".menu-toggle");
 const navLinks = document.querySelector("[data-nav-links]");
 const newsFilters = document.querySelectorAll("[data-news-filter]");
@@ -22,6 +25,9 @@ let researchRotation;
 
 const translations = {
   zh: {
+    "meta.description": "西安交通大学高端装备智能检修机器人团队，聚焦智能诊断、原位介入、具身操作、软体/连续体机器人、智能传感与航空发动机健康管理。",
+    "meta.ogTitle": "高端装备智能检修机器人团队 | 西安交通大学",
+    "meta.ogDescription": "面向航空发动机等高端装备，开展智能诊断、原位介入、具身操作、智能传感与健康管理研究。",
     "brand.title": "高端装备智能检修机器人团队",
     "brand.unit": "西安交通大学 · 机械工程学院",
     "nav.home": "首页",
@@ -47,6 +53,9 @@ const translations = {
     "hero.facts.outputs.value": "论文 100+ / 专利 100+",
   },
   en: {
+    "meta.description": "The Advanced Equipment Intelligent Maintenance Robotics Team at Xi'an Jiaotong University works on intelligent diagnosis, in-situ intervention, embodied manipulation, soft and continuum robots, intelligent sensing, and aero-engine health management.",
+    "meta.ogTitle": "Advanced Equipment Intelligent Maintenance Robotics Team | Xi'an Jiaotong University",
+    "meta.ogDescription": "Research on intelligent diagnosis, in-situ intervention, embodied manipulation, intelligent sensing, and health management for aero-engines and other advanced equipment.",
     "brand.title": "Advanced Equipment Intelligent Maintenance Robotics Team",
     "brand.unit": "Xi'an Jiaotong University · School of Mechanical Engineering",
     "nav.home": "Home",
@@ -73,8 +82,34 @@ const translations = {
   },
 };
 
+const attributeTranslations = [
+  { selector: ".brand", attribute: "aria-label", zh: "回到首页", en: "Back to home" },
+  { selector: ".meta-list", attribute: "aria-label", zh: "团队概览", en: "Team overview" },
+  { selector: ".hero-visual", attribute: "aria-label", zh: "团队研究图像", en: "Team research image" },
+  { selector: '.hero-visual img[src="assets/team-profile.jpg"]', attribute: "alt", zh: "团队相关研究展示图", en: "Research showcase for the team" },
+  { selector: '.leader-card img[src="assets/leader-yang.png"]', attribute: "alt", zh: "杨来浩副研究员照片", en: "Portrait of Associate Researcher Laihao Yang" },
+  { selector: '.member-leader img[src="assets/leader-yang.png"]', attribute: "alt", zh: "杨来浩副研究员照片", en: "Portrait of Associate Researcher Laihao Yang" },
+  { selector: '.research-tabs', attribute: "aria-label", zh: "研究方向切换", en: "Research direction switcher" },
+  { selector: 'video[poster="assets/research-diagnosis.gif"]', attribute: "aria-label", zh: "智能诊断方向视频", en: "Intelligent diagnosis research video" },
+  { selector: 'video[poster="assets/research-intervention.gif"]', attribute: "aria-label", zh: "原位介入方向视频", en: "In-situ intervention research video" },
+  { selector: 'video[poster="assets/research-embodied.png"]', attribute: "aria-label", zh: "具身操作方向视频", en: "Embodied manipulation research video" },
+  { selector: ".member-tabs", attribute: "aria-label", zh: "团队成员分组", en: "Team member groups" },
+  { selector: ".output-primary-filters", attribute: "aria-label", zh: "成果一级板块", en: "Primary output categories" },
+  { selector: "[data-paper-subfilters]", attribute: "aria-label", zh: "论文二级分类", en: "Publication subcategories" },
+  { selector: "[data-award-subfilters]", attribute: "aria-label", zh: "获奖二级分类", en: "Award subcategories" },
+  { selector: '.site-qr img', attribute: "alt", zh: "团队主页二维码", en: "QR code for the team website" },
+  { selector: ".visitor-stats", attribute: "aria-label", zh: "站点访问统计", en: "Site visit statistics" },
+];
+
 const textTranslations = {
   "团队简介": "About the Team",
+  "面向航空发动机等高端装备内部深腔、狭窄通道和复杂曲面损伤，团队构建“状态感知-原位进入-精准操作”一体化智能检修机器人体系，让装备维护从外部拆解走向在位、微创和智能化处置。": "For deep cavities, narrow passages, and damaged complex surfaces inside aero-engines and other advanced equipment, the team builds an integrated intelligent maintenance robotics system spanning condition awareness, in-situ access, and precision operation.",
+  "团队负责人": "Team Lead",
+  "杨来浩 副研究员": "Laihao Yang, Associate Researcher",
+  "依托单位": "Affiliation",
+  "西安交通大学机械工程学院": "School of Mechanical Engineering, Xi'an Jiaotong University",
+  "论文 100+ / 专利 100+": "100+ papers / 100+ patents",
+  "团队依托西安交通大学机械工程学院和航空发动机研究所，聚焦航空发动机、燃机、航天器等高端装备的服役安全与智能维护。围绕“看得清、进得去、修得准”的核心挑战，团队融合机器人学、智能传感、结构动力学、数字孪生和可解释人工智能，发展面向真实装备场景的智能诊断、原位介入和具身操作技术。": "Based in the School of Mechanical Engineering and the Aero-engine Research Institute at Xi'an Jiaotong University, the team focuses on service safety and intelligent maintenance for aero-engines, gas turbines, spacecraft, and other advanced equipment. Around the core challenges of seeing clearly, entering constrained spaces, and repairing precisely, the team integrates robotics, intelligent sensing, structural dynamics, digital twins, and explainable AI.",
   "西安交通大学机械工程学院、航空发动机研究所。长期面向航空发动机健康管理、原位检修机器人、触觉感知与具身智能开展交叉研究，推动从装备状态识别、机器人进入到精细化维护的全链路技术落地。": "Based in the School of Mechanical Engineering and the Aero-engine Research Institute at Xi'an Jiaotong University, the team works across aero-engine health management, in-situ maintenance robotics, tactile perception, and embodied intelligence, advancing the full chain from condition recognition to robotic access and precision maintenance.",
   "学校主页": "XJTU Profile",
   "团队使命": "Mission",
@@ -100,7 +135,21 @@ const textTranslations = {
   "操作稳": "Stable operation",
   "智能诊断：从损伤机理到可解释状态评估": "Intelligent Diagnosis: From Damage Mechanisms to Explainable Condition Assessment",
   "原位介入：面向深腔受限空间的连续体机器人": "In-situ Intervention: Continuum Robots for Deep and Constrained Spaces",
+  "原位介入：让柔顺机器人进入复杂深腔": "In-situ Intervention: Enabling Compliant Robots to Enter Complex Deep Cavities",
   "具身操作：从触觉感知到机器人精细维护": "Embodied Manipulation: From Tactile Perception to Precision Robotic Maintenance",
+  "具身操作：融合触觉、灵巧手与具身智能": "Embodied Manipulation: Integrating Tactile Sensing, Dexterous Hands, and Embodied Intelligence",
+  "面向航空发动机、燃机等高端装备关键零部件，研究裂纹、烧蚀、掉角、漏油等损伤的演化机理与多源信号表征，结合叶尖定时、非接触振动监测、信号采集调理和可解释深度学习，实现损伤位置、程度与风险的定量诊断。": "For critical components in aero-engines, gas turbines, and other advanced equipment, the team studies damage evolution and multi-source signal signatures for cracks, ablation, corner loss, oil leakage, and related faults. Blade tip timing, non-contact vibration monitoring, signal acquisition and conditioning, and explainable deep learning are combined for quantitative diagnosis of damage location, severity, and risk.",
+  "非接触振动监测、叶尖定时与多传感信号融合": "Non-contact vibration monitoring, blade tip timing, and multi-sensor fusion",
+  "数字孪生驱动的转子叶片健康监测与在线评估": "Digital-twin-driven health monitoring and online assessment of rotating blades",
+  "物理模型约束的数据智能诊断和不确定性分析": "Physics-constrained data-driven diagnosis and uncertainty analysis",
+  "面向高端装备内部狭窄、弯曲、遮挡和接触丰富的受限空间，发展连续体机器人、爬行机器人与柔顺关节创新设计，研究高效力学建模、运动规划和接触安全控制，使机器人能够原位抵达检测、维护和处置目标区域。": "For narrow, curved, occluded, and contact-rich constrained spaces inside advanced equipment, the team develops continuum robots, crawling robots, and compliant joint designs, together with efficient mechanics modeling, motion planning, and contact-safe control so robots can reach target areas for inspection, maintenance, and intervention in situ.",
+  "连续体机器人结构设计、动力学建模与高精度控制": "Continuum robot structural design, dynamics modeling, and high-precision control",
+  "深腔探入式检测机器人系统与路径规划方法": "Deep-cavity inspection robot systems and path-planning methods",
+  "复杂受限空间中的柔顺交互、接触感知与安全介入": "Compliant interaction, contact sensing, and safe intervention in complex constrained spaces",
+  "以“操作稳”为目标，融合人形机器人、灵巧手、触觉电子皮肤、视觉检测和具身智能决策技术，研究高端装备精细操作、原位处置和多机器人协同，使机器人不仅能够进入装备内部，还能够在复杂环境中稳定完成检测、打磨、夹持与处置任务。": "With stable operation as the target, the team integrates humanoid robots, dexterous hands, tactile electronic skin, visual inspection, and embodied decision-making. The work supports precision manipulation, in-situ intervention, and multi-robot collaboration for advanced equipment, so robots can not only enter equipment interiors but also perform inspection, polishing, grasping, and intervention tasks reliably in complex environments.",
+  "多维力触觉电子皮肤、柔性传感与操作反馈": "Multidimensional tactile electronic skin, flexible sensing, and manipulation feedback",
+  "灵巧手和人形机器人辅助的精细操作策略": "Fine manipulation strategies assisted by dexterous hands and humanoid robots",
+  "视觉-触觉-力控融合的具身智能任务执行": "Embodied task execution with vision, touch, and force-control fusion",
   "团队动态": "Team News",
   "全部": "All",
   "新闻": "News",
@@ -144,6 +193,15 @@ const textTranslations = {
   "本科生": "Undergraduates",
   "已毕业": "Alumni",
   "团队成果": "Team Outputs",
+  "围绕高端装备智能检修机器人，团队形成了从项目牵引、论文发表、专利布局、专著出版到科技奖励和学术服务的成果体系。当前页面按公开资料整理代表性条目，并支持按成果类型快速筛选。": "Around intelligent maintenance robotics for advanced equipment, the team has built an output portfolio spanning funded projects, papers, patents, a monograph, awards, and academic service. This page organizes representative public entries and supports filtering by output type.",
+  "论文与专著": "Papers and Book",
+  "100余篇 / 1部": "100+ papers / 1 book",
+  "发表高水平论文 100 余篇，其中一作/通讯 SCI 论文 34 篇，出版专著 1 部。": "100+ high-level papers, including 34 first-author or corresponding-author SCI papers, and 1 monograph.",
+  "专利 100余项": "100+ patents",
+  "公开发明专利 100 余项，授权 50 项，国际专利 7 项。": "100+ published invention patents, 50 granted patents, and 7 international patents.",
+  "奖励与传播": "Awards and Visibility",
+  "多项省部级/行业奖励": "Multiple provincial, ministerial, and industry awards",
+  "获中国振动工程学会科学技术奖二等奖、陕西高校科技一等奖、机器人科学引领奖等，并被 CCTV7、China Daily、陕西新闻联播等报道。": "Recognized by the Chinese Society for Vibration Engineering Science and Technology Award, Shaanxi Higher Education Science and Technology Award, Robotics Science Leadership Award, and media coverage from CCTV7, China Daily, Shaanxi News, and others.",
   "项目": "Projects",
   "论文": "Papers",
   "专利": "Patents",
@@ -163,9 +221,104 @@ const textTranslations = {
   "社会奖励": "Professional Awards",
   "学位论文获奖": "Thesis Awards",
   "成果条目": "Output Entries",
+  "国家自然科学基金项目 · 2025.01-2028.12": "National Natural Science Foundation of China · 2025.01-2028.12",
+  "航空发动机原位维护连续体机器人": "Continuum Robot for In-situ Aero-engine Maintenance",
+  "52475129 · 国家自然科学基金": "52475129 · National Natural Science Foundation of China",
+  "国家自然科学基金项目 · 2024.01-2027.12": "National Natural Science Foundation of China · 2024.01-2027.12",
+  "剪纸启发的复杂曲面顺应可控仿生干粘附设计": "Kirigami-inspired Controllable Biomimetic Dry Adhesion for Complex Curved Surfaces",
+  "52375125 · 纵向项目": "52375125 · Government-funded project",
+  "中央引导科技发展资金 · 2023.05-2024.12": "Central Government-guided Science and Technology Development Fund · 2023.05-2024.12",
+  "***智能检测关键技术与系统研发": "Key Technologies and System Development for Intelligent Inspection",
+  "XXX · 纵向项目": "Confidential · Government-funded project",
+  "大科学装置群 · 2023.04-2025.04": "Large Scientific Facility Cluster · 2023.04-2025.04",
+  "主轴承XXX": "Main Bearing Research Project",
+  "XXX · 横向项目": "Confidential · Industry-funded project",
+  "十四五预研项目 · 2022.12-2025.12": "14th Five-Year Pre-research Project · 2022.12-2025.12",
+  "XXX机器人设计与柔顺控制": "Robot Design and Compliant Control",
+  "国务院各部委项目 · 2022.10-2024.10": "National Ministry-level Project · 2022.10-2024.10",
+  "XXX关键部件稀疏智能健康管理方法研究": "Sparse Intelligent Health Management Methods for Key Components",
+  "HT-P2022 · 纵向项目": "HT-P2022 · Government-funded project",
+  "重点实验室开放基金 · 2022.09-2024.07": "Open Fund of Key Laboratory · 2022.09-2024.07",
+  "数字孪生框架下航空发动机转子叶片裂纹稀疏定量监测诊断": "Sparse Quantitative Monitoring and Diagnosis of Aero-engine Rotor Blade Cracks under a Digital Twin Framework",
+  "pkl20220001 · 纵向项目": "pkl20220001 · Government-funded project",
+  "自由探索 · 2022.06-2023.12": "Free Exploration Project · 2022.06-2023.12",
+  "物理驱动的航空发动机转子叶片裂纹可解释深度智能监测诊断": "Physics-driven Explainable Deep Intelligent Monitoring and Diagnosis of Aero-engine Rotor Blade Cracks",
+  "xzy012022058 · 纵向项目": "xzy012022058 · Government-funded project",
+  "国家自然科学基金项目 · 2022.01-2024.12": "National Natural Science Foundation of China · 2022.01-2024.12",
+  "旋转叶片裂纹的叶端定时物理模型-连续压缩感知协同监测研究": "Cooperative Monitoring of Rotating Blade Cracks with Blade-tip-timing Physical Models and Continuous Compressed Sensing",
+  "52105117 · 纵向项目": "52105117 · Government-funded project",
+  "青年学术骨干培植项目 · 2021.07-2021.12": "Young Academic Backbone Cultivation Project · 2021.07-2021.12",
+  "深度网络驱动的航空发动机叶片损伤视觉智能检测方法研究": "Deep-network-driven Visual Intelligent Detection of Aero-engine Blade Damage",
+  "xpt012021030 · 纵向项目": "xpt012021030 · Government-funded project",
+  "国家自然科学基金项目 · 2021.01-2024.12": "National Natural Science Foundation of China · 2021.01-2024.12",
+  "数字孪生驱动的航空发动机转子叶片健康监测": "Digital-twin-driven Health Monitoring of Aero-engine Rotor Blades",
+  "52075414 · 纵向项目": "52075414 · Government-funded project",
+  "航空发动机主轴承及传动系统故障智能诊断研究": "Intelligent Fault Diagnosis for Aero-engine Main Bearings and Transmission Systems",
+  "92060302 · 纵向项目": "92060302 · Government-funded project",
+  "中国航发四川燃气涡轮研究院 · 2020.12-2022.12": "AECC Sichuan Gas Turbine Establishment · 2020.12-2022.12",
+  "面向空地一致性的航空发动机主轴承服役性能分析技术": "Service Performance Analysis of Aero-engine Main Bearings for Air-ground Consistency",
+  "J202012057 · 横向项目": "J202012057 · Industry-funded project",
+  "中国航空沈阳飞机设计研究所 · 2020.11-2021.11": "AVIC Shenyang Aircraft Design and Research Institute · 2020.11-2021.11",
+  "运动机构及机械传动系统仿真评估软件": "Simulation and Evaluation Software for Motion Mechanisms and Mechanical Transmission Systems",
+  "J202101007 · 横向项目": "J202101007 · Industry-funded project",
+  "国务院各部委项目 · 2020.04-2025.04": "National Ministry-level Project · 2020.04-2025.04",
+  "***检测机器人系统基础研究": "Basic Research on Inspection Robot Systems",
+  "2019-XXXX-XX-XXX-XX · 纵向项目": "2019-XXXX-XX-XXX-XX · Government-funded project",
+  "国家攻关项目 · 2018.08-2021.12": "National Key Research Project · 2018.08-2021.12",
+  "***叶片裂纹***": "Blade Crack Research Project",
+  "2017-V-0009 · 纵向项目": "2017-V-0009 · Government-funded project",
+  "国家自然科学基金项目 · 2017.01-2019.12": "National Natural Science Foundation of China · 2017.01-2019.12",
+  "航空发动机快变信号稀疏时频诊断方法研究": "Sparse Time-frequency Diagnosis of Fast-varying Aero-engine Signals",
+  "51605366 · 纵向项目": "51605366 · Government-funded project",
+  "973项目 · 2015.01-2019.12": "973 Program · 2015.01-2019.12",
+  "航空发动机运行安全基础研究": "Basic Research on Aero-engine Operational Safety",
+  "2015CB057400 · 纵向项目": "2015CB057400 · Government-funded project",
+  "发明专利": "Invention Patent",
+  "一种测试连续体机器人力学性能的方法和装置": "Method and Device for Testing the Mechanical Properties of a Continuum Robot",
+  "一种连续体机械臂重建方法": "Reconstruction Method for a Continuum Manipulator",
+  "检测航空发动机叶片的爬行机器人": "Crawling Robot for Inspecting Aero-engine Blades",
+  "专著": "Monograph",
+  "钛基复合材料多尺度力学": "Multiscale Mechanics of Titanium Matrix Composites",
+  "孙瑜, 杨丹卉, 杨来浩 · 西北工业大学出版社": "Yu Sun, Danhui Yang, Laihao Yang · Northwestern Polytechnical University Press",
+  "科学技术奖": "Science and Technology Award",
+  "陕西省科技进步一等奖": "First Prize, Shaanxi Science and Technology Progress Award",
+  "中国振动工程学会科学技术奖二等奖（基础研究类，排 1）": "Second Prize, Science and Technology Award of the Chinese Society for Vibration Engineering (Basic Research, ranked 1st)",
+  "陕西省高等学校科学技术奖一等奖": "First Prize, Shaanxi Higher Education Science and Technology Award",
+  "科技论文获奖": "Paper Award",
+  "2025航空装备智能制造大会，优秀论文报告": "Outstanding Paper Presentation, 2025 Aviation Equipment Intelligent Manufacturing Conference",
+  "第十六届全国振动理论及应用学术会议，高水平论文奖": "High-level Paper Award, 16th National Conference on Vibration Theory and Applications",
+  "第五届中国机器人学术年会最佳海报奖": "Best Poster Award, 5th China Robotics Academic Annual Conference",
+  "2024年中国航天大会航天超材料与超结构技术专题论坛高水平论文奖": "High-level Paper Award, 2024 China Space Conference Forum on Aerospace Metamaterials and Metastructures",
+  "学生竞赛获奖": "Student Competition Award",
+  "第十届软体机器人大会软体机器人创新设计竞赛二等奖": "Second Prize, Soft Robot Innovation Design Competition, 10th Soft Robotics Conference",
+  "第三届中国空天动力创新创业大赛二等奖": "Second Prize, 3rd China Aerospace Power Innovation and Entrepreneurship Competition",
+  "首届“太行杯”航空动力创新大赛优胜奖": "Merit Award, 1st Taihang Cup Aviation Power Innovation Competition",
+  "第九届软体机器人大会软体机器人创新设计竞赛二等奖（2项）、优秀奖1项": "Two Second Prizes and one Merit Award, Soft Robot Innovation Design Competition, 9th Soft Robotics Conference",
+  "中国大学生机械工程创新创意大赛“明石杯”微纳传感技术与智能应用初赛二等奖": "Second Prize, Mingshi Cup Micro-nano Sensing Technology and Intelligent Application Preliminary Contest, China College Student Mechanical Engineering Innovation Competition",
+  "社会奖励": "Professional Award",
+  "应用基础与工程科学学报优秀青年编委": "Outstanding Young Editorial Board Member, Journal of Basic Science and Engineering",
+  "第五届中国机器人行业年会“机器人科学引领奖”（排1）": "Robotics Science Leadership Award, 5th China Robotics Industry Annual Conference (ranked 1st)",
+  "学位论文获奖": "Thesis Award",
+  "中国机械行业卓越工程师教育联盟第八届“精雕杯”毕业设计大赛铜奖": "Bronze Award, 8th Jingdiao Cup Graduation Design Competition of the China Mechanical Industry Excellent Engineer Education Alliance",
+  "西安交通大学优秀硕士学位论文": "Outstanding Master's Thesis, Xi'an Jiaotong University",
+  "社会任职 · 青年编委": "Academic Service · Young Editorial Board Member",
+  "社会任职 · 编辑任职": "Academic Service · Editorial Role",
+  "社会任职 · 科技服务": "Academic Service · Technology Service",
+  "社会任职 · 学术组织": "Academic Service · Academic Organization",
+  "SmartBot 青年编委": "Young Editorial Board Member, SmartBot",
+  "南航学报（自科版、英文版）青年编委": "Young Editorial Board Member, Journal of Nanjing University of Aeronautics and Astronautics (Chinese and English editions)",
+  "西安交通大学学报（EI，核心）青年编委": "Young Editorial Board Member, Journal of Xi'an Jiaotong University",
+  "应用基础与工程科学学报（EI，核心）青年编委": "Young Editorial Board Member, Journal of Basic Science and Engineering",
+  "Biomimetic Intelligence and Robotics（ESCI）青年编委": "Young Editorial Board Member, Biomimetic Intelligence and Robotics",
+  "International Journal of Advanced Robotic Systems 副主编": "Associate Editor, International Journal of Advanced Robotic Systems",
+  "江苏省科技副总": "Jiangsu Provincial Science and Technology Deputy General Manager",
+  "第六届 IFToMM 中国委员会委员": "Member, 6th IFToMM China Committee",
+  "Soft Science（ESCI）青年编委": "Young Editorial Board Member, Soft Science",
   "联系方式": "Contact",
   "欢迎围绕高端装备智能检修机器人、软体/连续体机器人、智能传感、航空发动机健康管理和 AI for Science 开展交流合作。": "We welcome collaboration on intelligent maintenance robotics for advanced equipment, soft/continuum robots, intelligent sensing, aero-engine health management, and AI for Science.",
   "扫码访问团队主页": "Scan to visit the team site",
+  "浏览量": "Page Views",
+  "访客数": "Visitors",
 };
 
 const staticTextNodes = [];
@@ -224,6 +377,14 @@ function translateStaticText(language) {
   });
 }
 
+function translateAttributes(language) {
+  attributeTranslations.forEach(({ selector, attribute, zh, en }) => {
+    document.querySelectorAll(selector).forEach((element) => {
+      element.setAttribute(attribute, language === "en" ? en : zh);
+    });
+  });
+}
+
 function applyTheme(theme) {
   currentTheme = theme;
   root.dataset.theme = theme;
@@ -244,10 +405,11 @@ function applyLanguage(language) {
     }
   });
   translateStaticText(language);
-  document.title =
-    language === "en"
-      ? "Advanced Equipment Intelligent Maintenance Robotics Team | Xi'an Jiaotong University"
-      : "高端装备智能检修机器人团队 | 西安交通大学";
+  translateAttributes(language);
+  document.title = translations[language]["meta.ogTitle"];
+  metaDescription?.setAttribute("content", translations[language]["meta.description"]);
+  ogTitle?.setAttribute("content", translations[language]["meta.ogTitle"]);
+  ogDescription?.setAttribute("content", translations[language]["meta.ogDescription"]);
 
   if (languageLabel) {
     languageLabel.textContent = language === "en" ? "ZH" : "EN";

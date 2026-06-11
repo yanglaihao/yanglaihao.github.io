@@ -1400,6 +1400,34 @@ address a {
   padding: 0.45rem;
 }
 
+.visitor-stats {
+  display: grid;
+  gap: 0.55rem;
+  min-width: 150px;
+}
+
+.visitor-stats span {
+  display: grid;
+  gap: 0.1rem;
+  border: 1px solid var(--line);
+  background: var(--surface);
+  padding: 0.65rem 0.75rem;
+}
+
+.visitor-stats strong {
+  color: var(--muted);
+  font-size: 0.78rem;
+  font-weight: 800;
+}
+
+.visitor-stats em {
+  color: var(--accent-strong);
+  font-size: 1.25rem;
+  font-style: normal;
+  font-weight: 850;
+  line-height: 1.1;
+}
+
 .bib-dialog {
   width: min(720px, calc(100% - 32px));
   border: 1px solid var(--line);
@@ -1540,6 +1568,11 @@ address a {
     justify-items: start;
     margin-top: 1.2rem;
   }
+
+  .visitor-stats {
+    grid-template-columns: repeat(2, minmax(0, 150px));
+    margin-top: 1.2rem;
+  }
 }
 
 @media (max-width: 560px) {
@@ -1581,6 +1614,10 @@ address a {
   .research-tab span {
     width: 48px;
     height: 48px;
+  }
+
+  .visitor-stats {
+    grid-template-columns: 1fr;
   }
 
   .research-media,
