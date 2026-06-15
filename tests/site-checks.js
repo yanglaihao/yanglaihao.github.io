@@ -54,8 +54,17 @@ assert.ok(html.includes("国际专利"), "patent section should include an inter
 assert.ok(html.includes("中国专利"), "patent section should include a Chinese patent heading");
 
 const chinesePatentCount = matchAll(/<article class="achievement" data-output-type="patent-china">/g).length;
-assert.equal(chinesePatentCount, 12, `expected 12 Chinese patents from the XJTU public patent page, found ${chinesePatentCount}`);
-assert.ok(html.includes("一种基于叶端定时的转子叶片动应变场测量方法及其系统"), "Chinese patent list should include page 2 items from the XJTU patent page");
+const internationalPatentCount = matchAll(/<article class="achievement" data-output-type="patent-international">/g).length;
+assert.equal(internationalPatentCount, 8, `expected 8 international patent records from the saved Google Patents page, found ${internationalPatentCount}`);
+assert.equal(chinesePatentCount, 20, `expected 20 Chinese patent records from the saved CNKI page, found ${chinesePatentCount}`);
+assert.equal(matchAll(/class="status-tag status-granted"/g).length, 15, "patent status tags should mark 15 granted records");
+assert.equal(matchAll(/class="status-tag status-published"/g).length, 13, "patent status tags should mark 13 published records");
+assert.ok(html.includes("US12370671B2"), "international patent list should include Google Patents granted records");
+assert.ok(html.includes("US20260072429A1"), "international patent list should include current Google Patents published records");
+assert.ok(html.includes("CN116968041B"), "Chinese patent list should include CNKI granted records");
+assert.ok(html.includes("CN122087890A"), "Chinese patent list should include CNKI published records");
+assert.ok(html.includes("航空发动机进气道叶片检测机器人及检测方法"), "Chinese patent list should include current CNKI page items");
+assert.ok(!html.includes("访问受限"), "patent section should not keep the old access-limited placeholder");
 
 for (const filter of ["award-tech", "award-paper", "award-student", "award-social", "award-thesis"]) {
   assert.ok(html.includes(`data-output-filter="${filter}"`), `missing award filter: ${filter}`);
@@ -101,7 +110,7 @@ assert.ok(html.includes("busuanzi.pure.mini.js"), "static site should load the B
 assert.ok(script.includes("attributeTranslations"), "language switching should translate important accessibility attributes and metadata");
 assert.ok(script.includes("translateAttributes"), "language switching should update image alt text and aria labels");
 assert.ok(script.includes('"meta.description"'), "English mode should translate the page meta description");
-assert.ok(script.includes('"一种连续体机械臂重建方法"'), "English mode should translate representative Chinese patent titles directly");
+assert.ok(script.includes('"航空发动机进气道叶片检测机器人及检测方法"'), "English mode should translate representative Chinese patent titles directly");
 assert.ok(script.includes('"首届“太行杯”航空动力创新大赛优胜奖"'), "English mode should translate the Taihang Cup award directly");
 
 const publicationCount = matchAll(/<article class="achievement" data-output-type="paper-/g).length;

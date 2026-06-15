@@ -35,9 +35,11 @@ python3 -m http.server 4173
 - 参考排版：https://gr.xjtu.edu.cn/embodied_robotics/zh_CN/zhym/1072424/list/index.htm
 - ResearchGate：https://www.researchgate.net/profile/Laihao-Yang-3
 - Google Scholar：https://scholar.google.com/citations?user=G1LcEO4AAAAJ&hl=zh-CN
+- Google Patents 本地保存页：`inventor_(Laihao Yang) - Google Patents.html`
+- 中国知网本地保存页：`高级检索-中国知网.html`
 - 本地素材目录中的研究方向视频已整理到 `assets/`
 - 论文列表参考 Google Scholar 与 ResearchGate 主页链接，并结合学校论文页、ORCID 与公开 DOI 信息交叉整理；页面内按 SCI 期刊、EI 期刊、EI 会议、预印本和其他论文分类展示 94 篇代表性论文。
-- 中国专利列表按学校主页“专利成果”公开页整理 12 条；国际专利规模按学校主页简介中的“国际专利 7 项”保留说明，Google Scholar / Google Patents 本轮命令行访问受限，国际专利号待后续逐条核验。
+- 专利列表按本地保存的 Google Patents 与中国知网页面更新：国际专利 8 条，中国专利 20 条，并在条目中标注公开 / 授权状态。
 
 ## 后续建议补充内容
 
