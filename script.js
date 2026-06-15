@@ -13,6 +13,7 @@ const newsItems = document.querySelectorAll("[data-news-type]");
 const outputFilters = document.querySelectorAll("[data-output-filter]");
 const outputItems = document.querySelectorAll("[data-output-type]");
 const paperSubfilters = document.querySelector("[data-paper-subfilters]");
+const patentSubfilters = document.querySelector("[data-patent-subfilters]");
 const awardSubfilters = document.querySelector("[data-award-subfilters]");
 const researchTabs = document.querySelectorAll("[data-research-target]");
 const researchPanels = document.querySelectorAll("[data-research-panel]");
@@ -96,6 +97,7 @@ const attributeTranslations = [
   { selector: ".member-tabs", attribute: "aria-label", zh: "团队成员分组", en: "Team member groups" },
   { selector: ".output-primary-filters", attribute: "aria-label", zh: "成果一级板块", en: "Primary output categories" },
   { selector: "[data-paper-subfilters]", attribute: "aria-label", zh: "论文二级分类", en: "Publication subcategories" },
+  { selector: "[data-patent-subfilters]", attribute: "aria-label", zh: "专利二级分类", en: "Patent subcategories" },
   { selector: "[data-award-subfilters]", attribute: "aria-label", zh: "获奖二级分类", en: "Award subcategories" },
   { selector: '.site-qr img', attribute: "alt", zh: "团队主页二维码", en: "QR code for the team website" },
   { selector: ".visitor-stats", attribute: "aria-label", zh: "站点访问统计", en: "Site visit statistics" },
@@ -214,6 +216,9 @@ const textTranslations = {
   "EI 会议": "EI Conferences",
   "预印本": "Preprints",
   "其他论文": "Other Papers",
+  "全部专利": "All Patents",
+  "国际专利": "International Patents",
+  "中国专利": "Chinese Patents",
   "全部获奖": "All Awards",
   "科学技术奖": "Science and Technology Awards",
   "科技论文获奖": "Paper Awards",
@@ -274,9 +279,24 @@ const textTranslations = {
   "航空发动机运行安全基础研究": "Basic Research on Aero-engine Operational Safety",
   "2015CB057400 · 纵向项目": "2015CB057400 · Government-funded project",
   "发明专利": "Invention Patent",
+  "发明专利 ·": "Invention Patent ·",
+  "来源": "Source",
+  "Google Scholar 公开页本轮访问受限，待逐条核验后补齐专利号。": "The public Google Scholar page was access-limited in this pass; patent numbers will be completed after item-level verification.",
+  "学校主页确认国际专利 7 项；Google Scholar 公开页本轮访问受限，待逐条核验后补齐专利号。": "The XJTU profile confirms 7 international patents; the public Google Scholar page was access-limited in this pass, so patent numbers will be completed after item-level verification.",
+  "CNKI / 学校主页": "CNKI / XJTU Profile",
+  "按西安交通大学教师主页“专利成果”公开列表整理，共 12 条。": "Compiled from the public Patents page on the Xi'an Jiaotong University faculty profile, with 12 entries.",
   "一种测试连续体机器人力学性能的方法和装置": "Method and Device for Testing the Mechanical Properties of a Continuum Robot",
   "一种连续体机械臂重建方法": "Reconstruction Method for a Continuum Manipulator",
+  "一种连续体机器人的线缆布局方法": "Cable Layout Method for a Continuum Robot",
   "检测航空发动机叶片的爬行机器人": "Crawling Robot for Inspecting Aero-engine Blades",
+  "一种线驱动连续体机器人的电控系统": "Electronic Control System for a Cable-driven Continuum Robot",
+  "一种线驱动连续体机器人的驱动机构": "Driving Mechanism for a Cable-driven Continuum Robot",
+  "数字孪生驱动的航空发动机旋转叶片裂纹定量识别方法": "Digital-twin-driven Quantitative Identification Method for Aero-engine Rotating Blade Cracks",
+  "一种外啮合直齿轮磨损下的啮合刚度的建模方法": "Modeling Method for Meshing Stiffness under Wear of External Spur Gears",
+  "一种线驱动连续体机器人": "Cable-driven Continuum Robot",
+  "一种线驱动连续体柔性机器人": "Cable-driven Flexible Continuum Robot",
+  "一种基于叶端定时的转子叶片动应变场测量方法及其系统": "Rotor Blade Dynamic Strain Field Measurement Method and System Based on Blade Tip Timing",
+  "一种旋转叶片位移场反演重构方法及其系统": "Rotating Blade Displacement Field Inversion Reconstruction Method and System",
   "专著": "Monograph",
   "钛基复合材料多尺度力学": "Multiscale Mechanics of Titanium Matrix Composites",
   "孙瑜, 杨丹卉, 杨来浩 · 西北工业大学出版社": "Yu Sun, Danhui Yang, Laihao Yang · Northwestern Polytechnical University Press",
@@ -421,29 +441,35 @@ function applyFilter(buttons, items, buttonAttr, itemAttr, selected) {
   buttons.forEach((button) => {
     const buttonValue = button.dataset[buttonAttr];
     const isPaperButtonGroup = button.dataset.outputRoot === "paper" && selected?.startsWith("paper");
+    const isPatentButtonGroup = button.dataset.outputRoot === "patent" && selected?.startsWith("patent");
     const isAwardButtonGroup = button.dataset.outputRoot === "award" && selected?.startsWith("award");
     const isActive = buttonValue === selected || isPaperButtonGroup;
-    button.classList.toggle("active", isActive || isAwardButtonGroup);
+    button.classList.toggle("active", isActive || isPatentButtonGroup || isAwardButtonGroup);
     if (button.getAttribute("role") === "tab") {
-      button.setAttribute("aria-selected", String(isActive || isAwardButtonGroup));
+      button.setAttribute("aria-selected", String(isActive || isPatentButtonGroup || isAwardButtonGroup));
     }
   });
 
   items.forEach((item) => {
     const itemValue = item.dataset[itemAttr];
     const isPaperGroup = selected === "paper" && itemValue?.startsWith("paper");
+    const isPatentGroup = selected === "patent" && itemValue?.startsWith("patent");
     const isAwardGroup = selected === "award" && itemValue?.startsWith("award");
     const isProjectGroup = selected === "project" && itemValue?.startsWith("project");
     const isServiceGroup = selected === "service" && itemValue?.startsWith("service");
-    item.hidden = selected !== "all" && itemValue !== selected && !isPaperGroup && !isAwardGroup && !isProjectGroup && !isServiceGroup;
+    item.hidden = selected !== "all" && itemValue !== selected && !isPaperGroup && !isPatentGroup && !isAwardGroup && !isProjectGroup && !isServiceGroup;
   });
 }
 
 function showOutputCategory(selected) {
   const isPaperSelection = selected?.startsWith("paper");
+  const isPatentSelection = selected?.startsWith("patent");
   const isAwardSelection = selected?.startsWith("award");
   if (paperSubfilters) {
     paperSubfilters.hidden = !isPaperSelection;
+  }
+  if (patentSubfilters) {
+    patentSubfilters.hidden = !isPatentSelection;
   }
   if (awardSubfilters) {
     awardSubfilters.hidden = !isAwardSelection;

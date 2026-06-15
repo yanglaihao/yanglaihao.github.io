@@ -43,7 +43,19 @@ assert.equal(primaryFilterOrder[0], "project", "project should be the first achi
 assert.ok(script.includes('showOutputCategory("project")'), "project should be the default achievement view");
 assert.ok(html.includes("achievement-overview"), "achievement section should include a summary overview");
 assert.ok(html.includes("data-paper-subfilters"), "paper section should include clickable secondary categories");
+assert.ok(html.includes("data-patent-subfilters"), "patent section should include clickable secondary categories");
 assert.ok(html.includes("data-award-subfilters"), "award section should include clickable secondary categories");
+
+for (const filter of ["patent-international", "patent-china"]) {
+  assert.ok(html.includes(`data-output-filter="${filter}"`), `missing patent filter: ${filter}`);
+  assert.ok(html.includes(`data-output-type="${filter}"`), `missing patent items for: ${filter}`);
+}
+assert.ok(html.includes("国际专利"), "patent section should include an international patent heading");
+assert.ok(html.includes("中国专利"), "patent section should include a Chinese patent heading");
+
+const chinesePatentCount = matchAll(/<article class="achievement" data-output-type="patent-china">/g).length;
+assert.equal(chinesePatentCount, 12, `expected 12 Chinese patents from the XJTU public patent page, found ${chinesePatentCount}`);
+assert.ok(html.includes("一种基于叶端定时的转子叶片动应变场测量方法及其系统"), "Chinese patent list should include page 2 items from the XJTU patent page");
 
 for (const filter of ["award-tech", "award-paper", "award-student", "award-social", "award-thesis"]) {
   assert.ok(html.includes(`data-output-filter="${filter}"`), `missing award filter: ${filter}`);

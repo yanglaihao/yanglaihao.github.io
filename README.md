@@ -27,6 +27,7 @@ python3 -m http.server 4173
 - 个人简介与成果规模：https://gr.xjtu.edu.cn/yanglaihao/zh_CN/zhym/994631/list/index.htm
 - 团队成员公开信息：https://gr.xjtu.edu.cn/yanglaihao/zh_CN/zhym/994626/list/index.htm
 - 科研项目：https://gr.xjtu.edu.cn/yanglaihao/zh_CN/kyxm/316901/list/index.htm
+- 专利成果：https://gr.xjtu.edu.cn/yanglaihao/zh_CN/zlcg/316899/list/index.htm
 - 获奖分类：https://gr.xjtu.edu.cn/yanglaihao/zh_CN/zhym/994622/list/index.htm
 - 社会任职：https://gr.xjtu.edu.cn/yanglaihao/zh_CN/zdylm/1036903/list/index.htm
 - 团队动态：https://gr.xjtu.edu.cn/yanglaihao/zh_CN/article/316893/list/1.htm
@@ -36,6 +37,7 @@ python3 -m http.server 4173
 - Google Scholar：https://scholar.google.com/citations?user=G1LcEO4AAAAJ&hl=zh-CN
 - 本地素材目录中的研究方向视频已整理到 `assets/`
 - 论文列表参考 Google Scholar 与 ResearchGate 主页链接，并结合学校论文页、ORCID 与公开 DOI 信息交叉整理；页面内按 SCI 期刊、EI 期刊、EI 会议、预印本和其他论文分类展示 94 篇代表性论文。
+- 中国专利列表按学校主页“专利成果”公开页整理 12 条；国际专利规模按学校主页简介中的“国际专利 7 项”保留说明，Google Scholar / Google Patents 本轮命令行访问受限，国际专利号待后续逐条核验。
 
 ## 后续建议补充内容
 

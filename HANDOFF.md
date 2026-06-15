@@ -2,17 +2,26 @@
 
 ## 最新更新
 
-更新时间：2026-06-06 21:56 CST
+更新时间：2026-06-12 00:00 CST
 
-本文件已创建并更新到当前项目状态。最新一轮已部署英文切换、团队动态、成果默认顺序、二维码和首页简介优化；线上最近一次已部署提交是 `5e08ac14b9c682fd2d74a0df0873e684e840882c`。
+本文件已更新到当前项目状态。最新一轮已完成并部署：
 
-当前本地工作区仍是 dirty 状态：
+- 修复英文页面不完整问题：补充页面元信息、图片 `alt`、无障碍 `aria-label`、研究方向、成果条目、项目、专利、专著、获奖和社会任职等关键内容的英文翻译。
+- 添加站点访问统计：页脚新增 Busuanzi 浏览量 / 访客数统计，并支持中英文切换。
+- 学生竞赛获奖新增：`首届“太行杯”航空动力创新大赛优胜奖`，获奖时间按 2026 展示。
+- 移除页面中 `/.netlify/images` 图片代理依赖，改为直接引用 `assets/team-profile.jpg` 和 `assets/leader-yang.png`，避免 GitHub Pages / 本地静态服务下图片 404。
+- 新增 `.nojekyll` 并部署，用于禁用 GitHub Pages 的 Jekyll 处理流程，修复 Pages build failed。
+- 本地新增专利成果整理：成果区“专利”下增加“国际专利 / 中国专利”二级标题与筛选；中国专利按学校主页“专利成果”页补齐 12 条；国际专利因 Google Scholar / Google Patents 命令行访问受限，暂保留学校主页确认的“国际专利 7 项”说明，待逐条核验专利号。
 
-- 已修改：`.gitignore`、`README.md`、`index.html`、`script.js`、`styles.css`
-- 未跟踪：`HANDOFF.md`、`tests/`、研究方向视频与图片资源、`assets/leader-yang.png`、`assets/team-profile.jpg`、`assets/site-qr.svg`
-- 远端 `yanglaihao/yanglaihao.github.io` 已包含上一次通过 GitHub API 部署的页面功能文件和视频资源；本地 git 历史未同步这些部署提交。
+线上最新状态：
 
-本轮已补充 `.gitignore`，忽略 `.DS_Store`、`素材/` 和 `references.bib`，避免把本地噪声或原始素材目录误提交。如果下一步希望让 `HANDOFF.md` 也进入远端仓库，需要单独提交/部署它。
+- 线上站点：https://yanglaihao.github.io/
+- GitHub Pages 状态：`built`
+- 当前远端 `main`：`46a12113d35046f8d13a29af602745b515de09e6`
+- 页面内容更新提交：`7d0e04deab5da33dc2467782498940381fba7c92`
+- `.nojekyll` 修复提交：`46a12113d35046f8d13a29af602745b515de09e6`
+
+最新部署方式：普通 `git push` 多次因 GitHub HTTPS 网络 / HTTP2 错误失败，最终使用 GitHub CLI + GitHub Git Data API 创建 blob / tree / commit 并更新 `main` 引用。随后手动触发 Pages build，添加 `.nojekyll` 后构建成功。
 
 ## 当前背景
 
@@ -20,32 +29,25 @@
 
 `/Users/howie/Documents/个人主页`
 
-线上站点：
-
-https://yanglaihao.github.io/
-
 主页主题已经从通用个人主页模板改为“高端装备智能检修机器人团队”主页，围绕西安交通大学机械工程学院团队信息组织内容。页面当前包含：首页、团队简介、研究方向、团队动态、团队成员、团队成果、联系方式。
 
-最近一次已部署提交：
+本地仓库已有远端：
 
-https://github.com/yanglaihao/yanglaihao.github.io/commit/5e08ac14b9c682fd2d74a0df0873e684e840882c
+```bash
+origin  https://github.com/yanglaihao/yanglaihao.github.io.git
+```
 
-部署方式：由于本地目录没有配置 Git remote，之前使用 GitHub CLI + GitHub Git Data API 直接把文件提交到了 `yanglaihao/yanglaihao.github.io` 的 `main` 分支。
+注意：本地 `main` 的 git 历史仍未完全对齐远端 `main`，因为多轮部署通过 GitHub API 直接更新了远端。后续若要改用普通 Git 流程，建议先从远端重新 clone 或谨慎对齐历史，避免误推。
 
 ## 已完成进度
 
 ### 研究方向
 
-三个研究方向均已改为可点击切换的可播放视频模块，使用 `<video controls autoplay muted loop playsinline>`：
+三个研究方向均为可点击切换的可播放视频模块，使用 `<video controls autoplay muted loop playsinline>`：
 
 - 智能诊断：`assets/research-diagnosis.mp4`
 - 原位介入：`assets/research-intervention.mp4`
 - 具身操作：`assets/research-embodied.mp4`
-
-线上已验证三个 MP4 资源均返回：
-
-- `HTTP/2 200`
-- `content-type: video/mp4`
 
 ### 团队成员
 
@@ -59,9 +61,7 @@ https://github.com/yanglaihao/yanglaihao.github.io/commit/5e08ac14b9c682fd2d74a0
 - 本科生
 - 已毕业
 
-当前成员信息主要来自学校主页公开信息。教师 / 合作导师分组已加入孙瑜副教授条目，博士后部分仍为描述性占位，未列出更多姓名。
-
-本轮已移除教师分组中的来源说明文字，并为孙瑜副教授条目加入个人主页链接按钮。
+教师 / 合作导师分组已加入孙瑜副教授条目，并提供个人主页链接。博士后部分仍为描述性占位，未列出更多姓名。
 
 ### 团队成果
 
@@ -71,7 +71,8 @@ https://github.com/yanglaihao/yanglaihao.github.io/commit/5e08ac14b9c682fd2d74a0
 2. 关键数字概览卡片
 3. 一级成果板块：项目、论文、专利、专著、获奖、社会任职
 4. 论文二级分类：全部论文、SCI 期刊、EI 期刊、EI 会议、预印本、其他论文
-5. 获奖二级分类：科学技术奖、科技论文获奖、学生竞赛获奖、社会奖励、学位论文获奖
+5. 专利二级分类：国际专利、中国专利
+6. 获奖二级分类：科学技术奖、科技论文获奖、学生竞赛获奖、社会奖励、学位论文获奖
 
 论文列表当前整理为 94 篇：
 
@@ -81,23 +82,45 @@ https://github.com/yanglaihao/yanglaihao.github.io/commit/5e08ac14b9c682fd2d74a0
 - 预印本：2 篇
 - 其他论文：4 篇
 
-资料来源参考了学校主页、ResearchGate、Google Scholar 链接、ORCID 和公开 DOI 信息。Google Scholar 自动访问在当前环境中不稳定，ResearchGate 也存在 Cloudflare 限制，因此最终以 ResearchGate / ORCID / 学校主页 / 公开 DOI 信息交叉整理为主。
-
-项目列表已按个人主页“科研项目”页整理 18 条，并在成果栏默认优先显示；获奖列表已按个人主页 Awards 页分类整理 17 条；社会任职已按个人主页 Academic / 社会任职页整理 11 条。获奖和社会任职条目下方的“个人主页公开信息”类来源说明已移除。
+项目列表按个人主页“科研项目”页整理 18 条，并在成果栏默认优先显示。中国专利列表按个人主页“专利成果”页整理 12 条，专利区已设置“国际专利 / 中国专利”两个标题；国际专利当前只保留学校主页确认的 7 项规模说明，等待 Google Scholar 可访问后补齐明细。获奖列表已更新为 18 条，其中学生竞赛获奖新增 2026 年首届“太行杯”航空动力创新大赛优胜奖。社会任职按个人主页 Academic / 社会任职页整理 11 条。
 
 ### 团队动态与英文切换
 
-团队动态已并入个人主页“我的新闻”第一页中的学校新闻条目，当前展示 9 条去重后的近期新闻。首页简介已重新润色，强调“状态感知-原位进入-精准操作”的高端装备智能检修链路。
+团队动态已并入个人主页“我的新闻”第一页中的学校新闻条目，当前展示 9 条去重后的近期新闻。
 
-中英文切换已扩展为全页面静态文本翻译：核心文案使用精确英文翻译，未逐条人工翻译的少量中文成果文本在英文模式下使用英文类型说明兜底。浏览器验证显示英文模式可见中文文本数量为 0，图片和视频内容未处理。
+中英文切换已扩展为全页面静态文本翻译，并补充：
+
+- 页面 `title`、`description`、Open Graph 标题和描述。
+- 图片 `alt` 与关键 `aria-label`。
+- 研究方向标题、说明和要点。
+- 项目、专利、专著、获奖、社会任职等成果条目的代表性英文翻译。
+- 页脚访问统计标签。
+
+本地浏览器验证显示英文模式可见中文文本数量为 0。
+
+### 访问统计
+
+页脚新增 Busuanzi 统计脚本：
+
+```html
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+```
+
+页面包含：
+
+- `busuanzi_value_site_pv`：浏览量
+- `busuanzi_value_site_uv`：访客数
+
+中英文模式下分别显示为“浏览量 / 访客数”和“Page Views / Visitors”。
 
 ## 关键文件
 
-- `index.html`：页面主体内容，包括研究方向、成员、成果、联系方式。
-- `styles.css`：所有页面样式，包括视频区域、成员切换、成果简介和成果筛选布局。
+- `index.html`：页面主体内容，包括研究方向、成员、成果、联系方式、访问统计。
+- `styles.css`：页面样式，包括视频区域、成员切换、成果筛选布局和访问统计样式。
 - `script.js`：交互逻辑，包括主题切换、中英文切换、移动菜单、研究方向切换、成员切换、成果板块与论文 / 获奖二级筛选。
+- `tests/site-checks.js`：结构校验脚本，验证视频、成员折叠、成果分类、太行杯奖项、访问统计、GitHub Pages 静态图片路径等。
+- `.nojekyll`：禁用 GitHub Pages Jekyll 构建处理，当前远端已部署。
 - `README.md`：项目说明和资料来源说明。
-- `tests/site-checks.js`：结构校验脚本，验证三段视频、成员折叠、成果简介、论文分类数量等。
 - `assets/research-diagnosis.mp4`：智能诊断方向视频。
 - `assets/research-intervention.mp4`：原位介入方向视频。
 - `assets/research-embodied.mp4`：具身操作方向视频。
@@ -115,106 +138,76 @@ node --check script.js
 node tests/site-checks.js
 ```
 
-最近一次复验：2026-06-06 21:56 CST，以上两条命令均以退出码 0 结束。
+最近一次本地复验：2026-06-11 晚间，以上两条命令均以退出码 0 结束。
 
 本地浏览器验证过：
 
-- 三个研究方向视频 `readyState=4`，可播放。
-- 团队成员默认只展开“团队领导”。
-- 点击“硕士研究生”后只显示硕士面板。
-- 成果默认显示项目板块，项目可见条目 18 条。
-- 点击“获奖”后只显示获奖条目，并隐藏论文二级分类、显示获奖二级分类。
-- 切回论文后点击“SCI 期刊”，只显示 65 篇 SCI 论文。
 - 英文模式下可见中文文本数量为 0，语言按钮显示 `ZH`。
-- 联系区二维码 `assets/site-qr.svg` 正常加载。
+- 中文模式下太行杯奖项可见，年份为 2026。
+- 英文模式下太行杯奖项显示为 `Merit Award, 1st Taihang Cup Aviation Power Innovation Competition`。
+- 访问统计块存在，并能显示 Busuanzi 返回的浏览量和访客数。
+- 首页与负责人图片使用直接资源路径，不再请求 `/.netlify/images`。
 
 线上验证过：
 
 - GitHub Pages 状态为 `built`。
-- 最新部署提交：`5e08ac14b9c682fd2d74a0df0873e684e840882c`。
 - 线上 HTML 包含：
-  - `research-diagnosis.mp4`
-  - `research-intervention.mp4`
-  - `research-embodied.mp4`
-  - `achievement-overview`
-  - `data-paper-subfilters`
-  - `data-member-target="leader"`
-  - `assets/site-qr.svg`
-  - `团队关于触觉传感和灵巧操作的研究工作发表于Science 子刊`
-- 三个线上视频均返回 `HTTP/2 200` 和 `content-type: video/mp4`。
-- 二维码资源 `assets/site-qr.svg` 线上返回 `HTTP/2 200` 和 `content-type: image/svg+xml`。
+  - `首届“太行杯”航空动力创新大赛优胜奖`
+  - `<div class="pub-year">2026</div>` 对应该奖项
+  - `visitor-stats`
+  - `busuanzi_value_site_pv`
+  - `busuanzi.pure.mini.js`
+  - `assets/team-profile.jpg`
+  - `assets/leader-yang.png`
+- 线上 HTML 不包含 `/.netlify/images`。
 
 ## 当前本地状态
 
-本地工作区仍显示修改和未跟踪文件，因为部署是通过 GitHub API 直接提交到远端，而不是在本地仓库里创建 commit。
+本地工作区仍是 dirty 状态，因为最新部署通过 GitHub API 直接提交到了远端，而不是在本地仓库创建 commit。
 
-当前 `git status -sb` 显示的本地状态包括：
+当前 `git status -sb` 显示：
 
-- 已修改：`README.md`
 - 已修改：`.gitignore`
+- 已修改：`README.md`
 - 已修改：`index.html`
 - 已修改：`script.js`
 - 已修改：`styles.css`
+- 已修改：`tests/site-checks.js`
+- 未跟踪：`.nojekyll`
 - 未跟踪：`HANDOFF.md`
-- 未跟踪：`tests/`
-- 未跟踪：`assets/leader-yang.png`
-- 未跟踪：`assets/team-profile.jpg`
-- 未跟踪：`assets/research-diagnosis.gif`
-- 未跟踪：`assets/research-diagnosis.mp4`
-- 未跟踪：`assets/research-intervention.gif`
-- 未跟踪：`assets/research-intervention.mp4`
-- 未跟踪：`assets/research-embodied.gif`
-- 未跟踪：`assets/research-embodied.png`
-- 未跟踪：`assets/research-embodied.mp4`
-- 未跟踪：`assets/site-qr.svg`
 
-当前已通过 `.gitignore` 忽略、不建议部署的内容包括：
+说明：
 
-- `.DS_Store`
-- `素材/`
-- `references.bib`
-- 旧生成图或备用图
-
-当前建议部署但尚未通过本地 git commit 跟踪的内容包括：
-
-- `HANDOFF.md`
-- `tests/site-checks.js`
-- 页面实际引用的 `assets/` 图片与视频资源
-
-本地目录没有配置 Git remote。若后续希望用普通 Git 流程部署，建议先配置远端：
-
-```bash
-git remote add origin https://github.com/yanglaihao/yanglaihao.github.io.git
-```
-
-注意：添加 remote 前请先确认本地仓库历史和远端历史是否需要对齐，避免误推。
+- `.gitignore`、`README.md` 是此前已有的本地修改，本轮没有通过最新 API 部署更新它们。
+- `index.html`、`script.js`、`styles.css`、`tests/site-checks.js` 的最新内容已部署到远端提交 `7d0e04deab5da33dc2467782498940381fba7c92`。
+- `.nojekyll` 已部署到远端提交 `46a12113d35046f8d13a29af602745b515de09e6`，但本地仍未纳入 git commit。
+- `HANDOFF.md` 仍只在本地，尚未部署到远端仓库。
 
 ## 待办
 
-1. 决定是否部署 `HANDOFF.md`
+1. 同步 / 清理本地 git 状态
+   - 建议优先从远端 `main` 重新 clone 一份干净工作区，或谨慎把当前本地历史与远端 API 部署历史对齐。
+   - 避免直接从当前本地 `main` 普通 push，因为本地历史与远端可能不一致。
+
+2. 决定是否部署 `HANDOFF.md`
    - 当前交接文档只在本地。
-   - 如果希望下一位接手者从 GitHub 仓库直接看到它，需要把 `HANDOFF.md` 加入下一次部署。
+   - 如果希望下一位接手者从 GitHub 仓库直接看到它，需要单独纳入下一次部署。
 
-2. 清理本地工作区
-   - `.gitignore` 已忽略 `.DS_Store`、`素材/` 和 `references.bib`。
-   - 仍需判断未跟踪的页面资源和测试文件是否纳入下一次部署。
+3. 处理 `.gitignore` 和 `README.md`
+   - 本地已有更新，但最新一次远端 API 部署只更新了页面功能文件和 `.nojekyll`。
+   - 后续可决定是否把 `.gitignore`、`README.md` 的本地修改也部署到远端。
 
-3. 优化视频体积
-   - 当前三个 MP4 总体积约 41 MB。
+4. 优化视频体积
+   - 当前三个 MP4 总体积较大。
    - 如果页面加载偏慢，可压缩视频或提供更小尺寸版本。
 
-4. 校准成果列表
-   - 当前 94 篇是公开资料交叉整理的代表性条目。
+5. 校准成果列表
+   - 当前 94 篇论文是公开资料交叉整理的代表性条目。
    - 后续可进一步按 Google Scholar / ResearchGate / 学校主页逐条核对 DOI、期刊、年份、作者排序。
 
-5. 完善成员信息
+6. 完善成员信息
    - 教师 / 合作导师已加入孙瑜副教授条目。
    - 博士后目前缺少具体姓名，可继续从学校主页或团队公开材料中补全。
-
-6. 增强成果板块
-   - 项目、获奖和社会任职已按个人主页公开条目补充。
-   - 专利、专著条目目前数量较少。
-   - 可继续补充公开发明专利、授权专利、国际专利和媒体报道。
 
 7. 视觉与移动端复查
    - 已做基础浏览器验证。
@@ -224,15 +217,18 @@ git remote add origin https://github.com/yanglaihao/yanglaihao.github.io.git
 
 推荐下一轮按以下顺序推进：
 
-1. 将 `.gitignore`、`HANDOFF.md`、`tests/site-checks.js` 和页面实际引用的 `assets/` 资源纳入一次干净部署。
-2. 决定是否把本地仓库和远端 `yanglaihao.github.io` 建立常规 Git remote 关系。
-3. 压缩三个研究方向视频，降低页面加载压力。
-4. 继续补全团队成员和专利 / 获奖 / 媒体报道条目。
-5. 做一次完整移动端视觉检查，再部署下一版。
+1. 先处理本地仓库与远端 `main` 的历史对齐，最好用远端重新 clone 出干净工作区。
+2. 决定是否把 `HANDOFF.md`、`.gitignore`、`README.md` 纳入远端仓库。
+3. 做一次移动端视觉检查和线上交互复查。
+4. 继续补全团队成员、国际专利明细、媒体报道和更多成果链接。
+5. 压缩研究方向视频，降低页面加载压力。
 
 ## 注意事项
 
-之前本地预览时启动过 `python3 -m http.server`，端口 `4176` 和 `4177` 曾有进程占用，普通权限无法结束，提权请求超时。它们不影响线上页面，但如果本地预览端口冲突，可换用新端口，例如：
+- 普通 `git push` 曾多次遇到 GitHub HTTPS 网络错误，包括 `Failed to connect to github.com port 443` 和 `Error in the HTTP2 framing layer`。
+- 使用 GitHub CLI API 创建 blob / tree / commit / ref 更新更稳定，已成功部署最新页面。
+- GitHub Pages 曾在提交 `7d0e04deab5da33dc2467782498940381fba7c92` 后显示 `Page build failed.`；添加 `.nojekyll` 后，提交 `46a12113d35046f8d13a29af602745b515de09e6` 构建成功。
+- 本地预览如遇端口冲突，可换用新端口，例如：
 
 ```bash
 python3 -m http.server 4180
