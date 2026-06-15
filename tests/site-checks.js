@@ -56,14 +56,18 @@ assert.ok(html.includes("中国专利"), "patent section should include a Chines
 const chinesePatentCount = matchAll(/<article class="achievement" data-output-type="patent-china">/g).length;
 const internationalPatentCount = matchAll(/<article class="achievement" data-output-type="patent-international">/g).length;
 assert.equal(internationalPatentCount, 8, `expected 8 international patent records from the saved Google Patents page, found ${internationalPatentCount}`);
-assert.equal(chinesePatentCount, 20, `expected 20 Chinese patent records from the saved CNKI page, found ${chinesePatentCount}`);
-assert.equal(matchAll(/class="status-tag status-granted"/g).length, 15, "patent status tags should mark 15 granted records");
-assert.equal(matchAll(/class="status-tag status-published"/g).length, 13, "patent status tags should mark 13 published records");
+assert.equal(chinesePatentCount, 96, `expected 96 deduplicated Chinese patent records from the saved CNKI pages, found ${chinesePatentCount}`);
+assert.equal(matchAll(/class="status-tag status-granted"/g).length, 55, "patent status tags should mark 55 granted records");
+assert.equal(matchAll(/class="status-tag status-published"/g).length, 49, "patent status tags should mark 49 published records");
 assert.ok(html.includes("US12370671B2"), "international patent list should include Google Patents granted records");
 assert.ok(html.includes("US20260072429A1"), "international patent list should include current Google Patents published records");
 assert.ok(html.includes("CN116968041B"), "Chinese patent list should include CNKI granted records");
 assert.ok(html.includes("CN122087890A"), "Chinese patent list should include CNKI published records");
+assert.ok(html.includes("CN118907257B"), "Chinese patent list should include records from the additional saved CNKI pages");
+assert.ok(html.includes("CN110608710B"), "Chinese patent list should include older granted records from the additional saved CNKI pages");
 assert.ok(html.includes("航空发动机进气道叶片检测机器人及检测方法"), "Chinese patent list should include current CNKI page items");
+assert.ok(!html.includes("CN119334645A"), "Chinese patent list should drop published records when a granted record exists");
+assert.ok(!html.includes("CN120134362A"), "Chinese patent list should keep only the granted version for duplicate patent families");
 assert.ok(!html.includes("访问受限"), "patent section should not keep the old access-limited placeholder");
 
 for (const filter of ["award-tech", "award-paper", "award-student", "award-social", "award-thesis"]) {

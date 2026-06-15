@@ -288,6 +288,7 @@ const textTranslations = {
   "来源": "Source",
   "按保存的 Google Patents inventor:Laihao Yang 页面整理，共 8 条，含 3 条授权记录。": "Compiled from the saved Google Patents inventor:Laihao Yang page, with 8 records including 3 granted patents.",
   "按保存的中国知网高级检索页面整理，共 20 条，含 12 条发明授权记录。": "Compiled from the saved CNKI advanced-search page, with 20 records including 12 granted invention patents.",
+  "按保存的中国知网高级检索页面四页整理，共 96 条，含 52 条发明授权记录；同一专利若已授权，则仅保留授权号。": "Compiled from four saved CNKI advanced-search pages, with 96 records including 52 granted invention patents; when a patent has been granted, only the granted record is retained.",
   "一种基于微观接触力学模型的仿贝壳橡胶衬套设计方法": "Bio-inspired Rubber Bushing Design Method Based on a Microscopic Contact Mechanics Model",
   "航空发动机进气道叶片检测机器人及检测方法": "Aero-engine Intake Blade Inspection Robot and Inspection Method",
   "磁吸式同步爬壁免绕线机器人": "Magnetic Synchronous Wall-climbing Robot without Cable Winding",
