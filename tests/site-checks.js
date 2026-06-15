@@ -124,11 +124,17 @@ assert.deepEqual(newsFilterOrder.slice(0, 4), ["all", "highlight", "news", "noti
 assert.ok(html.includes('data-news-filter="notice"'), "news section should include a notice filter");
 assert.ok(html.includes('data-news-filter="highlight"'), "news section should include a highlight work filter");
 assert.equal(matchAll(/<article class="news-card(?: news-card-featured)?" data-news-type="highlight">/g).length, 3, "news section should include 3 highlight work items");
-assert.equal(matchAll(/<article class="news-card" data-news-type="news">/g).length, 12, "news section should include 12 current news items after merging duplicate media reports");
+assert.equal(matchAll(/<article class="news-card" data-news-type="news">/g).length, 15, "news section should include 15 current news items after adding invited academic reports");
 assert.equal(matchAll(/<article class="news-card" data-news-type="notice">/g).length, 4, "news section should include 4 notice items");
 assert.ok(html.includes("http://www.snrtv.com/snr_sxxwlb/a/2024/10/10/22818371.html"), "highlight work should cite the Shaanxi News source");
 assert.ok(html.includes("https://www.163.com/dy/article/JGIRJRQ90530TBVC.html"), "highlight work should cite the Silk Road Weekly source");
 assert.ok(html.includes("https://news.xjtu.edu.cn/info/1014/223743.htm"), "highlight work should cite the XJTU/CCTV source");
+assert.ok(!html.includes("【央视正午国防军事】报道西安交大陈雪峰教授团队攻克“卡脖子”难题"), "CCTV report title should use Xi'an Jiaotong University team wording");
+assert.ok(html.includes("【央视正午国防军事】报道西安交通大学团队攻克“卡脖子”难题"), "CCTV report title should use Xi'an Jiaotong University team wording");
+assert.ok(html.includes("http://cqia.cqjtu.edu.cn/info/1183/4046.htm"), "news should include Chongqing Jiaotong University invited lecture report");
+assert.ok(html.includes("https://cmce.szu.edu.cn/info/1017/8965.htm"), "news should include Shenzhen University invited lecture report");
+assert.ok(html.includes("杨来浩受邀参加青年科学家论坛并作报告"), "news should include the Youth Scientists Forum item from the provided image");
+assert.ok(html.includes("机器人具身智能如何赋能高端装备把脉问诊"), "Youth Scientists Forum item should include the report title from the provided image");
 for (const video of ["新闻报道/陕西电视台-报道-web.mp4", "新闻报道/陕西卫视-丝路会客厅-web.mp4", "新闻报道/正午0714播出版-web.mp4"]) {
   assert.ok(html.includes(video), `highlight work should embed local report video: ${video}`);
 }
@@ -139,7 +145,10 @@ assert.ok(html.includes("https://faculty.xjtu.edu.cn/yu.sun/zh_CN/article/332021
 assert.ok(script.includes('"亮点工作": "Highlights"'), "English mode should translate the highlight work filter");
 assert.ok(script.includes('"西安交大：仿生机器人给高端装备“把脉问诊”"'), "English mode should translate the Shaanxi News highlight title");
 assert.ok(script.includes('"《丝路新周刊》节目预告 | 西安交大：用新型仿生机器人给高端装备“把脉问诊”"'), "English mode should translate the Silk Road Weekly highlight title");
-assert.ok(script.includes('"【央视正午国防军事】报道西安交大陈雪峰教授团队攻克“卡脖子”难题"'), "English mode should translate the CCTV/XJTU highlight title");
+assert.ok(script.includes('"【央视正午国防军事】报道西安交通大学团队攻克“卡脖子”难题"'), "English mode should translate the revised CCTV/XJTU highlight title");
+assert.ok(script.includes('"杨来浩受邀赴重庆交通大学航空学院作前沿微课讲座"'), "English mode should translate the Chongqing Jiaotong invited lecture title");
+assert.ok(script.includes('"杨来浩受邀赴深圳大学作机器人具身智能学术讲座"'), "English mode should translate the Shenzhen University invited lecture title");
+assert.ok(script.includes('"杨来浩受邀参加青年科学家论坛并作报告"'), "English mode should translate the Youth Scientists Forum title");
 assert.ok(script.includes('"通知": "Notices"'), "English mode should translate the notice filter");
 assert.ok(script.includes('"杨来浩副研究员获首届“太行杯”航空动力创新大赛优胜奖"'), "English mode should translate the latest news titles");
 assert.ok(script.includes('"欢迎新同学加入课题组"'), "English mode should translate notice titles");
