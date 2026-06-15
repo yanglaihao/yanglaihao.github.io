@@ -69,6 +69,18 @@ assert.ok(html.includes("航空发动机进气道叶片检测机器人及检测�
 assert.ok(!html.includes("CN119334645A"), "Chinese patent list should drop published records when a granted record exists");
 assert.ok(!html.includes("CN120134362A"), "Chinese patent list should keep only the granted version for duplicate patent families");
 assert.ok(!html.includes("访问受限"), "patent section should not keep the old access-limited placeholder");
+const pre2025ChinesePatents = matchAll(/<article class="achievement" data-output-type="patent-china">([\s\S]*?)<\/article>/g)
+  .map((match) => match[1])
+  .map((article) => ({
+    year: Number(article.match(/<div class="pub-year">(\d+)<\/div>/)?.[1]),
+    title: article.match(/<h3>([\s\S]*?)<\/h3>/)?.[1],
+  }))
+  .filter((patent) => patent.year < 2025);
+assert.equal(pre2025ChinesePatents.length, 53, `expected 53 Chinese patent records before 2025, found ${pre2025ChinesePatents.length}`);
+for (const patent of pre2025ChinesePatents) {
+  assert.ok(script.includes(`"${patent.title}"`), `English mode should directly translate pre-2025 Chinese patent title: ${patent.title}`);
+}
+assert.ok(script.includes("function translatePatentMetadata"), "English mode should translate structured Chinese patent metadata instead of falling back to placeholders");
 
 for (const filter of ["award-tech", "award-paper", "award-student", "award-social", "award-thesis"]) {
   assert.ok(html.includes(`data-output-filter="${filter}"`), `missing award filter: ${filter}`);

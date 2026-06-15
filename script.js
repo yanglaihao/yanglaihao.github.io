@@ -319,11 +319,67 @@ const textTranslations = {
   "压扭触觉传感器及制备方法": "Pressure-torsion Tactile Sensor and Fabrication Method",
   "自解耦电磁式多维力触觉传感器": "Self-decoupled Electromagnetic Multidimensional Force Tactile Sensor",
   "基于电液耦合驱动的模块化折纸机器人及控制方法": "Modular Origami Robot Driven by Electro-hydraulic Coupling and Control Method",
+  "柔性聚合物磁膜折纸化局部设计方法和柔性力敏传感器": "Origami-based Local Design Method for Flexible Polymer Magnetic Films and Flexible Force-sensitive Sensor",
+  "多维度触觉感知仿人灵巧手": "Multidimensional Tactile-sensing Humanoid Dexterous Hand",
+  "连续体机器人的静力学控制方法": "Statics Control Method for a Continuum Robot",
+  "基于时域图卷积网络的核电循环水泵行星齿轮箱检测方法": "Planetary Gearbox Detection Method for Nuclear Power Circulating Water Pumps Based on a Time-domain Graph Convolutional Network",
+  "基于折纸结构的多向爬壁机器人": "Multidirectional Wall-climbing Robot Based on an Origami Structure",
+  "矢量推力式机器人": "Vector-thrust Robot",
+  "一种剪纸启发的各向异性可控粘附结构及其应用": "Paper-cutting-inspired Anisotropic Controllable Adhesion Structure and Its Application",
+  "一种航空发动机孔探检测的连续体机器人系统": "Continuum Robot System for Aero-engine Borescope Inspection",
+  "多传感融合的齿轮故障诊断方法": "Gear Fault Diagnosis Method Based on Multi-sensor Fusion",
+  "一种航空发动机叶片原位打磨设备": "In-situ Grinding Device for Aero-engine Blades",
+  "基于连续压缩感知的叶端定时信号无网格频谱估计方法": "Gridless Spectrum Estimation Method for Blade Tip Timing Signals Based on Continuous Compressed Sensing",
+  "线驱动连续体机器人的绳-孔摩擦系数测定装置及方法": "Device and Method for Measuring the Cable-hole Friction Coefficient of a Cable-driven Continuum Robot",
+  "一种线驱动连续体机器人的静态运动建模方法": "Static Motion Modeling Method for a Cable-driven Continuum Robot",
+  "一种内啮合直齿轮磨损下的啮合刚度的建模方法": "Modeling Method for Mesh Stiffness of Worn Internal Spur Gears",
+  "一种外啮合直齿轮磨损下的啮合刚度的建模方法": "Modeling Method for Mesh Stiffness of Worn External Spur Gears",
+  "机动飞行条件下航空发动机主轴承动力学分析方法及系统": "Aero-engine Main-bearing Dynamics Analysis Method and System under Maneuvering Flight Conditions",
+  "机动飞行状态下弹性支承结构振动响应分析方法及系统": "Vibration-response Analysis Method and System for Elastic Support Structures under Maneuvering Flight Conditions",
+  "一种磁控软体机器人磁性颗粒分布的预测方法": "Prediction Method for Magnetic Particle Distribution in Magnetically Controlled Soft Robots",
+  "一种新型磁敏式触觉多维力传感器": "Novel Magnetically Sensitive Tactile Multidimensional Force Sensor",
+  "一种基于磁敏多维力传感器的信号分类方法": "Signal Classification Method Based on a Magnetically Sensitive Multidimensional Force Sensor",
+  "一种可升降式变刚度柔性连续体机器人": "Liftable Variable-stiffness Flexible Continuum Robot",
+  "检测航空发动机叶片的爬行机器人": "Crawling Robot for Inspecting Aero-engine Blades",
+  "一种磁控软体传感机器人": "Magnetically Controlled Soft Sensing Robot",
+  "多相合金的多尺度建模方法": "Multiscale Modeling Method for Multiphase Alloys",
+  "一种基于全聚焦的Lamb波相位成像方法": "Lamb Wave Phase Imaging Method Based on Total Focusing",
+  "一种转子叶片气动载荷模拟装置与方法": "Device and Method for Simulating Aerodynamic Loads on Rotor Blades",
+  "一种传感器静态标定装置及标定方法": "Sensor Static Calibration Device and Calibration Method",
+  "一种非冗余的信号欠采样及频谱恢复方法": "Non-redundant Signal Undersampling and Spectrum Recovery Method",
+  "一种涡轮转子喘振模拟装置": "Turbine Rotor Surge Simulation Device",
+  "一种叶片裂纹监测系统": "Blade Crack Monitoring System",
+  "一种传感器动态标定装置及标定方法": "Sensor Dynamic Calibration Device and Calibration Method",
+  "一种连续体机械臂重建方法": "Reconstruction Method for a Continuum Manipulator",
+  "一种基于编码时域卷积的航空发动机异常检测方法": "Aero-engine Anomaly Detection Method Based on Encoded Temporal Convolution",
+  "一种基于故障特征频率的航空发动机异常检测方法": "Aero-engine Anomaly Detection Method Based on Fault Characteristic Frequencies",
+  "一种线驱动连续体机械臂末端位姿定位系统及方法": "End-effector Pose Positioning System and Method for a Cable-driven Continuum Manipulator",
+  "基于单个叶端定时传感器的叶片固有频率识别方法": "Blade Natural Frequency Identification Method Based on a Single Blade Tip Timing Sensor",
+  "基于混合响应的柔性电容传感器及其制备方法和应用": "Flexible Capacitive Sensor Based on Hybrid Response and Its Fabrication Method and Application",
+  "一种粘附-脱附装置": "Adhesion-detachment Device",
+  "单个或均布叶端定时传感器提取叶片间固有频率差值方法": "Method for Extracting Natural Frequency Differences between Blades Using a Single or Uniformly Distributed Blade Tip Timing Sensors",
+  "基于单个叶端定时传感器的叶片检测方法": "Blade Detection Method Based on a Single Blade Tip Timing Sensor",
+  "数字孪生驱动的航空发动机旋转叶片裂纹定量识别方法": "Digital Twin-driven Quantitative Crack Identification Method for Rotating Aero-engine Blades",
+  "基于多个叶端定时传感器的叶片检测方法": "Blade Detection Method Based on Multiple Blade Tip Timing Sensors",
+  "一种柔性电容传感器及其制备方法": "Flexible Capacitive Sensor and Fabrication Method",
+  "单个叶端定时传感器的叶片固有频率检测方法": "Blade Natural Frequency Detection Method Using a Single Blade Tip Timing Sensor",
+  "基于叶端定时传感器提取叶片间固有频率差值方法": "Method for Extracting Natural Frequency Differences between Blades Based on Blade Tip Timing Sensors",
+  "一种基于多个叶端定时传感器的叶片固有频率识别方法": "Blade Natural Frequency Identification Method Based on Multiple Blade Tip Timing Sensors",
+  "基于多个叶端定时传感器的叶片间固有频率差值提取方法": "Method for Extracting Natural Frequency Differences between Blades Based on Multiple Blade Tip Timing Sensors",
+  "一种线驱动连续体机器人的电控系统": "Electronic Control System for a Cable-driven Continuum Robot",
+  "一种线驱动连续体机器人的驱动机构": "Drive Mechanism for a Cable-driven Continuum Robot",
+  "一种线驱动连续体机器人": "Cable-driven Continuum Robot",
+  "一种线驱动连续体柔性机器人": "Cable-driven Flexible Continuum Robot",
+  "一种旋转叶片位移场反演重构方法及其系统": "Inversion and Reconstruction Method and System for Rotating Blade Displacement Fields",
+  "一种基于叶端定时的转子叶片动应变场测量方法及其系统": "Dynamic Strain Field Measurement Method and System for Rotor Blades Based on Blade Tip Timing",
   "申请日": "Filed",
   "公开日": "Published",
   "授权日": "Granted",
   "西安交通大学": "Xi'an Jiaotong University",
   "扬州大学": "Yangzhou University",
+  "青岛空天动力结构安全研究所": "Qingdao Institute of Aerospace Power Structural Safety",
+  "华电电力科学研究院有限公司": "Huadian Electric Power Research Institute Co., Ltd.",
+  "希西维(江苏)精工股份有限公司": "CCVI (Jiangsu) Precision Industry Co., Ltd.",
   "希西维(江苏)精工股份有限公司; 扬州大学": "CCVI (Jiangsu) Precision Industry Co., Ltd.; Yangzhou University",
   "CN122087890A · 申请日 2026-02-10 · 公开日 2026-05-26 · 希西维(江苏)精工股份有限公司; 扬州大学": "CN122087890A · Filed 2026-02-10 · Published 2026-05-26 · CCVI (Jiangsu) Precision Industry Co., Ltd.; Yangzhou University",
   "CN116968041B · 申请日 2023-06-20 · 授权日 2026-05-12 · 西安交通大学": "CN116968041B · Filed 2023-06-20 · Granted 2026-05-12 · Xi'an Jiaotong University",
@@ -389,6 +445,14 @@ const textTranslations = {
   "访客数": "Visitors",
 };
 
+const patentAssigneeTranslations = {
+  "华电电力科学研究院有限公司": "Huadian Electric Power Research Institute Co., Ltd.",
+  "希西维(江苏)精工股份有限公司": "CCVI (Jiangsu) Precision Industry Co., Ltd.",
+  "扬州大学": "Yangzhou University",
+  "西安交通大学": "Xi'an Jiaotong University",
+  "青岛空天动力结构安全研究所": "Qingdao Institute of Aerospace Power Structural Safety",
+};
+
 const staticTextNodes = [];
 const textWalker = document.createTreeWalker(document.body, 4, {
   acceptNode(node) {
@@ -405,6 +469,29 @@ while (textWalker.nextNode()) {
 
 function stripChinese(text) {
   return text.replace(/[\u3400-\u9fff]/g, "").replace(/\s+/g, " ").trim();
+}
+
+function translatePatentMetadata(text) {
+  const parts = text.split(" · ");
+  if (parts.length < 4 || !/^CN\d+[A-Z]\d?$/.test(parts[0])) return "";
+
+  const translatedParts = parts.map((part, index) => {
+    if (index === 0) return part;
+
+    const dateMatch = part.match(/^(申请日|公开日|授权日) (\d{4}-\d{2}-\d{2})$/);
+    if (dateMatch) {
+      return `${textTranslations[dateMatch[1]]} ${dateMatch[2]}`;
+    }
+
+    const assignees = part.split(/[;；]/).map((assignee) => assignee.trim()).filter(Boolean);
+    if (assignees.length) {
+      return assignees.map((assignee) => patentAssigneeTranslations[assignee] || assignee).join("; ");
+    }
+
+    return part;
+  });
+
+  return translatedParts.join(" · ");
 }
 
 function fallbackEnglishText(text, node) {
@@ -435,7 +522,7 @@ function fallbackEnglishText(text, node) {
 function translateOriginalText(original, node) {
   const trimmed = original.replace(/\s+/g, " ").trim();
   if (!trimmed || !/[\u3400-\u9fff]/.test(trimmed)) return original;
-  const translated = textTranslations[trimmed] || fallbackEnglishText(trimmed, node);
+  const translated = textTranslations[trimmed] || translatePatentMetadata(trimmed) || fallbackEnglishText(trimmed, node);
   return original.replace(trimmed, translated);
 }
 
