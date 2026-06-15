@@ -22,7 +22,7 @@
 
 - 线上站点：https://yanglaihao.github.io/
 - GitHub Pages 状态：`built`
-- 当前远端 `main`：本轮页面内容已更新到 `ea6a3f203d16a611c15b7c2928f3cbe4f39dced4`；如果随后有 HANDOFF-only 小提交，以 GitHub API 返回的最新提交为准。
+- 当前远端 `main`：以 GitHub 仓库 `refs/heads/main` 为准；本轮页面内容对应提交 `ea6a3f203d16a611c15b7c2928f3cbe4f39dced4`，交接说明可能由随后文档提交继续更新。
 - 页面内容更新提交：`ea6a3f203d16a611c15b7c2928f3cbe4f39dced4`
 - `.nojekyll` 修复提交：`46a12113d35046f8d13a29af602745b515de09e6`
 
@@ -194,7 +194,7 @@ node tests/site-checks.js
 说明：
 
 - `.gitignore`、`.nojekyll`、`README.md`、`HANDOFF.md`、`index.html`、`script.js`、`styles.css`、`tests/site-checks.js` 的最新内容已通过 GitHub API 部署到远端。
-- 远端提交 `ea6a3f203d16a611c15b7c2928f3cbe4f39dced4` 对应本轮页面内容更新；本文件如有随后交接说明小提交，以 GitHub API 返回提交为准。
+- 远端提交 `ea6a3f203d16a611c15b7c2928f3cbe4f39dced4` 对应本轮页面内容更新；本文件可能由随后的交接说明提交继续更新。
 - 本地 `git status` 仍显示这些文件为已修改 / 未跟踪，是因为本地历史没有与远端 API 部署历史对齐，不代表线上缺少这些文件。
 
 ## 待办
