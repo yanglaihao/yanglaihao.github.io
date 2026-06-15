@@ -18,8 +18,8 @@
 
 - 线上站点：https://yanglaihao.github.io/
 - GitHub Pages 状态：`built`
-- 当前远端 `main`：部署前为 `46a12113d35046f8d13a29af602745b515de09e6`，本轮部署后需以 GitHub 返回提交为准。
-- 页面内容更新提交：`7d0e04deab5da33dc2467782498940381fba7c92`
+- 当前远端 `main`：`2f97b0b9f98a2107674951ce2070a3f60961e1b4`
+- 页面内容更新提交：`2f97b0b9f98a2107674951ce2070a3f60961e1b4`
 - `.nojekyll` 修复提交：`46a12113d35046f8d13a29af602745b515de09e6`
 
 最新部署方式：普通 `git push` 多次因 GitHub HTTPS 网络 / HTTP2 错误失败，最终使用 GitHub CLI + GitHub Git Data API 创建 blob / tree / commit 并更新 `main` 引用。随后手动触发 Pages build，添加 `.nojekyll` 后构建成功。
