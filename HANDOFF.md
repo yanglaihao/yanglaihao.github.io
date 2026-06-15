@@ -18,7 +18,7 @@
 
 - 线上站点：https://yanglaihao.github.io/
 - GitHub Pages 状态：`built`
-- 当前远端 `main`：`2f97b0b9f98a2107674951ce2070a3f60961e1b4`
+- 当前远端 `main`：页面内容已更新到 `2f97b0b9f98a2107674951ce2070a3f60961e1b4`；后续如有 HANDOFF-only 小提交，以 GitHub API 返回提交为准。
 - 页面内容更新提交：`2f97b0b9f98a2107674951ce2070a3f60961e1b4`
 - `.nojekyll` 修复提交：`46a12113d35046f8d13a29af602745b515de09e6`
 
