@@ -57,8 +57,14 @@ const chinesePatentCount = matchAll(/<article class="achievement" data-output-ty
 const internationalPatentCount = matchAll(/<article class="achievement" data-output-type="patent-international">/g).length;
 assert.equal(internationalPatentCount, 8, `expected 8 international patent records from the saved Google Patents page, found ${internationalPatentCount}`);
 assert.equal(chinesePatentCount, 96, `expected 96 deduplicated Chinese patent records from the saved CNKI pages, found ${chinesePatentCount}`);
-assert.equal(matchAll(/class="status-tag status-granted"/g).length, 55, "patent status tags should mark 55 granted records");
-assert.equal(matchAll(/class="status-tag status-published"/g).length, 49, "patent status tags should mark 49 published records");
+const internationalPatentBlocks = matchAll(/<article class="achievement" data-output-type="patent-international">([\s\S]*?)<\/article>/g).map((match) => match[1]);
+const internationalPublishedBlocks = internationalPatentBlocks.filter((block) => block.includes("status-published"));
+const internationalGrantedBlocks = internationalPatentBlocks.filter((block) => block.includes("status-granted"));
+assert.equal(internationalPublishedBlocks.length, 2, "only the two 2026 international patents should remain published");
+assert.ok(internationalPublishedBlocks.every((block) => block.includes('<div class="pub-year">2026</div>')), "published international patents should be the two 2026 records");
+assert.equal(internationalGrantedBlocks.length, 6, "all international patents before 2026 should be marked granted");
+assert.equal(matchAll(/class="status-tag status-granted"/g).length, 58, "patent status tags should mark 58 granted records");
+assert.equal(matchAll(/class="status-tag status-published"/g).length, 46, "patent status tags should mark 46 published records");
 assert.ok(html.includes("US12370671B2"), "international patent list should include Google Patents granted records");
 assert.ok(html.includes("US20260072429A1"), "international patent list should include current Google Patents published records");
 assert.ok(html.includes("CN116968041B"), "Chinese patent list should include CNKI granted records");
@@ -113,13 +119,27 @@ assert.ok(handoff.includes("中英文切换"), "handoff should mention the langu
 
 assert.ok(html.includes("团队关于触觉传感和灵巧操作的研究工作发表于Science 子刊"), "news should include current profile news from the school site");
 assert.ok(html.includes("https://faculty.xjtu.edu.cn/content.jsp?urltype=news.NewsContentUrl"), "news should retain source links");
+const newsFilterOrder = matchAll(/data-news-filter="([^"]+)"/g).map((match) => match[1]);
+assert.deepEqual(newsFilterOrder.slice(0, 4), ["all", "highlight", "news", "notice"], "news filters should put highlight work before news and notices");
 assert.ok(html.includes('data-news-filter="notice"'), "news section should include a notice filter");
-assert.equal(matchAll(/<article class="news-card" data-news-type="news">/g).length, 10, "news section should include 10 current news items");
+assert.ok(html.includes('data-news-filter="highlight"'), "news section should include a highlight work filter");
+assert.equal(matchAll(/<article class="news-card(?: news-card-featured)?" data-news-type="highlight">/g).length, 3, "news section should include 3 highlight work items");
+assert.equal(matchAll(/<article class="news-card" data-news-type="news">/g).length, 12, "news section should include 12 current news items after merging duplicate media reports");
 assert.equal(matchAll(/<article class="news-card" data-news-type="notice">/g).length, 4, "news section should include 4 notice items");
+assert.ok(html.includes("http://www.snrtv.com/snr_sxxwlb/a/2024/10/10/22818371.html"), "highlight work should cite the Shaanxi News source");
+assert.ok(html.includes("https://www.163.com/dy/article/JGIRJRQ90530TBVC.html"), "highlight work should cite the Silk Road Weekly source");
+assert.ok(html.includes("https://news.xjtu.edu.cn/info/1014/223743.htm"), "highlight work should cite the XJTU/CCTV source");
+for (const video of ["新闻报道/陕西电视台-报道-web.mp4", "新闻报道/陕西卫视-丝路会客厅-web.mp4", "新闻报道/正午0714播出版-web.mp4"]) {
+  assert.ok(html.includes(video), `highlight work should embed local report video: ${video}`);
+}
 assert.ok(html.includes("杨来浩副研究员获首届“太行杯”航空动力创新大赛优胜奖"), "news should include the latest Taihang Cup item from Yang Laihao's profile");
 assert.ok(html.includes("https://gr.xjtu.edu.cn/yanglaihao/zh_CN/article/316893/content/35392.htm#article"), "Yang Laihao news links should be absolute");
 assert.ok(html.includes("欢迎新同学加入课题组"), "notices should include Sun Yu group updates");
 assert.ok(html.includes("https://faculty.xjtu.edu.cn/yu.sun/zh_CN/article/332021/content/23747.htm#article"), "Sun Yu news links should be absolute");
+assert.ok(script.includes('"亮点工作": "Highlights"'), "English mode should translate the highlight work filter");
+assert.ok(script.includes('"西安交大：仿生机器人给高端装备“把脉问诊”"'), "English mode should translate the Shaanxi News highlight title");
+assert.ok(script.includes('"《丝路新周刊》节目预告 | 西安交大：用新型仿生机器人给高端装备“把脉问诊”"'), "English mode should translate the Silk Road Weekly highlight title");
+assert.ok(script.includes('"【央视正午国防军事】报道西安交大陈雪峰教授团队攻克“卡脖子”难题"'), "English mode should translate the CCTV/XJTU highlight title");
 assert.ok(script.includes('"通知": "Notices"'), "English mode should translate the notice filter");
 assert.ok(script.includes('"杨来浩副研究员获首届“太行杯”航空动力创新大赛优胜奖"'), "English mode should translate the latest news titles");
 assert.ok(script.includes('"欢迎新同学加入课题组"'), "English mode should translate notice titles");

@@ -854,6 +854,33 @@ h3 {
   padding: 1rem;
 }
 
+.news-card-featured {
+  padding: 0;
+}
+
+.news-card-featured > :not(.news-video) {
+  margin-left: 1rem;
+  margin-right: 1rem;
+}
+
+.news-card-featured > :last-child {
+  margin-bottom: 1rem;
+}
+
+.news-video {
+  margin: 0 0 1rem;
+  background: #111827;
+  border-bottom: 1px solid var(--line);
+}
+
+.news-video video {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  background: #111827;
+}
+
 .news-card time {
   color: var(--blue);
   font-weight: 850;
