@@ -859,6 +859,18 @@ h3 {
   font-weight: 850;
 }
 
+.news-type {
+  width: fit-content;
+  margin: 0 0 0.55rem;
+  padding: 0.12rem 0.5rem;
+  border: 1px solid color-mix(in srgb, var(--accent), transparent 54%);
+  color: var(--accent-strong);
+  background: color-mix(in srgb, var(--accent), transparent 90%);
+  font-size: 0.72rem;
+  font-weight: 850;
+  line-height: 1.2;
+}
+
 .news-card[hidden],
 .achievement[hidden] {
   display: none;

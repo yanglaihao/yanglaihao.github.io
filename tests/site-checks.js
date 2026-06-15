@@ -101,6 +101,16 @@ assert.ok(handoff.includes("中英文切换"), "handoff should mention the langu
 
 assert.ok(html.includes("团队关于触觉传感和灵巧操作的研究工作发表于Science 子刊"), "news should include current profile news from the school site");
 assert.ok(html.includes("https://faculty.xjtu.edu.cn/content.jsp?urltype=news.NewsContentUrl"), "news should retain source links");
+assert.ok(html.includes('data-news-filter="notice"'), "news section should include a notice filter");
+assert.equal(matchAll(/<article class="news-card" data-news-type="news">/g).length, 10, "news section should include 10 current news items");
+assert.equal(matchAll(/<article class="news-card" data-news-type="notice">/g).length, 4, "news section should include 4 notice items");
+assert.ok(html.includes("杨来浩副研究员获首届“太行杯”航空动力创新大赛优胜奖"), "news should include the latest Taihang Cup item from Yang Laihao's profile");
+assert.ok(html.includes("https://gr.xjtu.edu.cn/yanglaihao/zh_CN/article/316893/content/35392.htm#article"), "Yang Laihao news links should be absolute");
+assert.ok(html.includes("欢迎新同学加入课题组"), "notices should include Sun Yu group updates");
+assert.ok(html.includes("https://faculty.xjtu.edu.cn/yu.sun/zh_CN/article/332021/content/23747.htm#article"), "Sun Yu news links should be absolute");
+assert.ok(script.includes('"通知": "Notices"'), "English mode should translate the notice filter");
+assert.ok(script.includes('"杨来浩副研究员获首届“太行杯”航空动力创新大赛优胜奖"'), "English mode should translate the latest news titles");
+assert.ok(script.includes('"欢迎新同学加入课题组"'), "English mode should translate notice titles");
 assert.ok(!html.includes("个人主页 Awards 页面公开信息"), "award source boilerplate should be removed");
 assert.ok(!html.includes("个人主页 Academic 页面公开信息"), "service source boilerplate should be removed");
 assert.ok(!html.includes("以上信息根据孙瑜老师学校主页招生信息整理"), "teacher notes should be removed from the member panel");
