@@ -2,7 +2,7 @@
 
 ## 最新更新
 
-更新时间：2026-06-16 00:30 CST
+更新时间：2026-06-16 00:18 CST
 
 本文件已更新到当前项目状态。最新一轮已完成并部署：
 
@@ -22,8 +22,8 @@
 
 - 线上站点：https://yanglaihao.github.io/
 - GitHub Pages 状态：`built`
-- 当前远端 `main`：页面内容已更新到 `2f97b0b9f98a2107674951ce2070a3f60961e1b4`；后续如有 HANDOFF-only 小提交，以 GitHub API 返回提交为准。
-- 页面内容更新提交：`2f97b0b9f98a2107674951ce2070a3f60961e1b4`
+- 当前远端 `main`：本轮页面内容已更新到 `ea6a3f203d16a611c15b7c2928f3cbe4f39dced4`；如果随后有 HANDOFF-only 小提交，以 GitHub API 返回的最新提交为准。
+- 页面内容更新提交：`ea6a3f203d16a611c15b7c2928f3cbe4f39dced4`
 - `.nojekyll` 修复提交：`46a12113d35046f8d13a29af602745b515de09e6`
 
 最新部署方式：普通 `git push` 多次因 GitHub HTTPS 网络 / HTTP2 错误失败，最终使用 GitHub CLI + GitHub Git Data API 创建 blob / tree / commit 并更新 `main` 引用。随后手动触发 Pages build，添加 `.nojekyll` 后构建成功。
@@ -145,7 +145,7 @@ node --check script.js
 node tests/site-checks.js
 ```
 
-最近一次本地复验：2026-06-11 晚间，以上两条命令均以退出码 0 结束。
+最近一次本地复验：2026-06-16 00:10 CST，以上两条命令均以退出码 0 结束。
 
 本地浏览器验证过：
 
@@ -154,11 +154,18 @@ node tests/site-checks.js
 - 英文模式下太行杯奖项显示为 `Merit Award, 1st Taihang Cup Aviation Power Innovation Competition`。
 - 访问统计块存在，并能显示 Busuanzi 返回的浏览量和访客数。
 - 首页与负责人图片使用直接资源路径，不再请求 `/.netlify/images`。
+- 中文页团队动态数量为 3 条亮点工作、15 条新闻、4 条通知。
+- 英文页中三条新增“杨来浩受邀”动态、央视正午国防军事标题和外链来源均已正确翻译 / 保留。
 
 线上验证过：
 
 - GitHub Pages 状态为 `built`。
 - 线上 HTML 包含：
+  - `【央视正午国防军事】报道西安交通大学团队攻克“卡脖子”难题`
+  - `杨来浩受邀参加青年科学家论坛并作报告`
+  - `机器人具身智能如何赋能高端装备把脉问诊`
+  - `http://cqia.cqjtu.edu.cn/info/1183/4046.htm`
+  - `https://cmce.szu.edu.cn/info/1017/8965.htm`
   - `首届“太行杯”航空动力创新大赛优胜奖`
   - `<div class="pub-year">2026</div>` 对应该奖项
   - `visitor-stats`
@@ -166,7 +173,8 @@ node tests/site-checks.js
   - `busuanzi.pure.mini.js`
   - `assets/team-profile.jpg`
   - `assets/leader-yang.png`
-- 线上 HTML 不包含 `/.netlify/images`。
+- 线上 HTML 不包含 `/.netlify/images`，也不包含旧标题口径 `西安交大陈雪峰教授团队`。
+- 线上 `script.js` 包含三条新增新闻和央视标题的英文翻译。
 
 ## 当前本地状态
 
@@ -185,10 +193,9 @@ node tests/site-checks.js
 
 说明：
 
-- `.gitignore`、`README.md` 是此前已有的本地修改，本轮没有通过最新 API 部署更新它们。
-- `index.html`、`script.js`、`styles.css`、`tests/site-checks.js` 的最新内容已部署到远端提交 `7d0e04deab5da33dc2467782498940381fba7c92`。
-- `.nojekyll` 已部署到远端提交 `46a12113d35046f8d13a29af602745b515de09e6`，但本地仍未纳入 git commit。
-- `HANDOFF.md` 仍只在本地，尚未部署到远端仓库。
+- `.gitignore`、`.nojekyll`、`README.md`、`HANDOFF.md`、`index.html`、`script.js`、`styles.css`、`tests/site-checks.js` 的最新内容已通过 GitHub API 部署到远端。
+- 远端提交 `ea6a3f203d16a611c15b7c2928f3cbe4f39dced4` 对应本轮页面内容更新；本文件如有随后交接说明小提交，以 GitHub API 返回提交为准。
+- 本地 `git status` 仍显示这些文件为已修改 / 未跟踪，是因为本地历史没有与远端 API 部署历史对齐，不代表线上缺少这些文件。
 
 ## 待办
 
@@ -196,27 +203,19 @@ node tests/site-checks.js
    - 建议优先从远端 `main` 重新 clone 一份干净工作区，或谨慎把当前本地历史与远端 API 部署历史对齐。
    - 避免直接从当前本地 `main` 普通 push，因为本地历史与远端可能不一致。
 
-2. 决定是否部署 `HANDOFF.md`
-   - 当前交接文档只在本地。
-   - 如果希望下一位接手者从 GitHub 仓库直接看到它，需要单独纳入下一次部署。
-
-3. 处理 `.gitignore` 和 `README.md`
-   - 本地已有更新，但最新一次远端 API 部署只更新了页面功能文件和 `.nojekyll`。
-   - 后续可决定是否把 `.gitignore`、`README.md` 的本地修改也部署到远端。
-
-4. 优化视频体积
+2. 优化视频体积
    - 当前三个 MP4 总体积较大。
    - 如果页面加载偏慢，可压缩视频或提供更小尺寸版本。
 
-5. 校准成果列表
+3. 校准成果列表
    - 当前 94 篇论文是公开资料交叉整理的代表性条目。
    - 后续可进一步按 Google Scholar / ResearchGate / 学校主页逐条核对 DOI、期刊、年份、作者排序。
 
-6. 完善成员信息
+4. 完善成员信息
    - 教师 / 合作导师已加入孙瑜副教授条目。
    - 博士后目前缺少具体姓名，可继续从学校主页或团队公开材料中补全。
 
-7. 视觉与移动端复查
+5. 视觉与移动端复查
    - 已做基础浏览器验证。
    - 后续可专门检查手机宽度、平板宽度、长论文标题换行和视频加载表现。
 
@@ -225,10 +224,9 @@ node tests/site-checks.js
 推荐下一轮按以下顺序推进：
 
 1. 先处理本地仓库与远端 `main` 的历史对齐，最好用远端重新 clone 出干净工作区。
-2. 决定是否把 `HANDOFF.md`、`.gitignore`、`README.md` 纳入远端仓库。
-3. 做一次移动端视觉检查和线上交互复查。
-4. 继续补全团队成员、国际专利明细、媒体报道和更多成果链接。
-5. 压缩研究方向视频，降低页面加载压力。
+2. 做一次移动端视觉检查和线上交互复查。
+3. 继续补全团队成员、国际专利明细、媒体报道和更多成果链接。
+4. 压缩研究方向视频，降低页面加载压力。
 
 ## 注意事项
 
