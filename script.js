@@ -97,6 +97,9 @@ const attributeTranslations = [
   { selector: 'video[data-report-video="snrtv"]', attribute: "aria-label", zh: "陕西新闻联播报道视频", en: "Shaanxi News report video" },
   { selector: 'video[data-report-video="silk-road"]', attribute: "aria-label", zh: "陕西卫视丝路会客厅报道视频", en: "Shaanxi TV Silk Road Talk report video" },
   { selector: 'video[data-report-video="cctv"]', attribute: "aria-label", zh: "央视正午国防军事报道视频", en: "CCTV Noon Defense and Military report video" },
+  { selector: 'video[data-paper-video="contact-aided-continuum"]', attribute: "aria-label", zh: "接触辅助连续体机器人论文视频", en: "Video for the contact-aided continuum robotic system paper" },
+  { selector: 'video[data-paper-video="torque-dexterity"]', attribute: "aria-label", zh: "扭矩触觉灵巧操作论文视频", en: "Video for the torque-enabled robotic dexterity paper" },
+  { selector: 'video[data-paper-video="bistable-jumper"]', attribute: "aria-label", zh: "双稳态昆虫尺度跳跃机器人论文视频", en: "Video for the bistable insect-scale jumper paper" },
   { selector: ".member-tabs", attribute: "aria-label", zh: "团队成员分组", en: "Team member groups" },
   { selector: ".output-primary-filters", attribute: "aria-label", zh: "成果一级板块", en: "Primary output categories" },
   { selector: "[data-paper-subfilters]", attribute: "aria-label", zh: "论文二级分类", en: "Publication subcategories" },
@@ -157,7 +160,7 @@ const textTranslations = {
   "视觉-触觉-力控融合的具身智能任务执行": "Embodied task execution with vision, touch, and force-control fusion",
   "团队动态": "Team News",
   "全部": "All",
-  "亮点工作": "Highlights",
+  "亮点报道": "Highlight Reports",
   "新闻": "News",
   "通知": "Notices",
   "西安交大：仿生机器人给高端装备“把脉问诊”": "Xi'an Jiaotong University: Biomimetic Robots Diagnose Advanced Equipment",
@@ -234,6 +237,7 @@ const textTranslations = {
   "多项省部级/行业奖励": "Multiple provincial, ministerial, and industry awards",
   "获中国振动工程学会科学技术奖二等奖、陕西高校科技一等奖、机器人科学引领奖等，并被 CCTV7、China Daily、陕西新闻联播等报道。": "Recognized by the Chinese Society for Vibration Engineering Science and Technology Award, Shaanxi Higher Education Science and Technology Award, Robotics Science Leadership Award, and media coverage from CCTV7, China Daily, Shaanxi News, and others.",
   "项目": "Projects",
+  "亮点成果": "Featured Outputs",
   "论文": "Papers",
   "专利": "Patents",
   "专著": "Book",
@@ -255,6 +259,15 @@ const textTranslations = {
   "社会奖励": "Professional Awards",
   "学位论文获奖": "Thesis Awards",
   "成果条目": "Output Entries",
+  "亮点成果 · IEEE Transactions on Robotics ·": "Featured Output · IEEE Transactions on Robotics ·",
+  "亮点成果 · Science Advances ·": "Featured Output · Science Advances ·",
+  "亮点成果 · Advanced Science ·": "Featured Output · Advanced Science ·",
+  "A Novel Contact-Aided Continuum Robotic System: Design, Modeling, and Validation": "A Novel Contact-Aided Continuum Robotic System: Design, Modeling, and Validation",
+  "Touching with torque enables human-level robotic dexterity": "Touching with torque enables human-level robotic dexterity",
+  "Bistable Insect-Scale Jumpers with Tunable Energy Barriers for Multimodal Locomotion": "Bistable Insect-Scale Jumpers with Tunable Energy Barriers for Multimodal Locomotion",
+  "接触辅助连续体机器人面向航空发动机等受限深腔，利用环境接触提升支撑、定位与通过能力，完成设计、建模和实验验证。": "This contact-aided continuum robotic system targets constrained deep cavities such as aero-engines, using environmental contact to improve support, localization, and traversal, with design, modeling, and experimental validation.",
+  "扭矩触觉让机器人达到接近人类水平的灵巧操作，提出可感知接触扭矩的触觉反馈与操作策略，提升灵巧手抓取、转动和调姿能力。": "Torque-aware tactile feedback enables near human-level robotic dexterity, improving dexterous-hand grasping, rotation, and pose adjustment through contact torque perception and manipulation strategies.",
+  "可调能垒双稳态跳跃机器人实现昆虫尺度多模态运动，通过可调能量势垒在跳跃、翻转和多地形移动之间切换。": "The bistable insect-scale jumper achieves multimodal locomotion by tuning energy barriers, switching among jumping, flipping, and locomotion across different terrains.",
   "国家自然科学基金项目 · 2025.01-2028.12": "National Natural Science Foundation of China · 2025.01-2028.12",
   "航空发动机原位维护连续体机器人": "Continuum Robot for In-situ Aero-engine Maintenance",
   "52475129 · 国家自然科学基金": "52475129 · National Natural Science Foundation of China",
@@ -719,4 +732,4 @@ if (researchTabs.length > 1) {
 
 applyTheme(currentTheme);
 applyLanguage(currentLanguage);
-showOutputCategory("project");
+showOutputCategory("highlight-output");

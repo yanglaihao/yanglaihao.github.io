@@ -35,16 +35,46 @@ for (const filter of ["paper-sci", "paper-ei-journal", "paper-ei-conference", "p
   assert.ok(html.includes(`data-output-type="${filter}"`), `missing publication items for: ${filter}`);
 }
 
-for (const filter of ["paper", "project", "patent", "book", "award", "service"]) {
+for (const filter of ["highlight-output", "paper", "project", "patent", "book", "award", "service"]) {
   assert.ok(html.includes(`data-output-filter="${filter}"`), `missing achievement board filter: ${filter}`);
 }
 const primaryFilterOrder = matchAll(/class="filter(?: active)?" type="button" role="tab" aria-selected="(?:true|false)" data-output-filter="([^"]+)"/g).map((match) => match[1]);
-assert.equal(primaryFilterOrder[0], "project", "project should be the first achievement category");
-assert.ok(script.includes('showOutputCategory("project")'), "project should be the default achievement view");
+assert.equal(primaryFilterOrder[0], "highlight-output", "highlight outputs should be the first achievement category");
+assert.equal(primaryFilterOrder[1], "project", "project should follow highlight outputs");
+assert.ok(script.includes('showOutputCategory("highlight-output")'), "highlight outputs should be the default achievement view");
 assert.ok(html.includes("achievement-overview"), "achievement section should include a summary overview");
 assert.ok(html.includes("data-paper-subfilters"), "paper section should include clickable secondary categories");
 assert.ok(html.includes("data-patent-subfilters"), "patent section should include clickable secondary categories");
 assert.ok(html.includes("data-award-subfilters"), "award section should include clickable secondary categories");
+
+const highlightOutputBlocks = matchAll(/<article class="achievement achievement-featured-output" data-output-type="highlight-output">([\s\S]*?)<\/article>/g).map((match) => match[1]);
+assert.equal(highlightOutputBlocks.length, 3, "achievement section should include 3 featured outputs");
+for (const video of [
+  "assets/paper-highlights/contact-aided-continuum.mp4",
+  "assets/paper-highlights/torque-dexterity.mp4",
+  "assets/paper-highlights/bistable-jumper.mp4",
+]) {
+  assert.ok(html.includes(video), `featured outputs should embed local paper video: ${video}`);
+}
+for (const doi of [
+  "https://doi.org/10.1109/TRO.2024.3400944",
+  "https://doi.org/10.1126/sciadv.aec3263",
+  "https://doi.org/10.1002/advs.202404404",
+]) {
+  assert.ok(html.includes(doi), `featured outputs should link to paper DOI: ${doi}`);
+}
+for (const title of [
+  "A Novel Contact-Aided Continuum Robotic System: Design, Modeling, and Validation",
+  "Touching with torque enables human-level robotic dexterity",
+  "Bistable Insect-Scale Jumpers with Tunable Energy Barriers for Multimodal Locomotion",
+]) {
+  assert.ok(html.includes(title), `featured outputs should include paper title: ${title}`);
+  assert.ok(script.includes(`"${title}"`), `English mode should preserve/translate featured output title: ${title}`);
+}
+assert.ok(html.includes("接触辅助连续体机器人面向航空发动机等受限深腔"), "featured output should briefly introduce the contact-aided continuum robot work");
+assert.ok(html.includes("扭矩触觉让机器人达到接近人类水平的灵巧操作"), "featured output should briefly introduce the torque tactile dexterity work");
+assert.ok(html.includes("可调能垒双稳态跳跃机器人实现昆虫尺度多模态运动"), "featured output should briefly introduce the bistable jumper work");
+assert.ok(script.includes('"亮点成果": "Featured Outputs"'), "English mode should translate the featured outputs filter");
 
 for (const filter of ["patent-international", "patent-china"]) {
   assert.ok(html.includes(`data-output-filter="${filter}"`), `missing patent filter: ${filter}`);
@@ -113,16 +143,18 @@ assert.ok(script.includes("applyLanguage"), "script should implement language sw
 assert.ok(script.includes("textTranslations"), "language switching should include full-page static text translations");
 assert.ok(script.includes("translateStaticText"), "language switching should translate non-navigation page text");
 assert.ok(script.includes('language === "en" ? "ZH" : "EN"'), "English mode language toggle should avoid Chinese text");
-assert.ok(handoff.includes("项目、论文、专利、专著、获奖、社会任职"), "handoff should describe the updated achievement categories");
+assert.ok(handoff.includes("亮点成果、项目、论文、专利、专著、获奖、社会任职"), "handoff should describe the updated achievement categories");
 assert.ok(handoff.includes("孙瑜"), "handoff should mention the added Sun Yu mentor entry");
 assert.ok(handoff.includes("中英文切换"), "handoff should mention the language toggle");
 
 assert.ok(html.includes("团队关于触觉传感和灵巧操作的研究工作发表于Science 子刊"), "news should include current profile news from the school site");
 assert.ok(html.includes("https://faculty.xjtu.edu.cn/content.jsp?urltype=news.NewsContentUrl"), "news should retain source links");
 const newsFilterOrder = matchAll(/data-news-filter="([^"]+)"/g).map((match) => match[1]);
-assert.deepEqual(newsFilterOrder.slice(0, 4), ["all", "highlight", "news", "notice"], "news filters should put highlight work before news and notices");
+assert.deepEqual(newsFilterOrder.slice(0, 4), ["all", "highlight", "news", "notice"], "news filters should put highlight reports before news and notices");
 assert.ok(html.includes('data-news-filter="notice"'), "news section should include a notice filter");
-assert.ok(html.includes('data-news-filter="highlight"'), "news section should include a highlight work filter");
+assert.ok(html.includes('data-news-filter="highlight"'), "news section should include a highlight report filter");
+assert.ok(html.includes(">亮点报道</button>"), "news filter label should be highlight reports");
+assert.ok(!html.includes(">亮点工作</button>"), "news filter label should no longer be highlight work");
 assert.equal(matchAll(/<article class="news-card(?: news-card-featured)?" data-news-type="highlight">/g).length, 3, "news section should include 3 highlight work items");
 assert.equal(matchAll(/<article class="news-card" data-news-type="news">/g).length, 15, "news section should include 15 current news items after adding invited academic reports");
 assert.equal(matchAll(/<article class="news-card" data-news-type="notice">/g).length, 4, "news section should include 4 notice items");
@@ -142,7 +174,7 @@ assert.ok(html.includes("杨来浩副研究员获首届“太行杯”航空动�
 assert.ok(html.includes("https://gr.xjtu.edu.cn/yanglaihao/zh_CN/article/316893/content/35392.htm#article"), "Yang Laihao news links should be absolute");
 assert.ok(html.includes("欢迎新同学加入课题组"), "notices should include Sun Yu group updates");
 assert.ok(html.includes("https://faculty.xjtu.edu.cn/yu.sun/zh_CN/article/332021/content/23747.htm#article"), "Sun Yu news links should be absolute");
-assert.ok(script.includes('"亮点工作": "Highlights"'), "English mode should translate the highlight work filter");
+assert.ok(script.includes('"亮点报道": "Highlight Reports"'), "English mode should translate the highlight reports filter");
 assert.ok(script.includes('"西安交大：仿生机器人给高端装备“把脉问诊”"'), "English mode should translate the Shaanxi News highlight title");
 assert.ok(script.includes('"《丝路新周刊》节目预告 | 西安交大：用新型仿生机器人给高端装备“把脉问诊”"'), "English mode should translate the Silk Road Weekly highlight title");
 assert.ok(script.includes('"【央视正午国防军事】报道西安交通大学团队攻克“卡脖子”难题"'), "English mode should translate the revised CCTV/XJTU highlight title");
@@ -169,5 +201,8 @@ assert.ok(script.includes('"航空发动机进气道叶片检测机器人及检�
 assert.ok(script.includes('"首届“太行杯”航空动力创新大赛优胜奖"'), "English mode should translate the Taihang Cup award directly");
 
 const publicationCount = matchAll(/<article class="achievement" data-output-type="paper-/g).length;
-assert.equal(publicationCount, 94, `expected 94 classified representative publications from public profiles, found ${publicationCount}`);
+assert.equal(publicationCount, 92, `expected 92 classified representative publications after removing two incorrect 2022 other-paper records, found ${publicationCount}`);
+assert.equal(matchAll(/<article class="achievement" data-output-type="paper-other">/g).length, 2, "other papers should keep only two verified records");
+assert.ok(!html.includes("叶端定时欠采样信号重构方法综述"), "incorrect 2022 other-paper record should be removed");
+assert.ok(!html.includes("齿轮磨损对齿轮传动动态响应特征的影响"), "incorrect 2022 other-paper record should be removed");
 assert.ok(!styles.includes("embodied-focus"), "research directions should use video assets directly");

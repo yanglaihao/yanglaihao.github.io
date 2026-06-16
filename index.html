@@ -277,7 +277,7 @@
           </div>
           <div class="filter-group" role="group" aria-label="News filters">
             <button class="filter active" type="button" data-news-filter="all">全部</button>
-            <button class="filter" type="button" data-news-filter="highlight">亮点工作</button>
+            <button class="filter" type="button" data-news-filter="highlight">亮点报道</button>
             <button class="filter" type="button" data-news-filter="news">新闻</button>
             <button class="filter" type="button" data-news-filter="notice">通知</button>
           </div>
@@ -290,7 +290,7 @@
                 <source src="新闻报道/陕西电视台-报道-web.mp4" type="video/mp4">
               </video>
             </figure>
-            <p class="news-type">亮点工作</p>
+            <p class="news-type">亮点报道</p>
             <time>2024-10-10</time>
             <h3><a href="http://www.snrtv.com/snr_sxxwlb/a/2024/10/10/22818371.html" target="_blank" rel="noreferrer">西安交大：仿生机器人给高端装备“把脉问诊”</a></h3>
             <p>陕西新闻联播报道团队面向高端装备检修的仿生机器人研究，展示蛇形机器人等原位检测与维护能力。</p>
@@ -301,7 +301,7 @@
                 <source src="新闻报道/陕西卫视-丝路会客厅-web.mp4" type="video/mp4">
               </video>
             </figure>
-            <p class="news-type">亮点工作</p>
+            <p class="news-type">亮点报道</p>
             <time>2024-11-09</time>
             <h3><a href="https://www.163.com/dy/article/JGIRJRQ90530TBVC.html" target="_blank" rel="noreferrer">《丝路新周刊》节目预告 | 西安交大：用新型仿生机器人给高端装备“把脉问诊”</a></h3>
             <p>陕西卫视《丝路新周刊》走进西安交通大学机械学院实验室，报道团队仿生机器人“刚柔并济”的高端装备检修探索。</p>
@@ -312,7 +312,7 @@
                 <source src="新闻报道/正午0714播出版-web.mp4" type="video/mp4">
               </video>
             </figure>
-            <p class="news-type">亮点工作</p>
+            <p class="news-type">亮点报道</p>
             <time>2025-07-14</time>
             <h3><a href="https://news.xjtu.edu.cn/info/1014/223743.htm" target="_blank" rel="noreferrer">【央视正午国防军事】报道西安交通大学团队攻克“卡脖子”难题</a></h3>
             <p>央视正午国防军事报道西安交大团队仿生机器人研究，介绍蛇形机器人在航空发动机复杂腔道检测中的应用前景。</p>
@@ -673,7 +673,8 @@
         <div class="achievement-board">
           <div class="output-toolbar">
             <div class="filter-group output-primary-filters" role="tablist" aria-label="成果一级板块">
-              <button class="filter active" type="button" role="tab" aria-selected="true" data-output-filter="project" data-output-root="project">项目</button>
+              <button class="filter active" type="button" role="tab" aria-selected="true" data-output-filter="highlight-output">亮点成果</button>
+              <button class="filter" type="button" role="tab" aria-selected="false" data-output-filter="project" data-output-root="project">项目</button>
               <button class="filter" type="button" role="tab" aria-selected="false" data-output-filter="paper" data-output-root="paper">论文</button>
               <button class="filter" type="button" role="tab" aria-selected="false" data-output-filter="patent" data-output-root="patent">专利</button>
               <button class="filter" type="button" role="tab" aria-selected="false" data-output-filter="book">专著</button>
@@ -709,6 +710,45 @@
         </div>
 
         <div class="achievement-list">
+          <article class="achievement achievement-featured-output" data-output-type="highlight-output">
+            <figure class="featured-output-video">
+              <video controls preload="metadata" playsinline data-paper-video="contact-aided-continuum" aria-label="接触辅助连续体机器人论文视频">
+                <source src="assets/paper-highlights/contact-aided-continuum.mp4" type="video/mp4">
+              </video>
+            </figure>
+            <div class="pub-body">
+              <p class="pub-venue">亮点成果 · IEEE Transactions on Robotics · <a href="https://doi.org/10.1109/TRO.2024.3400944" target="_blank" rel="noreferrer">DOI</a></p>
+              <h3>A Novel Contact-Aided Continuum Robotic System: Design, Modeling, and Validation</h3>
+              <p class="authors">Zheshuai Yang, Laihao Yang, Yu Sun, Xuefeng Chen · 2024</p>
+              <p>接触辅助连续体机器人面向航空发动机等受限深腔，利用环境接触提升支撑、定位与通过能力，完成设计、建模和实验验证。</p>
+            </div>
+          </article>
+          <article class="achievement achievement-featured-output" data-output-type="highlight-output">
+            <figure class="featured-output-video">
+              <video controls preload="metadata" playsinline data-paper-video="torque-dexterity" aria-label="扭矩触觉灵巧操作论文视频">
+                <source src="assets/paper-highlights/torque-dexterity.mp4" type="video/mp4">
+              </video>
+            </figure>
+            <div class="pub-body">
+              <p class="pub-venue">亮点成果 · Science Advances · <a href="https://doi.org/10.1126/sciadv.aec3263" target="_blank" rel="noreferrer">DOI</a></p>
+              <h3>Touching with torque enables human-level robotic dexterity</h3>
+              <p class="authors">Ling Wang, Yu Sun, Laihao Yang, Yuxuan Sun, Qingkai Guo, Yixue Liu et al. · 2026</p>
+              <p>扭矩触觉让机器人达到接近人类水平的灵巧操作，提出可感知接触扭矩的触觉反馈与操作策略，提升灵巧手抓取、转动和调姿能力。</p>
+            </div>
+          </article>
+          <article class="achievement achievement-featured-output" data-output-type="highlight-output">
+            <figure class="featured-output-video">
+              <video controls preload="metadata" playsinline data-paper-video="bistable-jumper" aria-label="双稳态昆虫尺度跳跃机器人论文视频">
+                <source src="assets/paper-highlights/bistable-jumper.mp4" type="video/mp4">
+              </video>
+            </figure>
+            <div class="pub-body">
+              <p class="pub-venue">亮点成果 · Advanced Science · <a href="https://doi.org/10.1002/advs.202404404" target="_blank" rel="noreferrer">DOI</a></p>
+              <h3>Bistable Insect-Scale Jumpers with Tunable Energy Barriers for Multimodal Locomotion</h3>
+              <p class="authors">Qingkai Guo, Yu Sun, Tianxiang Zhang, Shiyu Xie, Xuefeng Chen, Zhuang Zhang et al. · 2024</p>
+              <p>可调能垒双稳态跳跃机器人实现昆虫尺度多模态运动，通过可调能量势垒在跳跃、翻转和多地形移动之间切换。</p>
+            </div>
+          </article>
           <article class="achievement" data-output-type="paper-sci"><div class="pub-year">2026</div><div class="pub-body"><p class="pub-venue">SCI 期刊 · IEEE Robotics and Automation Letters · <a href="https://doi.org/10.1109/LRA.2026.3664598" target="_blank" rel="noreferrer">DOI</a></p><h3>K-Track: A Kirigami-Inspired Tracked Robot with Negative Pressure Cooperative Adhesion for Wall-to-Wall Transition</h3><p class="authors">Yu Sun, Heng Ren, Jiajia Ning, Qingkai Guo, Xuefeng Chen, Shaojiang Dong et al.</p></div></article>
           <article class="achievement" data-output-type="paper-sci"><div class="pub-year">2026</div><div class="pub-body"><p class="pub-venue">SCI 期刊 · Science Advances · <a href="https://doi.org/10.1126/sciadv.aec3263" target="_blank" rel="noreferrer">DOI</a></p><h3>Touching with torque enables human-level robotic dexterity</h3><p class="authors">Ling Wang, Yu Sun, Laihao Yang, Yuxuan Sun, Qingkai Guo, Yixue Liu et al.</p></div></article>
           <article class="achievement" data-output-type="paper-sci"><div class="pub-year">2026</div><div class="pub-body"><p class="pub-venue">SCI 期刊 · Aerospace Science and Technology · <a href="https://doi.org/10.1016/j.ast.2026.111736" target="_blank" rel="noreferrer">DOI</a></p><h3>A deep learning-based off-grid frequency estimation method for blade tip timing signal</h3><p class="authors">Ruochen Jin, Laihao Yang, Zhibo Yang, Junnan Feng, Huan Zhang, Zhijun Yang et al.</p></div></article>
@@ -786,10 +826,8 @@
           <article class="achievement" data-output-type="paper-sci"><div class="pub-year">2023</div><div class="pub-body"><p class="pub-venue">SCI 期刊 · Mechanical Systems and Signal Processing</p><h3>Feature-guided intelligent fault diagnosis for rotating machinery with few samples</h3><p class="authors">Fan Duan, Yu Sun, Xuefeng Chen, Laihao Yang</p></div></article>
           <article class="achievement" data-output-type="paper-ei-conference"><div class="pub-year">2022</div><div class="pub-body"><p class="pub-venue">EI 会议 · Chinese Mechanisms and Robotics Congress</p><h3>Mesh Relationship Analysis and Multi-Objective Optimization for a Novel Continuum Robot Joint</h3><p class="authors">Zheshuai Yang, Laihao Yang, Dong Yang, Yu Sun, Xuefeng Chen</p></div></article>
           <article class="achievement" data-output-type="paper-sci"><div class="pub-year">2022</div><div class="pub-body"><p class="pub-venue">SCI 期刊 · Frontiers of Mechanical Engineering</p><h3>Investigation into the dynamics of a cracked rotor system in a maneuvering aircraft</h3><p class="authors">Laihao Yang, Zhu Mao, Shuming Wu, Ruqiang Yan, Xuefeng Chen</p></div></article>
-          <article class="achievement" data-output-type="paper-other"><div class="pub-year">2022</div><div class="pub-body"><p class="pub-venue">中文期刊 · 机械工程学报</p><h3>叶端定时欠采样信号重构方法综述</h3><p class="authors">杨来浩, 金若尘, 杨志勃, 孙瑜, 毛柱, 闫茹强 et al.</p></div></article>
           <article class="achievement" data-output-type="paper-sci"><div class="pub-year">2022</div><div class="pub-body"><p class="pub-venue">SCI 期刊 · Measurement Science and Technology</p><h3>Unsupervised anomaly detection with compact deep features for wind turbine blade images taken by a drone</h3><p class="authors">Wenbo Li, Chuang Sun, Laihao Yang, Xuefeng Chen</p></div></article>
           <article class="achievement" data-output-type="paper-sci"><div class="pub-year">2022</div><div class="pub-body"><p class="pub-venue">SCI 期刊 · IEEE Transactions on Instrumentation and Measurement</p><h3>Single-Probe Blade Tip Timing Method for Fast Blade Natural Frequency Identification</h3><p class="authors">Huahui Hu, Laihao Yang, Yu Sun, Zhibo Yang, Ruochen Jin, Xuefeng Chen</p></div></article>
-          <article class="achievement" data-output-type="paper-other"><div class="pub-year">2022</div><div class="pub-body"><p class="pub-venue">中文期刊 · 机械传动</p><h3>齿轮磨损对齿轮传动动态响应特征的影响</h3><p class="authors">杨来浩, 孙豪, 孙瑜, 谢珈维, 张楠, 李思维 et al.</p></div></article>
           <article class="achievement" data-output-type="paper-sci"><div class="pub-year">2020</div><div class="pub-body"><p class="pub-venue">SCI 期刊 · Mechanical Systems and Signal Processing</p><h3>Fault mechanism and dynamic modeling of planetary gear set with cracked planet gear</h3><p class="authors">Laihao Yang, Shuming Wu, Xuefeng Chen, Ruqiang Yan, Zhu Mao</p></div></article>
           <article class="achievement" data-output-type="paper-sci"><div class="pub-year">2020</div><div class="pub-body"><p class="pub-venue">SCI 期刊 · Journal of Vibration and Acoustics</p><h3>Dynamic modeling and vibration characteristics analysis of a rotor system with the blade-casing rub-impact fault</h3><p class="authors">Laihao Yang, Zheshuai Yang, Zhu Mao, Shuming Wu, Xuefeng Chen, Ruqiang Yan</p></div></article>
           <article class="achievement" data-output-type="paper-sci"><div class="pub-year">2020</div><div class="pub-body"><p class="pub-venue">SCI 期刊 · Journal of Computational and Nonlinear Dynamics</p><h3>Data-Based Switching Feedforward Control Method for Redundant Robots</h3><p class="authors">Lu Xu, Laihao Yang, Xuefeng Chen</p></div></article>

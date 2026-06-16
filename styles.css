@@ -1191,6 +1191,26 @@ h3 {
   padding: 1rem;
 }
 
+.achievement-featured-output {
+  grid-template-columns: minmax(260px, 0.42fr) minmax(0, 1fr);
+  align-items: stretch;
+}
+
+.featured-output-video {
+  margin: 0;
+  overflow: hidden;
+  background: #0f1816;
+  border: 1px solid color-mix(in srgb, var(--line), transparent 22%);
+  aspect-ratio: 16 / 9;
+}
+
+.featured-output-video video {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+}
+
 .achievement::after {
   content: "";
   position: absolute;
@@ -1688,6 +1708,7 @@ address a {
   .profile-panel dl,
   .publication,
   .achievement,
+  .achievement-featured-output,
   .leader-card,
   .member-leader,
   .timeline article {
