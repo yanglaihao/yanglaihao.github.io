@@ -143,6 +143,8 @@ assert.ok(script.includes("applyLanguage"), "script should implement language sw
 assert.ok(script.includes("textTranslations"), "language switching should include full-page static text translations");
 assert.ok(script.includes("translateStaticText"), "language switching should translate non-navigation page text");
 assert.ok(script.includes('language === "en" ? "ZH" : "EN"'), "English mode language toggle should avoid Chinese text");
+assert.ok(script.includes("translateAchievementText"), "English achievement view should use dedicated output translation logic");
+assert.ok(!script.includes("return year ? `${label} (${year})` : label;"), "English achievement view should not fall back to generic placeholders like Publication (2026)");
 assert.ok(handoff.includes("亮点成果、项目、论文、专利、专著、获奖、社会任职"), "handoff should describe the updated achievement categories");
 assert.ok(handoff.includes("孙瑜"), "handoff should mention the added Sun Yu mentor entry");
 assert.ok(handoff.includes("中英文切换"), "handoff should mention the language toggle");

@@ -320,6 +320,11 @@ const textTranslations = {
   "973项目 · 2015.01-2019.12": "973 Program · 2015.01-2019.12",
   "航空发动机运行安全基础研究": "Basic Research on Aero-engine Operational Safety",
   "2015CB057400 · 纵向项目": "2015CB057400 · Government-funded project",
+  "工业微创手术：航空发动机原位检修连续体机器人技术及应用": "Industrial Minimally Invasive Surgery: Continuum Robot Technology and Applications for In-situ Aero-engine Maintenance",
+  "子母式连续体机器人：设计、建模与验证": "Parent-child Continuum Robot: Design, Modeling, and Validation",
+  "昆虫尺度多运动模式机器人研究进展与应用": "Research Progress and Applications of Insect-scale Multimodal Robots",
+  "数字孪生框架下叶片裂纹稀疏定量诊断方法": "Sparse Quantitative Diagnosis Method for Blade Cracks under a Digital Twin Framework",
+  "绳驱动超冗余连续体机器人全臂形闭环控制方法": "Whole-arm Shape Closed-loop Control Method for Cable-driven Hyper-redundant Continuum Robots",
   "发明专利": "Invention Patent",
   "发明专利 ·": "Invention Patent ·",
   "国际专利 · 美国 ·": "International Patent · United States ·",
@@ -349,6 +354,29 @@ const textTranslations = {
   "球笼式柔性变刚度连续体机器人单元及连续体机器人": "Birfield Flexible Variable-stiffness Continuum Robot Unit and Continuum Robot",
   "连续体机器人的优化控制方法": "Optimization Control Method for a Continuum Robot",
   "航空发动机剩余寿命预测方法": "Aero-engine Remaining Useful Life Prediction Method",
+  "磁场可编程逆向设计方法、结构和电子设备及介质": "Magnetic-field Programmable Inverse Design Method, Structure, Electronic Device, and Medium",
+  "电磁式触觉反馈装置及反馈方法": "Electromagnetic Tactile Feedback Device and Feedback Method",
+  "多维力触觉感知电子皮肤及制备方法": "Multidimensional Force Tactile-sensing Electronic Skin and Preparation Method",
+  "可跨面的粘附履带式爬壁机器人": "Adhesive Tracked Wall-climbing Robot Capable of Surface Transitions",
+  "扭矩感知仿生夹爪": "Torque-sensing Biomimetic Gripper",
+  "用于触觉反馈的HASEL软体致动器制备方法及致动器": "Preparation Method for HASEL Soft Actuators for Tactile Feedback and the Actuator",
+  "正常样本聚合对比学习网络的齿轮箱变工况故障检测方法": "Gearbox Variable-condition Fault Detection Method Based on a Normal-sample Aggregation Contrastive Learning Network",
+  "一种用于连续体机械臂的变刚度结构": "Variable-stiffness Structure for a Continuum Manipulator",
+  "一种径向与轴向叶端定时传感器测量装置与方法": "Radial and Axial Blade Tip Timing Sensor Measurement Device and Method",
+  "一种绳驱动的带虎口型欠驱动仿生灵巧手及其方法": "Cable-driven Underactuated Biomimetic Dexterous Hand with a Thumb-index Web Structure and Method",
+  "一种叉簧片式双芯柱连续体机器人单元及机器人": "Fork-spring Dual-core-column Continuum Robot Unit and Robot",
+  "一种轴承式双芯柱连续体机器人": "Bearing-type Dual-core-column Continuum Robot",
+  "一种基于主动混叠与解混叠的信号频率识别方法": "Signal Frequency Identification Method Based on Active Aliasing and De-aliasing",
+  "叶片振型函数特征值求解方法": "Method for Solving Eigenvalues of Blade Mode-shape Functions",
+  "基于3D打印的Kresling类折纸结构制造工艺": "3D-printing-based Manufacturing Process for Kresling-like Origami Structures",
+  "一种单一气源可控的双稳态嵌入折纸一体化多向执行器": "Single-air-source Controllable Bistable Embedded-origami Integrated Multidirectional Actuator",
+  "一种线驱动连续体机械臂末端位置误差补偿方法": "End-position Error Compensation Method for a Cable-driven Continuum Manipulator",
+  "基于时空图的核电循环水泵行星齿轮箱检测方法": "Spatiotemporal-graph-based Detection Method for Planetary Gearboxes in Nuclear-power Circulating Water Pumps",
+  "爬行翻滚双运动模式爬壁机器人及方法": "Wall-climbing Robot with Crawling and Rolling Modes and Method",
+  "基于特征导向正则参数的旋转机械稀疏表示诊断方法": "Sparse-representation Diagnosis Method for Rotating Machinery Based on Feature-guided Regularization Parameters",
+  "一种测试连续体机器人力学性能的方法和装置": "Method and Device for Testing Mechanical Performance of Continuum Robots",
+  "基于最小方差功率谱估计的叶片固有频率识别方法": "Blade Natural Frequency Identification Method Based on Minimum-variance Power Spectrum Estimation",
+  "一种连续体机器人的线缆布局方法": "Cable Layout Method for a Continuum Robot",
   "压扭触觉传感器及制备方法": "Pressure-torsion Tactile Sensor and Fabrication Method",
   "自解耦电磁式多维力触觉传感器": "Self-decoupled Electromagnetic Multidimensional Force Tactile Sensor",
   "基于电液耦合驱动的模块化折纸机器人及控制方法": "Modular Origami Robot Driven by Electro-hydraulic Coupling and Control Method",
@@ -486,6 +514,71 @@ const patentAssigneeTranslations = {
   "青岛空天动力结构安全研究所": "Qingdao Institute of Aerospace Power Structural Safety",
 };
 
+const achievementPhraseTranslations = {
+  "亮点成果": "Featured Output",
+  "SCI 期刊": "SCI Journal",
+  "EI 期刊": "EI Journal",
+  "EI 会议": "EI Conference",
+  "预印本": "Preprint",
+  "其他期刊": "Other Journal",
+  "其他会议": "Other Conference",
+  "中文期刊": "Chinese Journal",
+  "项目": "Project",
+  "国家自然科学基金": "National Natural Science Foundation of China",
+  "纵向项目": "Government-funded project",
+  "横向项目": "Industry-funded project",
+  "链接": "Link",
+  "申请日": "Filed",
+  "公开日": "Published",
+  "授权日": "Granted",
+  "发明专利": "Invention Patent",
+  "中国专利": "Chinese Patent",
+  "发明公开": "Published Invention",
+  "发明授权": "Granted Invention",
+  "国际专利": "International Patent",
+  "美国": "United States",
+  "专著": "Monograph",
+  "科学技术奖": "Science and Technology Award",
+  "科技论文获奖": "Paper Award",
+  "学生竞赛获奖": "Student Competition Award",
+  "社会奖励": "Professional Award",
+  "学位论文获奖": "Thesis Award",
+  "社会任职": "Academic Service",
+  "青年编委": "Young Editorial Board Member",
+  "编辑任职": "Editorial Role",
+  "科技服务": "Technology Service",
+  "学术组织": "Academic Organization",
+  "应用基础与工程科学学报": "Journal of Basic Science and Engineering",
+  "机械工程学报": "Journal of Mechanical Engineering",
+  "振动、测试与诊断": "Journal of Vibration, Measurement & Diagnosis",
+  "自动化与信息工程": "Automation & Information Engineering",
+  "西北工业大学出版社": "Northwestern Polytechnical University Press",
+  "中国振动工程学会": "Chinese Society for Vibration Engineering",
+  "陕西省": "Shaanxi Province",
+  "西安交通大学": "Xi'an Jiaotong University",
+  "杨来浩": "Laihao Yang",
+  "孙瑜": "Yu Sun",
+  "陈雪峰": "Xuefeng Chen",
+  "杨浙帅": "Zheshuai Yang",
+  "姚晨彧": "Chenyu Yao",
+  "郭庆凯": "Qingkai Guo",
+  "张天祥": "Tianxiang Zhang",
+  "赵子攀": "Zipan Zhao",
+  "谢时雨": "Shiyu Xie",
+  "南长峰": "Changfeng Nan",
+  "罗旭良": "Xuliang Luo",
+  "杨志勃": "Zhibo Yang",
+  "薛晨菲": "Chenfei Xue",
+  "文庆": "Qing Wen",
+  "阳淼清": "Miaoqing Yang",
+  "刘洋": "Yang Liu",
+  "陆凌云": "Lingyun Lu",
+  "杨丹卉": "Danhui Yang",
+  "彭银冲": "Yinchong Peng",
+  "杜祖鹏": "Zupeng Du",
+  "郑毅": "Yi Zheng",
+};
+
 const staticTextNodes = [];
 const textWalker = document.createTreeWalker(document.body, 4, {
   acceptNode(node) {
@@ -527,25 +620,26 @@ function translatePatentMetadata(text) {
   return translatedParts.join(" · ");
 }
 
+function replaceAchievementPhrases(text) {
+  return Object.entries(achievementPhraseTranslations)
+    .sort(([first], [second]) => second.length - first.length)
+    .reduce((value, [source, target]) => value.split(source).join(target), text)
+    .replace(/（/g, " (")
+    .replace(/）/g, ")")
+    .replace(/、/g, ", ");
+}
+
+function translateAchievementText(text, node) {
+  const achievement = node.parentElement?.closest(".achievement");
+  if (!achievement) return "";
+
+  const translated = replaceAchievementPhrases(text);
+  return translated !== text ? translated : "";
+}
+
 function fallbackEnglishText(text, node) {
   const parent = node.parentElement;
-  const achievement = parent?.closest(".achievement");
-  if (achievement) {
-    const year = achievement.querySelector(".pub-year")?.textContent?.trim();
-    const type = achievement.dataset.outputType || "output";
-    const label = type.startsWith("paper")
-      ? "Publication"
-      : type === "project"
-        ? "Research project"
-        : type.startsWith("patent")
-          ? "Patent"
-          : type === "book"
-            ? "Book"
-            : type.startsWith("award")
-              ? "Award"
-              : "Academic service";
-    return year ? `${label} (${year})` : label;
-  }
+  if (parent?.closest(".achievement")) return stripChinese(text) || text;
   if (parent?.closest(".member-category")) return "Team member information";
   if (parent?.closest(".news-card")) return "Team news";
   if (parent?.closest(".info-card")) return "Team profile";
@@ -555,7 +649,7 @@ function fallbackEnglishText(text, node) {
 function translateOriginalText(original, node) {
   const trimmed = original.replace(/\s+/g, " ").trim();
   if (!trimmed || !/[\u3400-\u9fff]/.test(trimmed)) return original;
-  const translated = textTranslations[trimmed] || translatePatentMetadata(trimmed) || fallbackEnglishText(trimmed, node);
+  const translated = textTranslations[trimmed] || translatePatentMetadata(trimmed) || translateAchievementText(trimmed, node) || fallbackEnglishText(trimmed, node);
   return original.replace(trimmed, translated);
 }
 
