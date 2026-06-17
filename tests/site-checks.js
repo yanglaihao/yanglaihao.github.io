@@ -145,6 +145,8 @@ assert.ok(script.includes("translateStaticText"), "language switching should tra
 assert.ok(script.includes('language === "en" ? "ZH" : "EN"'), "English mode language toggle should avoid Chinese text");
 assert.ok(script.includes("translateAchievementText"), "English achievement view should use dedicated output translation logic");
 assert.ok(!script.includes("return year ? `${label} (${year})` : label;"), "English achievement view should not fall back to generic placeholders like Publication (2026)");
+assert.ok(script.includes('"团队主持国家自然科学基金项目 2 项、大科学装置培育项目等 10 余项'), "English mode should translate the achievement intro instead of stripping it to numbers");
+assert.ok(script.includes('"国家自然科学基金项目 2 项、大科学装置培育项目等，主持经费 3400 万+。'), "English mode should translate the projects overview card instead of stripping it to numbers");
 assert.ok(handoff.includes("亮点成果、项目、论文、专利、专著、获奖、社会任职"), "handoff should describe the updated achievement categories");
 assert.ok(handoff.includes("孙瑜"), "handoff should mention the added Sun Yu mentor entry");
 assert.ok(handoff.includes("中英文切换"), "handoff should mention the language toggle");
