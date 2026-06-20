@@ -34,11 +34,10 @@ python3 -m http.server 4173
 - 社会任职：https://gr.xjtu.edu.cn/yanglaihao/zh_CN/zdylm/1036903/list/index.htm
 - 团队动态：https://gr.xjtu.edu.cn/yanglaihao/zh_CN/article/316893/list/1.htm
 - 团队动态第 2 页：https://gr.xjtu.edu.cn/yanglaihao/zh_CN/article/316893/list/2.htm
-- 孙瑜团队动态：https://faculty.xjtu.edu.cn/yu.sun/zh_CN/article/332021/list/index.htm
+- 孙瑜主页动态：https://faculty.xjtu.edu.cn/yu.sun/zh_CN/article/332021/list/index.htm
 - 孙瑜招生信息：https://faculty.xjtu.edu.cn/yu.sun/zh_CN/zdylm/980524/list/index.htm
-- 孙瑜团队学生：https://faculty.xjtu.edu.cn/yu.sun/zh_CN/zdylm/980513/list/index.htm
+- 孙瑜主页学生信息：https://faculty.xjtu.edu.cn/yu.sun/zh_CN/zdylm/980513/list/index.htm
 - 孙瑜已毕业学生：https://faculty.xjtu.edu.cn/yu.sun/zh_CN/zdylm/980512/list/index.htm
-- “非攻”名称来源：https://baike.baidu.com/item/%E9%9D%9E%E6%94%BB/4792002
 - 陕西新闻联播报道：http://www.snrtv.com/snr_sxxwlb/a/2024/10/10/22818371.html
 - 陕西卫视《丝路新周刊》报道：https://www.163.com/dy/article/JGIRJRQ90530TBVC.html
 - 西安交通大学新闻网 / 央视正午国防军事报道：https://news.xjtu.edu.cn/info/1014/223743.htm

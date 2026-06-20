@@ -132,6 +132,10 @@ button {
   display: block;
 }
 
+html[lang="zh-CN"] .brand strong {
+  white-space: nowrap;
+}
+
 .brand small {
   color: var(--muted);
   font-size: 0.78rem;
@@ -339,6 +343,13 @@ h1 {
 .hero h1 {
   max-width: 12ch;
   font-size: clamp(2.4rem, 5.8vw, 5.6rem);
+}
+
+html[lang="zh-CN"] .hero h1 {
+  max-width: none;
+  white-space: nowrap;
+  overflow-wrap: normal;
+  word-break: keep-all;
 }
 
 h2 {
@@ -1716,6 +1727,10 @@ address a {
 
   .brand small {
     display: none;
+  }
+
+  html[lang="zh-CN"] .hero h1 {
+    font-size: 2.15rem;
   }
 
   .nav-links.open {

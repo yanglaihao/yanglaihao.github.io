@@ -23,9 +23,9 @@ for (const video of researchVideos) {
 }
 
 const memberCategoryButtons = matchAll(/data-member-target="([^"]+)"/g);
-assert.ok(memberCategoryButtons.length >= 7, "member categories should be rendered as collapsible buttons");
+assert.equal(memberCategoryButtons.length, 7, "member categories should use the existing seven collapsible groups");
 assert.ok(html.includes('data-member-panel="leader"'), "leader panel should be collapsible");
-assert.ok(html.includes('data-member-panel="sun-team"'), "Sun Yu team panel should be collapsible");
+assert.ok(!html.includes('data-member-panel="sun-team"'), "Sun Yu students should not create a separate collapsible panel");
 assert.ok(html.includes('data-member-panel="phd"'), "PhD member panel should be collapsible");
 assert.ok(html.includes('data-member-panel="master"'), "master member panel should be collapsible");
 assert.ok(script.includes("showMemberPanel"), "script should switch member panels");
@@ -140,15 +140,18 @@ assert.ok(!html.includes("学硕型硕士"), "Sun Yu mentor card should normaliz
 assert.ok(html.includes("航空发动机与航天器先进传感及健康管理"), "Sun Yu mentor card should include detailed recruitment directions");
 assert.ok(html.includes("非攻机器人实验室"), "site should use the updated Feigong Robotics Laboratory name");
 assert.ok(script.includes('"非攻机器人实验室": "Feigong Robotics Laboratory"'), "English mode should translate the updated laboratory name");
-assert.ok(html.includes("百度百科《非攻》词条"), "about section should cite the requested Feigong source");
-assert.ok(html.includes("https://baike.baidu.com/item/%E9%9D%9E%E6%94%BB/4792002"), "about section should link the requested Feigong Baidu Baike URL");
-assert.ok(html.includes("多形态机构、攻守转换、藏锋守护"), "about section should map Feigong to mechanism and robotics traits");
+assert.ok(html.includes("取“非攻”一器多形之巧，造因境而变、入微而作的智能检修机器人"), "about section should present Feigong as the lab concept rather than a source note");
+assert.ok(!html.includes("百度百科《非攻》词条"), "intro should not mention a concrete dictionary entry source");
+assert.ok(!html.includes("https://baike.baidu.com/item/%E9%9D%9E%E6%94%BB/4792002"), "intro should not expose a source link for the lab concept");
+assert.ok(!html.includes("名称来源"), "about cards should not include a source-note card");
+assert.ok(html.includes("一器多形、因境而变、入微而作"), "about section should map Feigong to mechanism and robotics traits");
 assert.ok(!html.includes("墨子思想"), "Feigong source should not be described as Mozi's non-attack doctrine");
 assert.ok(!html.includes("墨家“非攻”"), "Feigong source should not be described as the Mohist non-attack doctrine");
 assert.ok(!html.includes("墨家反对无谓攻伐"), "hero copy should not use the Mohist non-attack explanation");
 assert.ok(!script.includes("墨家反对无谓攻伐"), "translation table should not retain the old Mohist source wording");
 assert.ok(html.includes("以尽量少拆解、少损伤、少停机的方式完成高端装备在位诊断、进入和维护。"), "mission should connect Feigong to non-invasive equipment maintenance");
-assert.ok(html.includes("孙瑜老师团队学生"), "member section should include Sun Yu's current team students");
+assert.ok(!html.includes('data-member-panel="sun-team"'), "Sun Yu students should be merged into existing member groups, not a separate team panel");
+assert.ok(!html.includes("孙瑜团队"), "member tabs should not create a separate Sun Yu team group");
 assert.ok(html.includes("https://faculty.xjtu.edu.cn/yu.sun/zh_CN/zdylm/980513/list/index.htm"), "Sun Yu current student source should be linked");
 for (const item of [
   "郭庆凯 · 软体驱动方向",
@@ -159,8 +162,9 @@ for (const item of [
   "唐骏元 · 软体驱动方向",
 ]) {
   assert.ok(html.includes(item), `Sun Yu current students should include ${item}`);
+  assert.ok(new RegExp('data-member-panel="master"[\\s\\S]*' + item.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")).test(html), `${item} should be merged into the master's student group`);
 }
-assert.ok(html.includes("孙瑜老师团队已毕业学生"), "alumni section should include Sun Yu's alumni group");
+assert.ok(!html.includes("孙瑜老师团队已毕业学生"), "Sun Yu alumni should be merged into the existing alumni group, not a separate subheading");
 assert.ok(html.includes("https://faculty.xjtu.edu.cn/yu.sun/zh_CN/zdylm/980512/list/index.htm"), "Sun Yu alumni source should be linked");
 for (const item of [
   "王昊 · 硕士 · 2019级 · 中铁第一勘察设计院集团有限公司",
@@ -170,10 +174,9 @@ for (const item of [
 ]) {
   assert.ok(html.includes(item), `Sun Yu alumni should include ${item}`);
 }
-assert.ok(script.includes('"孙瑜老师团队学生": "Prof. Yu Sun Team Students"'), "English mode should translate Sun Yu current student group");
 assert.ok(script.includes('"郭庆凯 · 软体驱动方向": "Qingkai Guo · Soft actuation"'), "English mode should translate Sun Yu current student entries");
-assert.ok(script.includes('"孙瑜老师团队已毕业学生": "Prof. Yu Sun Team Alumni"'), "English mode should translate Sun Yu alumni group");
 assert.ok(script.includes('"王昊 · 硕士 · 2019级 · 中铁第一勘察设计院集团有限公司"'), "English mode should translate Sun Yu alumni entries");
+assert.ok(styles.includes(".hero h1") && styles.includes("white-space: nowrap"), "hero title should be constrained to one line");
 assert.ok(html.includes("data-language-toggle"), "home page should include a Chinese/English language toggle");
 assert.ok(html.includes("data-i18n=\"nav.home\""), "key navigation text should be language-switchable");
 assert.ok(script.includes("applyLanguage"), "script should implement language switching");
