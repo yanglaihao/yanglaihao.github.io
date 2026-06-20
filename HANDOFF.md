@@ -28,8 +28,8 @@
 
 - 线上站点：https://yanglaihao.github.io/
 - GitHub Pages 状态：`built`
-- 当前远端 `main`：以 GitHub 仓库 `refs/heads/main` 为准；上一轮页面内容对应提交 `ea6a3f203d16a611c15b7c2928f3cbe4f39dced4`，本轮英文成果页修复随最新部署提交更新。
-- 页面内容更新提交：`ea6a3f203d16a611c15b7c2928f3cbe4f39dced4`
+- 当前远端 `main`：以 GitHub 仓库 `refs/heads/main` 为准；本轮页面内容部署提交为 `b2257f9125029c4d640baa5582462dabf0e3991a`，后续若仅补充本交接文件，仍以远端 ref 的最新提交为准。
+- 页面内容更新提交：`b2257f9125029c4d640baa5582462dabf0e3991a`
 - `.nojekyll` 修复提交：`46a12113d35046f8d13a29af602745b515de09e6`
 
 最新部署方式：普通 `git push` 多次因 GitHub HTTPS 网络 / HTTP2 错误失败，最终使用 GitHub CLI + GitHub Git Data API 创建 blob / tree / commit 并更新 `main` 引用。随后手动触发 Pages build，添加 `.nojekyll` 后构建成功。
@@ -161,6 +161,8 @@ node tests/site-checks.js
 
 本轮成果简介乱码修复复验：2026-06-17 19:44 CST，`node --check script.js` 和 `node tests/site-checks.js` 均以退出码 0 结束；本地浏览器英文模式读取成果区总简介与四个概览卡片，成果总简介和项目卡片均为完整英文，项目卡片不再显示 `2、3400+` 之类残留。
 
+本轮非攻实验室命名和孙瑜团队成员更新复验：2026-06-20 20:59 CST，`node --check script.js` 和 `node tests/site-checks.js` 均以退出码 0 结束；本地浏览器英文模式检查“孙瑜团队”和“已毕业”分组均无中文残留、无 `Team member information` 占位，首页英文标题为 `Feigong Robotics Laboratory | Xi'an Jiaotong University`，页面可见文本不含墨子 / 墨家 / Mohist 来源解释。
+
 本地浏览器验证过：
 
 - 英文模式下可见中文文本数量为 0，语言按钮显示 `ZH`。
@@ -209,7 +211,7 @@ node tests/site-checks.js
 说明：
 
 - `.gitignore`、`.nojekyll`、`README.md`、`HANDOFF.md`、`index.html`、`script.js`、`styles.css`、`tests/site-checks.js` 的最新内容已通过 GitHub API 部署到远端。
-- 远端提交 `ea6a3f203d16a611c15b7c2928f3cbe4f39dced4` 对应本轮页面内容更新；本文件可能由随后的交接说明提交继续更新。
+- 远端提交 `b2257f9125029c4d640baa5582462dabf0e3991a` 对应本轮页面内容更新；本文件可能由随后的交接说明提交继续更新。
 - 本地 `git status` 仍显示这些文件为已修改 / 未跟踪，是因为本地历史没有与远端 API 部署历史对齐，不代表线上缺少这些文件。
 
 ## 待办
