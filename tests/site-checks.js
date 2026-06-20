@@ -198,7 +198,9 @@ assert.ok(!script.includes("墨家反对无谓攻伐"), "translation table shoul
 assert.ok(html.includes("以尽量少拆解、少损伤、少停机的方式完成高端装备在位诊断、进入和维护。"), "mission should connect Feigong to non-invasive equipment maintenance");
 assert.ok(!html.includes('data-member-panel="sun-team"'), "Sun Yu students should be merged into existing member groups, not a separate team panel");
 assert.ok(!html.includes("孙瑜团队"), "member tabs should not create a separate Sun Yu team group");
-assert.ok(html.includes("https://faculty.xjtu.edu.cn/yu.sun/zh_CN/zdylm/980513/list/index.htm"), "Sun Yu current student source should be linked");
+assert.ok(!html.includes("以下名单根据学校教师主页公开成员信息整理"), "member intro should not show source-explanation text");
+assert.ok(!html.includes("来源：孙瑜老师主页学生信息"), "member panel should not show visible source-explanation buttons");
+assert.ok(!html.includes("来源：孙瑜老师主页桃李天下"), "alumni panel should not show visible source-explanation buttons");
 const phdPanel = memberPanelHtml("phd");
 const masterPanel = memberPanelHtml("master");
 orderIndex(phdPanel, ["杜祖鹏", "胡华辉", "杨浙帅", "金若尘"], "PhD students with cohort years");
@@ -230,7 +232,6 @@ for (const note of ["金点子选手", "行动力达人", "求知欲满满", "�
   assert.ok(!html.includes(note), `student profile should omit personality-style note: ${note}`);
 }
 assert.ok(!html.includes("孙瑜老师团队已毕业学生"), "Sun Yu alumni should be merged into the existing alumni group, not a separate subheading");
-assert.ok(html.includes("https://faculty.xjtu.edu.cn/yu.sun/zh_CN/zdylm/980512/list/index.htm"), "Sun Yu alumni source should be linked");
 for (const item of [
   "王昊 · 硕士 · 2019级 · 中铁第一勘察设计院集团有限公司",
   "赵州 · 硕士 · 2020级 · 香港城市大学（攻读博士）",
@@ -296,6 +297,12 @@ assert.ok(html.includes("杨来浩副研究员获首届“太行杯”航空动�
 assert.ok(html.includes("https://gr.xjtu.edu.cn/yanglaihao/zh_CN/article/316893/content/35392.htm#article"), "Yang Laihao news links should be absolute");
 assert.ok(html.includes("欢迎新同学加入课题组"), "notices should include Sun Yu group updates");
 assert.ok(html.includes("https://faculty.xjtu.edu.cn/yu.sun/zh_CN/article/332021/content/23747.htm#article"), "Sun Yu news links should be absolute");
+assert.ok(!html.includes("按保存的 Google Patents inventor:Laihao Yang 页面整理"), "international patent section should not show source-explanation text");
+assert.ok(!html.includes("按保存的中国知网高级检索页面四页整理"), "Chinese patent section should not show source-explanation text");
+assert.ok(!html.includes("同一专利若已授权，则仅保留授权号"), "patent section should not show deduplication explanation text");
+assert.ok(!script.includes("Source: Prof. Yu Sun Faculty Homepage"), "English mode should not keep source-explanation translations");
+assert.ok(!script.includes("Compiled from the saved Google Patents"), "English mode should not keep patent source-explanation translations");
+assert.ok(!script.includes("Compiled from four saved CNKI"), "English mode should not keep patent source-explanation translations");
 assert.ok(script.includes('"亮点报道": "Highlight Reports"'), "English mode should translate the highlight reports filter");
 assert.ok(script.includes('"西安交大：仿生机器人给高端装备“把脉问诊”"'), "English mode should translate the Shaanxi News highlight title");
 assert.ok(script.includes('"《丝路新周刊》节目预告 | 西安交大：用新型仿生机器人给高端装备“把脉问诊”"'), "English mode should translate the Silk Road Weekly highlight title");
