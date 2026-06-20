@@ -12,6 +12,10 @@ function matchAll(pattern, source = html) {
   return Array.from(source.matchAll(pattern));
 }
 
+function memberPanelHtml(panel) {
+  return html.match(new RegExp(`<article class="member-category"[^>]*data-member-panel="${panel}"[\\s\\S]*?</article>`))?.[0] || "";
+}
+
 const researchVideos = matchAll(/<figure class="research-media">\s*<video([^>]*)>[\s\S]*?<source src="([^"]+)"/g).map((match) => ({
   attrs: match[1],
   src: match[2],
@@ -141,6 +145,8 @@ assert.ok(html.includes("航空发动机与航天器先进传感及健康管理"
 assert.ok(html.includes("非攻机器人实验室"), "site should use the updated Feigong Robotics Laboratory name");
 assert.ok(script.includes('"非攻机器人实验室": "Feigong Robotics Laboratory"'), "English mode should translate the updated laboratory name");
 assert.ok(html.includes("取“非攻”一器多形之巧，造因境而变、入微而作的智能检修机器人"), "about section should present Feigong as the lab concept rather than a source note");
+const aboutSection = html.match(/<section class="section" id="about"[\s\S]*?<\/section>/)?.[0] || "";
+assert.ok(!aboutSection.includes("依托西安交通大学机械工程学院和航空发动机研究所"), "about intro should not state the supporting units");
 assert.ok(!html.includes("百度百科《非攻》词条"), "intro should not mention a concrete dictionary entry source");
 assert.ok(!html.includes("https://baike.baidu.com/item/%E9%9D%9E%E6%94%BB/4792002"), "intro should not expose a source link for the lab concept");
 assert.ok(!html.includes("名称来源"), "about cards should not include a source-note card");
@@ -153,16 +159,33 @@ assert.ok(html.includes("以尽量少拆解、少损伤、少停机的方式完�
 assert.ok(!html.includes('data-member-panel="sun-team"'), "Sun Yu students should be merged into existing member groups, not a separate team panel");
 assert.ok(!html.includes("孙瑜团队"), "member tabs should not create a separate Sun Yu team group");
 assert.ok(html.includes("https://faculty.xjtu.edu.cn/yu.sun/zh_CN/zdylm/980513/list/index.htm"), "Sun Yu current student source should be linked");
+const phdPanel = memberPanelHtml("phd");
+const masterPanel = memberPanelHtml("master");
 for (const item of [
   "郭庆凯 · 软体驱动方向",
   "汪领 · 触觉传感方向",
   "梁浩峰 · 粘附设计方向",
   "王韵博 · 爬壁机器人方向",
+]) {
+  assert.ok(html.includes(item), `Sun Yu current PhD students should include ${item}`);
+  assert.ok(phdPanel.includes(item), `${item} should be merged into the PhD student group`);
+  assert.ok(!masterPanel.includes(item), `${item} should not remain in the master's student group`);
+}
+for (const item of [
+  "任亨 · 结构设计方向",
+  "谢时雨 · 软体驱动方向",
+  "赵子攀 · 软体驱动方向",
+  "贾秀梅 · 智能运维方向",
   "侯传鑫 · 触觉传感方向",
+  "李昊阳 · 灵巧手方向",
+  "杨建傲 · 触觉传感方向",
   "唐骏元 · 软体驱动方向",
 ]) {
   assert.ok(html.includes(item), `Sun Yu current students should include ${item}`);
-  assert.ok(new RegExp('data-member-panel="master"[\\s\\S]*' + item.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")).test(html), `${item} should be merged into the master's student group`);
+  assert.ok(masterPanel.includes(item), `${item} should be merged into the master's student group`);
+}
+for (const note of ["金点子选手", "行动力达人", "求知欲满满", "控制硬件担当", "结构设计与系统思维", "软体驱动与系统实验", "软体驱动与实验验证", "智能运维与细致实验", "触觉硬件与论文研读", "灵巧操作与机器人手系统", "触觉感知与传感器系统", "软体驱动与机器人机构"]) {
+  assert.ok(!html.includes(note), `student profile should omit personality-style note: ${note}`);
 }
 assert.ok(!html.includes("孙瑜老师团队已毕业学生"), "Sun Yu alumni should be merged into the existing alumni group, not a separate subheading");
 assert.ok(html.includes("https://faculty.xjtu.edu.cn/yu.sun/zh_CN/zdylm/980512/list/index.htm"), "Sun Yu alumni source should be linked");
@@ -170,10 +193,13 @@ for (const item of [
   "王昊 · 硕士 · 2019级 · 中铁第一勘察设计院集团有限公司",
   "赵州 · 硕士 · 2020级 · 香港城市大学（攻读博士）",
   "张天祥 · 硕士 · 2022级 · 比亚迪汽车有限公司",
-  "刘乙雪 · 硕士 · 2022级 · 比亚迪汽车有限公司",
 ]) {
   assert.ok(html.includes(item), `Sun Yu alumni should include ${item}`);
 }
+assert.ok(!html.includes("王景 · 硕士 · 2021级 · 航空工业第一飞机设计研究院"), "duplicate Wang Jing alumni entry from the new source should be removed");
+assert.ok(!html.includes("刘乙雪 · 硕士 · 2022级 · 比亚迪汽车有限公司"), "duplicate Liu Yixue alumni entry from the new source should be removed");
+assert.ok(html.includes("2024 · 硕士论文：基于非接触测量的航空发动机转子叶片在线监测研究 · 毕业去向：一飞院"), "existing Wang Jing alumni entry should be retained");
+assert.ok(html.includes("2025 · 硕士论文：折纸启发的磁性薄膜多维力触觉电子皮肤 · 毕业去向：比亚迪"), "existing Liu Yixue alumni entry should be retained");
 assert.ok(script.includes('"郭庆凯 · 软体驱动方向": "Qingkai Guo · Soft actuation"'), "English mode should translate Sun Yu current student entries");
 assert.ok(script.includes('"王昊 · 硕士 · 2019级 · 中铁第一勘察设计院集团有限公司"'), "English mode should translate Sun Yu alumni entries");
 assert.ok(styles.includes(".hero h1") && styles.includes("white-space: nowrap"), "hero title should be constrained to one line");
