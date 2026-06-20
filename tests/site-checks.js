@@ -144,7 +144,14 @@ assert.ok(!html.includes("学硕型硕士"), "Sun Yu mentor card should normaliz
 assert.ok(html.includes("航空发动机与航天器先进传感及健康管理"), "Sun Yu mentor card should include detailed recruitment directions");
 assert.ok(html.includes("非攻机器人实验室"), "site should use the updated Feigong Robotics Laboratory name");
 assert.ok(script.includes('"非攻机器人实验室": "Feigong Robotics Laboratory"'), "English mode should translate the updated laboratory name");
-assert.ok(html.includes("取“非攻”一器多形之巧，造因境而变、入微而作的智能检修机器人"), "about section should present Feigong as the lab concept rather than a source note");
+assert.ok(html.includes("取“非攻”一器多形之巧，造因境而变、入微而作的具身智能机器人"), "about section should present Feigong as an embodied intelligence robotics concept");
+assert.ok(!html.includes("取“非攻”一器多形之巧，造因境而变、入微而作的智能检修机器人"), "about section should no longer use intelligent maintenance robots in the Feigong concept sentence");
+for (const keyword of ["软体/连续体机器人", "爬行机器人", "具身智能", "灵巧操作", "触觉传感"]) {
+  assert.ok(html.includes(`<span data-i18n="hero.meta.`) && html.includes(`>${keyword}</span>`), `hero keyword list should include ${keyword}`);
+}
+for (const oldKeyword of ["智能诊断", "原位介入", "具身操作"]) {
+  assert.ok(!html.includes(`>${oldKeyword}</span>`), `hero keyword list should no longer include ${oldKeyword}`);
+}
 const aboutSection = html.match(/<section class="section" id="about"[\s\S]*?<\/section>/)?.[0] || "";
 assert.ok(!aboutSection.includes("依托西安交通大学机械工程学院和航空发动机研究所"), "about intro should not state the supporting units");
 assert.ok(!html.includes("百度百科《非攻》词条"), "intro should not mention a concrete dictionary entry source");
@@ -202,6 +209,7 @@ assert.ok(html.includes("2024 · 硕士论文：基于非接触测量的航空�
 assert.ok(html.includes("2025 · 硕士论文：折纸启发的磁性薄膜多维力触觉电子皮肤 · 毕业去向：比亚迪"), "existing Liu Yixue alumni entry should be retained");
 assert.ok(script.includes('"郭庆凯 · 软体驱动方向": "Qingkai Guo · Soft actuation"'), "English mode should translate Sun Yu current student entries");
 assert.ok(script.includes('"王昊 · 硕士 · 2019级 · 中铁第一勘察设计院集团有限公司"'), "English mode should translate Sun Yu alumni entries");
+assert.ok(script.includes("embodied intelligent robots that adapt to their environment and work at fine scale"), "English mode should translate the Feigong concept as embodied intelligent robots");
 assert.ok(styles.includes(".hero h1") && styles.includes("white-space: nowrap"), "hero title should be constrained to one line");
 assert.ok(html.includes("data-language-toggle"), "home page should include a Chinese/English language toggle");
 assert.ok(html.includes("data-i18n=\"nav.home\""), "key navigation text should be language-switchable");
