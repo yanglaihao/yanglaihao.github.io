@@ -16,6 +16,30 @@ function memberPanelHtml(panel) {
   return html.match(new RegExp(`<article class="member-category"[^>]*data-member-panel="${panel}"[\\s\\S]*?</article>`))?.[0] || "";
 }
 
+function assertDescending(values, label) {
+  for (let index = 1; index < values.length; index += 1) {
+    assert.ok(
+      values[index - 1] >= values[index],
+      `${label} should be sorted newest first, but ${values[index - 1]} appears before ${values[index]}`
+    );
+  }
+}
+
+function orderIndex(source, snippets, label) {
+  const indices = snippets.map((snippet) => {
+    const index = source.indexOf(snippet);
+    assert.notEqual(index, -1, `${label} should include ${snippet}`);
+    return index;
+  });
+  assertDescending(indices.map((index) => -index), label);
+}
+
+function achievementYearsFor(predicate) {
+  return matchAll(/<article class="achievement(?: [^"]*)?" data-output-type="([^"]+)">([\s\S]*?)<\/article>/g)
+    .filter((match) => predicate(match[1], match[2]))
+    .map((match) => Number(match[2].match(/<div class="pub-year">(\d+)<\/div>/)?.[1]));
+}
+
 const researchVideos = matchAll(/<figure class="research-media">\s*<video([^>]*)>[\s\S]*?<source src="([^"]+)"/g).map((match) => ({
   attrs: match[1],
   src: match[2],
@@ -54,6 +78,11 @@ assert.ok(html.includes("data-award-subfilters"), "award section should include 
 
 const highlightOutputBlocks = matchAll(/<article class="achievement achievement-featured-output" data-output-type="highlight-output">([\s\S]*?)<\/article>/g).map((match) => match[1]);
 assert.equal(highlightOutputBlocks.length, 3, "achievement section should include 3 featured outputs");
+assert.deepEqual(
+  highlightOutputBlocks.map((block) => block.match(/ · (20\d{2})<\/p>/)?.[1]),
+  ["2026", "2024", "2024"],
+  "featured outputs should be sorted newest first"
+);
 for (const video of [
   "assets/paper-highlights/contact-aided-continuum.mp4",
   "assets/paper-highlights/torque-dexterity.mp4",
@@ -130,14 +159,18 @@ for (const filter of ["award-tech", "award-paper", "award-student", "award-socia
 
 const projectCount = matchAll(/<article class="achievement" data-output-type="project">/g).length;
 assert.equal(projectCount, 18, `expected 18 projects from the public profile, found ${projectCount}`);
+assertDescending(achievementYearsFor((type) => type === "project"), "projects");
 
 const awardCount = matchAll(/<article class="achievement" data-output-type="award-/g).length;
 assert.equal(awardCount, 18, `expected 18 categorized awards after adding the Taihang Cup item, found ${awardCount}`);
 assert.ok(html.includes("首届“太行杯”航空动力创新大赛优胜奖"), "student competition awards should include the first Taihang Cup aviation power innovation award");
 assert.ok(html.includes('<div class="pub-year">2026</div>\n            <div class="pub-body">\n              <p class="pub-venue">学生竞赛获奖</p>\n              <h3>首届“太行杯”航空动力创新大赛优胜奖</h3>'), "Taihang Cup award should use the 2026 award year format");
+assertDescending(achievementYearsFor((type) => type.startsWith("award-")), "awards");
+assertDescending(achievementYearsFor((type) => type === "award-student"), "student awards");
 
 const serviceCount = matchAll(/<article class="achievement" data-output-type="service">/g).length;
 assert.equal(serviceCount, 11, `expected 11 social service entries from the public profile, found ${serviceCount}`);
+assertDescending(achievementYearsFor((type) => type === "service"), "service entries");
 
 assert.ok(html.includes("学术型博士（1-2人/年）"), "Sun Yu mentor card should include PhD enrollment direction details");
 assert.ok(!html.includes("学硕型硕士"), "Sun Yu mentor card should normalize the master's enrollment label");
@@ -168,6 +201,8 @@ assert.ok(!html.includes("孙瑜团队"), "member tabs should not create a separ
 assert.ok(html.includes("https://faculty.xjtu.edu.cn/yu.sun/zh_CN/zdylm/980513/list/index.htm"), "Sun Yu current student source should be linked");
 const phdPanel = memberPanelHtml("phd");
 const masterPanel = memberPanelHtml("master");
+orderIndex(phdPanel, ["杜祖鹏", "胡华辉", "杨浙帅", "金若尘"], "PhD students with cohort years");
+orderIndex(masterPanel, ["张亚鹏", "李昊钢", "李晨铭", "钱行健", "王怡博", "薛晨菲", "姚晨彧"], "master's students with cohort years");
 for (const item of [
   "郭庆凯 · 软体驱动方向",
   "汪领 · 触觉传感方向",
@@ -207,6 +242,12 @@ assert.ok(!html.includes("王景 · 硕士 · 2021级 · 航空工业第一飞�
 assert.ok(!html.includes("刘乙雪 · 硕士 · 2022级 · 比亚迪汽车有限公司"), "duplicate Liu Yixue alumni entry from the new source should be removed");
 assert.ok(html.includes("2024 · 硕士论文：基于非接触测量的航空发动机转子叶片在线监测研究 · 毕业去向：一飞院"), "existing Wang Jing alumni entry should be retained");
 assert.ok(html.includes("2025 · 硕士论文：折纸启发的磁性薄膜多维力触觉电子皮肤 · 毕业去向：比亚迪"), "existing Liu Yixue alumni entry should be retained");
+const alumniPanel = memberPanelHtml("alumni");
+orderIndex(
+  alumniPanel,
+  ["刘乙雪", "杨冬", "兰雨", "庞丁", "吕宇欣", "赵州", "王昊"],
+  "alumni entries"
+);
 assert.ok(script.includes('"郭庆凯 · 软体驱动方向": "Qingkai Guo · Soft actuation"'), "English mode should translate Sun Yu current student entries");
 assert.ok(script.includes('"王昊 · 硕士 · 2019级 · 中铁第一勘察设计院集团有限公司"'), "English mode should translate Sun Yu alumni entries");
 assert.ok(script.includes("embodied intelligent robots that adapt to their environment and work at fine scale"), "English mode should translate the Feigong concept as embodied intelligent robots");
@@ -227,6 +268,9 @@ assert.ok(handoff.includes("中英文切换"), "handoff should mention the langu
 
 assert.ok(html.includes("团队关于触觉传感和灵巧操作的研究工作发表于Science 子刊"), "news should include current profile news from the school site");
 assert.ok(html.includes("https://faculty.xjtu.edu.cn/content.jsp?urltype=news.NewsContentUrl"), "news should retain source links");
+const newsDates = matchAll(/<article class="news-card(?: news-card-featured)?" data-news-type="[^"]+">([\s\S]*?)<\/article>/g)
+  .map((match) => Number(match[1].match(/<time>(\d{4})-(\d{2})-(\d{2})<\/time>/)?.slice(1).join("")));
+assertDescending(newsDates, "team news cards");
 const newsFilterOrder = matchAll(/data-news-filter="([^"]+)"/g).map((match) => match[1]);
 assert.deepEqual(newsFilterOrder.slice(0, 4), ["all", "highlight", "news", "notice"], "news filters should put highlight reports before news and notices");
 assert.ok(html.includes('data-news-filter="notice"'), "news section should include a notice filter");
