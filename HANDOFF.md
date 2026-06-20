@@ -31,8 +31,8 @@
 
 - 线上站点：https://yanglaihao.github.io/
 - GitHub Pages 状态：`built`
-- 当前远端 `main`：以 GitHub 仓库 `refs/heads/main` 为准；本轮页面内容部署提交为 `d15ccf98cd0b70cef5425a62c03bf4d220bfdaa6`，后续若仅补充本交接文件，仍以远端 ref 的最新提交为准。
-- 页面内容更新提交：`d15ccf98cd0b70cef5425a62c03bf4d220bfdaa6`
+- 当前远端 `main`：以 GitHub 仓库 `refs/heads/main` 为准；本轮页面内容部署提交为 `cf10813437124568f64e386ada6cee3869541294`，后续若仅补充本交接文件，仍以远端 ref 的最新提交为准。
+- 页面内容更新提交：`cf10813437124568f64e386ada6cee3869541294`
 - `.nojekyll` 修复提交：`46a12113d35046f8d13a29af602745b515de09e6`
 
 最新部署方式：普通 `git push` 多次因 GitHub HTTPS 网络 / HTTP2 错误失败，最终使用 GitHub CLI + GitHub Git Data API 创建 blob / tree / commit 并更新 `main` 引用。随后手动触发 Pages build，添加 `.nojekyll` 后构建成功。
@@ -215,7 +215,7 @@ node tests/site-checks.js
 说明：
 
 - `.gitignore`、`.nojekyll`、`README.md`、`HANDOFF.md`、`index.html`、`script.js`、`styles.css`、`tests/site-checks.js` 的最新内容已通过 GitHub API 部署到远端。
-- 远端提交 `d15ccf98cd0b70cef5425a62c03bf4d220bfdaa6` 对应本轮页面内容更新；本文件可能由随后的交接说明提交继续更新。
+- 远端提交 `cf10813437124568f64e386ada6cee3869541294` 对应本轮页面内容更新；本文件可能由随后的交接说明提交继续更新。
 - 本地 `git status` 仍显示这些文件为已修改 / 未跟踪，是因为本地历史没有与远端 API 部署历史对齐，不代表线上缺少这些文件。
 
 ## 待办
