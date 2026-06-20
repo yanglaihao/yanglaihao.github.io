@@ -1,6 +1,6 @@
-# 高端装备智能检修机器人团队主页
+# 非攻机器人实验室主页
 
-一个团队主页静态站，当前围绕西安交通大学高端装备智能检修机器人团队组织内容，栏目包括首页、团队简介、研究方向、团队动态、团队成员、团队成果和联系方式。
+一个实验室主页静态站，当前围绕西安交通大学非攻机器人实验室组织内容，栏目包括首页、实验室简介、研究方向、团队动态、团队成员、团队成果和联系方式。
 
 页面已按学校团队主页的宽版结构优化：研究方向使用可点击切换的可播放视频模块，团队成员改为分组点击展开，团队成果改为“成果简介 + 亮点成果/项目/论文/专利/专著/获奖/社会任职板块”，亮点成果默认优先展示，获奖按学校主页分类展示，首页导航支持中英文切换并覆盖全页面可见文字，团队动态按亮点报道 / 新闻 / 通知区分展示，联系区包含团队主页二维码。
 
@@ -36,6 +36,9 @@ python3 -m http.server 4173
 - 团队动态第 2 页：https://gr.xjtu.edu.cn/yanglaihao/zh_CN/article/316893/list/2.htm
 - 孙瑜团队动态：https://faculty.xjtu.edu.cn/yu.sun/zh_CN/article/332021/list/index.htm
 - 孙瑜招生信息：https://faculty.xjtu.edu.cn/yu.sun/zh_CN/zdylm/980524/list/index.htm
+- 孙瑜团队学生：https://faculty.xjtu.edu.cn/yu.sun/zh_CN/zdylm/980513/list/index.htm
+- 孙瑜已毕业学生：https://faculty.xjtu.edu.cn/yu.sun/zh_CN/zdylm/980512/list/index.htm
+- “非攻”名称来源：https://baike.baidu.com/item/%E9%9D%9E%E6%94%BB/4792002
 - 陕西新闻联播报道：http://www.snrtv.com/snr_sxxwlb/a/2024/10/10/22818371.html
 - 陕西卫视《丝路新周刊》报道：https://www.163.com/dy/article/JGIRJRQ90530TBVC.html
 - 西安交通大学新闻网 / 央视正午国防军事报道：https://news.xjtu.edu.cn/info/1014/223743.htm

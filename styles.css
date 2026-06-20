@@ -1020,6 +1020,10 @@ h3 {
   text-transform: uppercase;
 }
 
+.alumni-subhead {
+  margin-top: 1.15rem;
+}
+
 .member-list {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -1295,6 +1299,20 @@ h3 {
   display: block;
   font-size: 1.02rem;
   line-height: 1.5;
+}
+
+.info-card a {
+  display: inline-flex;
+  align-items: center;
+  margin-top: 0.8rem;
+  color: var(--blue);
+  font-weight: 800;
+  text-decoration: none;
+}
+
+.info-card a:hover,
+.info-card a:focus-visible {
+  color: var(--rust);
 }
 
 .list-card {
