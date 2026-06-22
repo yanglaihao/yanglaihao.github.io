@@ -34,7 +34,7 @@
 线上最新状态：
 
 - 线上站点：https://yanglaihao.github.io/
-- GitHub Pages 状态：`built`
+- GitHub Pages Actions 部署：`success`；线上站点已抓取验证。注意 GitHub `/pages` legacy 状态可能停留在本轮中间内容提交的 `errored`，但后续 `pages-build-deployment` Actions run 已成功部署当前远端内容。
 - 当前远端 `main`：以 GitHub 仓库 `refs/heads/main` 为准；本轮视频不可下载设置内容部署提交为 `c3052524c373aa8b0d74adef4eec8f7d16ab8853`，后续若仅补充本交接文件，仍以远端 ref 的最新提交为准。
 - 页面内容更新提交：`c3052524c373aa8b0d74adef4eec8f7d16ab8853`
 - `.nojekyll` 修复提交：`46a12113d35046f8d13a29af602745b515de09e6`
@@ -177,7 +177,7 @@ node tests/site-checks.js
 
 本轮说明性来源文案清理复验：2026-06-21 06:33 CST，`node --check script.js` 和 `node tests/site-checks.js` 均以退出码 0 结束；结构校验确认成员区不再显示“来源：孙瑜老师主页...”按钮，成员简介不再显示“根据学校教师主页公开成员信息整理”，专利分区不再显示 `Google Patents` / `CNKI` 整理说明或去重说明，英文翻译表不再保留对应说明性英文文案。
 
-本轮视频不可下载设置复验：2026-06-22 08:26 CST，`node --check script.js` 和 `node tests/site-checks.js` 均以退出码 0 结束；结构校验确认页面 9 个本地 `<video>` 标签均包含 `controlslist="nodownload"` 和 `oncontextmenu="return false"`，覆盖研究方向、亮点报道和亮点成果视频。
+本轮视频不可下载设置复验：2026-06-22 08:26 CST，`node --check script.js` 和 `node tests/site-checks.js` 均以退出码 0 结束；结构校验确认页面 9 个本地 `<video>` 标签均包含 `controlslist="nodownload"` 和 `oncontextmenu="return false"`，覆盖研究方向、亮点报道和亮点成果视频。线上 `https://yanglaihao.github.io/?verify=20260622-video-nodownload` 抓取验证同样确认 9 个视频标签均包含上述属性。
 
 本地浏览器验证过：
 
@@ -192,7 +192,7 @@ node tests/site-checks.js
 
 线上验证过：
 
-- GitHub Pages 状态为 `built`。
+- GitHub Pages Actions `pages-build-deployment` 最近一次部署为 `success`；线上 HTML 已抓取验证。
 - 线上 HTML 包含：
   - `【央视正午国防军事】报道西安交通大学团队攻克“卡脖子”难题`
   - `杨来浩受邀参加青年科学家论坛并作报告`
