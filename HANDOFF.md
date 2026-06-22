@@ -2,10 +2,11 @@
 
 ## 最新更新
 
-更新时间：2026-06-21 06:33 CST
+更新时间：2026-06-22 08:26 CST
 
 本文件已更新到当前项目状态。最新一轮已完成并部署：
 
+- 重新设置站内视频为不可下载状态：研究方向、亮点报道、亮点成果共 9 个本地视频均保留播放控件，同时添加 `controlslist="nodownload"` 并禁用默认右键菜单，减少浏览器控件中的下载入口；测试新增全站视频属性校验。
 - 删除页面中的说明性来源 / 整理口径文案：团队成员简介不再显示“根据学校教师主页公开成员信息整理”，硕士 / 已毕业面板不再显示“来源：孙瑜老师主页...”按钮；专利二级标题下不再显示 `Google Patents` / `CNKI` 小标签及“按保存页面整理、共多少条、同一专利若已授权...”说明。英文翻译表同步移除这些说明性兜底文案。
 - 修复全站列表时间顺序：团队动态所有卡片按事件日期由新到旧排列；团队成员中博士、硕士按入学年级由新到旧排列，已毕业学生按毕业 / 年级时间由新到旧排列；成果条目按年份由新到旧排列，覆盖亮点成果、项目、论文、专利、专著、获奖和社会任职等筛选视图。
 - 修正“非攻机器人实验室”立意表达：页面不再出现具体词条出处、来源链接或“名称来源”卡片；简介改为“取‘非攻’一器多形之巧，造因境而变、入微而作的具身智能机器人”，并进一步映射到可重构、柔顺、可感知、可操作的具身智能机器人系统，以及智能诊断、原位介入、具身操作三条研究主线。
@@ -60,7 +61,7 @@ origin  https://github.com/yanglaihao/yanglaihao.github.io.git
 
 ### 研究方向
 
-三个研究方向均为可点击切换的可播放视频模块，使用 `<video controls autoplay muted loop playsinline>`：
+三个研究方向均为可点击切换的可播放视频模块，使用 `<video controls controlslist="nodownload" oncontextmenu="return false" autoplay muted loop playsinline>`：
 
 - 智能诊断：`assets/research-diagnosis.mp4`
 - 原位介入：`assets/research-intervention.mp4`
@@ -175,6 +176,8 @@ node tests/site-checks.js
 本轮全站列表时间顺序修复复验：2026-06-21 01:09 CST，`node --check script.js` 和 `node tests/site-checks.js` 均以退出码 0 结束；新增结构校验覆盖团队动态日期倒序、亮点成果年份倒序、项目 / 获奖 / 社会任职年份倒序，以及博士生、硕士生、已毕业学生列表的时间倒序。
 
 本轮说明性来源文案清理复验：2026-06-21 06:33 CST，`node --check script.js` 和 `node tests/site-checks.js` 均以退出码 0 结束；结构校验确认成员区不再显示“来源：孙瑜老师主页...”按钮，成员简介不再显示“根据学校教师主页公开成员信息整理”，专利分区不再显示 `Google Patents` / `CNKI` 整理说明或去重说明，英文翻译表不再保留对应说明性英文文案。
+
+本轮视频不可下载设置复验：2026-06-22 08:26 CST，`node --check script.js` 和 `node tests/site-checks.js` 均以退出码 0 结束；结构校验确认页面 9 个本地 `<video>` 标签均包含 `controlslist="nodownload"` 和 `oncontextmenu="return false"`，覆盖研究方向、亮点报道和亮点成果视频。
 
 本地浏览器验证过：
 

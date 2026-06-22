@@ -49,6 +49,12 @@ for (const video of researchVideos) {
   assert.equal(path.extname(video.src).toLowerCase(), ".mp4", "research videos should be MP4");
   assert.ok(video.attrs.includes("controls"), "research videos should expose playback controls");
 }
+const allVideoTags = matchAll(/<video([^>]*)>/g).map((match) => match[1]);
+assert.equal(allVideoTags.length, 9, "site should keep the expected 9 local videos");
+for (const attrs of allVideoTags) {
+  assert.ok(attrs.includes('controlslist="nodownload"'), "videos should hide the browser download control");
+  assert.ok(attrs.includes('oncontextmenu="return false"'), "videos should disable the default right-click download menu");
+}
 
 const memberCategoryButtons = matchAll(/data-member-target="([^"]+)"/g);
 assert.equal(memberCategoryButtons.length, 7, "member categories should use the existing seven collapsible groups");
