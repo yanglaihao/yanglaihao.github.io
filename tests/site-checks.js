@@ -299,10 +299,10 @@ assert.ok(html.includes("http://cqia.cqjtu.edu.cn/info/1183/4046.htm"), "news sh
 assert.ok(html.includes("https://cmce.szu.edu.cn/info/1017/8965.htm"), "news should include Shenzhen University invited lecture report");
 assert.ok(html.includes("杨来浩受邀在 UNIfied 2026-SMMI 青年科学家论坛作报告"), "news should include the completed Youth Scientists Forum item from the conference manual");
 assert.ok(html.includes("2026 International Conference on Advanced Sensing, Condition Monitoring, and Intelligent Maintenance Innovations"), "Youth Scientists Forum item should name the UNIfied 2026-SMMI conference");
-assert.ok(html.includes("面向航空发动机原位检测与维修的机器人系统"), "Youth Scientists Forum item should include the Chinese report title from the conference manual");
+assert.ok(html.includes("2026 年 5 月 13 日，杨来浩受邀参加 2026 International Conference on Advanced Sensing, Condition Monitoring, and Intelligent Maintenance Innovations（UNIfied 2026-SMMI）青年科学家论坛，并作特邀报告“面向航空发动机原位检测与维修的机器人系统（Robotic Systems for In-Situ Inspection and Repair of Aero-Engines）”。"), "Youth Scientists Forum item should use the refined user-provided summary");
+assert.ok(!html.includes("在广州华钜君悦酒店四楼 Meeting Room 2 作"), "Youth Scientists Forum summary should no longer include venue details");
+assert.ok(!html.includes("论坛由广州大学赵志佳教授和西安交通大学严如强教授共同主持"), "Youth Scientists Forum summary should no longer include chair details");
 assert.ok(html.includes("Robotic Systems for In-Situ Inspection and Repair of Aero-Engines"), "Youth Scientists Forum item should include the original English report title from the conference manual");
-assert.ok(html.includes("广州大学赵志佳教授和西安交通大学严如强教授共同主持"), "Youth Scientists Forum item should include the forum chairs from the conference manual");
-assert.ok(html.includes("四楼 Meeting Room 2"), "Youth Scientists Forum item should include the forum venue from the conference manual");
 assert.ok(!html.includes("机器人具身智能如何赋能高端装备把脉问诊"), "Youth Scientists Forum item should no longer keep the earlier incomplete report title");
 for (const video of ["新闻报道/陕西电视台-报道-web.mp4", "新闻报道/陕西卫视-丝路会客厅-web.mp4", "新闻报道/正午0714播出版-web.mp4"]) {
   assert.ok(html.includes(video), `highlight work should embed local report video: ${video}`);
