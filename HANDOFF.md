@@ -36,10 +36,10 @@
 线上最新状态：
 
 - 线上站点：https://yanglaihao.github.io/
-- GitHub Pages Actions 部署：`success`；本轮 `pages-build-deployment` run `28032641757` 已成功，线上站点已抓取验证。注意 GitHub `/pages` legacy 状态可能停留在中间内容提交的 `errored`，但后续 `pages-build-deployment` Actions run 已成功部署当前远端内容。
-- 当前远端 `main`：以 GitHub 仓库 `refs/heads/main` 为准；本轮 UNIfied 2026-SMMI 青年科学家论坛新闻补全内容部署提交为 `722b19b0aa7ae706f9deb64fc7849e6ccc11ade0`，后续若仅补充本交接文件，仍以远端 ref 的最新提交为准。
-- 页面内容更新提交：`722b19b0aa7ae706f9deb64fc7849e6ccc11ade0`
-- 线上 HTML / `script.js` 已验证包含 `UNIfied 2026-SMMI`、`2026 International Conference on Advanced Sensing, Condition Monitoring, and Intelligent Maintenance Innovations`、`Robotic Systems for In-Situ Inspection and Repair of Aero-Engines`、论坛地点和主持人英文翻译；线上 HTML 已确认不再包含旧的不完整报告题目 `机器人具身智能如何赋能高端装备把脉问诊`。
+- GitHub Pages Actions 部署：`success`；本轮 `pages-build-deployment` run `28037574502` 已成功，线上站点已抓取验证。注意 GitHub `/pages` legacy 状态可能停留在中间内容提交的 `errored`，但后续 `pages-build-deployment` Actions run 已成功部署当前远端内容。
+- 当前远端 `main`：以 GitHub 仓库 `refs/heads/main` 为准；本轮 UNIfied 2026-SMMI 青年科学家论坛新闻正文精简内容部署提交为 `e169f79066592440d4939d7ba8758712a6004127`，后续若仅补充本交接文件，仍以远端 ref 的最新提交为准。
+- 页面内容更新提交：`e169f79066592440d4939d7ba8758712a6004127`
+- 线上 HTML / `script.js` 已验证包含 `UNIfied 2026-SMMI`、`2026 International Conference on Advanced Sensing, Condition Monitoring, and Intelligent Maintenance Innovations`、`Robotic Systems for In-Situ Inspection and Repair of Aero-Engines` 和“特邀报告”口径；线上 HTML 已确认不再包含旧的不完整报告题目 `机器人具身智能如何赋能高端装备把脉问诊`，且该新闻正文不再保留会议地点 / 主持人等额外说明。
 - `.nojekyll` 修复提交：`46a12113d35046f8d13a29af602745b515de09e6`
 
 最新部署方式：普通 `git push` 多次因 GitHub HTTPS 网络 / HTTP2 错误失败，最终使用 GitHub CLI + GitHub Git Data API 创建 blob / tree / commit 并更新 `main` 引用。随后手动触发 Pages build，添加 `.nojekyll` 后构建成功。
