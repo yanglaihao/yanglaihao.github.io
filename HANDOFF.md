@@ -2,10 +2,11 @@
 
 ## 最新更新
 
-更新时间：2026-06-23 21:52 CST
+更新时间：2026-06-23 22:11 CST
 
 本文件已更新到当前项目状态。最新一轮已完成并部署：
 
+- 根据本地会议手册 `UNIfied2026SMMI会议手册完整稿(2).pdf` 补全 2026-05-13 青年科学家论坛新闻：标题更新为“杨来浩受邀在 UNIfied 2026-SMMI 青年科学家论坛作报告”；正文补入会议全称 `2026 International Conference on Advanced Sensing, Condition Monitoring, and Intelligent Maintenance Innovations（UNIfied 2026-SMMI）`、广州华钜君悦酒店四楼 `Meeting Room 2`、报告题目“面向航空发动机原位检测与维修的机器人系统（Robotic Systems for In-Situ Inspection and Repair of Aero-Engines）”、论坛主持人广州大学赵志佳教授和西安交通大学严如强教授，以及圆桌交流环节；英文主页同步更新，旧的不完整报告题目“机器人具身智能如何赋能高端装备把脉问诊”已移除。
 - 根据本地 PDF `Yang Laihao SR AE Acceptance 2026.docx.pdf` 新增团队新闻：杨来浩受邀担任 `IEEE Sensors Reviews` Associate Editor。PDF 为 IEEE Sensors Reviews 主编 Eui-Hyeok Yang 的邀请函，说明初始任期一年；页面按文件保存日期使用 2026-06-23 展示，并同步英文翻译。
 - 重新设置站内视频为不可下载状态：研究方向、亮点报道、亮点成果共 9 个本地视频均保留播放控件，同时添加 `controlslist="nodownload"` 并禁用默认右键菜单，减少浏览器控件中的下载入口；测试新增全站视频属性校验。
 - 删除页面中的说明性来源 / 整理口径文案：团队成员简介不再显示“根据学校教师主页公开成员信息整理”，硕士 / 已毕业面板不再显示“来源：孙瑜老师主页...”按钮；专利二级标题下不再显示 `Google Patents` / `CNKI` 小标签及“按保存页面整理、共多少条、同一专利若已授权...”说明。英文翻译表同步移除这些说明性兜底文案。

@@ -297,8 +297,13 @@ assert.ok(!html.includes("【央视正午国防军事】报道西安交大陈雪
 assert.ok(html.includes("【央视正午国防军事】报道西安交通大学团队攻克“卡脖子”难题"), "CCTV report title should use Xi'an Jiaotong University team wording");
 assert.ok(html.includes("http://cqia.cqjtu.edu.cn/info/1183/4046.htm"), "news should include Chongqing Jiaotong University invited lecture report");
 assert.ok(html.includes("https://cmce.szu.edu.cn/info/1017/8965.htm"), "news should include Shenzhen University invited lecture report");
-assert.ok(html.includes("杨来浩受邀参加青年科学家论坛并作报告"), "news should include the Youth Scientists Forum item from the provided image");
-assert.ok(html.includes("机器人具身智能如何赋能高端装备把脉问诊"), "Youth Scientists Forum item should include the report title from the provided image");
+assert.ok(html.includes("杨来浩受邀在 UNIfied 2026-SMMI 青年科学家论坛作报告"), "news should include the completed Youth Scientists Forum item from the conference manual");
+assert.ok(html.includes("2026 International Conference on Advanced Sensing, Condition Monitoring, and Intelligent Maintenance Innovations"), "Youth Scientists Forum item should name the UNIfied 2026-SMMI conference");
+assert.ok(html.includes("面向航空发动机原位检测与维修的机器人系统"), "Youth Scientists Forum item should include the Chinese report title from the conference manual");
+assert.ok(html.includes("Robotic Systems for In-Situ Inspection and Repair of Aero-Engines"), "Youth Scientists Forum item should include the original English report title from the conference manual");
+assert.ok(html.includes("广州大学赵志佳教授和西安交通大学严如强教授共同主持"), "Youth Scientists Forum item should include the forum chairs from the conference manual");
+assert.ok(html.includes("四楼 Meeting Room 2"), "Youth Scientists Forum item should include the forum venue from the conference manual");
+assert.ok(!html.includes("机器人具身智能如何赋能高端装备把脉问诊"), "Youth Scientists Forum item should no longer keep the earlier incomplete report title");
 for (const video of ["新闻报道/陕西电视台-报道-web.mp4", "新闻报道/陕西卫视-丝路会客厅-web.mp4", "新闻报道/正午0714播出版-web.mp4"]) {
   assert.ok(html.includes(video), `highlight work should embed local report video: ${video}`);
 }
@@ -318,7 +323,8 @@ assert.ok(script.includes('"《丝路新周刊》节目预告 | 西安交大：�
 assert.ok(script.includes('"【央视正午国防军事】报道西安交通大学团队攻克“卡脖子”难题"'), "English mode should translate the revised CCTV/XJTU highlight title");
 assert.ok(script.includes('"杨来浩受邀赴重庆交通大学航空学院作前沿微课讲座"'), "English mode should translate the Chongqing Jiaotong invited lecture title");
 assert.ok(script.includes('"杨来浩受邀赴深圳大学作机器人具身智能学术讲座"'), "English mode should translate the Shenzhen University invited lecture title");
-assert.ok(script.includes('"杨来浩受邀参加青年科学家论坛并作报告"'), "English mode should translate the Youth Scientists Forum title");
+assert.ok(script.includes('"杨来浩受邀在 UNIfied 2026-SMMI 青年科学家论坛作报告"'), "English mode should translate the completed Youth Scientists Forum title");
+assert.ok(script.includes("Laihao Yang was invited to the Youth Scientists Forum of the 2026 International Conference on Advanced Sensing, Condition Monitoring, and Intelligent Maintenance Innovations"), "English mode should translate the completed Youth Scientists Forum summary");
 assert.ok(script.includes('"杨来浩受邀担任 IEEE Sensors Reviews Associate Editor"'), "English mode should translate the IEEE Sensors Reviews Associate Editor appointment title");
 assert.ok(script.includes('"通知": "Notices"'), "English mode should translate the notice filter");
 assert.ok(script.includes('"杨来浩副研究员获首届“太行杯”航空动力创新大赛优胜奖"'), "English mode should translate the latest news titles");
