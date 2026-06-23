@@ -275,6 +275,9 @@ assert.ok(handoff.includes("中英文切换"), "handoff should mention the langu
 
 assert.ok(html.includes("团队关于触觉传感和灵巧操作的研究工作发表于Science 子刊"), "news should include current profile news from the school site");
 assert.ok(html.includes("https://faculty.xjtu.edu.cn/content.jsp?urltype=news.NewsContentUrl"), "news should retain source links");
+assert.ok(html.includes("杨来浩受邀担任 IEEE Sensors Reviews Associate Editor"), "news should include the IEEE Sensors Reviews Associate Editor appointment from the provided PDF");
+assert.ok(html.includes("根据 IEEE Sensors Reviews 主编 Eui-Hyeok Yang 的邀请函"), "news should summarize the provided IEEE Sensors Reviews appointment letter");
+assert.ok(html.includes("<time>2026-06-23</time>"), "IEEE Sensors Reviews appointment news should use the PDF saved date");
 const newsDates = matchAll(/<article class="news-card(?: news-card-featured)?" data-news-type="[^"]+">([\s\S]*?)<\/article>/g)
   .map((match) => Number(match[1].match(/<time>(\d{4})-(\d{2})-(\d{2})<\/time>/)?.slice(1).join("")));
 assertDescending(newsDates, "team news cards");
@@ -285,7 +288,7 @@ assert.ok(html.includes('data-news-filter="highlight"'), "news section should in
 assert.ok(html.includes(">亮点报道</button>"), "news filter label should be highlight reports");
 assert.ok(!html.includes(">亮点工作</button>"), "news filter label should no longer be highlight work");
 assert.equal(matchAll(/<article class="news-card(?: news-card-featured)?" data-news-type="highlight">/g).length, 3, "news section should include 3 highlight work items");
-assert.equal(matchAll(/<article class="news-card" data-news-type="news">/g).length, 15, "news section should include 15 current news items after adding invited academic reports");
+assert.equal(matchAll(/<article class="news-card" data-news-type="news">/g).length, 16, "news section should include 16 current news items after adding the IEEE Sensors Reviews appointment");
 assert.equal(matchAll(/<article class="news-card" data-news-type="notice">/g).length, 4, "news section should include 4 notice items");
 assert.ok(html.includes("http://www.snrtv.com/snr_sxxwlb/a/2024/10/10/22818371.html"), "highlight work should cite the Shaanxi News source");
 assert.ok(html.includes("https://www.163.com/dy/article/JGIRJRQ90530TBVC.html"), "highlight work should cite the Silk Road Weekly source");
@@ -316,6 +319,7 @@ assert.ok(script.includes('"【央视正午国防军事】报道西安交通大�
 assert.ok(script.includes('"杨来浩受邀赴重庆交通大学航空学院作前沿微课讲座"'), "English mode should translate the Chongqing Jiaotong invited lecture title");
 assert.ok(script.includes('"杨来浩受邀赴深圳大学作机器人具身智能学术讲座"'), "English mode should translate the Shenzhen University invited lecture title");
 assert.ok(script.includes('"杨来浩受邀参加青年科学家论坛并作报告"'), "English mode should translate the Youth Scientists Forum title");
+assert.ok(script.includes('"杨来浩受邀担任 IEEE Sensors Reviews Associate Editor"'), "English mode should translate the IEEE Sensors Reviews Associate Editor appointment title");
 assert.ok(script.includes('"通知": "Notices"'), "English mode should translate the notice filter");
 assert.ok(script.includes('"杨来浩副研究员获首届“太行杯”航空动力创新大赛优胜奖"'), "English mode should translate the latest news titles");
 assert.ok(script.includes('"欢迎新同学加入课题组"'), "English mode should translate notice titles");
