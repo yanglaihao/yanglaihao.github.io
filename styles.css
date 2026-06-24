@@ -539,6 +539,9 @@ h3 {
 
 .welcome-page {
   position: relative;
+  min-height: auto;
+  align-items: start;
+  padding-top: clamp(2rem, 4.2vw, 3.6rem);
 }
 
 .welcome-page::before,
@@ -634,13 +637,44 @@ h3 {
   border-bottom: 1px solid var(--line);
   background: #ffffff;
   overflow: hidden;
+  height: clamp(320px, 43vh, 520px);
+  padding: clamp(0.45rem, 1.1vw, 0.8rem);
 }
 
-.welcome-highlight-media img {
+.welcome-highlight-mosaic {
+  display: grid;
+  width: 100%;
+  height: 100%;
+  grid-template-columns: minmax(0, 1.45fr) minmax(180px, 0.82fr);
+  grid-template-rows: repeat(2, minmax(0, 1fr));
+  gap: clamp(0.35rem, 0.8vw, 0.6rem);
+}
+
+.welcome-highlight-mosaic img {
   display: block;
   width: 100%;
-  height: auto;
+  height: 100%;
+  min-width: 0;
+  min-height: 0;
+  border: 1px solid color-mix(in srgb, var(--line), transparent 24%);
+  background: #ffffff;
+}
+
+.welcome-highlight-main {
+  grid-row: 1 / 3;
   object-fit: contain;
+}
+
+.welcome-highlight-crop {
+  object-fit: cover;
+}
+
+.welcome-highlight-crop.crop-top {
+  object-position: 28% 18%;
+}
+
+.welcome-highlight-crop.crop-bottom {
+  object-position: 78% 82%;
 }
 
 .welcome-highlight-card:hover,
@@ -658,6 +692,38 @@ h3 {
   border-top: 4px solid var(--accent);
   background: color-mix(in srgb, var(--surface-strong), transparent 18%);
   padding: clamp(0.9rem, 1.8vw, 1.25rem);
+}
+
+.welcome-highlight-text {
+  display: grid;
+  gap: 0.35rem;
+  min-width: 0;
+}
+
+.welcome-highlight-text span {
+  color: var(--rust);
+  font-size: 0.78rem;
+  font-weight: 900;
+  letter-spacing: 0.02em;
+}
+
+.welcome-highlight-text h3 {
+  max-width: 980px;
+  font-size: clamp(1.02rem, 1.45vw, 1.36rem);
+  line-height: 1.18;
+}
+
+.welcome-highlight-text h3 a {
+  display: block;
+  color: inherit;
+  text-decoration: none !important;
+  background-image: none;
+  box-shadow: none;
+}
+
+.welcome-highlight-text h3 a:hover,
+.welcome-highlight-text h3 a:focus-visible {
+  color: var(--accent-strong);
 }
 
 .welcome-highlight-copy p {
@@ -2261,6 +2327,17 @@ address a {
 
   .welcome-highlight-media {
     min-height: 0;
+    height: clamp(280px, 62vw, 420px);
+  }
+
+  .welcome-highlight-mosaic {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-rows: minmax(0, 1.3fr) minmax(0, 0.7fr);
+  }
+
+  .welcome-highlight-main {
+    grid-column: 1 / 3;
+    grid-row: 1;
   }
 
   .welcome-highlight-copy {

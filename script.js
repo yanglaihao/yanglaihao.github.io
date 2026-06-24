@@ -905,6 +905,13 @@ function mediaFor(element) {
   return null;
 }
 
+function venueFor(element) {
+  return textContent(element, ".pub-venue")
+    .replace(/^亮点成果\s*·\s*/u, "")
+    .replace(/^Featured Output\s*·\s*/u, "")
+    .replace(/\s*·\s*(DOI|Link|链接)$/u, "");
+}
+
 function itemFromArticle(element, type) {
   const title = textContent(element, "h3");
   const date = textContent(element, "time") || textContent(element, ".pub-year");
@@ -916,6 +923,7 @@ function itemFromArticle(element, type) {
     date,
     summary,
     href,
+    venue: venueFor(element),
     figure: element.dataset.figure || "",
     media: mediaFor(element),
   };
@@ -1106,10 +1114,20 @@ function renderDynamicWelcome() {
     highlightRoot.innerHTML = highlights.map((item, index) => `
       <article class="welcome-highlight-card${index === activeWelcomeHighlightIndex ? " active" : ""}" data-welcome-highlight-slide="${index}" ${index === activeWelcomeHighlightIndex ? "" : "hidden"}>
         <figure class="welcome-highlight-media">
-          ${item.figure ? `<img src="${escapeHtml(item.figure)}" alt="" loading="lazy">` : ""}
+          ${item.figure ? `
+            <div class="welcome-highlight-mosaic" aria-hidden="true">
+              <img class="welcome-highlight-main" src="${escapeHtml(item.figure)}" alt="" loading="lazy">
+              <img class="welcome-highlight-crop crop-top" src="${escapeHtml(item.figure)}" alt="" loading="lazy">
+              <img class="welcome-highlight-crop crop-bottom" src="${escapeHtml(item.figure)}" alt="" loading="lazy">
+            </div>
+          ` : ""}
         </figure>
         <div class="welcome-highlight-copy">
-          <p>${escapeHtml(item.summary)}</p>
+          <div class="welcome-highlight-text">
+            <span>${escapeHtml(item.venue || item.date)}</span>
+            <h3>${renderLinkedTitle(item)}</h3>
+            <p>${escapeHtml(item.summary)}</p>
+          </div>
           <a href="#achievements">${currentLanguage === "en" ? "View output" : "查看成果"}</a>
         </div>
       </article>
