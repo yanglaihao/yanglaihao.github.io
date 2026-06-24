@@ -2,14 +2,17 @@
 
 ## 最新更新
 
-更新时间：2026-06-24 09:47 CST
+更新时间：2026-06-24 11:15 CST
 
 本文件已更新到当前项目状态。最新一轮已完成并部署：
 
 - 按用户要求重构欢迎页和团队札记：
   - `欢迎页 / Welcome` 现为页面最前面的首屏 `#home`，不再作为首屏之后的单独板块；原“首页”和“实验室简介”合并进首屏欢迎页，导航中移除独立“首页 / 实验室简介”入口。
   - 欢迎页改为动态页面：`script.js` 从当前成果区的亮点成果、团队动态中的亮点报道、研究方向数量、论文 / 专利条目中自动渲染近期亮点工作、亮点报道和关键数字，后续更新成果 / 动态时欢迎页会随现有 DOM 自动刷新。
+  - 使用 Zotero 本地库 `A My Work` 中三篇代表性论文附件提取核心图页，并接入欢迎页近期亮点工作卡片：`assets/paper-highlights/torque-dexterity-figure.png` 来自 Science Advances 2026 `Touching with torque enables human-level robotic dexterity`，`assets/paper-highlights/contact-aided-continuum-figure.png` 来自 IEEE T-RO 2024 `A Novel Contact-Aided Continuum Robotic System: Design, Modeling, and Validation`，`assets/paper-highlights/bistable-jumper-figure.png` 来自 Advanced Science 2024 `Bistable Insect-Scale Jumpers with Tunable Energy Barriers for Multimodal Locomotion`。
   - `团队札记 / Lab Notes` 移到主内容末尾、联系方式页脚之前；内容以亮点论文视频、获奖、重要新闻和媒体报道为主，由脚本从现有 `highlight-output`、`award-*`、`news`、`highlight` 条目自动生成图文 / 视频动态流，保留 GitHub Issues 公开讨论入口与邮件联系入口。
+  - 按用户截图要求，团队札记标题区已删除“以重要新闻、论文发表与奖励为主...”一类说明性文字；中英文 `blog.intro` 翻译键和无用样式已同步移除。
+  - 团队札记不再使用团队照片作为默认配图；有论文/报道视频时显示视频，有明确图片时显示图片，缺图条目保持文字卡片。
   - 英文主页同步更新；本地 Chrome 已验证桌面和 390px 移动宽度下动态欢迎页、末尾团队札记、英文切换和动态视频卡片均正常，无水平溢出。
 - 根据用户最终表述修订 2026-05-13 青年科学家论坛新闻：标题为“杨来浩受邀在 UNIfied 2026-SMMI 青年科学家论坛作报告”；正文精简为“2026 年 5 月 13 日，杨来浩受邀参加 2026 International Conference on Advanced Sensing, Condition Monitoring, and Intelligent Maintenance Innovations（UNIfied 2026-SMMI）青年科学家论坛，并作特邀报告‘面向航空发动机原位检测与维修的机器人系统（Robotic Systems for In-Situ Inspection and Repair of Aero-Engines）’。”英文主页同步更新，旧的不完整报告题目“机器人具身智能如何赋能高端装备把脉问诊”以及会议地点 / 主持人等额外说明已从该新闻正文移除。
 - 根据本地 PDF `Yang Laihao SR AE Acceptance 2026.docx.pdf` 新增团队新闻：杨来浩受邀担任 `IEEE Sensors Reviews` Associate Editor。PDF 为 IEEE Sensors Reviews 主编 Eui-Hyeok Yang 的邀请函，说明初始任期一年；页面按文件保存日期使用 2026-06-23 展示，并同步英文翻译。

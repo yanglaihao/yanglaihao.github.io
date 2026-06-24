@@ -82,7 +82,7 @@ assert.ok(html.includes("data-paper-subfilters"), "paper section should include 
 assert.ok(html.includes("data-patent-subfilters"), "patent section should include clickable secondary categories");
 assert.ok(html.includes("data-award-subfilters"), "award section should include clickable secondary categories");
 
-const highlightOutputBlocks = matchAll(/<article class="achievement achievement-featured-output" data-output-type="highlight-output">([\s\S]*?)<\/article>/g).map((match) => match[1]);
+const highlightOutputBlocks = matchAll(/<article class="achievement achievement-featured-output" data-output-type="highlight-output"[^>]*>([\s\S]*?)<\/article>/g).map((match) => match[1]);
 assert.equal(highlightOutputBlocks.length, 3, "achievement section should include 3 featured outputs");
 assert.deepEqual(
   highlightOutputBlocks.map((block) => block.match(/ · (20\d{2})<\/p>/)?.[1]),
@@ -275,7 +275,10 @@ assert.ok(html.includes("近期亮点工作"), "welcome page should surface rece
 assert.ok(html.includes("亮点报道"), "welcome page should surface highlight reports");
 assert.ok(html.includes("团队札记"), "blog page should use the suggested Chinese name");
 assert.ok(html.includes("开放讨论区"), "blog page should include an open discussion area");
-assert.ok(html.includes("重要新闻、论文发表与奖励"), "blog page should focus on important news, papers, and awards");
+assert.ok(!html.includes("以重要新闻、论文发表与奖励为主"), "Lab Notes should not show explanatory intro copy");
+assert.ok(!script.includes("Focused on important news, paper publications, and awards"), "English mode should not keep explanatory Lab Notes intro copy");
+assert.ok(!script.includes('"blog.intro"'), "Lab Notes intro translation key should be removed");
+assert.ok(!styles.includes(".blog-intro"), "unused Lab Notes intro styles should be removed");
 assert.ok(html.includes("https://github.com/yanglaihao/yanglaihao.github.io/issues/new"), "blog page should provide a public GitHub discussion entry");
 assert.ok(html.includes("data-dynamic-welcome"), "welcome page should expose a dynamic rendering root");
 assert.ok(html.includes("data-auto-source"), "welcome page should mark data that is automatically updated from the current site content");
@@ -285,6 +288,15 @@ assert.ok(script.includes("function renderLabNotesFeed"), "script should render 
 assert.ok(script.includes('data-output-type^="award-"'), "Lab Notes should automatically include award records");
 assert.ok(script.includes('data-output-type="highlight-output"'), "Lab Notes should automatically include featured paper outputs");
 assert.ok(script.includes('data-news-type="highlight"'), "dynamic sections should include highlight report items");
+for (const figure of [
+  "assets/paper-highlights/torque-dexterity-figure.png",
+  "assets/paper-highlights/contact-aided-continuum-figure.png",
+  "assets/paper-highlights/bistable-jumper-figure.png",
+]) {
+  assert.ok(html.includes(figure), `welcome highlights should use Zotero-extracted paper figure: ${figure}`);
+}
+assert.ok(script.includes("welcome-highlight-media"), "dynamic welcome highlights should render paper figure media");
+assert.ok(!script.includes('src: "assets/team-profile.jpg"'), "Lab Notes should not use the team headshot as a fallback image");
 assert.ok(script.includes("note-card-media"), "Lab Notes dynamic feed should support image/video media");
 assert.ok(script.includes('"nav.welcome": "Welcome"'), "English mode should translate the welcome navigation label");
 assert.ok(script.includes('"nav.blog": "Lab Notes"'), "English mode should translate the Lab Notes navigation label");

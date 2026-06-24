@@ -74,7 +74,6 @@ const translations = {
     "welcome.report.silk": "呈现团队“刚柔并济”的高端装备智能检修探索。",
     "welcome.report.shaanxi": "展示蛇形机器人等面向原位检测与维护的机器人系统。",
     "blog.eyebrow": "Lab Notes",
-    "blog.intro": "以重要新闻、论文发表与奖励为主，自动从团队动态和成果列表中抽取最新条目，并配合图文、视频素材展示。",
     "blog.feature.tag": "Latest Note",
     "blog.feature.title": "从期刊任职到青年科学家论坛：近期学术服务与交流",
     "blog.feature.body": "团队近期围绕机器人具身智能、高端装备原位检修和触觉灵巧操作开展多场学术交流，并继续参与 IEEE Sensors Reviews 等学术共同体建设。",
@@ -145,7 +144,6 @@ const translations = {
     "welcome.report.silk": "Presented the team's rigid-soft robotics exploration for intelligent maintenance of advanced equipment.",
     "welcome.report.shaanxi": "Showcased snake-like robots and robotic systems for in-situ inspection and maintenance.",
     "blog.eyebrow": "Lab Notes",
-    "blog.intro": "Focused on important news, paper publications, and awards, this page automatically draws recent items from team news and outputs, with images and videos where available.",
     "blog.feature.tag": "Latest Note",
     "blog.feature.title": "From editorial service to the Youth Scientists Forum: recent academic service and exchange",
     "blog.feature.body": "The team recently held academic exchanges on robotic embodied intelligence, in-situ maintenance of advanced equipment, and tactile dexterous manipulation, while continuing to contribute to communities such as IEEE Sensors Reviews.",
@@ -893,7 +891,7 @@ function mediaFor(element) {
     return { type: "image", src: image.getAttribute("src") };
   }
 
-  return { type: "image", src: "assets/team-profile.jpg" };
+  return null;
 }
 
 function itemFromArticle(element, type) {
@@ -907,6 +905,7 @@ function itemFromArticle(element, type) {
     date,
     summary,
     href,
+    figure: element.dataset.figure || "",
     media: mediaFor(element),
   };
 }
@@ -946,7 +945,8 @@ function renderDynamicWelcome() {
   if (highlightRoot) {
     const highlights = Array.from(document.querySelectorAll('article[data-output-type="highlight-output"]')).slice(0, 3).map((item) => itemFromArticle(item, "paper"));
     highlightRoot.innerHTML = highlights.map((item) => `
-      <a href="#achievements">
+      <a class="welcome-highlight-card" href="#achievements">
+        ${item.figure ? `<figure class="welcome-highlight-media"><img src="${escapeHtml(item.figure)}" alt="" loading="lazy"></figure>` : ""}
         <span>${escapeHtml(item.date)}</span>
         <strong>${renderLinkedTitle(item)}</strong>
         <em>${escapeHtml(item.summary)}</em>
