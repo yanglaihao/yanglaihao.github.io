@@ -68,9 +68,9 @@
 线上最新状态：
 
 - 线上站点：https://yanglaihao.github.io/
-- GitHub Pages Actions 部署：`success`；本轮欢迎页版式页面内容部署 run `28129253660` 已成功，页面内容提交为 `f08561b1777516ef00001323e58229b37945feb0`。本文件更新后会再触发一次 handoff 同步部署，最终远端 `main` 以 GitHub 仓库 `refs/heads/main` 为准。
-- 页面内容更新提交：`f08561b1777516ef00001323e58229b37945feb0`
-- 线上视觉复验：上一轮 `https://yanglaihao.github.io/?verify=20260624-visual-audit` 已用本机 Chrome 检查欢迎页三张轮播图、团队札记详情图、分类 / 年份筛选、英文切换和 390px 移动端布局；本轮加做最终线上 Chrome 宽屏度量和截图，确认左侧外框未被压缩、图片未拉伸、文字位于图片下方，并补测 1440×1000 视口未超出一屏。线上部署后已用源码抓取确认 `script.js` / `styles.css` / `HANDOFF.md` 包含本轮改动。
+- GitHub Pages Actions 部署：`success`；本轮欢迎页固定画框页面内容部署 run `28130847591` 已成功，页面内容提交为 `3dca90e3afe2c06c6513729aa5644d629e4c557d`。本文件更新后会再触发一次 handoff 同步部署，最终远端 `main` 以 GitHub 仓库 `refs/heads/main` 为准。
+- 页面内容更新提交：`3dca90e3afe2c06c6513729aa5644d629e4c557d`
+- 线上视觉复验：`https://yanglaihao.github.io/?verify=3dca90e3afe2c06c6513729aa5644d629e4c557d-final` 已用本机 Chrome 检查 1440×1000 视口下中文和英文 1/2/3 三张轮播图；6 个状态均为左框 `1004.94 × 820px`、右框 `371.05 × 820px`，左右上下边界一致，三张图片源分别正确指向 `torque-dexterity-visual.png`、`contact-aided-continuum-visual.png`、`bistable-jumper-visual.png`，图片均在图片区内完整显示且比例误差小于 0.01。线上复验截图：`/private/tmp/feigong-online-fixed-frame.png`。
 - 线上 HTML / `script.js` / `styles.css` 已验证首屏为 `#home.welcome-page`，不存在独立 `#welcome` 与独立 `#about`；线上页面已验证欢迎页使用 `data-welcome-highlight-dots` 单页轮播结构，团队札记使用 `blog-board`、`data-lab-note-list`、`data-lab-note-detail`、`data-lab-note-categories`、`data-lab-note-years` 新结构，包含 4 篇策划专题文章，不再出现旧 `data-lab-notes-feed` / `album-stream` 自动聚合流，也不再从新闻和获奖条目重复抽取内容。新增三张 `*-visual.png` 核心图资源线上均返回 200。
 - `.nojekyll` 修复提交：`46a12113d35046f8d13a29af602745b515de09e6`
 
