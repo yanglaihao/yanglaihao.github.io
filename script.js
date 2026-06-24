@@ -1114,13 +1114,7 @@ function renderDynamicWelcome() {
     highlightRoot.innerHTML = highlights.map((item, index) => `
       <article class="welcome-highlight-card${index === activeWelcomeHighlightIndex ? " active" : ""}" data-welcome-highlight-slide="${index}" ${index === activeWelcomeHighlightIndex ? "" : "hidden"}>
         <figure class="welcome-highlight-media">
-          ${item.figure ? `
-            <div class="welcome-highlight-mosaic" aria-hidden="true">
-              <img class="welcome-highlight-main" src="${escapeHtml(item.figure)}" alt="" loading="lazy">
-              <img class="welcome-highlight-crop crop-top" src="${escapeHtml(item.figure)}" alt="" loading="lazy">
-              <img class="welcome-highlight-crop crop-bottom" src="${escapeHtml(item.figure)}" alt="" loading="lazy">
-            </div>
-          ` : ""}
+          ${item.figure ? `<img src="${escapeHtml(item.figure)}" alt="" loading="lazy">` : ""}
         </figure>
         <div class="welcome-highlight-copy">
           <div class="welcome-highlight-text">
@@ -1128,7 +1122,6 @@ function renderDynamicWelcome() {
             <h3>${renderLinkedTitle(item)}</h3>
             <p>${escapeHtml(item.summary)}</p>
           </div>
-          <a href="#achievements">${currentLanguage === "en" ? "View output" : "查看成果"}</a>
         </div>
       </article>
     `).join("");
