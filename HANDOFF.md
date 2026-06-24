@@ -47,10 +47,10 @@
 线上最新状态：
 
 - 线上站点：https://yanglaihao.github.io/
-- GitHub Pages Actions 部署：`success`；本轮 `pages-build-deployment` run `28073269967` 已成功，线上站点已抓取验证。
-- 当前远端 `main`：以 GitHub 仓库 `refs/heads/main` 为准；本轮团队札记重构内容部署提交为 `bd571d6e3f112b9a7f08c3f4ae0f743846e17910`，后续若仅补充本交接文件，仍以远端 ref 的最新提交为准。
-- 页面内容更新提交：`bd571d6e3f112b9a7f08c3f4ae0f743846e17910`
-- 线上 HTML / `script.js` / `styles.css` 已验证首屏为 `#home.welcome-page`，不存在独立 `#welcome` 与独立 `#about`；线上页面已验证团队札记使用 `blog-board`、`data-lab-note-list`、`data-lab-note-detail` 新结构，包含 4 篇策划专题文章，不再出现旧 `data-lab-notes-feed` / `album-stream` 自动聚合流，也不再从新闻和获奖条目重复抽取内容。
+- GitHub Pages Actions 部署：`success`；本轮 `pages-build-deployment` run `28075314696` 已成功，线上站点已抓取验证。
+- 当前远端 `main`：以 GitHub 仓库 `refs/heads/main` 为准；本轮欢迎页轮播、团队札记筛选与图片比例优化内容部署提交为 `b4272d44e955d1be4b980cdb6d5b0a364e355901`，后续若仅补充本交接文件，仍以远端 ref 的最新提交为准。
+- 页面内容更新提交：`b4272d44e955d1be4b980cdb6d5b0a364e355901`
+- 线上 HTML / `script.js` / `styles.css` 已验证首屏为 `#home.welcome-page`，不存在独立 `#welcome` 与独立 `#about`；线上页面已验证欢迎页使用 `data-welcome-highlight-dots` 单页轮播结构，团队札记使用 `blog-board`、`data-lab-note-list`、`data-lab-note-detail`、`data-lab-note-categories`、`data-lab-note-years` 新结构，包含 4 篇策划专题文章，不再出现旧 `data-lab-notes-feed` / `album-stream` 自动聚合流，也不再从新闻和获奖条目重复抽取内容。新增三张 `*-visual.png` 核心图资源线上均返回 200。
 - `.nojekyll` 修复提交：`46a12113d35046f8d13a29af602745b515de09e6`
 
 最新部署方式：普通 `git push` 多次因 GitHub HTTPS 网络 / HTTP2 错误失败，最终使用 GitHub CLI + GitHub Git Data API 创建 blob / tree / commit 并更新 `main` 引用。随后手动触发 Pages build，添加 `.nojekyll` 后构建成功。
