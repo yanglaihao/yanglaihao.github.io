@@ -574,12 +574,13 @@ h3 {
 }
 
 .home-dynamic-panel {
+  --welcome-panel-height: clamp(760px, calc(100svh - 140px), 820px);
   grid-column: 1 / -1;
   order: -1;
   display: grid;
   grid-template-columns: minmax(0, 1.95fr) minmax(360px, 0.72fr);
   gap: 1rem;
-  align-items: start;
+  align-items: stretch;
 }
 
 .welcome-spotlight,
@@ -606,8 +607,10 @@ h3 {
 .welcome-spotlight {
   display: flex;
   flex-direction: column;
-  min-height: clamp(680px, calc(100svh - 140px), 820px);
+  height: var(--welcome-panel-height);
+  min-height: 0;
   padding: clamp(1rem, 2.4vw, 1.5rem);
+  overflow: hidden;
 }
 
 .welcome-spotlight-head {
@@ -618,6 +621,11 @@ h3 {
 }
 
 .welcome-reports {
+  display: flex;
+  flex-direction: column;
+  height: var(--welcome-panel-height);
+  min-height: 0;
+  overflow: hidden;
   padding: clamp(1rem, 2.4vw, 1.5rem);
 }
 
@@ -626,13 +634,15 @@ h3 {
   flex: 1;
   gap: 0.75rem;
   margin-top: 1rem;
+  min-height: 0;
 }
 
 .welcome-highlight-card {
   display: grid;
   grid-template-columns: 1fr;
-  grid-template-rows: auto minmax(0, 1fr);
-  min-height: 100%;
+  grid-template-rows: minmax(0, 1fr) auto;
+  height: 100%;
+  min-height: 0;
   align-items: stretch;
   border: 1px solid var(--line);
   background: color-mix(in srgb, var(--surface), transparent 10%);
@@ -660,8 +670,10 @@ h3 {
 
 .welcome-highlight-media img {
   display: block;
-  width: 100%;
+  width: auto;
   height: auto;
+  max-width: 100%;
+  max-height: 100%;
   min-width: 0;
   min-height: 0;
   object-fit: contain;
@@ -680,8 +692,10 @@ h3 {
   align-content: center;
   border-top: 4px solid var(--accent);
   background: color-mix(in srgb, var(--surface-strong), transparent 18%);
-  min-height: clamp(190px, 24vh, 270px);
+  height: clamp(170px, 20svh, 220px);
+  min-height: 0;
   padding: clamp(1.1rem, 2vw, 1.6rem);
+  overflow: hidden;
 }
 
 .welcome-highlight-text {
@@ -698,9 +712,13 @@ h3 {
 }
 
 .welcome-highlight-text h3 {
+  display: -webkit-box;
   max-width: 980px;
   font-size: clamp(1.08rem, 1.7vw, 1.62rem);
   line-height: 1.18;
+  overflow: hidden;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
 }
 
 .welcome-highlight-text h3 a {
@@ -717,9 +735,13 @@ h3 {
 }
 
 .welcome-highlight-copy p {
+  display: -webkit-box;
   margin: 0;
   color: var(--muted);
   font-weight: 720;
+  overflow: hidden;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
 }
 
 .welcome-carousel-dots {
@@ -751,8 +773,11 @@ h3 {
 }
 
 .home-dynamic-panel .welcome-report-strip {
+  flex: 1;
   grid-template-columns: 1fr;
   gap: 0.75rem;
+  min-height: 0;
+  overflow: hidden;
 }
 
 .welcome-report-strip article {
@@ -761,6 +786,26 @@ h3 {
   gap: 0.55rem;
   min-height: 230px;
   padding: 1rem;
+}
+
+.home-dynamic-panel .welcome-report-strip article {
+  min-height: 0;
+  padding: 0.85rem;
+  overflow: hidden;
+}
+
+.home-dynamic-panel .welcome-report-strip h3 {
+  display: -webkit-box;
+  overflow: hidden;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}
+
+.home-dynamic-panel .welcome-report-strip p {
+  display: -webkit-box;
+  overflow: hidden;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
 }
 
 .welcome-report-strip span,
@@ -2322,11 +2367,15 @@ address a {
   }
 
   .welcome-highlight-card {
+    height: auto;
     min-height: auto;
   }
 
-  .welcome-spotlight {
+  .welcome-spotlight,
+  .welcome-reports {
+    height: auto;
     min-height: auto;
+    overflow: visible;
   }
 
   .welcome-highlight-media {
