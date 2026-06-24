@@ -2,10 +2,14 @@
 
 ## 最新更新
 
-更新时间：2026-06-23 23:35 CST
+更新时间：2026-06-24 08:07 CST
 
 本文件已更新到当前项目状态。最新一轮已完成并部署：
 
+- 参考机器人 / 具身智能实验室主页的组织方式，新增两个站内锚点页面：
+  - `欢迎页 / Welcome`：位于首屏之后，集中展示实验室使命、近期亮点工作和三条亮点报道入口；版式为“实验室宣言 + 近期工作列表 + 媒体报道条”，避免把用户先带到纯导航页。
+  - `团队札记 / Lab Notes`：位于团队动态之后，用于承接团队近期活动、开放交流和可公开讨论的问题；包含最新札记、活动时间线和“开放讨论区”，提供 GitHub Issues 公开讨论入口与邮件联系入口。英文主页已同步，新增区域在英文模式下无中文残留。
+- 新增导航项“欢迎页”和“团队札记”；站点检查新增对两个页面锚点、英文翻译、公开讨论入口和样式类的校验。已用本地 Chrome 在桌面与 390px 移动宽度下验证 `#welcome`、`#blog` 有效布局且无水平溢出。
 - 根据用户最终表述修订 2026-05-13 青年科学家论坛新闻：标题为“杨来浩受邀在 UNIfied 2026-SMMI 青年科学家论坛作报告”；正文精简为“2026 年 5 月 13 日，杨来浩受邀参加 2026 International Conference on Advanced Sensing, Condition Monitoring, and Intelligent Maintenance Innovations（UNIfied 2026-SMMI）青年科学家论坛，并作特邀报告‘面向航空发动机原位检测与维修的机器人系统（Robotic Systems for In-Situ Inspection and Repair of Aero-Engines）’。”英文主页同步更新，旧的不完整报告题目“机器人具身智能如何赋能高端装备把脉问诊”以及会议地点 / 主持人等额外说明已从该新闻正文移除。
 - 根据本地 PDF `Yang Laihao SR AE Acceptance 2026.docx.pdf` 新增团队新闻：杨来浩受邀担任 `IEEE Sensors Reviews` Associate Editor。PDF 为 IEEE Sensors Reviews 主编 Eui-Hyeok Yang 的邀请函，说明初始任期一年；页面按文件保存日期使用 2026-06-23 展示，并同步英文翻译。
 - 重新设置站内视频为不可下载状态：研究方向、亮点报道、亮点成果共 9 个本地视频均保留播放控件，同时添加 `controlslist="nodownload"` 并禁用默认右键菜单，减少浏览器控件中的下载入口；测试新增全站视频属性校验。

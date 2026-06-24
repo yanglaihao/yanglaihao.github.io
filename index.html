@@ -39,9 +39,11 @@
 
         <div class="nav-links" data-nav-links>
           <a href="#home" data-i18n="nav.home">首页</a>
+          <a href="#welcome" data-i18n="nav.welcome">欢迎页</a>
           <a href="#about" data-i18n="nav.about">实验室简介</a>
           <a href="#research" data-i18n="nav.research">研究方向</a>
           <a href="#news" data-i18n="nav.news">团队动态</a>
+          <a href="#blog" data-i18n="nav.blog">团队札记</a>
           <a href="#members" data-i18n="nav.members">团队成员</a>
           <a href="#achievements" data-i18n="nav.achievements">团队成果</a>
           <a href="#contact" data-i18n="nav.contact">联系方式</a>
@@ -107,6 +109,73 @@
             </div>
           </dl>
         </aside>
+      </section>
+
+      <section class="section welcome-page" id="welcome" aria-labelledby="welcome-title">
+        <div class="section-heading split">
+          <div>
+            <p class="eyebrow" data-i18n="welcome.eyebrow">Welcome</p>
+            <h2 id="welcome-title" data-i18n="welcome.title">欢迎页</h2>
+          </div>
+          <p class="welcome-note" data-i18n="welcome.note">
+            从实验室使命、近期亮点工作与媒体报道进入非攻机器人实验室。
+          </p>
+        </div>
+
+        <div class="welcome-board">
+          <article class="welcome-manifesto">
+            <p class="project-tag" data-i18n="welcome.manifesto.tag">Lab Compass</p>
+            <h3 data-i18n="welcome.manifesto.title">造因境而变、入微而作的具身智能机器人</h3>
+            <p data-i18n="welcome.manifesto.body">
+              实验室面向航空发动机等高端装备内部深腔、狭窄通道和复杂曲面损伤，发展软体/连续体机器人、爬行机器人、触觉传感与灵巧操作，让机器人在受限空间里完成感知、进入、接触和处置。
+            </p>
+            <div class="welcome-metrics" aria-label="欢迎页实验室概览">
+              <span><strong>3</strong><em data-i18n="welcome.metrics.threads">研究主线</em></span>
+              <span><strong>100+</strong><em data-i18n="welcome.metrics.papers">论文</em></span>
+              <span><strong>100+</strong><em data-i18n="welcome.metrics.patents">专利</em></span>
+            </div>
+          </article>
+
+          <div class="welcome-spotlight">
+            <p class="project-tag" data-i18n="welcome.spotlight.tag">Recent Focus</p>
+            <h3 data-i18n="welcome.spotlight.title">近期亮点工作</h3>
+            <div class="spotlight-list">
+              <a href="#achievements">
+                <span>2026</span>
+                <strong>Touching with torque enables human-level robotic dexterity</strong>
+                <em data-i18n="welcome.spotlight.torque">扭矩触觉驱动灵巧操作</em>
+              </a>
+              <a href="#achievements">
+                <span>2024</span>
+                <strong>A Novel Contact-Aided Continuum Robotic System</strong>
+                <em data-i18n="welcome.spotlight.continuum">接触辅助连续体机器人</em>
+              </a>
+              <a href="#achievements">
+                <span>2024</span>
+                <strong>Bistable Insect-Scale Jumpers</strong>
+                <em data-i18n="welcome.spotlight.jumper">双稳态昆虫尺度跳跃机器人</em>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <div class="welcome-report-strip" aria-label="欢迎页亮点报道">
+          <article>
+            <span data-i18n="welcome.report.label">亮点报道</span>
+            <h3><a href="https://news.xjtu.edu.cn/info/1014/223743.htm" target="_blank" rel="noreferrer">【央视正午国防军事】报道西安交通大学团队攻克“卡脖子”难题</a></h3>
+            <p data-i18n="welcome.report.cctv">聚焦蛇形机器人在航空发动机复杂腔道检测中的应用前景。</p>
+          </article>
+          <article>
+            <span data-i18n="welcome.report.label">亮点报道</span>
+            <h3><a href="https://www.163.com/dy/article/JGIRJRQ90530TBVC.html" target="_blank" rel="noreferrer">《丝路新周刊》节目预告 | 西安交大：用新型仿生机器人给高端装备“把脉问诊”</a></h3>
+            <p data-i18n="welcome.report.silk">呈现团队“刚柔并济”的高端装备智能检修探索。</p>
+          </article>
+          <article>
+            <span data-i18n="welcome.report.label">亮点报道</span>
+            <h3><a href="http://www.snrtv.com/snr_sxxwlb/a/2024/10/10/22818371.html" target="_blank" rel="noreferrer">西安交大：仿生机器人给高端装备“把脉问诊”</a></h3>
+            <p data-i18n="welcome.report.shaanxi">展示蛇形机器人等面向原位检测与维护的机器人系统。</p>
+          </article>
+        </div>
       </section>
 
       <section class="section" id="about" aria-labelledby="about-title">
@@ -462,6 +531,66 @@
             <p>杨来浩老师团队发布团队通知，欢迎新同学加入非攻机器人实验室。</p>
           </article>
         
+        </div>
+      </section>
+
+      <section class="section lab-notes-page" id="blog" aria-labelledby="blog-title">
+        <div class="section-heading split">
+          <div>
+            <p class="eyebrow" data-i18n="blog.eyebrow">Lab Notes</p>
+            <h2 id="blog-title">团队札记</h2>
+          </div>
+          <p class="blog-intro" data-i18n="blog.intro">
+            记录团队活动、开放交流和可公开讨论的问题，像实验室的共享白板一样持续更新。
+          </p>
+        </div>
+
+        <div class="lab-notes-grid">
+          <article class="note-feature">
+            <p class="project-tag" data-i18n="blog.feature.tag">Latest Note</p>
+            <time>2026-06-23</time>
+            <h3 data-i18n="blog.feature.title">从期刊任职到青年科学家论坛：近期学术服务与交流</h3>
+            <p data-i18n="blog.feature.body">
+              团队近期围绕机器人具身智能、高端装备原位检修和触觉灵巧操作开展多场学术交流，并继续参与 IEEE Sensors Reviews 等学术共同体建设。
+            </p>
+            <a class="button secondary" href="#news" data-i18n="blog.feature.action">查看团队动态</a>
+          </article>
+
+          <div class="note-timeline" aria-label="团队札记时间线">
+            <article>
+              <time>2026-05</time>
+              <h3 data-i18n="blog.timeline.forum.title">青年科学家论坛特邀报告</h3>
+              <p data-i18n="blog.timeline.forum.body">围绕航空发动机原位检测与维修机器人系统展开交流。</p>
+            </article>
+            <article>
+              <time>2026-03</time>
+              <h3 data-i18n="blog.timeline.science.title">触觉传感与灵巧操作研究进展</h3>
+              <p data-i18n="blog.timeline.science.body">扭矩触觉相关工作发表于 Science Advances。</p>
+            </article>
+            <article>
+              <time>2025-12</time>
+              <h3 data-i18n="blog.timeline.award.title">振动工程基础研究获奖</h3>
+              <p data-i18n="blog.timeline.award.body">团队牵头、联合重庆大学获中国振动工程学会科学技术奖基础研究类二等奖。</p>
+            </article>
+          </div>
+
+          <aside class="discussion-panel" aria-label="开放讨论区">
+            <p class="project-tag" data-i18n="blog.discussion.tag">Open Desk</p>
+            <h3>开放讨论区</h3>
+            <p data-i18n="blog.discussion.body">
+              欢迎围绕招生咨询、合作交流、论文复现、机器人系统设计和媒体采访等公开问题留言。涉及个人隐私或未公开合作内容，请优先邮件联系。
+            </p>
+            <div class="discussion-tags">
+              <span data-i18n="blog.discussion.admission">招生咨询</span>
+              <span data-i18n="blog.discussion.collab">合作交流</span>
+              <span data-i18n="blog.discussion.reproduction">论文复现</span>
+              <span data-i18n="blog.discussion.media">媒体采访</span>
+            </div>
+            <div class="pub-actions">
+              <a href="https://github.com/yanglaihao/yanglaihao.github.io/issues/new?title=%E3%80%90%E5%85%AC%E5%BC%80%E8%AE%A8%E8%AE%BA%E3%80%91&amp;labels=discussion" target="_blank" rel="noreferrer" data-i18n="blog.discussion.public">公开讨论入口</a>
+              <a href="mailto:yanglaihao@xjtu.edu.cn" data-i18n="blog.discussion.email">邮件联系</a>
+            </div>
+          </aside>
         </div>
       </section>
 

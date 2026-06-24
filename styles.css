@@ -145,9 +145,9 @@ html[lang="zh-CN"] .brand strong {
   margin-left: auto;
   display: flex;
   align-items: center;
-  gap: 0.85rem;
+  gap: clamp(0.42rem, 0.8vw, 0.85rem);
   color: var(--muted);
-  font-size: 0.92rem;
+  font-size: clamp(0.82rem, 0.9vw, 0.92rem);
 }
 
 .nav-links a {
@@ -529,6 +529,242 @@ h3 {
 .section-heading p:not(.eyebrow) {
   margin: 0.9rem 0 0;
   color: var(--muted);
+}
+
+.welcome-note,
+.blog-intro {
+  max-width: 520px;
+  margin: 0;
+  color: var(--muted);
+}
+
+.welcome-page {
+  position: relative;
+}
+
+.welcome-page::before,
+.lab-notes-page::before {
+  content: "";
+  position: absolute;
+  inset: 2rem 0 auto;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, color-mix(in srgb, var(--accent), transparent 35%), transparent);
+  pointer-events: none;
+}
+
+.welcome-board {
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(360px, 0.95fr);
+  gap: 1rem;
+  align-items: stretch;
+}
+
+.welcome-manifesto,
+.welcome-spotlight,
+.note-feature,
+.discussion-panel,
+.note-timeline article,
+.welcome-report-strip article {
+  border: 1px solid var(--line);
+  background:
+    linear-gradient(145deg, color-mix(in srgb, var(--surface), transparent 0%), color-mix(in srgb, var(--surface-strong), transparent 38%)),
+    var(--surface);
+  box-shadow: 0 14px 34px rgba(13, 39, 33, 0.06);
+}
+
+.welcome-manifesto {
+  min-height: 420px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: clamp(1.2rem, 3vw, 2rem);
+  overflow: hidden;
+}
+
+.welcome-manifesto h3,
+.note-feature h3,
+.discussion-panel h3 {
+  max-width: 720px;
+  font-size: clamp(1.55rem, 2.4vw, 2.4rem);
+}
+
+.welcome-manifesto p:not(.project-tag),
+.welcome-spotlight em,
+.welcome-report-strip p,
+.note-feature p,
+.note-timeline p,
+.discussion-panel p {
+  color: var(--muted);
+}
+
+.welcome-metrics {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.75rem;
+  margin-top: 2rem;
+}
+
+.welcome-metrics span {
+  display: grid;
+  gap: 0.2rem;
+  border-top: 3px solid var(--accent);
+  padding-top: 0.65rem;
+}
+
+.welcome-metrics strong {
+  color: var(--blue);
+  font-size: clamp(1.75rem, 4vw, 3rem);
+  line-height: 1;
+}
+
+.welcome-metrics em {
+  color: var(--muted);
+  font-style: normal;
+  font-weight: 750;
+}
+
+.welcome-spotlight {
+  display: flex;
+  flex-direction: column;
+  padding: clamp(1rem, 2.4vw, 1.5rem);
+}
+
+.spotlight-list {
+  display: grid;
+  gap: 0.75rem;
+  margin-top: 1rem;
+}
+
+.spotlight-list a {
+  display: grid;
+  grid-template-columns: 72px minmax(0, 1fr);
+  grid-template-areas:
+    "year title"
+    "year note";
+  gap: 0 0.85rem;
+  align-items: center;
+  min-height: 92px;
+  border: 1px solid var(--line);
+  background: color-mix(in srgb, var(--surface), transparent 10%);
+  padding: 0.85rem;
+  transition:
+    transform 160ms ease,
+    border-color 160ms ease,
+    background 160ms ease;
+}
+
+.spotlight-list a:hover,
+.spotlight-list a:focus-visible {
+  transform: translateY(-1px);
+  border-color: var(--accent);
+  background: linear-gradient(135deg, var(--accent-soft), var(--surface));
+}
+
+.spotlight-list span {
+  grid-area: year;
+  color: var(--rust);
+  font-weight: 900;
+}
+
+.spotlight-list strong {
+  grid-area: title;
+  line-height: 1.28;
+}
+
+.spotlight-list em {
+  grid-area: note;
+  font-style: normal;
+}
+
+.welcome-report-strip {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.welcome-report-strip article {
+  display: grid;
+  align-content: start;
+  gap: 0.55rem;
+  min-height: 230px;
+  padding: 1rem;
+}
+
+.welcome-report-strip span,
+.discussion-tags span {
+  width: fit-content;
+  border-left: 3px solid var(--accent);
+  background: color-mix(in srgb, var(--accent), transparent 90%);
+  color: var(--accent-strong);
+  padding: 0.18rem 0.5rem;
+  font-size: 0.72rem;
+  font-weight: 850;
+}
+
+.lab-notes-page {
+  position: relative;
+}
+
+.lab-notes-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(300px, 0.85fr) minmax(320px, 0.9fr);
+  gap: 1rem;
+  align-items: stretch;
+}
+
+.note-feature,
+.discussion-panel {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 420px;
+  padding: clamp(1.1rem, 2.4vw, 1.6rem);
+}
+
+.note-feature time,
+.note-timeline time {
+  color: var(--blue);
+  font-weight: 850;
+}
+
+.note-feature .button {
+  width: fit-content;
+  margin-top: 1.2rem;
+}
+
+.note-timeline {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.note-timeline article {
+  position: relative;
+  min-height: 132px;
+  padding: 1rem 1rem 1rem 1.25rem;
+}
+
+.note-timeline article::before {
+  content: "";
+  position: absolute;
+  left: -1px;
+  top: 1rem;
+  bottom: 1rem;
+  width: 4px;
+  background: linear-gradient(var(--accent), var(--blue));
+}
+
+.discussion-panel {
+  background:
+    linear-gradient(145deg, color-mix(in srgb, var(--accent-soft), transparent 18%), transparent 58%),
+    var(--surface);
+}
+
+.discussion-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin: 1rem 0 1.2rem;
 }
 
 .section-heading.split {
@@ -1657,6 +1893,9 @@ address a {
   .research-triad,
   .research-tabs,
   .research-panel,
+  .welcome-board,
+  .welcome-report-strip,
+  .lab-notes-grid,
   .achievement-overview,
   .member-tabs,
   .project-grid,
@@ -1739,6 +1978,8 @@ address a {
 
   .hero-visual dl,
   .profile-panel dl,
+  .welcome-metrics,
+  .spotlight-list a,
   .publication,
   .achievement,
   .achievement-featured-output,
@@ -1760,6 +2001,20 @@ address a {
 
   .visitor-stats {
     grid-template-columns: 1fr;
+  }
+
+  .welcome-manifesto,
+  .note-feature,
+  .discussion-panel {
+    min-height: auto;
+  }
+
+  .spotlight-list a {
+    grid-template-areas:
+      "year"
+      "title"
+      "note";
+    align-items: start;
   }
 
   .research-media,
