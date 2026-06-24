@@ -60,7 +60,7 @@ const translations = {
     "welcome.note": "从实验室使命、近期亮点工作与媒体报道进入非攻机器人实验室。",
     "welcome.manifesto.tag": "Lab Compass",
     "welcome.manifesto.title": "造因境而变、入微而作的具身智能机器人",
-    "welcome.manifesto.body": "实验室面向航空发动机等高端装备内部深腔、狭窄通道和复杂曲面损伤，发展软体/连续体机器人、爬行机器人、触觉传感与灵巧操作，让机器人在受限空间里完成感知、进入、接触和处置。",
+    "welcome.manifesto.body": "实验室将“一器多形、因境而变、入微而作”的机构学寓意转化为具身智能机器人能力，面向航空发动机等高端装备内部深腔、狭窄通道和复杂曲面损伤，发展软体/连续体机器人、爬行机器人、触觉传感与灵巧操作，让机器人在受限空间里完成感知、进入、接触和处置，以尽量少拆解、少损伤、少停机的方式完成高端装备在位诊断、进入和维护。",
     "welcome.metrics.threads": "研究主线",
     "welcome.metrics.papers": "论文",
     "welcome.metrics.patents": "专利",
@@ -74,7 +74,7 @@ const translations = {
     "welcome.report.silk": "呈现团队“刚柔并济”的高端装备智能检修探索。",
     "welcome.report.shaanxi": "展示蛇形机器人等面向原位检测与维护的机器人系统。",
     "blog.eyebrow": "Lab Notes",
-    "blog.intro": "记录团队活动、开放交流和可公开讨论的问题，像实验室的共享白板一样持续更新。",
+    "blog.intro": "以重要新闻、论文发表与奖励为主，自动从团队动态和成果列表中抽取最新条目，并配合图文、视频素材展示。",
     "blog.feature.tag": "Latest Note",
     "blog.feature.title": "从期刊任职到青年科学家论坛：近期学术服务与交流",
     "blog.feature.body": "团队近期围绕机器人具身智能、高端装备原位检修和触觉灵巧操作开展多场学术交流，并继续参与 IEEE Sensors Reviews 等学术共同体建设。",
@@ -86,10 +86,12 @@ const translations = {
     "blog.timeline.award.title": "振动工程基础研究获奖",
     "blog.timeline.award.body": "团队牵头、联合重庆大学获中国振动工程学会科学技术奖基础研究类二等奖。",
     "blog.discussion.tag": "Open Desk",
-    "blog.discussion.body": "欢迎围绕招生咨询、合作交流、论文复现、机器人系统设计和媒体采访等公开问题留言。涉及个人隐私或未公开合作内容，请优先邮件联系。",
+    "blog.discussion.body": "这里保留公开交流入口，适合讨论论文复现、机器人系统设计、媒体采访和合作线索。涉及个人隐私或未公开合作内容，请优先邮件联系。",
     "blog.discussion.admission": "招生咨询",
     "blog.discussion.collab": "合作交流",
     "blog.discussion.reproduction": "论文复现",
+    "blog.discussion.robotics": "机器人系统",
+    "blog.discussion.awards": "奖励与报道",
     "blog.discussion.media": "媒体采访",
     "blog.discussion.public": "公开讨论入口",
     "blog.discussion.email": "邮件联系",
@@ -129,7 +131,7 @@ const translations = {
     "welcome.note": "Enter Feigong Robotics Laboratory through its mission, recent highlights, and featured media reports.",
     "welcome.manifesto.tag": "Lab Compass",
     "welcome.manifesto.title": "Embodied intelligent robots that adapt and work at fine scale",
-    "welcome.manifesto.body": "For deep cavities, narrow passages, and damaged complex surfaces inside aero-engines and other advanced equipment, the lab develops soft/continuum robots, crawling robots, tactile sensing, and dexterous manipulation so robots can perceive, access, touch, and intervene in constrained spaces.",
+    "welcome.manifesto.body": "The lab translates the mechanism ideas of multi-form structure, environment-responsive adaptation, and fine-scale operation into embodied intelligent robotic capabilities. For deep cavities, narrow passages, and damaged complex surfaces inside aero-engines and other advanced equipment, it develops soft/continuum robots, crawling robots, tactile sensing, and dexterous manipulation so robots can perceive, access, touch, and intervene in constrained spaces while completing in-situ diagnosis, access, and maintenance with as little disassembly, damage, and downtime as possible.",
     "welcome.metrics.threads": "Research Threads",
     "welcome.metrics.papers": "Papers",
     "welcome.metrics.patents": "Patents",
@@ -143,7 +145,7 @@ const translations = {
     "welcome.report.silk": "Presented the team's rigid-soft robotics exploration for intelligent maintenance of advanced equipment.",
     "welcome.report.shaanxi": "Showcased snake-like robots and robotic systems for in-situ inspection and maintenance.",
     "blog.eyebrow": "Lab Notes",
-    "blog.intro": "A running whiteboard for team activities, open exchange, and questions that can be discussed publicly.",
+    "blog.intro": "Focused on important news, paper publications, and awards, this page automatically draws recent items from team news and outputs, with images and videos where available.",
     "blog.feature.tag": "Latest Note",
     "blog.feature.title": "From editorial service to the Youth Scientists Forum: recent academic service and exchange",
     "blog.feature.body": "The team recently held academic exchanges on robotic embodied intelligence, in-situ maintenance of advanced equipment, and tactile dexterous manipulation, while continuing to contribute to communities such as IEEE Sensors Reviews.",
@@ -155,10 +157,12 @@ const translations = {
     "blog.timeline.award.title": "Award in basic research on vibration engineering",
     "blog.timeline.award.body": "The team, together with Chongqing University, won the second prize in basic research from the Chinese Society for Vibration Engineering.",
     "blog.discussion.tag": "Open Desk",
-    "blog.discussion.body": "Public questions on admissions, collaboration, paper reproduction, robotic system design, and media interviews are welcome. For privacy-sensitive or unpublished collaborations, please use email first.",
+    "blog.discussion.body": "This open desk is for public discussion on paper reproduction, robotic system design, media interviews, and collaboration leads. For privacy-sensitive or unpublished collaborations, please use email first.",
     "blog.discussion.admission": "Admissions",
     "blog.discussion.collab": "Collaboration",
     "blog.discussion.reproduction": "Paper Reproduction",
+    "blog.discussion.robotics": "Robotic Systems",
+    "blog.discussion.awards": "Awards and Reports",
     "blog.discussion.media": "Media",
     "blog.discussion.public": "Public Discussion",
     "blog.discussion.email": "Email",
@@ -172,6 +176,7 @@ const attributeTranslations = [
   { selector: ".welcome-metrics", attribute: "aria-label", zh: "欢迎页实验室概览", en: "Welcome page lab overview" },
   { selector: ".welcome-report-strip", attribute: "aria-label", zh: "欢迎页亮点报道", en: "Welcome page highlight reports" },
   { selector: ".note-timeline", attribute: "aria-label", zh: "团队札记时间线", en: "Lab Notes timeline" },
+  { selector: "[data-lab-notes-feed]", attribute: "aria-label", zh: "团队札记动态流", en: "Lab Notes dynamic feed" },
   { selector: ".discussion-panel", attribute: "aria-label", zh: "开放讨论区", en: "Open discussion area" },
   { selector: '.hero-visual img[src="assets/team-profile.jpg"]', attribute: "alt", zh: "团队相关研究展示图", en: "Research showcase for the team" },
   { selector: '.leader-card img[src="assets/leader-yang.png"]', attribute: "alt", zh: "杨来浩副研究员照片", en: "Portrait of Associate Researcher Laihao Yang" },
@@ -860,6 +865,137 @@ function translateAttributes(language) {
   });
 }
 
+function escapeHtml(value) {
+  return String(value || "")
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;");
+}
+
+function textContent(element, selector) {
+  return element.querySelector(selector)?.textContent?.replace(/\s+/g, " ").trim() || "";
+}
+
+function linkFor(element) {
+  const link = element.querySelector("h3 a, .pub-actions a, a");
+  return link?.getAttribute("href") || "";
+}
+
+function mediaFor(element) {
+  const video = element.querySelector("video source");
+  if (video?.getAttribute("src")) {
+    return { type: "video", src: video.getAttribute("src") };
+  }
+
+  const image = element.querySelector("img");
+  if (image?.getAttribute("src")) {
+    return { type: "image", src: image.getAttribute("src") };
+  }
+
+  return { type: "image", src: "assets/team-profile.jpg" };
+}
+
+function itemFromArticle(element, type) {
+  const title = textContent(element, "h3");
+  const date = textContent(element, "time") || textContent(element, ".pub-year");
+  const summary = textContent(element, ".pub-body > p:last-child") || textContent(element, "p:not(.news-type):not(.pub-venue):not(.project-tag)") || textContent(element, ".pub-venue");
+  const href = linkFor(element);
+  return {
+    type,
+    title,
+    date,
+    summary,
+    href,
+    media: mediaFor(element),
+  };
+}
+
+function renderMedia(media) {
+  if (!media?.src) return "";
+  if (media.type === "video") {
+    return `
+      <figure class="note-card-media">
+        <video controls controlslist="nodownload" oncontextmenu="return false" preload="metadata" playsinline>
+          <source src="${escapeHtml(media.src)}" type="video/mp4">
+        </video>
+      </figure>
+    `;
+  }
+
+  return `
+    <figure class="note-card-media">
+      <img src="${escapeHtml(media.src)}" alt="" loading="lazy">
+    </figure>
+  `;
+}
+
+function renderLinkedTitle(item) {
+  const title = escapeHtml(item.title);
+  if (!item.href) return title;
+  return `<a href="${escapeHtml(item.href)}" target="_blank" rel="noreferrer">${title}</a>`;
+}
+
+function renderDynamicWelcome() {
+  document.querySelectorAll("[data-auto-source]").forEach((element) => {
+    const count = document.querySelectorAll(element.dataset.autoSource).length;
+    element.textContent = element.dataset.autoFormat === "plus" && count >= 90 ? `${Math.floor(count / 10) * 10}+` : String(count);
+  });
+
+  const highlightRoot = document.querySelector("[data-welcome-highlights]");
+  if (highlightRoot) {
+    const highlights = Array.from(document.querySelectorAll('article[data-output-type="highlight-output"]')).slice(0, 3).map((item) => itemFromArticle(item, "paper"));
+    highlightRoot.innerHTML = highlights.map((item) => `
+      <a href="#achievements">
+        <span>${escapeHtml(item.date)}</span>
+        <strong>${renderLinkedTitle(item)}</strong>
+        <em>${escapeHtml(item.summary)}</em>
+      </a>
+    `).join("");
+  }
+
+  const reportRoot = document.querySelector("[data-welcome-reports]");
+  if (reportRoot) {
+    const reports = Array.from(document.querySelectorAll('article[data-news-type="highlight"]')).slice(0, 3).map((item) => itemFromArticle(item, "report"));
+    reportRoot.innerHTML = reports.map((item) => `
+      <article>
+        <span>${currentLanguage === "en" ? "Highlight Report" : "亮点报道"}</span>
+        <h3>${renderLinkedTitle(item)}</h3>
+        <p>${escapeHtml(item.summary)}</p>
+      </article>
+    `).join("");
+  }
+}
+
+function renderLabNotesFeed() {
+  const root = document.querySelector("[data-lab-notes-feed]");
+  if (!root) return;
+
+  const highlightReports = Array.from(document.querySelectorAll('article[data-news-type="highlight"]')).map((item) => itemFromArticle(item, "report"));
+  const featuredPapers = Array.from(document.querySelectorAll('article[data-output-type="highlight-output"]')).map((item) => itemFromArticle(item, "paper"));
+  const awards = Array.from(document.querySelectorAll('article[data-output-type^="award-"]')).slice(0, 5).map((item) => itemFromArticle(item, "award"));
+  const importantNews = Array.from(document.querySelectorAll('article[data-news-type="news"]'))
+    .map((item) => itemFromArticle(item, "news"))
+    .filter((item) => /获|奖|发表于|报告|报道|担任|当选|Invited|Award|Published|Editor|Report/i.test(`${item.title} ${item.summary}`));
+
+  const seen = new Set();
+  const feed = [...featuredPapers, ...awards, ...importantNews, ...highlightReports]
+    .filter((item) => item.title && !seen.has(item.title) && seen.add(item.title))
+    .slice(0, 9);
+
+  root.innerHTML = feed.map((item) => `
+    <article class="note-card note-card-${escapeHtml(item.type)}">
+      ${renderMedia(item.media)}
+      <div class="note-card-body">
+        <p class="project-tag">${escapeHtml(item.type === "paper" ? (currentLanguage === "en" ? "Paper" : "论文发表") : item.type === "award" ? (currentLanguage === "en" ? "Award" : "奖励") : item.type === "report" ? (currentLanguage === "en" ? "Report" : "报道") : (currentLanguage === "en" ? "News" : "新闻"))}</p>
+        <time>${escapeHtml(item.date)}</time>
+        <h3>${renderLinkedTitle(item)}</h3>
+        <p>${escapeHtml(item.summary)}</p>
+      </div>
+    </article>
+  `).join("");
+}
+
 function applyTheme(theme) {
   currentTheme = theme;
   root.dataset.theme = theme;
@@ -881,6 +1017,8 @@ function applyLanguage(language) {
   });
   translateStaticText(language);
   translateAttributes(language);
+  renderDynamicWelcome();
+  renderLabNotesFeed();
   document.title = translations[language]["meta.ogTitle"];
   metaDescription?.setAttribute("content", translations[language]["meta.description"]);
   ogTitle?.setAttribute("content", translations[language]["meta.ogTitle"]);

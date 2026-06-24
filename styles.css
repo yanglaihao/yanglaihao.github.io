@@ -559,6 +559,14 @@ h3 {
   align-items: stretch;
 }
 
+.home-dynamic-panel {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: minmax(0, 0.85fr) minmax(320px, 1fr) minmax(300px, 0.9fr);
+  gap: 1rem;
+  align-items: stretch;
+}
+
 .welcome-manifesto,
 .welcome-spotlight,
 .note-feature,
@@ -629,6 +637,10 @@ h3 {
   padding: clamp(1rem, 2.4vw, 1.5rem);
 }
 
+.welcome-reports {
+  padding: clamp(1rem, 2.4vw, 1.5rem);
+}
+
 .spotlight-list {
   display: grid;
   gap: 0.75rem;
@@ -683,6 +695,11 @@ h3 {
   margin-top: 1rem;
 }
 
+.home-dynamic-panel .welcome-report-strip {
+  grid-template-columns: 1fr;
+  gap: 0.75rem;
+}
+
 .welcome-report-strip article {
   display: grid;
   align-content: start;
@@ -711,6 +728,57 @@ h3 {
   grid-template-columns: minmax(0, 1.05fr) minmax(300px, 0.85fr) minmax(320px, 0.9fr);
   gap: 1rem;
   align-items: stretch;
+}
+
+.lab-notes-grid.dynamic-notes {
+  grid-template-columns: minmax(0, 1fr) minmax(320px, 0.35fr);
+  align-items: start;
+}
+
+.album-stream {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.note-card {
+  border: 1px solid var(--line);
+  background:
+    linear-gradient(145deg, color-mix(in srgb, var(--surface), transparent 0%), color-mix(in srgb, var(--surface-strong), transparent 45%)),
+    var(--surface);
+  box-shadow: 0 14px 34px rgba(13, 39, 33, 0.06);
+  overflow: hidden;
+}
+
+.note-card-media {
+  margin: 0;
+  border-bottom: 1px solid var(--line);
+  background: #111827;
+}
+
+.note-card-media img,
+.note-card-media video {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+}
+
+.note-card-media video {
+  background: #111827;
+}
+
+.note-card-body {
+  padding: 1rem;
+}
+
+.note-card-body time {
+  color: var(--blue);
+  font-weight: 850;
+}
+
+.note-card-body p:last-child {
+  color: var(--muted);
 }
 
 .note-feature,
@@ -1894,8 +1962,11 @@ address a {
   .research-tabs,
   .research-panel,
   .welcome-board,
+  .home-dynamic-panel,
   .welcome-report-strip,
   .lab-notes-grid,
+  .lab-notes-grid.dynamic-notes,
+  .album-stream,
   .achievement-overview,
   .member-tabs,
   .project-grid,
