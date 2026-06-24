@@ -282,12 +282,23 @@ assert.ok(!styles.includes(".blog-intro"), "unused Lab Notes intro styles should
 assert.ok(html.includes("https://github.com/yanglaihao/yanglaihao.github.io/issues/new"), "blog page should provide a public GitHub discussion entry");
 assert.ok(html.includes("data-dynamic-welcome"), "welcome page should expose a dynamic rendering root");
 assert.ok(html.includes("data-auto-source"), "welcome page should mark data that is automatically updated from the current site content");
-assert.ok(html.includes("data-lab-notes-feed"), "Lab Notes should expose a dynamic feed root");
+assert.ok(html.includes("blog-board"), "Lab Notes should use a blog-style index and detail board");
+assert.ok(html.includes("data-lab-note-list"), "Lab Notes should expose a curated post index root");
+assert.ok(html.includes("data-lab-note-detail"), "Lab Notes should expose a post detail root");
 assert.ok(script.includes("function renderDynamicWelcome"), "script should render the welcome page from current site data");
-assert.ok(script.includes("function renderLabNotesFeed"), "script should render Lab Notes dynamically from current site data");
-assert.ok(script.includes('data-output-type^="award-"'), "Lab Notes should automatically include award records");
-assert.ok(script.includes('data-output-type="highlight-output"'), "Lab Notes should automatically include featured paper outputs");
-assert.ok(script.includes('data-news-type="highlight"'), "dynamic sections should include highlight report items");
+assert.ok(script.includes("const labNotePosts"), "Lab Notes should be driven by curated blog post data");
+assert.ok(script.includes("function renderLabNotesFeed"), "script should render Lab Notes as clickable curated posts");
+assert.ok(!script.includes('data-output-type^="award-"'), "Lab Notes should not duplicate the awards list by automatic aggregation");
+assert.ok(!script.includes('article[data-news-type="news"]'), "Lab Notes should not duplicate the news list by automatic aggregation");
+for (const title of [
+  "触觉不止于感知：扭矩如何进入灵巧操作",
+  "把接触变成支点：连续体机器人进入深腔的另一种思路",
+  "小尺度跳跃机器人的能垒调节",
+  "从新闻镜头回到工程现场",
+]) {
+  assert.ok(script.includes(title), `Lab Notes should include curated post: ${title}`);
+}
+assert.ok(script.includes("blog.detail.onPage"), "Lab Notes details should include an on-page guide like a post page");
 for (const figure of [
   "assets/paper-highlights/torque-dexterity-figure.png",
   "assets/paper-highlights/contact-aided-continuum-figure.png",

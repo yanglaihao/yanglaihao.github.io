@@ -1407,26 +1407,43 @@
           </div>
         </div>
 
-        <div class="lab-notes-grid dynamic-notes">
-          <div class="album-stream" data-lab-notes-feed aria-label="团队札记动态流"></div>
-
-          <aside class="discussion-panel" aria-label="开放讨论区">
-            <p class="project-tag" data-i18n="blog.discussion.tag">Open Desk</p>
-            <h3>开放讨论区</h3>
-            <p data-i18n="blog.discussion.body">
-              这里保留公开交流入口，适合讨论论文复现、机器人系统设计、媒体采访和合作线索。涉及个人隐私或未公开合作内容，请优先邮件联系。
-            </p>
-            <div class="discussion-tags">
-              <span data-i18n="blog.discussion.reproduction">论文复现</span>
-              <span data-i18n="blog.discussion.robotics">机器人系统</span>
-              <span data-i18n="blog.discussion.awards">奖励与报道</span>
-              <span data-i18n="blog.discussion.media">媒体采访</span>
+        <div class="blog-board">
+          <aside class="blog-index-panel" aria-label="团队札记索引">
+            <div>
+              <p class="project-tag" data-i18n="blog.index.tag">Notebook Index</p>
+              <h3 data-i18n="blog.index.title">近期专题</h3>
             </div>
-            <div class="pub-actions">
-              <a href="https://github.com/yanglaihao/yanglaihao.github.io/issues/new?title=%E3%80%90%E5%85%AC%E5%BC%80%E8%AE%A8%E8%AE%BA%E3%80%91&amp;labels=discussion" target="_blank" rel="noreferrer" data-i18n="blog.discussion.public">公开讨论入口</a>
-              <a href="mailto:yanglaihao@xjtu.edu.cn" data-i18n="blog.discussion.email">邮件联系</a>
+            <div class="blog-post-list" data-lab-note-list aria-label="团队札记专题列表"></div>
+            <div class="blog-taxonomy" aria-label="团队札记分类">
+              <div>
+                <p data-i18n="blog.taxonomy.category">By Category</p>
+                <span data-i18n="blog.category.research">研究札记</span>
+                <span data-i18n="blog.category.field">现场札记</span>
+                <span data-i18n="blog.category.resource">开放资源</span>
+              </div>
+              <div>
+                <p data-i18n="blog.taxonomy.year">By Year</p>
+                <span>2026</span>
+                <span>2025</span>
+                <span>2024</span>
+              </div>
+            </div>
+            <div class="discussion-panel compact" aria-label="开放讨论区">
+              <p class="project-tag" data-i18n="blog.discussion.tag">Open Desk</p>
+              <h3>开放讨论区</h3>
+              <div class="discussion-tags">
+                <span data-i18n="blog.discussion.reproduction">论文复现</span>
+                <span data-i18n="blog.discussion.robotics">机器人系统</span>
+                <span data-i18n="blog.discussion.media">媒体采访</span>
+              </div>
+              <div class="pub-actions">
+                <a href="https://github.com/yanglaihao/yanglaihao.github.io/issues/new?title=%E3%80%90%E5%85%AC%E5%BC%80%E8%AE%A8%E8%AE%BA%E3%80%91&amp;labels=discussion" target="_blank" rel="noreferrer" data-i18n="blog.discussion.public">公开讨论入口</a>
+                <a href="mailto:yanglaihao@xjtu.edu.cn" data-i18n="blog.discussion.email">邮件联系</a>
+              </div>
             </div>
           </aside>
+
+          <article class="blog-detail-panel" data-lab-note-detail aria-live="polite"></article>
         </div>
       </section>
     </main>

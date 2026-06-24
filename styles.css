@@ -568,9 +568,7 @@ h3 {
 
 .welcome-manifesto,
 .welcome-spotlight,
-.note-feature,
 .discussion-panel,
-.note-timeline article,
 .welcome-report-strip article {
   border: 1px solid var(--line);
   background:
@@ -589,7 +587,6 @@ h3 {
 }
 
 .welcome-manifesto h3,
-.note-feature h3,
 .discussion-panel h3 {
   max-width: 720px;
   font-size: clamp(1.55rem, 2.4vw, 2.4rem);
@@ -598,8 +595,6 @@ h3 {
 .welcome-manifesto p:not(.project-tag),
 .welcome-spotlight em,
 .welcome-report-strip p,
-.note-feature p,
-.note-timeline p,
 .discussion-panel p {
   color: var(--muted);
 }
@@ -739,31 +734,102 @@ h3 {
   position: relative;
 }
 
-.lab-notes-grid {
+.blog-board {
   display: grid;
-  grid-template-columns: minmax(0, 1.05fr) minmax(300px, 0.85fr) minmax(320px, 0.9fr);
-  gap: 1rem;
-  align-items: stretch;
-}
-
-.lab-notes-grid.dynamic-notes {
-  grid-template-columns: minmax(0, 1fr) minmax(320px, 0.35fr);
+  grid-template-columns: minmax(300px, 0.36fr) minmax(0, 1fr);
+  gap: 1.25rem;
   align-items: start;
 }
 
-.album-stream {
+.blog-index-panel {
+  position: sticky;
+  top: 96px;
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 1rem;
 }
 
-.note-card {
+.blog-post-list {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.blog-post-card,
+.blog-detail-panel,
+.blog-taxonomy,
+.discussion-panel.compact {
   border: 1px solid var(--line);
   background:
     linear-gradient(145deg, color-mix(in srgb, var(--surface), transparent 0%), color-mix(in srgb, var(--surface-strong), transparent 45%)),
     var(--surface);
   box-shadow: 0 14px 34px rgba(13, 39, 33, 0.06);
+}
+
+.blog-post-card {
+  width: 100%;
+  display: grid;
+  gap: 0.35rem;
+  padding: 0.95rem;
+  color: var(--ink);
+  text-align: left;
+  cursor: pointer;
+}
+
+.blog-post-card span {
+  color: var(--rust);
+  font-size: 0.72rem;
+  font-weight: 900;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.blog-post-card strong {
+  font-size: 1rem;
+  line-height: 1.35;
+}
+
+.blog-post-card time,
+.blog-post-card em {
+  color: var(--muted);
+  font-style: normal;
+  font-size: 0.82rem;
+}
+
+.blog-post-card.active {
+  border-color: color-mix(in srgb, var(--accent), transparent 32%);
+  background:
+    linear-gradient(135deg, color-mix(in srgb, var(--accent-soft), transparent 20%), transparent 60%),
+    var(--surface);
+}
+
+.blog-taxonomy {
+  display: grid;
+  gap: 0.9rem;
+  padding: 1rem;
+}
+
+.blog-taxonomy p {
+  margin: 0 0 0.45rem;
+  color: var(--rust);
+  font-size: 0.76rem;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.blog-taxonomy span {
+  display: inline-flex;
+  width: fit-content;
+  margin: 0.2rem 0.25rem 0.2rem 0;
+  border-left: 3px solid var(--accent);
+  background: color-mix(in srgb, var(--accent), transparent 90%);
+  color: var(--accent-strong);
+  padding: 0.2rem 0.5rem;
+  font-size: 0.75rem;
+  font-weight: 850;
+}
+
+.blog-detail-panel {
   overflow: hidden;
+  scroll-margin-top: 96px;
 }
 
 .note-card-media {
@@ -784,20 +850,118 @@ h3 {
   background: #111827;
 }
 
-.note-card-body {
-  padding: 1rem;
+.blog-detail-header {
+  padding: clamp(1.2rem, 2.6vw, 2rem);
 }
 
-.note-card-body time {
+.blog-detail-panel > .note-card-media img {
+  max-height: 520px;
+  object-fit: contain;
+  background: #ffffff;
+}
+
+.blog-detail-panel > .note-card-media video {
+  max-height: 520px;
+  object-fit: contain;
+}
+
+.blog-detail-header h3 {
+  max-width: 880px;
+  margin: 0.45rem 0 0.75rem;
+  font-size: clamp(1.7rem, 3vw, 3rem);
+  line-height: 1.08;
+}
+
+.blog-detail-header > p:not(.project-tag) {
+  max-width: 820px;
+  color: var(--muted);
+  font-size: 1.02rem;
+}
+
+.blog-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1rem;
+  margin-top: 1rem;
+  color: var(--muted);
+  font-size: 0.85rem;
+  font-weight: 750;
+}
+
+.blog-article-grid {
+  display: grid;
+  grid-template-columns: minmax(170px, 0.22fr) minmax(0, 1fr);
+  gap: clamp(1rem, 2vw, 1.5rem);
+  padding: clamp(1.2rem, 2.6vw, 2rem);
+}
+
+.blog-on-page {
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+}
+
+.blog-on-page p {
+  margin: 0;
+  color: var(--rust);
+  font-size: 0.76rem;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.blog-on-page a {
+  color: var(--muted);
+  font-size: 0.9rem;
+  font-weight: 750;
+  text-decoration: none;
+}
+
+.blog-on-page a:hover,
+.blog-on-page a:focus-visible {
   color: var(--blue);
-  font-weight: 850;
 }
 
-.note-card-body p:last-child {
+.blog-prose {
+  display: grid;
+  gap: 1.2rem;
+}
+
+.blog-prose section {
+  border-top: 1px solid var(--line);
+  padding-top: 1rem;
+}
+
+.blog-prose h4 {
+  margin: 0 0 0.45rem;
+  font-size: 1.15rem;
+}
+
+.blog-prose p {
+  margin: 0;
   color: var(--muted);
 }
 
-.note-feature,
+.blog-post-nav {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.75rem;
+}
+
+.blog-post-nav button {
+  border: 1px solid var(--line);
+  background: color-mix(in srgb, var(--surface-strong), transparent 24%);
+  padding: 0.8rem;
+  text-align: left;
+  cursor: pointer;
+}
+
+.blog-post-nav span {
+  display: block;
+  color: var(--muted);
+  font-size: 0.76rem;
+  font-weight: 850;
+}
+
 .discussion-panel {
   display: flex;
   flex-direction: column;
@@ -806,42 +970,15 @@ h3 {
   padding: clamp(1.1rem, 2.4vw, 1.6rem);
 }
 
-.note-feature time,
-.note-timeline time {
-  color: var(--blue);
-  font-weight: 850;
-}
-
-.note-feature .button {
-  width: fit-content;
-  margin-top: 1.2rem;
-}
-
-.note-timeline {
-  display: grid;
-  gap: 0.75rem;
-}
-
-.note-timeline article {
-  position: relative;
-  min-height: 132px;
-  padding: 1rem 1rem 1rem 1.25rem;
-}
-
-.note-timeline article::before {
-  content: "";
-  position: absolute;
-  left: -1px;
-  top: 1rem;
-  bottom: 1rem;
-  width: 4px;
-  background: linear-gradient(var(--accent), var(--blue));
-}
-
 .discussion-panel {
   background:
     linear-gradient(145deg, color-mix(in srgb, var(--accent-soft), transparent 18%), transparent 58%),
     var(--surface);
+}
+
+.discussion-panel.compact {
+  min-height: auto;
+  padding: 1rem;
 }
 
 .discussion-tags {
@@ -1980,9 +2117,9 @@ address a {
   .welcome-board,
   .home-dynamic-panel,
   .welcome-report-strip,
-  .lab-notes-grid,
-  .lab-notes-grid.dynamic-notes,
-  .album-stream,
+  .blog-board,
+  .blog-article-grid,
+  .blog-post-nav,
   .achievement-overview,
   .member-tabs,
   .project-grid,
@@ -2091,9 +2228,12 @@ address a {
   }
 
   .welcome-manifesto,
-  .note-feature,
   .discussion-panel {
     min-height: auto;
+  }
+
+  .blog-index-panel {
+    position: static;
   }
 
   .spotlight-list a {

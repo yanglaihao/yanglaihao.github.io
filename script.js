@@ -23,6 +23,7 @@ const memberPanels = document.querySelectorAll("[data-member-panel]");
 let currentTheme = localStorage.getItem("theme") || "light";
 let currentLanguage = localStorage.getItem("language") || "zh";
 let researchRotation;
+let activeLabNoteId = "torque-dexterity";
 
 const translations = {
   zh: {
@@ -74,18 +75,20 @@ const translations = {
     "welcome.report.silk": "呈现团队“刚柔并济”的高端装备智能检修探索。",
     "welcome.report.shaanxi": "展示蛇形机器人等面向原位检测与维护的机器人系统。",
     "blog.eyebrow": "Lab Notes",
-    "blog.feature.tag": "Latest Note",
-    "blog.feature.title": "从期刊任职到青年科学家论坛：近期学术服务与交流",
-    "blog.feature.body": "团队近期围绕机器人具身智能、高端装备原位检修和触觉灵巧操作开展多场学术交流，并继续参与 IEEE Sensors Reviews 等学术共同体建设。",
-    "blog.feature.action": "查看团队动态",
-    "blog.timeline.forum.title": "青年科学家论坛特邀报告",
-    "blog.timeline.forum.body": "围绕航空发动机原位检测与维修机器人系统展开交流。",
-    "blog.timeline.science.title": "触觉传感与灵巧操作研究进展",
-    "blog.timeline.science.body": "扭矩触觉相关工作发表于 Science Advances。",
-    "blog.timeline.award.title": "振动工程基础研究获奖",
-    "blog.timeline.award.body": "团队牵头、联合重庆大学获中国振动工程学会科学技术奖基础研究类二等奖。",
+    "blog.index.tag": "Notebook Index",
+    "blog.index.title": "近期专题",
+    "blog.taxonomy.category": "By Category",
+    "blog.taxonomy.year": "By Year",
+    "blog.category.research": "研究札记",
+    "blog.category.field": "现场札记",
+    "blog.category.resource": "开放资源",
+    "blog.meta.author": "非攻机器人实验室",
+    "blog.meta.reading": "分钟阅读",
+    "blog.detail.onPage": "本文导览",
+    "blog.detail.resources": "相关资源",
+    "blog.detail.previous": "上一篇",
+    "blog.detail.next": "下一篇",
     "blog.discussion.tag": "Open Desk",
-    "blog.discussion.body": "这里保留公开交流入口，适合讨论论文复现、机器人系统设计、媒体采访和合作线索。涉及个人隐私或未公开合作内容，请优先邮件联系。",
     "blog.discussion.admission": "招生咨询",
     "blog.discussion.collab": "合作交流",
     "blog.discussion.reproduction": "论文复现",
@@ -144,18 +147,20 @@ const translations = {
     "welcome.report.silk": "Presented the team's rigid-soft robotics exploration for intelligent maintenance of advanced equipment.",
     "welcome.report.shaanxi": "Showcased snake-like robots and robotic systems for in-situ inspection and maintenance.",
     "blog.eyebrow": "Lab Notes",
-    "blog.feature.tag": "Latest Note",
-    "blog.feature.title": "From editorial service to the Youth Scientists Forum: recent academic service and exchange",
-    "blog.feature.body": "The team recently held academic exchanges on robotic embodied intelligence, in-situ maintenance of advanced equipment, and tactile dexterous manipulation, while continuing to contribute to communities such as IEEE Sensors Reviews.",
-    "blog.feature.action": "View Team News",
-    "blog.timeline.forum.title": "Invited talk at the Youth Scientists Forum",
-    "blog.timeline.forum.body": "Exchange on robotic systems for in-situ inspection and repair of aero-engines.",
-    "blog.timeline.science.title": "Progress in tactile sensing and dexterous manipulation",
-    "blog.timeline.science.body": "Torque-enabled tactile dexterity work was published in Science Advances.",
-    "blog.timeline.award.title": "Award in basic research on vibration engineering",
-    "blog.timeline.award.body": "The team, together with Chongqing University, won the second prize in basic research from the Chinese Society for Vibration Engineering.",
+    "blog.index.tag": "Notebook Index",
+    "blog.index.title": "Recent Notes",
+    "blog.taxonomy.category": "By Category",
+    "blog.taxonomy.year": "By Year",
+    "blog.category.research": "Research Notes",
+    "blog.category.field": "Field Notes",
+    "blog.category.resource": "Open Resources",
+    "blog.meta.author": "Feigong Robotics Laboratory",
+    "blog.meta.reading": "min read",
+    "blog.detail.onPage": "On this page",
+    "blog.detail.resources": "Resources",
+    "blog.detail.previous": "Previous",
+    "blog.detail.next": "Next",
     "blog.discussion.tag": "Open Desk",
-    "blog.discussion.body": "This open desk is for public discussion on paper reproduction, robotic system design, media interviews, and collaboration leads. For privacy-sensitive or unpublished collaborations, please use email first.",
     "blog.discussion.admission": "Admissions",
     "blog.discussion.collab": "Collaboration",
     "blog.discussion.reproduction": "Paper Reproduction",
@@ -173,8 +178,9 @@ const attributeTranslations = [
   { selector: ".hero-visual", attribute: "aria-label", zh: "团队研究图像", en: "Team research image" },
   { selector: ".welcome-metrics", attribute: "aria-label", zh: "欢迎页实验室概览", en: "Welcome page lab overview" },
   { selector: ".welcome-report-strip", attribute: "aria-label", zh: "欢迎页亮点报道", en: "Welcome page highlight reports" },
-  { selector: ".note-timeline", attribute: "aria-label", zh: "团队札记时间线", en: "Lab Notes timeline" },
-  { selector: "[data-lab-notes-feed]", attribute: "aria-label", zh: "团队札记动态流", en: "Lab Notes dynamic feed" },
+  { selector: ".blog-index-panel", attribute: "aria-label", zh: "团队札记索引", en: "Lab Notes index" },
+  { selector: "[data-lab-note-list]", attribute: "aria-label", zh: "团队札记专题列表", en: "Lab Notes post list" },
+  { selector: ".blog-taxonomy", attribute: "aria-label", zh: "团队札记分类", en: "Lab Notes taxonomy" },
   { selector: ".discussion-panel", attribute: "aria-label", zh: "开放讨论区", en: "Open discussion area" },
   { selector: '.hero-visual img[src="assets/team-profile.jpg"]', attribute: "alt", zh: "团队相关研究展示图", en: "Research showcase for the team" },
   { selector: '.leader-card img[src="assets/leader-yang.png"]', attribute: "alt", zh: "杨来浩副研究员照片", en: "Portrait of Associate Researcher Laihao Yang" },
@@ -929,6 +935,153 @@ function renderMedia(media) {
   `;
 }
 
+const labNotePosts = [
+  {
+    id: "torque-dexterity",
+    date: "2026-06-01",
+    year: "2026",
+    minutes: 5,
+    category: { zh: "研究札记", en: "Research Note" },
+    title: {
+      zh: "触觉不止于感知：扭矩如何进入灵巧操作",
+      en: "Touch Is More Than Sensing: How Torque Enters Dexterous Manipulation",
+    },
+    dek: {
+      zh: "围绕 Science Advances 工作，梳理扭矩触觉从接触测量走向抓取、转动和姿态调整的设计逻辑。",
+      en: "A note on the Science Advances work, tracing how torque-aware touch moves from contact measurement to grasping, rotation, and pose adjustment.",
+    },
+    media: { type: "image", src: "assets/paper-highlights/torque-dexterity-figure.png" },
+    sections: [
+      {
+        heading: { zh: "问题从哪里来", en: "Where the question starts" },
+        body: {
+          zh: "很多灵巧操作并不缺少“接触到了”的信号，真正困难的是知道接触之后物体正在怎样受力、怎样转动、下一步该如何调整。扭矩触觉把接触力矩纳入闭环，让机器人在持续接触中更新动作，而不是把触觉只当作碰撞报警。",
+          en: "Many dexterous tasks do not merely need a signal that contact occurred. The harder question is how the object is loaded, how it is rotating, and how the hand should adjust next. Torque-aware touch brings contact torque into the control loop so the robot can update its motion during contact rather than treating touch as a collision alarm.",
+        },
+      },
+      {
+        heading: { zh: "可以带给实验室什么", en: "What it contributes to the lab" },
+        body: {
+          zh: "这项工作与具身智能、触觉传感和灵巧操作主线相连：传感不是孤立模块，而是与结构、控制和任务策略共同塑造机器人能力。",
+          en: "The work connects embodied intelligence, tactile sensing, and dexterous manipulation. Sensing is not an isolated module; it shapes robotic capability together with structure, control, and task strategy.",
+        },
+      },
+    ],
+    links: [
+      { label: { zh: "Science Advances", en: "Science Advances" }, href: "https://doi.org/10.1126/sciadv.aec3263" },
+      { label: { zh: "成果列表", en: "Outputs" }, href: "#achievements" },
+    ],
+  },
+  {
+    id: "contact-aided-continuum",
+    date: "2024-06-12",
+    year: "2024",
+    minutes: 6,
+    category: { zh: "研究札记", en: "Research Note" },
+    title: {
+      zh: "把接触变成支点：连续体机器人进入深腔的另一种思路",
+      en: "Turning Contact into Support: Another Route into Deep Cavities",
+    },
+    dek: {
+      zh: "围绕 IEEE T-RO 接触辅助连续体机器人工作，解释为什么狭窄腔道里的接触不一定只是干扰。",
+      en: "A note on the IEEE T-RO contact-aided continuum robot, explaining why contact in narrow cavities does not have to be only a disturbance.",
+    },
+    media: { type: "image", src: "assets/paper-highlights/contact-aided-continuum-figure.png" },
+    sections: [
+      {
+        heading: { zh: "从避障到借力", en: "From avoiding contact to using it" },
+        body: {
+          zh: "传统设计常把环境接触视作误差来源，但航空发动机等复杂深腔空间并不总是允许机器人保持“干净”的自由运动。接触辅助的思想是把局部接触转化为支撑、定位和路径约束，从而提高连续体机器人在受限空间中的可达性与稳定性。",
+          en: "Conventional designs often treat environmental contact as an error source, but complex aero-engine cavities do not always allow clean free-space motion. Contact-aided design turns local contact into support, localization, and path constraint, improving reachability and stability in confined spaces.",
+        },
+      },
+      {
+        heading: { zh: "与非攻立意的关系", en: "Why it fits Feigong" },
+        body: {
+          zh: "“因境而变”在这里不是口号，而是具体的机器人策略：结构随环境约束调整，控制利用环境边界，任务目标从“进入”进一步走向“可定位、可操作、可维护”。",
+          en: "Here, adapting to the environment is not a slogan but a robotic strategy: structure adjusts to environmental constraints, control uses boundaries, and the task moves from access toward localization, operation, and maintenance.",
+        },
+      },
+    ],
+    links: [
+      { label: { zh: "IEEE T-RO", en: "IEEE T-RO" }, href: "https://doi.org/10.1109/TRO.2024.3400944" },
+      { label: { zh: "研究方向", en: "Research" }, href: "#research" },
+    ],
+  },
+  {
+    id: "bistable-jumper",
+    date: "2024-08-20",
+    year: "2024",
+    minutes: 4,
+    category: { zh: "研究札记", en: "Research Note" },
+    title: {
+      zh: "小尺度跳跃机器人的能垒调节",
+      en: "Tuning Energy Barriers in Insect-Scale Jumping Robots",
+    },
+    dek: {
+      zh: "围绕 Advanced Science 双稳态跳跃机器人工作，讨论多模态运动背后的机构能量设计。",
+      en: "A note on the Advanced Science bistable jumper, focusing on the mechanism-energy design behind multimodal locomotion.",
+    },
+    media: { type: "image", src: "assets/paper-highlights/bistable-jumper-figure.png" },
+    sections: [
+      {
+        heading: { zh: "机构为什么重要", en: "Why mechanism matters" },
+        body: {
+          zh: "昆虫尺度机器人受制于体积、质量和驱动能力，许多运动能力不能简单依赖更大的电机或更复杂的控制。双稳态机构通过能量存储与释放，把结构本身变成运动策略的一部分。",
+          en: "At insect scale, robot size, mass, and actuation are tightly constrained. Locomotion cannot simply rely on larger motors or more complex control. Bistable mechanisms use energy storage and release, making the structure itself part of the motion strategy.",
+        },
+      },
+      {
+        heading: { zh: "从跳跃到多模态", en: "From jumping to multimodal motion" },
+        body: {
+          zh: "可调能垒让机器人在跳跃、翻转和连续运动之间切换，为狭小空间中的快速越障、姿态恢复和微型化移动提供了结构基础。",
+          en: "Tunable energy barriers allow switching among jumping, flipping, and continuous locomotion, providing a structural basis for obstacle crossing, posture recovery, and miniaturized mobility in tight spaces.",
+        },
+      },
+    ],
+    links: [
+      { label: { zh: "Advanced Science", en: "Advanced Science" }, href: "https://doi.org/10.1002/advs.202404404" },
+      { label: { zh: "成果列表", en: "Outputs" }, href: "#achievements" },
+    ],
+  },
+  {
+    id: "field-reports",
+    date: "2025-07-14",
+    year: "2025",
+    minutes: 3,
+    category: { zh: "现场札记", en: "Field Note" },
+    title: {
+      zh: "从新闻镜头回到工程现场",
+      en: "From Media Coverage Back to the Engineering Scene",
+    },
+    dek: {
+      zh: "把央视等报道中的“卡脖子”问题拆回实验室日常：场景、约束、样机和可验证任务。",
+      en: "Returning from media narratives to daily lab work: scenarios, constraints, prototypes, and verifiable tasks.",
+    },
+    media: { type: "video", src: "新闻报道/正午0714播出版-web.mp4" },
+    sections: [
+      {
+        heading: { zh: "报道之外的问题", en: "The questions behind the coverage" },
+        body: {
+          zh: "媒体报道呈现的是成果窗口，真正支撑这些窗口的是长期的场景拆解：航空发动机腔道尺度、通行边界、传感盲区、样机可靠性和维护任务可验证性。",
+          en: "Media coverage shows a window into the work. Behind that window is long-term scenario decomposition: cavity scale, access boundaries, sensing blind spots, prototype reliability, and verifiable maintenance tasks.",
+        },
+      },
+      {
+        heading: { zh: "札记希望记录什么", en: "What this note format records" },
+        body: {
+          zh: "团队札记不再重复新闻，而记录新闻背后的技术问题、实验判断和开放讨论入口，让读者能从一个报道继续走向论文、样机和合作话题。",
+          en: "Lab Notes should not repeat news. They record the technical questions, experimental judgments, and open discussion paths behind the news, helping readers move from a report to papers, prototypes, and collaboration topics.",
+        },
+      },
+    ],
+    links: [
+      { label: { zh: "西安交通大学新闻网", en: "XJTU News" }, href: "https://news.xjtu.edu.cn/info/1014/223743.htm" },
+      { label: { zh: "团队动态", en: "News" }, href: "#news" },
+    ],
+  },
+];
+
 function renderLinkedTitle(item) {
   const title = escapeHtml(item.title);
   if (!item.href) return title;
@@ -968,32 +1121,88 @@ function renderDynamicWelcome() {
 }
 
 function renderLabNotesFeed() {
-  const root = document.querySelector("[data-lab-notes-feed]");
-  if (!root) return;
+  const listRoot = document.querySelector("[data-lab-note-list]");
+  const detailRoot = document.querySelector("[data-lab-note-detail]");
+  if (!listRoot || !detailRoot) return;
 
-  const highlightReports = Array.from(document.querySelectorAll('article[data-news-type="highlight"]')).map((item) => itemFromArticle(item, "report"));
-  const featuredPapers = Array.from(document.querySelectorAll('article[data-output-type="highlight-output"]')).map((item) => itemFromArticle(item, "paper"));
-  const awards = Array.from(document.querySelectorAll('article[data-output-type^="award-"]')).slice(0, 5).map((item) => itemFromArticle(item, "award"));
-  const importantNews = Array.from(document.querySelectorAll('article[data-news-type="news"]'))
-    .map((item) => itemFromArticle(item, "news"))
-    .filter((item) => /获|奖|发表于|报告|报道|担任|当选|Invited|Award|Published|Editor|Report/i.test(`${item.title} ${item.summary}`));
+  const posts = [...labNotePosts].sort((a, b) => b.date.localeCompare(a.date));
+  if (!posts.some((post) => post.id === activeLabNoteId)) {
+    activeLabNoteId = posts[0]?.id || "";
+  }
 
-  const seen = new Set();
-  const feed = [...featuredPapers, ...awards, ...importantNews, ...highlightReports]
-    .filter((item) => item.title && !seen.has(item.title) && seen.add(item.title))
-    .slice(0, 9);
-
-  root.innerHTML = feed.map((item) => `
-    <article class="note-card note-card-${escapeHtml(item.type)}">
-      ${renderMedia(item.media)}
-      <div class="note-card-body">
-        <p class="project-tag">${escapeHtml(item.type === "paper" ? (currentLanguage === "en" ? "Paper" : "论文发表") : item.type === "award" ? (currentLanguage === "en" ? "Award" : "奖励") : item.type === "report" ? (currentLanguage === "en" ? "Report" : "报道") : (currentLanguage === "en" ? "News" : "新闻"))}</p>
-        <time>${escapeHtml(item.date)}</time>
-        <h3>${renderLinkedTitle(item)}</h3>
-        <p>${escapeHtml(item.summary)}</p>
-      </div>
-    </article>
+  listRoot.innerHTML = posts.map((post) => `
+    <button class="blog-post-card${post.id === activeLabNoteId ? " active" : ""}" type="button" data-lab-note-id="${escapeHtml(post.id)}">
+      <span>${escapeHtml(post.category[currentLanguage])}</span>
+      <strong>${escapeHtml(post.title[currentLanguage])}</strong>
+      <time>${escapeHtml(post.date)} · ${escapeHtml(String(post.minutes))} ${escapeHtml(translations[currentLanguage]["blog.meta.reading"])}</time>
+      <em>${escapeHtml(post.dek[currentLanguage])}</em>
+    </button>
   `).join("");
+
+  listRoot.querySelectorAll("[data-lab-note-id]").forEach((button) => {
+    button.addEventListener("click", () => {
+      activeLabNoteId = button.dataset.labNoteId;
+      renderLabNotesFeed();
+      detailRoot.scrollIntoView({ block: "start", behavior: "smooth" });
+    });
+  });
+
+  const post = posts.find((item) => item.id === activeLabNoteId) || posts[0];
+  const postIndex = posts.findIndex((item) => item.id === post.id);
+  const previous = posts[postIndex - 1] || posts[posts.length - 1];
+  const next = posts[postIndex + 1] || posts[0];
+
+  detailRoot.innerHTML = `
+    <header class="blog-detail-header">
+      <p class="project-tag">${escapeHtml(post.category[currentLanguage])}</p>
+      <h3>${escapeHtml(post.title[currentLanguage])}</h3>
+      <p>${escapeHtml(post.dek[currentLanguage])}</p>
+      <div class="blog-meta">
+        <span>${escapeHtml(translations[currentLanguage]["blog.meta.author"])}</span>
+        <time>${escapeHtml(post.date)}</time>
+        <span>${escapeHtml(String(post.minutes))} ${escapeHtml(translations[currentLanguage]["blog.meta.reading"])}</span>
+      </div>
+    </header>
+    ${renderMedia(post.media)}
+    <div class="blog-article-grid">
+      <aside class="blog-on-page">
+        <p>${escapeHtml(translations[currentLanguage]["blog.detail.onPage"])}</p>
+        ${post.sections.map((section) => `<a href="#blog">${escapeHtml(section.heading[currentLanguage])}</a>`).join("")}
+      </aside>
+      <div class="blog-prose">
+        ${post.sections.map((section) => `
+          <section>
+            <h4>${escapeHtml(section.heading[currentLanguage])}</h4>
+            <p>${escapeHtml(section.body[currentLanguage])}</p>
+          </section>
+        `).join("")}
+        <section class="blog-resources">
+          <h4>${escapeHtml(translations[currentLanguage]["blog.detail.resources"])}</h4>
+          <div class="pub-actions">
+            ${post.links.map((link) => `<a href="${escapeHtml(link.href)}" target="${link.href.startsWith("#") ? "_self" : "_blank"}" rel="${link.href.startsWith("#") ? "" : "noreferrer"}">${escapeHtml(link.label[currentLanguage])}</a>`).join("")}
+          </div>
+        </section>
+        <nav class="blog-post-nav" aria-label="Lab Notes navigation">
+          <button type="button" data-lab-note-id="${escapeHtml(previous.id)}">
+            <span>${escapeHtml(translations[currentLanguage]["blog.detail.previous"])}</span>
+            <strong>${escapeHtml(previous.title[currentLanguage])}</strong>
+          </button>
+          <button type="button" data-lab-note-id="${escapeHtml(next.id)}">
+            <span>${escapeHtml(translations[currentLanguage]["blog.detail.next"])}</span>
+            <strong>${escapeHtml(next.title[currentLanguage])}</strong>
+          </button>
+        </nav>
+      </div>
+    </div>
+  `;
+
+  detailRoot.querySelectorAll("[data-lab-note-id]").forEach((button) => {
+    button.addEventListener("click", () => {
+      activeLabNoteId = button.dataset.labNoteId;
+      renderLabNotesFeed();
+      detailRoot.scrollIntoView({ block: "start", behavior: "smooth" });
+    });
+  });
 }
 
 function applyTheme(theme) {
