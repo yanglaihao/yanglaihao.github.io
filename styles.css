@@ -590,7 +590,6 @@ h3 {
 .welcome-spotlight {
   display: flex;
   flex-direction: column;
-  min-height: 560px;
   padding: clamp(1rem, 2.4vw, 1.5rem);
 }
 
@@ -607,7 +606,6 @@ h3 {
 
 .spotlight-list {
   display: grid;
-  flex: 1;
   gap: 0.75rem;
   margin-top: 1rem;
 }
@@ -616,8 +614,7 @@ h3 {
   display: grid;
   grid-template-columns: minmax(0, 1.18fr) minmax(300px, 0.82fr);
   gap: 1rem;
-  align-items: stretch;
-  min-height: 430px;
+  align-items: center;
   border: 1px solid var(--line);
   background: color-mix(in srgb, var(--surface), transparent 10%);
   padding: clamp(0.8rem, 1.8vw, 1.25rem);
@@ -638,15 +635,13 @@ h3 {
   border: 1px solid var(--line);
   background: #ffffff;
   overflow: hidden;
-  min-height: 360px;
+  padding: clamp(0.8rem, 1.8vw, 1.2rem);
 }
 
 .welcome-highlight-media img {
   display: block;
-  width: auto;
-  max-width: 100%;
+  width: 100%;
   height: auto;
-  max-height: 480px;
   object-fit: contain;
 }
 
@@ -892,10 +887,9 @@ h3 {
 
 .blog-detail-panel > .note-card-media img {
   aspect-ratio: unset;
-  width: auto;
+  width: min(100%, 960px);
   max-width: 100%;
   height: auto;
-  max-height: 560px;
   object-fit: contain;
   background: #ffffff;
 }

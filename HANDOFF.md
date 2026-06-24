@@ -2,10 +2,17 @@
 
 ## 最新更新
 
-更新时间：2026-06-24 12:29 CST
+更新时间：2026-06-24 13:40 CST
 
 本文件已更新到当前项目状态。最新一轮已完成并部署：
 
+- 按用户“图的比例不能修改；比例不对或无法填满可多图组合；结束要检查各图是否完整、是否残留大量文字解说”的要求完成欢迎页与团队札记图片审计和修正：
+  - 重新裁切 `assets/paper-highlights/torque-dexterity-visual.png` 为 Science Advances 扭矩触觉工作完整 A 图区域，只保留机制示意图，不再截断底部反馈 / 环境信息箭头，也不再包含 PDF 正文段落。
+  - 重新裁切 `assets/paper-highlights/contact-aided-continuum-visual.png` 为 IEEE T-RO 接触辅助连续体机器人完整 (b) 机械结构设计图，避免上一版左侧设备图底部被切断或带入下方残缺小图。
+  - 保留 `assets/paper-highlights/bistable-jumper-visual.png` 的 A-E 组合图，已人工核对为完整机制和实验图组合，无大段正文残留。
+  - 调整欢迎页与团队札记图片样式：移除欢迎页轮播卡片和图片框的强制高度，详情页论文图允许等比例放大到容器宽度，不设置会导致宽高比例被压缩的图片 `max-height`；所有图片均使用原图比例渲染，不做 16:9 裁切或拉伸。
+  - 新增本地审计脚本 `.codex-work/verify-images.mjs`，用本机 Chrome 验证欢迎页三张轮播图、团队札记详情图、分类 / 年份筛选、英文切换和移动端横向溢出；最新验证输出显示 6 个可见论文图的自然宽高比与页面渲染宽高比差值均小于 0.001。
+  - 最新截图审计文件：`/private/tmp/feigong-welcome-slide-0.png`、`/private/tmp/feigong-welcome-slide-1.png`、`/private/tmp/feigong-welcome-slide-2.png`、`/private/tmp/feigong-lab-note-0.png`、`/private/tmp/feigong-lab-note-2.png`、`/private/tmp/feigong-lab-note-3.png`、`/private/tmp/feigong-mobile-welcome.png`；逐张核对未见被拉伸、关键图不完整或大段 PDF 文字解说残留。
 - 按用户要求重构欢迎页和团队札记：
   - `欢迎页 / Welcome` 现为页面最前面的首屏 `#home`，不再作为首屏之后的单独板块；原“首页”和“实验室简介”合并进首屏欢迎页，导航中移除独立“首页 / 实验室简介”入口。
   - 欢迎页改为动态页面：`script.js` 从当前成果区的亮点成果和团队动态中的亮点报道自动渲染近期亮点工作与亮点报道，后续更新成果 / 动态时欢迎页会随现有 DOM 自动刷新。
