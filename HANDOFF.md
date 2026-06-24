@@ -13,7 +13,7 @@
   - 下方文字只保留期刊名称、论文标题和一句成果说明；论文标题仍保留原有 DOI / 论文链接。按用户要求，此处不补充作者、年份等详细信息，详细信息仍放在下方成果页。
   - 欢迎页亮点卡片中的“查看成果 / View output”按钮已移除，避免与成果页详细入口重复。
   - 负责人照片下方信息区已调整桌面列宽与不换行约束，保证“西安交通大学机械工程学院”在桌面宽度下保持同一行展示。
-  - 本轮浏览器复验受本地沙箱 / 审批通道限制未能完成最终截图；静态校验已通过 `node --check script.js` 和 `node tests/site-checks.js`，并用关键词扫描确认欢迎页不再包含作者年份扩展字段、旧重复裁剪结构或“查看成果”按钮。
+  - 本轮本地 Chrome 复验通过：2048px 桌面视口下左侧“近期亮点工作”外框约 `1434 × 955px`，卡片约 `1384 × 815px`；图片在上、文字在下，图片渲染比例与原图比例一致，未出现“查看成果 / View output”按钮。复验截图：`/private/tmp/feigong-final-local-welcome-wide.png`。
 - 按用户“图的比例不能修改；比例不对或无法填满可多图组合；结束要检查各图是否完整、是否残留大量文字解说”的要求完成欢迎页与团队札记图片审计和修正：
   - 重新裁切 `assets/paper-highlights/torque-dexterity-visual.png` 为 Science Advances 扭矩触觉工作完整 A 图区域，只保留机制示意图，不再截断底部反馈 / 环境信息箭头，也不再包含 PDF 正文段落。
   - 重新裁切 `assets/paper-highlights/contact-aided-continuum-visual.png` 为 IEEE T-RO 接触辅助连续体机器人完整 (b) 机械结构设计图，避免上一版左侧设备图底部被切断或带入下方残缺小图。
@@ -64,7 +64,7 @@
 - 线上站点：https://yanglaihao.github.io/
 - GitHub Pages Actions 部署：`success`；本轮欢迎页版式页面内容部署 run `28128544740` 已成功，页面内容提交为 `fcbe0377506736de3fe38ef99c1e37aeb292f65d`。本文件更新后会再触发一次 handoff 同步部署，最终远端 `main` 以 GitHub 仓库 `refs/heads/main` 为准。
 - 页面内容更新提交：`fcbe0377506736de3fe38ef99c1e37aeb292f65d`
-- 线上视觉复验：上一轮 `https://yanglaihao.github.io/?verify=20260624-visual-audit` 已用本机 Chrome 检查欢迎页三张轮播图、团队札记详情图、分类 / 年份筛选、英文切换和 390px 移动端布局；本轮最终浏览器截图因本地沙箱 / 审批通道限制未完成，已用静态校验和线上源码确认补充验证。
+- 线上视觉复验：上一轮 `https://yanglaihao.github.io/?verify=20260624-visual-audit` 已用本机 Chrome 检查欢迎页三张轮播图、团队札记详情图、分类 / 年份筛选、英文切换和 390px 移动端布局；本轮加做本地 Chrome 宽屏度量和截图，确认左侧外框未被压缩、图片未拉伸、文字位于图片下方。线上部署后已用源码抓取确认 `script.js` / `styles.css` / `HANDOFF.md` 包含本轮改动。
 - 线上 HTML / `script.js` / `styles.css` 已验证首屏为 `#home.welcome-page`，不存在独立 `#welcome` 与独立 `#about`；线上页面已验证欢迎页使用 `data-welcome-highlight-dots` 单页轮播结构，团队札记使用 `blog-board`、`data-lab-note-list`、`data-lab-note-detail`、`data-lab-note-categories`、`data-lab-note-years` 新结构，包含 4 篇策划专题文章，不再出现旧 `data-lab-notes-feed` / `album-stream` 自动聚合流，也不再从新闻和获奖条目重复抽取内容。新增三张 `*-visual.png` 核心图资源线上均返回 200。
 - `.nojekyll` 修复提交：`46a12113d35046f8d13a29af602745b515de09e6`
 

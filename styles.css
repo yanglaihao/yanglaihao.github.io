@@ -540,6 +540,7 @@ h3 {
 
 .welcome-page {
   position: relative;
+  width: min(1980px, calc(100% - 48px));
   min-height: auto;
   align-items: start;
   padding-top: clamp(2rem, 4.2vw, 3.6rem);
@@ -576,7 +577,7 @@ h3 {
   grid-column: 1 / -1;
   order: -1;
   display: grid;
-  grid-template-columns: minmax(0, 1.65fr) minmax(320px, 0.75fr);
+  grid-template-columns: minmax(0, 1.95fr) minmax(360px, 0.72fr);
   gap: 1rem;
   align-items: start;
 }
