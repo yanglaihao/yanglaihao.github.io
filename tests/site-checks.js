@@ -281,13 +281,19 @@ assert.ok(!script.includes('"blog.intro"'), "Lab Notes intro translation key sho
 assert.ok(!styles.includes(".blog-intro"), "unused Lab Notes intro styles should be removed");
 assert.ok(html.includes("https://github.com/yanglaihao/yanglaihao.github.io/issues/new"), "blog page should provide a public GitHub discussion entry");
 assert.ok(html.includes("data-dynamic-welcome"), "welcome page should expose a dynamic rendering root");
-assert.ok(html.includes("data-auto-source"), "welcome page should mark data that is automatically updated from the current site content");
+assert.ok(!html.includes("welcome-manifesto"), "welcome page should not keep the duplicated intro card");
+assert.ok(html.includes("data-welcome-highlight-dots"), "welcome highlights should expose clickable carousel controls");
 assert.ok(html.includes("blog-board"), "Lab Notes should use a blog-style index and detail board");
 assert.ok(html.includes("data-lab-note-list"), "Lab Notes should expose a curated post index root");
 assert.ok(html.includes("data-lab-note-detail"), "Lab Notes should expose a post detail root");
+assert.ok(html.includes("data-lab-note-categories"), "Lab Notes taxonomy should expose clickable category filters");
+assert.ok(html.includes("data-lab-note-years"), "Lab Notes taxonomy should expose clickable year filters");
 assert.ok(script.includes("function renderDynamicWelcome"), "script should render the welcome page from current site data");
+assert.ok(script.includes("startWelcomeHighlightRotation"), "welcome highlights should rotate automatically");
 assert.ok(script.includes("const labNotePosts"), "Lab Notes should be driven by curated blog post data");
 assert.ok(script.includes("function renderLabNotesFeed"), "script should render Lab Notes as clickable curated posts");
+assert.ok(script.includes("activeLabNoteCategory"), "Lab Notes should support category filtering");
+assert.ok(script.includes("activeLabNoteYear"), "Lab Notes should support year filtering");
 assert.ok(!script.includes('data-output-type^="award-"'), "Lab Notes should not duplicate the awards list by automatic aggregation");
 assert.ok(!script.includes('article[data-news-type="news"]'), "Lab Notes should not duplicate the news list by automatic aggregation");
 for (const title of [
@@ -300,11 +306,11 @@ for (const title of [
 }
 assert.ok(script.includes("blog.detail.onPage"), "Lab Notes details should include an on-page guide like a post page");
 for (const figure of [
-  "assets/paper-highlights/torque-dexterity-figure.png",
-  "assets/paper-highlights/contact-aided-continuum-figure.png",
-  "assets/paper-highlights/bistable-jumper-figure.png",
+  "assets/paper-highlights/torque-dexterity-visual.png",
+  "assets/paper-highlights/contact-aided-continuum-visual.png",
+  "assets/paper-highlights/bistable-jumper-visual.png",
 ]) {
-  assert.ok(html.includes(figure), `welcome highlights should use Zotero-extracted paper figure: ${figure}`);
+  assert.ok(html.includes(figure) || script.includes(figure), `welcome highlights and Lab Notes should use cropped, proportion-preserving paper visual: ${figure}`);
 }
 assert.ok(script.includes("welcome-highlight-media"), "dynamic welcome highlights should render paper figure media");
 assert.ok(!script.includes('src: "assets/team-profile.jpg"'), "Lab Notes should not use the team headshot as a fallback image");

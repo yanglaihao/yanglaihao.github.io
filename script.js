@@ -24,6 +24,10 @@ let currentTheme = localStorage.getItem("theme") || "light";
 let currentLanguage = localStorage.getItem("language") || "zh";
 let researchRotation;
 let activeLabNoteId = "torque-dexterity";
+let activeLabNoteCategory = "all";
+let activeLabNoteYear = "all";
+let activeWelcomeHighlightIndex = 0;
+let welcomeHighlightTimer;
 
 const translations = {
   zh: {
@@ -42,7 +46,7 @@ const translations = {
     "nav.achievements": "团队成果",
     "nav.contact": "联系方式",
     "hero.title": "非攻机器人实验室",
-    "hero.subtitle": "取“非攻”一器多形之巧，造因境而变、入微而作的具身智能机器人。实验室面向航空发动机等高端装备内部深腔、狭窄通道和复杂曲面损伤，发展智能诊断、原位介入与具身操作机器人，让装备维护从大拆大修走向少拆解、少损伤、少停机的在位微创处置。",
+    "hero.subtitle": "取“非攻”一器多形之巧，造因境而变、入微而作的具身智能机器人；以一器多形、因境而变、入微而作的机构学寓意，面向航空发动机等高端装备内部深腔、狭窄通道和复杂曲面损伤，发展软体/连续体机器人、爬行机器人、触觉传感与灵巧操作，以尽量少拆解、少损伤、少停机的方式完成高端装备在位诊断、进入和维护。",
     "hero.meta.continuum": "软体/连续体机器人",
     "hero.meta.crawling": "爬行机器人",
     "hero.meta.embodied": "具身智能",
@@ -79,6 +83,7 @@ const translations = {
     "blog.index.title": "近期专题",
     "blog.taxonomy.category": "By Category",
     "blog.taxonomy.year": "By Year",
+    "blog.category.all": "全部",
     "blog.category.research": "研究札记",
     "blog.category.field": "现场札记",
     "blog.category.resource": "开放资源",
@@ -114,7 +119,7 @@ const translations = {
     "nav.achievements": "Outputs",
     "nav.contact": "Contact",
     "hero.title": "Feigong Robotics Laboratory",
-    "hero.subtitle": "Inspired by Feigong's ingenuity of one device taking many forms, the lab builds embodied intelligent robots that adapt to their environment and work at fine scale. For deep cavities, narrow passages, and damaged complex surfaces inside aero-engines and other advanced equipment, the lab develops robots for intelligent diagnosis, in-situ intervention, and embodied manipulation, moving maintenance from major disassembly toward in-situ minimally invasive work with less disassembly, less damage, and less downtime.",
+    "hero.subtitle": "Inspired by Feigong's ingenuity of one device taking many forms, the lab develops embodied intelligent robots around the mechanism ideas of multi-form structure, environment-responsive adaptation, and fine-scale operation. For deep cavities, narrow passages, and damaged complex surfaces inside aero-engines and other advanced equipment, it develops soft/continuum robots, crawling robots, tactile sensing, and dexterous manipulation to complete in-situ diagnosis, access, and maintenance with as little disassembly, damage, and downtime as possible.",
     "hero.meta.continuum": "Soft / Continuum Robotics",
     "hero.meta.crawling": "Crawling Robots",
     "hero.meta.embodied": "Embodied Intelligence",
@@ -151,6 +156,7 @@ const translations = {
     "blog.index.title": "Recent Notes",
     "blog.taxonomy.category": "By Category",
     "blog.taxonomy.year": "By Year",
+    "blog.category.all": "All",
     "blog.category.research": "Research Notes",
     "blog.category.field": "Field Notes",
     "blog.category.resource": "Open Resources",
@@ -176,7 +182,6 @@ const attributeTranslations = [
   { selector: ".brand", attribute: "aria-label", zh: "回到首页", en: "Back to home" },
   { selector: ".meta-list", attribute: "aria-label", zh: "团队概览", en: "Team overview" },
   { selector: ".hero-visual", attribute: "aria-label", zh: "团队研究图像", en: "Team research image" },
-  { selector: ".welcome-metrics", attribute: "aria-label", zh: "欢迎页实验室概览", en: "Welcome page lab overview" },
   { selector: ".welcome-report-strip", attribute: "aria-label", zh: "欢迎页亮点报道", en: "Welcome page highlight reports" },
   { selector: ".blog-index-panel", attribute: "aria-label", zh: "团队札记索引", en: "Lab Notes index" },
   { selector: "[data-lab-note-list]", attribute: "aria-label", zh: "团队札记专题列表", en: "Lab Notes post list" },
@@ -941,6 +946,7 @@ const labNotePosts = [
     date: "2026-06-01",
     year: "2026",
     minutes: 5,
+    categoryKey: "research",
     category: { zh: "研究札记", en: "Research Note" },
     title: {
       zh: "触觉不止于感知：扭矩如何进入灵巧操作",
@@ -950,7 +956,7 @@ const labNotePosts = [
       zh: "围绕 Science Advances 工作，梳理扭矩触觉从接触测量走向抓取、转动和姿态调整的设计逻辑。",
       en: "A note on the Science Advances work, tracing how torque-aware touch moves from contact measurement to grasping, rotation, and pose adjustment.",
     },
-    media: { type: "image", src: "assets/paper-highlights/torque-dexterity-figure.png" },
+    media: { type: "image", src: "assets/paper-highlights/torque-dexterity-visual.png" },
     sections: [
       {
         heading: { zh: "问题从哪里来", en: "Where the question starts" },
@@ -977,6 +983,7 @@ const labNotePosts = [
     date: "2024-06-12",
     year: "2024",
     minutes: 6,
+    categoryKey: "research",
     category: { zh: "研究札记", en: "Research Note" },
     title: {
       zh: "把接触变成支点：连续体机器人进入深腔的另一种思路",
@@ -986,7 +993,7 @@ const labNotePosts = [
       zh: "围绕 IEEE T-RO 接触辅助连续体机器人工作，解释为什么狭窄腔道里的接触不一定只是干扰。",
       en: "A note on the IEEE T-RO contact-aided continuum robot, explaining why contact in narrow cavities does not have to be only a disturbance.",
     },
-    media: { type: "image", src: "assets/paper-highlights/contact-aided-continuum-figure.png" },
+    media: { type: "image", src: "assets/paper-highlights/contact-aided-continuum-visual.png" },
     sections: [
       {
         heading: { zh: "从避障到借力", en: "From avoiding contact to using it" },
@@ -1013,6 +1020,7 @@ const labNotePosts = [
     date: "2024-08-20",
     year: "2024",
     minutes: 4,
+    categoryKey: "research",
     category: { zh: "研究札记", en: "Research Note" },
     title: {
       zh: "小尺度跳跃机器人的能垒调节",
@@ -1022,7 +1030,7 @@ const labNotePosts = [
       zh: "围绕 Advanced Science 双稳态跳跃机器人工作，讨论多模态运动背后的机构能量设计。",
       en: "A note on the Advanced Science bistable jumper, focusing on the mechanism-energy design behind multimodal locomotion.",
     },
-    media: { type: "image", src: "assets/paper-highlights/bistable-jumper-figure.png" },
+    media: { type: "image", src: "assets/paper-highlights/bistable-jumper-visual.png" },
     sections: [
       {
         heading: { zh: "机构为什么重要", en: "Why mechanism matters" },
@@ -1049,6 +1057,7 @@ const labNotePosts = [
     date: "2025-07-14",
     year: "2025",
     minutes: 3,
+    categoryKey: "field",
     category: { zh: "现场札记", en: "Field Note" },
     title: {
       zh: "从新闻镜头回到工程现场",
@@ -1089,22 +1098,38 @@ function renderLinkedTitle(item) {
 }
 
 function renderDynamicWelcome() {
-  document.querySelectorAll("[data-auto-source]").forEach((element) => {
-    const count = document.querySelectorAll(element.dataset.autoSource).length;
-    element.textContent = element.dataset.autoFormat === "plus" && count >= 90 ? `${Math.floor(count / 10) * 10}+` : String(count);
-  });
-
   const highlightRoot = document.querySelector("[data-welcome-highlights]");
+  const dotRoot = document.querySelector("[data-welcome-highlight-dots]");
   if (highlightRoot) {
     const highlights = Array.from(document.querySelectorAll('article[data-output-type="highlight-output"]')).slice(0, 3).map((item) => itemFromArticle(item, "paper"));
-    highlightRoot.innerHTML = highlights.map((item) => `
-      <a class="welcome-highlight-card" href="#achievements">
-        ${item.figure ? `<figure class="welcome-highlight-media"><img src="${escapeHtml(item.figure)}" alt="" loading="lazy"></figure>` : ""}
-        <span>${escapeHtml(item.date)}</span>
-        <strong>${renderLinkedTitle(item)}</strong>
-        <em>${escapeHtml(item.summary)}</em>
-      </a>
+    if (activeWelcomeHighlightIndex >= highlights.length) activeWelcomeHighlightIndex = 0;
+    highlightRoot.innerHTML = highlights.map((item, index) => `
+      <article class="welcome-highlight-card${index === activeWelcomeHighlightIndex ? " active" : ""}" data-welcome-highlight-slide="${index}" ${index === activeWelcomeHighlightIndex ? "" : "hidden"}>
+        <figure class="welcome-highlight-media">
+          ${item.figure ? `<img src="${escapeHtml(item.figure)}" alt="" loading="lazy">` : ""}
+        </figure>
+        <div class="welcome-highlight-copy">
+          <span>${escapeHtml(item.date)}</span>
+          <h3>${renderLinkedTitle(item)}</h3>
+          <p>${escapeHtml(item.summary)}</p>
+          <a href="#achievements">${currentLanguage === "en" ? "View output" : "查看成果"}</a>
+        </div>
+      </article>
     `).join("");
+    if (dotRoot) {
+      dotRoot.innerHTML = highlights.map((item, index) => `
+        <button class="${index === activeWelcomeHighlightIndex ? "active" : ""}" type="button" data-welcome-highlight-index="${index}" aria-label="${escapeHtml(item.title)}">
+          <span>${index + 1}</span>
+        </button>
+      `).join("");
+      dotRoot.querySelectorAll("[data-welcome-highlight-index]").forEach((button) => {
+        button.addEventListener("click", () => {
+          activeWelcomeHighlightIndex = Number(button.dataset.welcomeHighlightIndex) || 0;
+          renderDynamicWelcome();
+          startWelcomeHighlightRotation();
+        });
+      });
+    }
   }
 
   const reportRoot = document.querySelector("[data-welcome-reports]");
@@ -1120,14 +1145,68 @@ function renderDynamicWelcome() {
   }
 }
 
+function startWelcomeHighlightRotation() {
+  window.clearInterval(welcomeHighlightTimer);
+  const slides = document.querySelectorAll("[data-welcome-highlight-slide]");
+  if (slides.length <= 1) return;
+  welcomeHighlightTimer = window.setInterval(() => {
+    activeWelcomeHighlightIndex = (activeWelcomeHighlightIndex + 1) % slides.length;
+    renderDynamicWelcome();
+  }, 5200);
+}
+
 function renderLabNotesFeed() {
   const listRoot = document.querySelector("[data-lab-note-list]");
   const detailRoot = document.querySelector("[data-lab-note-detail]");
+  const categoryRoot = document.querySelector("[data-lab-note-categories]");
+  const yearRoot = document.querySelector("[data-lab-note-years]");
   if (!listRoot || !detailRoot) return;
 
-  const posts = [...labNotePosts].sort((a, b) => b.date.localeCompare(a.date));
+  const allPosts = [...labNotePosts].sort((a, b) => b.date.localeCompare(a.date));
+  const categoryKeys = ["all", ...Array.from(new Set(allPosts.map((post) => post.categoryKey)))];
+  const years = ["all", ...Array.from(new Set(allPosts.map((post) => post.year)))];
+  const posts = allPosts.filter((post) => {
+    const categoryMatch = activeLabNoteCategory === "all" || post.categoryKey === activeLabNoteCategory;
+    const yearMatch = activeLabNoteYear === "all" || post.year === activeLabNoteYear;
+    return categoryMatch && yearMatch;
+  });
+
+  if (!posts.length) {
+    activeLabNoteCategory = "all";
+    activeLabNoteYear = "all";
+    return renderLabNotesFeed();
+  }
+
   if (!posts.some((post) => post.id === activeLabNoteId)) {
     activeLabNoteId = posts[0]?.id || "";
+  }
+
+  if (categoryRoot) {
+    categoryRoot.innerHTML = categoryKeys.map((key) => `
+      <button class="${key === activeLabNoteCategory ? "active" : ""}" type="button" data-lab-note-category="${escapeHtml(key)}">
+        ${escapeHtml(key === "all" ? translations[currentLanguage]["blog.category.all"] : translations[currentLanguage][`blog.category.${key}`])}
+      </button>
+    `).join("");
+    categoryRoot.querySelectorAll("[data-lab-note-category]").forEach((button) => {
+      button.addEventListener("click", () => {
+        activeLabNoteCategory = button.dataset.labNoteCategory || "all";
+        renderLabNotesFeed();
+      });
+    });
+  }
+
+  if (yearRoot) {
+    yearRoot.innerHTML = years.map((year) => `
+      <button class="${year === activeLabNoteYear ? "active" : ""}" type="button" data-lab-note-year="${escapeHtml(year)}">
+        ${escapeHtml(year === "all" ? translations[currentLanguage]["blog.category.all"] : year)}
+      </button>
+    `).join("");
+    yearRoot.querySelectorAll("[data-lab-note-year]").forEach((button) => {
+      button.addEventListener("click", () => {
+        activeLabNoteYear = button.dataset.labNoteYear || "all";
+        renderLabNotesFeed();
+      });
+    });
   }
 
   listRoot.innerHTML = posts.map((post) => `
@@ -1227,6 +1306,7 @@ function applyLanguage(language) {
   translateStaticText(language);
   translateAttributes(language);
   renderDynamicWelcome();
+  startWelcomeHighlightRotation();
   renderLabNotesFeed();
   document.title = translations[language]["meta.ogTitle"];
   metaDescription?.setAttribute("content", translations[language]["meta.description"]);

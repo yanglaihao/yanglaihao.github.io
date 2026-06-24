@@ -67,7 +67,7 @@
           <p class="eyebrow">Feigong Robotics Laboratory</p>
           <h1 id="home-title" data-i18n="hero.title">非攻机器人实验室</h1>
           <p class="subtitle" data-i18n="hero.subtitle">
-            取“非攻”一器多形之巧，造因境而变、入微而作的具身智能机器人。实验室面向航空发动机等高端装备内部深腔、狭窄通道和复杂曲面损伤，发展智能诊断、原位介入与具身操作机器人，让装备维护从大拆大修走向少拆解、少损伤、少停机的在位微创处置。
+            取“非攻”一器多形之巧，造因境而变、入微而作的具身智能机器人；以一器多形、因境而变、入微而作的机构学寓意，面向航空发动机等高端装备内部深腔、狭窄通道和复杂曲面损伤，发展软体/连续体机器人、爬行机器人、触觉传感与灵巧操作，以尽量少拆解、少损伤、少停机的方式完成高端装备在位诊断、进入和维护。
           </p>
           <div class="meta-list" aria-label="团队概览">
             <span data-i18n="hero.meta.continuum">软体/连续体机器人</span>
@@ -109,21 +109,14 @@
         </aside>
 
         <div class="home-dynamic-panel">
-          <article class="welcome-manifesto">
-            <p class="project-tag" data-i18n="welcome.manifesto.tag">Lab Compass</p>
-            <h2 data-i18n="welcome.title">欢迎页</h2>
-            <p data-i18n="welcome.manifesto.body">
-              实验室将“一器多形、因境而变、入微而作”的机构学寓意转化为具身智能机器人能力，面向航空发动机等高端装备内部深腔、狭窄通道和复杂曲面损伤，发展软体/连续体机器人、爬行机器人、触觉传感与灵巧操作，让机器人在受限空间里完成感知、进入、接触和处置，以尽量少拆解、少损伤、少停机的方式完成高端装备在位诊断、进入和维护。
-            </p>
-            <div class="welcome-metrics" aria-label="欢迎页实验室概览">
-              <span><strong data-auto-source=".research-panel">3</strong><em data-i18n="welcome.metrics.threads">研究主线</em></span>
-              <span><strong data-auto-source='[data-output-type^="paper"]' data-auto-format="plus">100+</strong><em data-i18n="welcome.metrics.papers">论文</em></span>
-              <span><strong data-auto-source='[data-output-type^="patent"]' data-auto-format="plus">100+</strong><em data-i18n="welcome.metrics.patents">专利</em></span>
+          <article class="welcome-spotlight" data-welcome-carousel>
+            <div class="welcome-spotlight-head">
+              <div>
+                <p class="project-tag" data-i18n="welcome.spotlight.tag">Recent Focus</p>
+                <h2 data-i18n="welcome.spotlight.title">近期亮点工作</h2>
+              </div>
+              <div class="welcome-carousel-dots" data-welcome-highlight-dots aria-label="近期亮点工作切换"></div>
             </div>
-          </article>
-          <article class="welcome-spotlight">
-            <p class="project-tag" data-i18n="welcome.spotlight.tag">Recent Focus</p>
-            <h2 data-i18n="welcome.spotlight.title">近期亮点工作</h2>
             <div class="spotlight-list" data-welcome-highlights></div>
           </article>
           <article class="welcome-reports">
@@ -749,7 +742,7 @@
 
         <div class="achievement-list">
 
-          <article class="achievement achievement-featured-output" data-output-type="highlight-output" data-figure="assets/paper-highlights/torque-dexterity-figure.png">
+          <article class="achievement achievement-featured-output" data-output-type="highlight-output" data-figure="assets/paper-highlights/torque-dexterity-visual.png">
             <figure class="featured-output-video">
               <video controls controlslist="nodownload" oncontextmenu="return false" preload="metadata" playsinline data-paper-video="torque-dexterity" aria-label="扭矩触觉灵巧操作论文视频">
                 <source src="assets/paper-highlights/torque-dexterity.mp4" type="video/mp4">
@@ -1127,7 +1120,7 @@
             </div>
           </article>
 
-          <article class="achievement achievement-featured-output" data-output-type="highlight-output" data-figure="assets/paper-highlights/contact-aided-continuum-figure.png">
+          <article class="achievement achievement-featured-output" data-output-type="highlight-output" data-figure="assets/paper-highlights/contact-aided-continuum-visual.png">
             <figure class="featured-output-video">
               <video controls controlslist="nodownload" oncontextmenu="return false" preload="metadata" playsinline data-paper-video="contact-aided-continuum" aria-label="接触辅助连续体机器人论文视频">
                 <source src="assets/paper-highlights/contact-aided-continuum.mp4" type="video/mp4">
@@ -1141,7 +1134,7 @@
             </div>
           </article>
 
-          <article class="achievement achievement-featured-output" data-output-type="highlight-output" data-figure="assets/paper-highlights/bistable-jumper-figure.png">
+          <article class="achievement achievement-featured-output" data-output-type="highlight-output" data-figure="assets/paper-highlights/bistable-jumper-visual.png">
             <figure class="featured-output-video">
               <video controls controlslist="nodownload" oncontextmenu="return false" preload="metadata" playsinline data-paper-video="bistable-jumper" aria-label="双稳态昆虫尺度跳跃机器人论文视频">
                 <source src="assets/paper-highlights/bistable-jumper.mp4" type="video/mp4">
@@ -1417,15 +1410,11 @@
             <div class="blog-taxonomy" aria-label="团队札记分类">
               <div>
                 <p data-i18n="blog.taxonomy.category">By Category</p>
-                <span data-i18n="blog.category.research">研究札记</span>
-                <span data-i18n="blog.category.field">现场札记</span>
-                <span data-i18n="blog.category.resource">开放资源</span>
+                <div class="blog-filter-row" data-lab-note-categories></div>
               </div>
               <div>
                 <p data-i18n="blog.taxonomy.year">By Year</p>
-                <span>2026</span>
-                <span>2025</span>
-                <span>2024</span>
+                <div class="blog-filter-row" data-lab-note-years></div>
               </div>
             </div>
             <div class="discussion-panel compact" aria-label="开放讨论区">
