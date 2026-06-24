@@ -54,9 +54,10 @@
 线上最新状态：
 
 - 线上站点：https://yanglaihao.github.io/
-- GitHub Pages Actions 部署：`success`；本轮 `pages-build-deployment` run `28075314696` 已成功，线上站点已抓取验证。
-- 当前远端 `main`：以 GitHub 仓库 `refs/heads/main` 为准；本轮欢迎页轮播、团队札记筛选与图片比例优化内容部署提交为 `b4272d44e955d1be4b980cdb6d5b0a364e355901`，后续若仅补充本交接文件，仍以远端 ref 的最新提交为准。
-- 页面内容更新提交：`b4272d44e955d1be4b980cdb6d5b0a364e355901`
+- GitHub Pages Actions 部署：`success`；本轮 `pages-build-deployment` run `28078000682` 已成功，线上站点已抓取验证。
+- 当前远端 `main`：以 GitHub 仓库 `refs/heads/main` 为准；本轮欢迎页轮播、团队札记图片比例与完整性优化内容部署提交为 `9045b64348d30ac020525b8aeb8d6e168e8df55d`，后续若仅补充本交接文件，仍以远端 ref 的最新提交为准。
+- 页面内容更新提交：`9045b64348d30ac020525b8aeb8d6e168e8df55d`
+- 线上视觉复验：`https://yanglaihao.github.io/?verify=20260624-visual-audit` 已用本机 Chrome 检查欢迎页三张轮播图、团队札记详情图、分类 / 年份筛选、英文切换和 390px 移动端布局；6 个可见论文图的自然比例与渲染比例差值均小于 0.001。
 - 线上 HTML / `script.js` / `styles.css` 已验证首屏为 `#home.welcome-page`，不存在独立 `#welcome` 与独立 `#about`；线上页面已验证欢迎页使用 `data-welcome-highlight-dots` 单页轮播结构，团队札记使用 `blog-board`、`data-lab-note-list`、`data-lab-note-detail`、`data-lab-note-categories`、`data-lab-note-years` 新结构，包含 4 篇策划专题文章，不再出现旧 `data-lab-notes-feed` / `album-stream` 自动聚合流，也不再从新闻和获奖条目重复抽取内容。新增三张 `*-visual.png` 核心图资源线上均返回 200。
 - `.nojekyll` 修复提交：`46a12113d35046f8d13a29af602745b515de09e6`
 
