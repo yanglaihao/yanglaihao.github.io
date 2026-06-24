@@ -612,12 +612,11 @@ h3 {
 
 .welcome-highlight-card {
   display: grid;
-  grid-template-columns: minmax(0, 1.18fr) minmax(300px, 0.82fr);
-  gap: 1rem;
-  align-items: center;
+  grid-template-columns: 1fr;
+  align-items: stretch;
   border: 1px solid var(--line);
   background: color-mix(in srgb, var(--surface), transparent 10%);
-  padding: clamp(0.8rem, 1.8vw, 1.25rem);
+  overflow: hidden;
   transition:
     transform 160ms ease,
     border-color 160ms ease,
@@ -632,10 +631,9 @@ h3 {
   display: grid;
   place-items: center;
   margin: 0;
-  border: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
   background: #ffffff;
   overflow: hidden;
-  padding: clamp(0.8rem, 1.8vw, 1.2rem);
 }
 
 .welcome-highlight-media img {
@@ -654,34 +652,22 @@ h3 {
 
 .welcome-highlight-copy {
   display: flex;
-  flex-direction: column;
-  justify-content: center;
-  border-left: 4px solid var(--accent);
-  background:
-    linear-gradient(135deg, color-mix(in srgb, var(--accent-soft), transparent 28%), transparent 64%),
-    color-mix(in srgb, var(--surface-strong), transparent 18%);
-  padding: clamp(1rem, 2.4vw, 1.6rem);
-}
-
-.welcome-highlight-copy span {
-  color: var(--blue);
-  font-weight: 850;
-}
-
-.welcome-highlight-copy h3 {
-  margin: 0.6rem 0 0.9rem;
-  font-size: clamp(1.45rem, 2.4vw, 2.4rem);
-  line-height: 1.12;
+  justify-content: space-between;
+  gap: 1rem;
+  align-items: center;
+  border-top: 4px solid var(--accent);
+  background: color-mix(in srgb, var(--surface-strong), transparent 18%);
+  padding: clamp(0.9rem, 1.8vw, 1.25rem);
 }
 
 .welcome-highlight-copy p {
   margin: 0;
   color: var(--muted);
+  font-weight: 720;
 }
 
 .welcome-highlight-copy a {
-  width: fit-content;
-  margin-top: 1.25rem;
+  flex: 0 0 auto;
   border: 1px solid var(--line);
   color: var(--accent-strong);
   padding: 0.45rem 0.7rem;
@@ -2274,7 +2260,12 @@ address a {
   }
 
   .welcome-highlight-media {
-    min-height: 220px;
+    min-height: 0;
+  }
+
+  .welcome-highlight-copy {
+    flex-direction: column;
+    align-items: stretch;
   }
 
   .research-media,

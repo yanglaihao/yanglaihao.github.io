@@ -1109,8 +1109,6 @@ function renderDynamicWelcome() {
           ${item.figure ? `<img src="${escapeHtml(item.figure)}" alt="" loading="lazy">` : ""}
         </figure>
         <div class="welcome-highlight-copy">
-          <span>${escapeHtml(item.date)}</span>
-          <h3>${renderLinkedTitle(item)}</h3>
           <p>${escapeHtml(item.summary)}</p>
           <a href="#achievements">${currentLanguage === "en" ? "View output" : "查看成果"}</a>
         </div>
