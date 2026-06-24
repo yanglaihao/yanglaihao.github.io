@@ -41,10 +41,10 @@
 线上最新状态：
 
 - 线上站点：https://yanglaihao.github.io/
-- GitHub Pages Actions 部署：`success`；本轮 `pages-build-deployment` run `28066057142` 已成功，线上站点已抓取验证。注意 GitHub `/pages` legacy 状态可能停留在中间内容提交的 `errored`，但后续 `pages-build-deployment` Actions run 已成功部署当前远端内容。
-- 当前远端 `main`：以 GitHub 仓库 `refs/heads/main` 为准；本轮欢迎页与团队札记页内容部署提交为 `794f98d379b7a53fee18e87deb59c29eaf6cdb24`，后续若仅补充本交接文件，仍以远端 ref 的最新提交为准。
-- 页面内容更新提交：`794f98d379b7a53fee18e87deb59c29eaf6cdb24`
-- 线上 HTML / `script.js` / `styles.css` 已验证包含 `#welcome`、`#blog`、`近期亮点工作`、`开放讨论区`、GitHub Issues 公开讨论入口，以及 `Welcome` / `Lab Notes` 英文导航与对应样式。
+- GitHub Pages Actions 部署：`success`；本轮 `pages-build-deployment` run `28069567339` 已成功，线上站点已抓取验证。注意 GitHub `/pages` legacy 状态可能停留在中间内容提交的 `errored`，但后续 `pages-build-deployment` Actions run 已成功部署当前远端内容。
+- 当前远端 `main`：以 GitHub 仓库 `refs/heads/main` 为准；本轮动态欢迎页和末尾团队札记内容部署提交为 `e861fff25833d7260ac99e7bd0888b060b43b36d`，后续若仅补充本交接文件，仍以远端 ref 的最新提交为准。
+- 页面内容更新提交：`e861fff25833d7260ac99e7bd0888b060b43b36d`
+- 线上 HTML / `script.js` / `styles.css` 已验证首屏为 `#home.welcome-page`，不存在独立 `#welcome` 与独立 `#about`；线上动态 DOM 已验证欢迎页渲染 6 个亮点工作、3 条亮点报道，团队札记渲染 9 张图文 / 视频卡片，其中 3 张为视频卡片，英文模式下 `#home` 与 `#blog` 无中文残留。
 - `.nojekyll` 修复提交：`46a12113d35046f8d13a29af602745b515de09e6`
 
 最新部署方式：普通 `git push` 多次因 GitHub HTTPS 网络 / HTTP2 错误失败，最终使用 GitHub CLI + GitHub Git Data API 创建 blob / tree / commit 并更新 `main` 引用。随后手动触发 Pages build，添加 `.nojekyll` 后构建成功。
@@ -55,7 +55,7 @@
 
 `/Users/howie/Documents/个人主页`
 
-主页主题已经从通用个人主页模板改为“非攻机器人实验室”主页，围绕西安交通大学机械工程学院团队信息组织内容。页面当前包含：首页、实验室简介、研究方向、团队动态、团队成员、团队成果、联系方式。注意：首页简介应呈现实验室立意，不出现具体词条出处或来源链接；“非攻”按“一器多形、因境而变、入微而作”的机构学 / 机器人寓意解释，不按墨子或墨家“非攻”思想解释。
+主页主题已经从通用个人主页模板改为“非攻机器人实验室”主页，围绕西安交通大学机械工程学院团队信息组织内容。页面当前包含：欢迎页、研究方向、团队动态、团队成员、团队成果、团队札记、联系方式。注意：欢迎页已合并原首页和实验室简介，应呈现实验室立意，不出现具体词条出处或来源链接；“非攻”按“一器多形、因境而变、入微而作”的机构学 / 机器人寓意解释，不按墨子或墨家“非攻”思想解释。
 
 本地仓库已有远端：
 
