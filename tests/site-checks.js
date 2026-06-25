@@ -175,7 +175,8 @@ assertDescending(achievementYearsFor((type) => type.startsWith("award-")), "awar
 assertDescending(achievementYearsFor((type) => type === "award-student"), "student awards");
 
 const serviceCount = matchAll(/<article class="achievement" data-output-type="service">/g).length;
-assert.equal(serviceCount, 11, `expected 11 social service entries from the public profile, found ${serviceCount}`);
+assert.equal(serviceCount, 12, `expected 12 social service entries after adding the IEEE Sensors Reviews role, found ${serviceCount}`);
+assert.ok(html.includes('<p class="pub-venue">社会任职 · 编辑任职</p>\n              <h3>IEEE Sensors Reviews Associate Editor</h3>'), "service entries should include the IEEE Sensors Reviews Associate Editor role");
 assertDescending(achievementYearsFor((type) => type === "service"), "service entries");
 
 assert.ok(html.includes("学术型博士（1-2人/年）"), "Sun Yu mentor card should include PhD enrollment direction details");

@@ -2,10 +2,14 @@
 
 ## 最新更新
 
-更新时间：2026-06-25 14:52 CST
+更新时间：2026-06-26 07:41 CST
 
 本文件已更新到当前项目状态。最新一轮已完成并部署：
 
+- 按用户截图要求，将“杨来浩受邀担任 IEEE Sensors Reviews Associate Editor”从团队动态同步增加到团队成果的“社会任职”栏目：
+  - 新增 2026 年 `data-output-type="service"` 成果条目，分类为“社会任职 · 编辑任职”，标题为 `IEEE Sensors Reviews Associate Editor`。
+  - 社会任职成果条目数由 11 条更新为 12 条；结构校验已同步更新并通过。
+  - 本地验证通过：`node --check script.js`、`node tests/site-checks.js`。
 - 按用户最新截图反馈调整栏目整体对齐与标题说明：
   - 删除 `.welcome-page` 单独设置的 `width: min(1980px, calc(100% - 48px))`，欢迎页恢复使用全站统一的 `.hero/.section/.footer` 宽度 `min(var(--max), calc(100% - 48px))`，与后续“团队成员”“团队成果”等栏目左右边界对齐；欢迎页内部排版模式和固定画框规则保持不变。
   - 删除“团队成员”和“团队成果”标题下方的辅助说明段落，只保留 eyebrow 与主标题。英文状态下对应说明段也不再显示。
