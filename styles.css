@@ -540,7 +540,6 @@ h3 {
 
 .welcome-page {
   position: relative;
-  width: min(1980px, calc(100% - 48px));
   min-height: auto;
   align-items: start;
   padding-top: clamp(2rem, 4.2vw, 3.6rem);

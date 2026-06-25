@@ -2,10 +2,14 @@
 
 ## 最新更新
 
-更新时间：2026-06-25 05:27 CST
+更新时间：2026-06-25 14:52 CST
 
 本文件已更新到当前项目状态。最新一轮已完成并部署：
 
+- 按用户最新截图反馈调整栏目整体对齐与标题说明：
+  - 删除 `.welcome-page` 单独设置的 `width: min(1980px, calc(100% - 48px))`，欢迎页恢复使用全站统一的 `.hero/.section/.footer` 宽度 `min(var(--max), calc(100% - 48px))`，与后续“团队成员”“团队成果”等栏目左右边界对齐；欢迎页内部排版模式和固定画框规则保持不变。
+  - 删除“团队成员”和“团队成果”标题下方的辅助说明段落，只保留 eyebrow 与主标题。英文状态下对应说明段也不再显示。
+  - 本地 Chrome 复验通过：2048×1200 视口下 `#home`、`#members`、`#achievements` 均为 `x=304, width=1440, right=1744`；中文与英文状态下 `#members .section-heading` 和 `#achievements .section-heading` 均无 `p:not(.eyebrow)` 说明段。复验截图：`/private/tmp/feigong-aligned-sections.png`。
 - 按用户最新截图反馈修正欢迎页“近期亮点工作 / 媒体报道”动态区：
   - 外部画框改为固定高度版面：桌面端动态区统一使用 `--welcome-panel-height: clamp(760px, calc(100svh - 140px), 820px)`，左侧“近期亮点工作”和右侧“媒体报道”两个外框共用同一高度，顶部和底部对齐。
   - 左侧亮点卡片内部改为固定网格：上方图片区为 `minmax(0, 1fr)`，下方文字区固定为 `clamp(170px, 20svh, 220px)`；图片使用 `max-width: 100%` + `max-height: 100%` 等比例缩放，保证三张图完整显示在固定图片区内，不再纵向撑破外框。
