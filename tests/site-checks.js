@@ -258,7 +258,7 @@ orderIndex(
 );
 assert.ok(script.includes('"郭庆凯 · 软体驱动方向": "Qingkai Guo · Soft actuation"'), "English mode should translate Sun Yu current student entries");
 assert.ok(script.includes('"王昊 · 硕士 · 2019级 · 中铁第一勘察设计院集团有限公司"'), "English mode should translate Sun Yu alumni entries");
-assert.ok(script.includes("embodied intelligent robots that adapt to their environment and work at fine scale"), "English mode should translate the Feigong concept as embodied intelligent robots");
+assert.ok(script.includes("embodied robots that adapt to their environment and operate at fine scale"), "English mode should translate the Feigong concept as adaptive embodied robots");
 assert.ok(styles.includes(".hero h1") && styles.includes("white-space: nowrap"), "hero title should be constrained to one line");
 assert.ok(html.includes("data-language-toggle"), "home page should include a Chinese/English language toggle");
 assert.ok(html.includes('href="#home" data-i18n="nav.welcome"'), "navigation should put the welcome page first at the home anchor");
@@ -396,6 +396,10 @@ assert.ok(!html.includes("个人主页 Academic 页面公开信息"), "service s
 assert.ok(!html.includes("以上信息根据孙瑜老师学校主页招生信息整理"), "teacher notes should be removed from the member panel");
 assert.ok(html.includes("https://faculty.xjtu.edu.cn/yu.sun/zh_CN/index.htm"), "Sun Yu card should link to her profile");
 assert.ok(html.includes("assets/site-qr.svg"), "contact area should reference the team site QR code");
+assert.ok(html.includes("欢迎围绕智能诊断、原位介入、具身操作三条研究主线"), "contact text should align with the three research threads");
+assert.ok(script.includes("intelligent diagnosis, in-situ intervention, and embodied manipulation, including continuum robotics"), "English contact text should align with the three research threads");
+assert.ok(!html.includes("欢迎围绕高端装备智能检修机器人、软体/连续体机器人"), "contact text should not keep the old research-scope wording");
+assert.ok(!script.includes("soft/continuum robots, intelligent sensing, aero-engine health management"), "English contact text should not keep the old research-scope wording");
 assert.ok(html.includes('src="assets/team-profile.jpg"'), "hero image should keep a direct asset fallback for non-Netlify hosts");
 assert.ok(!html.includes("/.netlify/images?url="), "GitHub Pages deployment should not depend on Netlify Image CDN URLs");
 assert.ok(html.includes("busuanzi_value_site_pv"), "footer should expose site page-view statistics");

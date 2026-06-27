@@ -2,10 +2,16 @@
 
 ## 最新更新
 
-更新时间：2026-06-27 08:00 CST
+更新时间：2026-06-27 08:54 CST
 
 本文件已更新到当前项目状态。最新一轮已完成并部署：
 
+- 按用户要求修正联系方式口径并系统优化英文文案：
+  - 页脚联系方式说明由旧的“高端装备智能检修机器人、软体/连续体机器人、智能传感、航空发动机健康管理和 AI for Science”改为与研究方向一致的“智能诊断、原位介入、具身操作三条研究主线，以及连续体机器人、触觉传感、灵巧操作与航空发动机健康管理等方向”。
+  - 英文联系方式同步改为 `intelligent diagnosis, in-situ intervention, and embodied manipulation` 三条研究主线，并包含 `continuum robotics`、`tactile sensing`、`dexterous manipulation` 和 `aero-engine health management`。
+  - 系统优化英文首屏、欢迎页、研究方向、团队动态、团队成果和团队札记文案；三篇亮点成果尽量采用论文原生术语，包括 `contact-aided continuum robotic system`、`Touching with torque enables human-level robotic dexterity`、`bistable insect-scale jumpers with tunable energy barriers`、`multimodal locomotion` 等。
+  - 结构测试新增联系方式新旧口径校验，防止后续回退到旧表述。
+  - 本地验证通过：`node --check script.js`、`node tests/site-checks.js`；本地 Chrome 英文页验证通过：可见中文字符数为 0，联系方式、研究方向和成果区均包含更新后的英文关键词。复验截图：`/private/tmp/feigong-english-contact-polish.png`。
 - 按用户截图要求优化页脚联系方式：
   - 将 `<address>` 从横向换行 flex 改为单列 grid，4 个联系方式链接依次纵向排列；桌面端右对齐，移动端左对齐。
   - 本地 Chrome 复验通过：2048×900 桌面视口和 390×900 移动视口下，`#contact address a` 均为 4 个链接、严格纵向排列，页面无横向溢出。复验截图：`/private/tmp/feigong-contact-desktop.png`、`/private/tmp/feigong-contact-mobile.png`。
