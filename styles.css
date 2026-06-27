@@ -2076,14 +2076,14 @@ h3 {
 }
 
 address {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: flex-end;
+  display: grid;
+  justify-items: end;
   gap: 0.7rem;
   font-style: normal;
 }
 
 address a {
+  width: fit-content;
   border-bottom: 1px solid var(--line);
   color: var(--accent-strong);
   font-weight: 760;
@@ -2273,7 +2273,7 @@ address a {
   }
 
   address {
-    justify-content: flex-start;
+    justify-items: start;
     margin-top: 1.2rem;
   }
 

@@ -2,10 +2,14 @@
 
 ## 最新更新
 
-更新时间：2026-06-26 07:41 CST
+更新时间：2026-06-27 08:00 CST
 
 本文件已更新到当前项目状态。最新一轮已完成并部署：
 
+- 按用户截图要求优化页脚联系方式：
+  - 将 `<address>` 从横向换行 flex 改为单列 grid，4 个联系方式链接依次纵向排列；桌面端右对齐，移动端左对齐。
+  - 本地 Chrome 复验通过：2048×900 桌面视口和 390×900 移动视口下，`#contact address a` 均为 4 个链接、严格纵向排列，页面无横向溢出。复验截图：`/private/tmp/feigong-contact-desktop.png`、`/private/tmp/feigong-contact-mobile.png`。
+  - 本地验证通过：`node --check script.js`、`node tests/site-checks.js`。
 - 按用户截图要求，将“杨来浩受邀担任 IEEE Sensors Reviews Associate Editor”从团队动态同步增加到团队成果的“社会任职”栏目：
   - 新增 2026 年 `data-output-type="service"` 成果条目，分类为“社会任职 · 编辑任职”，标题为 `IEEE Sensors Reviews Associate Editor`。
   - 社会任职成果条目数由 11 条更新为 12 条；结构校验已同步更新并通过。
