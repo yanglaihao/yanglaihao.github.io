@@ -186,9 +186,10 @@ assert.ok(html.includes("非攻机器人实验室"), "site should use the update
 assert.ok(script.includes('"非攻机器人实验室": "Feigong Robotics Laboratory"'), "English mode should translate the updated laboratory name");
 assert.ok(html.includes("取“非攻”一器多形之巧，造因境而变、入微而作的具身智能机器人"), "about section should present Feigong as an embodied intelligence robotics concept");
 assert.ok(!html.includes("取“非攻”一器多形之巧，造因境而变、入微而作的智能检修机器人"), "about section should no longer use intelligent maintenance robots in the Feigong concept sentence");
-for (const keyword of ["软体/连续体机器人", "爬行机器人", "具身智能", "灵巧操作", "触觉传感"]) {
+for (const keyword of ["软体/连续体机器人", "爬行机器人", "具身智能", "灵巧操作", "触觉传感", "AI4S&amp;AI4E"]) {
   assert.ok(html.includes(`<span data-i18n="hero.meta.`) && html.includes(`>${keyword}</span>`), `hero keyword list should include ${keyword}`);
 }
+assert.ok(script.includes('"hero.meta.ai4s-ai4e": "AI4S&AI4E"'), "English mode should keep the AI4S&AI4E hero keyword");
 for (const oldKeyword of ["智能诊断", "原位介入", "具身操作"]) {
   assert.ok(!html.includes(`>${oldKeyword}</span>`), `hero keyword list should no longer include ${oldKeyword}`);
 }

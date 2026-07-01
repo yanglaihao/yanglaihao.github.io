@@ -2,10 +2,15 @@
 
 ## 最新更新
 
-更新时间：2026-06-27 08:54 CST
+更新时间：2026-07-02 07:30 CST
 
 本文件已更新到当前项目状态。最新一轮已完成并部署：
 
+- 按用户截图要求在首屏关键词区新增 `AI4S&AI4E`：
+  - 在 `.meta-list` 中追加第 6 个标签 `AI4S&AI4E`，位置位于“触觉传感”之后。
+  - 中英文切换均保持显示为 `AI4S&AI4E`，新增 `hero.meta.ai4s-ai4e` 翻译键。
+  - 结构测试新增首屏关键词校验，防止后续遗漏该标签。
+  - 本地验证通过：`node --check script.js`、`node tests/site-checks.js`；本地 Chrome 复验通过：中文与英文首屏均显示 `AI4S&AI4E`，页面无横向溢出。复验截图：`/private/tmp/feigong-ai4s-ai4e-hero.png`。
 - 按用户要求修正联系方式口径并系统优化英文文案：
   - 页脚联系方式说明由旧的“高端装备智能检修机器人、软体/连续体机器人、智能传感、航空发动机健康管理和 AI for Science”改为与研究方向一致的“智能诊断、原位介入、具身操作三条研究主线，以及连续体机器人、触觉传感、灵巧操作与航空发动机健康管理等方向”。
   - 英文联系方式同步改为 `intelligent diagnosis, in-situ intervention, and embodied manipulation` 三条研究主线，并包含 `continuum robotics`、`tactile sensing`、`dexterous manipulation` 和 `aero-engine health management`。
