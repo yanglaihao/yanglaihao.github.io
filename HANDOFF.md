@@ -2,10 +2,15 @@
 
 ## 最新更新
 
-更新时间：2026-07-02 08:02 CST
+更新时间：2026-07-02 08:34 CST
 
 本文件已更新到当前项目状态。最新一轮已完成并部署：
 
+- 按用户反馈为新增粘附团队札记补充论文配图：
+  - 新增 `assets/paper-highlights/adhesion-robots-visual.png`，由两篇 Zotero 附件 PDF 的代表图组合生成：左侧为 K-Track 的剪纸启发履带 / 负压协同粘附机器人图，右侧为 rigid-soft hybrid suction cups 的吸附应用场景图。
+  - `script.js` 中 `adhesion-robots` 札记新增 `media: { type: "image", src: "assets/paper-highlights/adhesion-robots-visual.png" }`，与触觉传感、小尺度机器人、接触辅助机器人等札记保持同类图片展示方式。
+  - 结构测试新增粘附札记图片路径校验。
+  - 本地验证通过：`node --check script.js`、`node tests/site-checks.js`；本地 Chrome 复验通过：粘附札记详情页加载 `adhesion-robots-visual.png`，自然尺寸 `2400 × 1040`，页面渲染约 `960 × 416`，右侧详情区仍保持 `overflow-y=auto` 且可滚动。复验截图：`/private/tmp/feigong-lab-notes-adhesion-image.png`。
 - 按用户要求用 Zotero 查找本人参与的两篇粘附方向 IEEE RA-L 论文，并在团队札记新增粘附讨论：
   - Zotero 本地库确认条目 1：`K-Track: A Kirigami-Inspired Tracked Robot with Negative Pressure Cooperative Adhesion for Wall-to-Wall Transition`，IEEE Robotics and Automation Letters，2026，Zotero item key `4WAZ5YIW`，BibTeX key `sun_k-track_2026`，DOI `10.1109/LRA.2026.3664598`。
   - Zotero 本地库确认条目 2：`Rigid-soft hybrid suction cups for enhanced anti-torque and energy-efficient attachment`，IEEE Robotics and Automation Letters，2024，Zotero item key `F2KQL53A`，BibTeX key `guo_rigid-soft_2024`，DOI `10.1109/LRA.2024.3484157`。

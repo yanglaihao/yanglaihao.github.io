@@ -966,6 +966,7 @@ const labNotePosts = [
       zh: "围绕两篇 IEEE RA-L 粘附机器人工作，讨论吸附、抗扭、节能保持与跨壁面过渡如何从局部机构走向可验证任务。",
       en: "A note on two IEEE RA-L adhesion-robot papers, tracing how attachment, anti-torque stability, energy-efficient holding, and wall-to-wall transition become verifiable robotic tasks.",
     },
+    media: { type: "image", src: "assets/paper-highlights/adhesion-robots-visual.png" },
     sections: [
       {
         heading: { zh: "粘附不是单点性能", en: "Adhesion is not a single-point metric" },

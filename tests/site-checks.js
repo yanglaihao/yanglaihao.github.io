@@ -309,6 +309,7 @@ for (const title of [
 }
 assert.ok(script.includes("10.1109/LRA.2026.3664598"), "Lab Notes should link the 2026 RA-L K-Track adhesion paper from Zotero");
 assert.ok(script.includes("10.1109/LRA.2024.3484157"), "Lab Notes should link the 2024 RA-L rigid-soft suction cup paper from Zotero");
+assert.ok(script.includes("assets/paper-highlights/adhesion-robots-visual.png"), "adhesion Lab Note should include a paper visual image");
 assert.ok(script.includes('let activeLabNoteId = "adhesion-robots"'), "Lab Notes should open the new adhesion discussion by default");
 assert.ok(script.includes("blog.detail.onPage"), "Lab Notes details should include an on-page guide like a post page");
 for (const figure of [
