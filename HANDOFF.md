@@ -2,10 +2,14 @@
 
 ## 最新更新
 
-更新时间：2026-07-02 09:32 CST
+更新时间：2026-07-02 10:24 CST
 
 本文件已更新到当前项目状态。最新一轮已完成并部署：
 
+- 按用户截图反馈修正页脚二维码说明换行问题：
+  - `styles.css` 中 `.site-qr` 增加 `min-width: max-content`，`.site-qr figcaption` 增加 `white-space: nowrap`，确保“扫码访问团队主页 / Scan to visit the team site”保持单行显示。
+  - `tests/site-checks.js` 新增二维码说明单行样式回归校验。
+  - 本地验证通过：`node --check script.js`、`node tests/site-checks.js`；本地 Chrome 复验通过：1440×900 桌面和 390×900 移动视口下，中英文二维码说明均为单行，页面无横向溢出。复验截图：`/private/tmp/feigong-contact-qr-desktop-zh.png`、`/private/tmp/feigong-contact-qr-mobile-zh.png`。
 - 按用户最新截图反馈修正团队札记“粘附如何支撑爬行机器人”配图被截断问题：
   - 重新生成 `assets/paper-highlights/adhesion-robots-visual.png`，只裁切两篇 Zotero 附件 PDF 的 Fig.1 视觉区域，不再带入 K-Track 的 Fig.2、PDF 正文或右侧残留文字。
   - 新图保持等比例合成，两个图均完整显示；输出尺寸为 `2400 × 1180`。

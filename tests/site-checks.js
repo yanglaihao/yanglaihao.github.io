@@ -413,6 +413,7 @@ assert.ok(!html.includes("/.netlify/images?url="), "GitHub Pages deployment shou
 assert.ok(html.includes("busuanzi_value_site_pv"), "footer should expose site page-view statistics");
 assert.ok(html.includes("busuanzi_value_site_uv"), "footer should expose site visitor statistics");
 assert.ok(html.includes("busuanzi.pure.mini.js"), "static site should load the Busuanzi counter script");
+assert.ok(styles.includes(".site-qr figcaption") && styles.includes("white-space: nowrap"), "QR caption should stay on one line");
 assert.ok(script.includes("attributeTranslations"), "language switching should translate important accessibility attributes and metadata");
 assert.ok(script.includes("translateAttributes"), "language switching should update image alt text and aria labels");
 assert.ok(script.includes('"meta.description"'), "English mode should translate the page meta description");

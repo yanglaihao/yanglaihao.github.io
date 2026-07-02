@@ -2103,8 +2103,13 @@ address a {
   display: grid;
   gap: 0.45rem;
   justify-items: center;
+  min-width: max-content;
   color: var(--muted);
   font-size: 0.82rem;
+}
+
+.site-qr figcaption {
+  white-space: nowrap;
 }
 
 .site-qr img {
