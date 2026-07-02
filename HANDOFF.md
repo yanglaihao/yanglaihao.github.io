@@ -2,10 +2,14 @@
 
 ## 最新更新
 
-更新时间：2026-07-02 08:34 CST
+更新时间：2026-07-02 09:32 CST
 
 本文件已更新到当前项目状态。最新一轮已完成并部署：
 
+- 按用户最新截图反馈修正团队札记“粘附如何支撑爬行机器人”配图被截断问题：
+  - 重新生成 `assets/paper-highlights/adhesion-robots-visual.png`，只裁切两篇 Zotero 附件 PDF 的 Fig.1 视觉区域，不再带入 K-Track 的 Fig.2、PDF 正文或右侧残留文字。
+  - 新图保持等比例合成，两个图均完整显示；输出尺寸为 `2400 × 1180`。
+  - 本地验证通过：`node --check script.js`、`node tests/site-checks.js`；本地 Chrome 复验通过：粘附札记详情页加载 `adhesion-robots-visual.png`，自然尺寸 `2400 × 1180`，页面渲染约 `960 × 472`，无横向溢出，右侧详情区仍保持 `overflow-y=auto`。复验截图：`/private/tmp/feigong-lab-notes-adhesion-image-fixed.png`。
 - 按用户反馈为新增粘附团队札记补充论文配图：
   - 新增 `assets/paper-highlights/adhesion-robots-visual.png`，由两篇 Zotero 附件 PDF 的代表图组合生成：左侧为 K-Track 的剪纸启发履带 / 负压协同粘附机器人图，右侧为 rigid-soft hybrid suction cups 的吸附应用场景图。
   - `script.js` 中 `adhesion-robots` 札记新增 `media: { type: "image", src: "assets/paper-highlights/adhesion-robots-visual.png" }`，与触觉传感、小尺度机器人、接触辅助机器人等札记保持同类图片展示方式。
