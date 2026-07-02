@@ -826,19 +826,26 @@ h3 {
   display: grid;
   grid-template-columns: minmax(300px, 0.36fr) minmax(0, 1fr);
   gap: 1.25rem;
-  align-items: start;
+  align-items: stretch;
+  height: clamp(640px, calc(100svh - 150px), 820px);
+  overflow: hidden;
 }
 
 .blog-index-panel {
-  position: sticky;
-  top: 96px;
+  min-height: 0;
   display: grid;
+  grid-template-rows: auto minmax(0, 1fr) auto auto;
   gap: 1rem;
+  overflow: hidden;
 }
 
 .blog-post-list {
+  min-height: 0;
   display: grid;
+  align-content: start;
   gap: 0.75rem;
+  overflow-y: auto;
+  padding-right: 0.2rem;
 }
 
 .blog-post-card,
@@ -929,7 +936,9 @@ h3 {
 }
 
 .blog-detail-panel {
-  overflow: hidden;
+  min-height: 0;
+  overflow-y: auto;
+  overscroll-behavior: contain;
   scroll-margin-top: 96px;
 }
 
@@ -2244,6 +2253,20 @@ address a {
   .member-list,
   .alumni-list {
     grid-template-columns: 1fr;
+  }
+
+  .blog-board {
+    height: auto;
+    overflow: visible;
+  }
+
+  .blog-index-panel {
+    overflow: visible;
+  }
+
+  .blog-post-list,
+  .blog-detail-panel {
+    max-height: 72svh;
   }
 
   .research-stage,

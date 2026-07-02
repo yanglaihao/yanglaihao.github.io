@@ -299,6 +299,7 @@ assert.ok(script.includes("activeLabNoteYear"), "Lab Notes should support year f
 assert.ok(!script.includes('data-output-type^="award-"'), "Lab Notes should not duplicate the awards list by automatic aggregation");
 assert.ok(!script.includes('article[data-news-type="news"]'), "Lab Notes should not duplicate the news list by automatic aggregation");
 for (const title of [
+  "从贴得住到过得去：粘附如何支撑爬行机器人",
   "触觉不止于感知：扭矩如何进入灵巧操作",
   "把接触变成支点：连续体机器人进入深腔的另一种思路",
   "小尺度跳跃机器人的能垒调节",
@@ -306,6 +307,9 @@ for (const title of [
 ]) {
   assert.ok(script.includes(title), `Lab Notes should include curated post: ${title}`);
 }
+assert.ok(script.includes("10.1109/LRA.2026.3664598"), "Lab Notes should link the 2026 RA-L K-Track adhesion paper from Zotero");
+assert.ok(script.includes("10.1109/LRA.2024.3484157"), "Lab Notes should link the 2024 RA-L rigid-soft suction cup paper from Zotero");
+assert.ok(script.includes('let activeLabNoteId = "adhesion-robots"'), "Lab Notes should open the new adhesion discussion by default");
 assert.ok(script.includes("blog.detail.onPage"), "Lab Notes details should include an on-page guide like a post page");
 for (const figure of [
   "assets/paper-highlights/torque-dexterity-visual.png",
@@ -323,6 +327,8 @@ assert.ok(script.includes('"团队札记": "Lab Notes"'), "English mode should t
 assert.ok(script.includes('"开放讨论区": "Open Discussion"'), "English mode should translate the open discussion area");
 assert.ok(styles.includes(".welcome-page"), "styles should define the welcome page layout");
 assert.ok(styles.includes(".lab-notes-page"), "styles should define the Lab Notes page layout");
+assert.ok(styles.includes("height: clamp(640px, calc(100svh - 150px), 820px)"), "Lab Notes board should use a fixed desktop height");
+assert.ok(styles.includes(".blog-detail-panel") && styles.includes("overflow-y: auto"), "Lab Notes detail panel should scroll vertically when content exceeds the fixed height");
 assert.ok(styles.includes(".discussion-panel"), "styles should define the public discussion panel");
 assert.ok(script.includes("applyLanguage"), "script should implement language switching");
 assert.ok(script.includes("textTranslations"), "language switching should include full-page static text translations");

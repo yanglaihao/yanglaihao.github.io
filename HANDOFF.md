@@ -2,10 +2,20 @@
 
 ## 最新更新
 
-更新时间：2026-07-02 07:30 CST
+更新时间：2026-07-02 08:02 CST
 
 本文件已更新到当前项目状态。最新一轮已完成并部署：
 
+- 按用户要求用 Zotero 查找本人参与的两篇粘附方向 IEEE RA-L 论文，并在团队札记新增粘附讨论：
+  - Zotero 本地库确认条目 1：`K-Track: A Kirigami-Inspired Tracked Robot with Negative Pressure Cooperative Adhesion for Wall-to-Wall Transition`，IEEE Robotics and Automation Letters，2026，Zotero item key `4WAZ5YIW`，BibTeX key `sun_k-track_2026`，DOI `10.1109/LRA.2026.3664598`。
+  - Zotero 本地库确认条目 2：`Rigid-soft hybrid suction cups for enhanced anti-torque and energy-efficient attachment`，IEEE Robotics and Automation Letters，2024，Zotero item key `F2KQL53A`，BibTeX key `guo_rigid-soft_2024`，DOI `10.1109/LRA.2024.3484157`。
+  - `script.js` 的 `labNotePosts` 新增研究札记“从贴得住到过得去：粘附如何支撑爬行机器人 / From Attachment to Traversal: Adhesion for Crawling Robots”，讨论吸附、抗扭、节能保持、剪纸启发履带、负压协同粘附和跨壁面过渡，并链接两篇 DOI。
+  - 团队札记默认打开项改为新粘附札记 `adhesion-robots`。
+- 按用户要求将团队札记改为固定长度并增加内部滚动：
+  - 桌面端 `.blog-board` 设为固定视觉高度 `clamp(640px, calc(100svh - 150px), 820px)`，避免正常缩放下整块内容继续撑出屏幕。
+  - 右侧 `.blog-detail-panel` 改为 `overflow-y: auto`，内容超出固定高度时在右侧详情栏内部出现纵向滚动条；左侧索引列表也限制在面板内滚动，避免新增札记后挤压页面。
+  - 移动端恢复自然高度，并给索引列表 / 详情设置 `72svh` 滚动上限，避免窄屏内容被固定高度压缩。
+  - 本地验证通过：`node --check script.js`、`node tests/site-checks.js`；本地 Chrome 复验通过：1440×900 视口下团队札记固定高度约 `750px`，右侧详情区 `clientHeight=748`、`scrollHeight=985`、`overflow-y=auto`，默认显示粘附札记，英文切换后标题与 RA-L 资源链接正常，无横向溢出。复验截图：`/private/tmp/feigong-lab-notes-adhesion-fixed.png`、`/private/tmp/feigong-lab-notes-adhesion-fixed-en.png`。
 - 按用户截图要求在首屏关键词区新增 `AI4S&AI4E`：
   - 在 `.meta-list` 中追加第 6 个标签 `AI4S&AI4E`，位置位于“触觉传感”之后。
   - 中英文切换均保持显示为 `AI4S&AI4E`，新增 `hero.meta.ai4s-ai4e` 翻译键。

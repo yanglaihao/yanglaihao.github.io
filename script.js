@@ -23,7 +23,7 @@ const memberPanels = document.querySelectorAll("[data-member-panel]");
 let currentTheme = localStorage.getItem("theme") || "light";
 let currentLanguage = localStorage.getItem("language") || "zh";
 let researchRotation;
-let activeLabNoteId = "torque-dexterity";
+let activeLabNoteId = "adhesion-robots";
 let activeLabNoteCategory = "all";
 let activeLabNoteYear = "all";
 let activeWelcomeHighlightIndex = 0;
@@ -951,6 +951,50 @@ function renderMedia(media) {
 }
 
 const labNotePosts = [
+  {
+    id: "adhesion-robots",
+    date: "2026-07-02",
+    year: "2026",
+    minutes: 5,
+    categoryKey: "research",
+    category: { zh: "研究札记", en: "Research Note" },
+    title: {
+      zh: "从贴得住到过得去：粘附如何支撑爬行机器人",
+      en: "From Attachment to Traversal: Adhesion for Crawling Robots",
+    },
+    dek: {
+      zh: "围绕两篇 IEEE RA-L 粘附机器人工作，讨论吸附、抗扭、节能保持与跨壁面过渡如何从局部机构走向可验证任务。",
+      en: "A note on two IEEE RA-L adhesion-robot papers, tracing how attachment, anti-torque stability, energy-efficient holding, and wall-to-wall transition become verifiable robotic tasks.",
+    },
+    sections: [
+      {
+        heading: { zh: "粘附不是单点性能", en: "Adhesion is not a single-point metric" },
+        body: {
+          zh: "在爬行机器人里，粘附首先要回答“能不能贴住”，但真正的工程问题还包括贴住之后能否抗扭、能否节能保持、能否在曲面或壁面转换中持续稳定。Rigid-soft hybrid suction cups 工作把刚性外壳与柔性吸盘结合，用更好的密封和抗扭能力提升非理想表面的吸附稳定性，让吸盘不仅是末端执行器，也成为移动机器人的可靠支撑单元。",
+          en: "For crawling robots, adhesion first asks whether the robot can attach, but the engineering question continues: can it resist torque, hold with low energy, and remain stable on inclined, irregular, or transitioning surfaces? The rigid-soft hybrid suction cup work combines a rigid shell with soft suction to improve sealing and torque resistance on nonideal surfaces, turning a suction cup from a local end-effector into a reliable support unit for mobile robots.",
+        },
+      },
+      {
+        heading: { zh: "从吸附单元到跨壁面运动", en: "From adhesive units to wall-to-wall transition" },
+        body: {
+          zh: "K-Track 工作进一步把粘附放到连续运动任务中：剪纸启发履带提供形变适应与粘附增强，负压提供预载和稳定贴附，后支撑结构提升抗扭能力。这样，机器人不只是能在一个平面上爬行，而是能在复杂壁面、变曲率基底和航空发动机静子等场景中完成内部跨壁面过渡。",
+          en: "The K-Track work places adhesion inside a continuous locomotion task: kirigami-inspired tracks provide deformation adaptability and enhanced adhesion, negative pressure supplies preload and stable attachment, and a rear support structure improves torque resistance. The result is not merely climbing on one plane, but internal wall-to-wall transition across complex walls, variable-curvature substrates, and aero-engine stator-like scenarios.",
+        },
+      },
+      {
+        heading: { zh: "与实验室主线的关系", en: "How it connects to the lab" },
+        body: {
+          zh: "这两篇工作把粘附从“材料/结构设计”推进到“机器人进入与操作能力”：吸附单元决定机器人能否稳得住，跨壁面运动决定机器人能否进得去，抗扭与节能保持决定机器人能否长时间执行检测和维护任务。它与爬行机器人、原位介入、触觉/力学交互和高端装备深腔检测形成同一条技术链路。",
+          en: "Together, the two papers move adhesion from material or structural design toward robotic access and operation capability. Adhesive units determine whether the robot can remain stable, wall-to-wall transition determines whether it can access the target region, and anti-torque and energy-efficient holding determine whether inspection and maintenance can be sustained. This connects crawling robots, in-situ intervention, tactile and mechanical interaction, and deep-cavity inspection of advanced equipment.",
+        },
+      },
+    ],
+    links: [
+      { label: { zh: "IEEE RA-L 2026：K-Track", en: "IEEE RA-L 2026: K-Track" }, href: "https://doi.org/10.1109/LRA.2026.3664598" },
+      { label: { zh: "IEEE RA-L 2024：Rigid-soft hybrid suction cups", en: "IEEE RA-L 2024: Rigid-soft hybrid suction cups" }, href: "https://doi.org/10.1109/LRA.2024.3484157" },
+      { label: { zh: "研究方向", en: "Research" }, href: "#research" },
+    ],
+  },
   {
     id: "torque-dexterity",
     date: "2026-06-01",
