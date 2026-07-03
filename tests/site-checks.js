@@ -347,6 +347,8 @@ assert.ok(html.includes("团队关于触觉传感和灵巧操作的研究工作�
 assert.ok(html.includes("https://faculty.xjtu.edu.cn/content.jsp?urltype=news.NewsContentUrl"), "news should retain source links");
 assert.ok(html.includes("杨来浩受聘担任 Cyborg and Bionic Systems Young Editor"), "news should include the Cyborg and Bionic Systems Young Editor appointment");
 assert.ok(html.includes("<time>2026-06-30</time>"), "Cyborg and Bionic Systems Young Editor appointment should use the certificate date");
+assert.ok(html.includes("杨来浩受聘担任该刊 Young Editor，任期为 2026 年 7 月 1 日至 2028 年 6 月 30 日"), "Cyborg and Bionic Systems news should use the shortened user-approved wording");
+assert.ok(!html.includes("根据 Cyborg and Bionic Systems 颁发的聘书，杨来浩受聘担任该刊 Young Editor"), "Cyborg and Bionic Systems news should remove the opening certificate clause");
 assert.ok(html.includes("任期为 2026 年 7 月 1 日至 2028 年 6 月 30 日"), "Cyborg and Bionic Systems news should include the appointment term");
 assert.ok(html.includes("由 AAAS 出版的 Science Partner Journal，合作机构为北京理工大学"), "Cyborg and Bionic Systems news should include the journal profile");
 assert.ok(html.includes("https://spj.science.org/journal/cbs"), "Cyborg and Bionic Systems news should link to the journal homepage");
@@ -402,6 +404,7 @@ assert.ok(script.includes('"杨来浩受邀在 UNIfied 2026-SMMI 青年科学家
 assert.ok(script.includes("Laihao Yang was invited to the Youth Scientists Forum of the 2026 International Conference on Advanced Sensing, Condition Monitoring, and Intelligent Maintenance Innovations"), "English mode should translate the completed Youth Scientists Forum summary");
 assert.ok(script.includes('"杨来浩受聘担任 Cyborg and Bionic Systems Young Editor"'), "English mode should translate the Cyborg and Bionic Systems Young Editor appointment title");
 assert.ok(script.includes("Cyborg and Bionic Systems is a Science Partner Journal published by AAAS"), "English mode should translate the Cyborg and Bionic Systems journal profile");
+assert.ok(!script.includes("According to the appointment certificate issued by Cyborg and Bionic Systems"), "English mode should remove the opening certificate clause");
 assert.ok(script.includes('"杨来浩受邀担任 IEEE Sensors Reviews Associate Editor"'), "English mode should translate the IEEE Sensors Reviews Associate Editor appointment title");
 assert.ok(script.includes('"通知": "Notices"'), "English mode should translate the notice filter");
 assert.ok(script.includes('"杨来浩副研究员获首届“太行杯”航空动力创新大赛优胜奖"'), "English mode should translate the latest news titles");

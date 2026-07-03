@@ -2,10 +2,14 @@
 
 ## 最新更新
 
-更新时间：2026-07-03 17:43 CST
+更新时间：2026-07-03 17:57 CST
 
 本文件已更新到当前项目状态。最新一轮已完成并部署：
 
+- 按用户要求精简 Cyborg and Bionic Systems Young Editor 新闻正文：
+  - 删除中文新闻正文开头“根据 Cyborg and Bionic Systems 颁发的聘书，”；当前正文保留为“杨来浩受聘担任该刊 Young Editor，任期为 2026 年 7 月 1 日至 2028 年 6 月 30 日。Cyborg and Bionic Systems 是由 AAAS 出版的 Science Partner Journal，合作机构为北京理工大学，聚焦机器人学、控制论、仿生学、生物医学工程、神经工程与生物材料等交叉方向。”
+  - 英文翻译同步删除 `According to the appointment certificate issued by Cyborg and Bionic Systems` 开头。
+  - `tests/site-checks.js` 新增旧开头不存在的回归校验。
 - 按用户提供的 Cyborg and Bionic Systems 聘书截图新增团队动态新闻：
   - `index.html` 团队动态新增 2026-06-30 新闻“杨来浩受聘担任 Cyborg and Bionic Systems Young Editor”，标题链接到期刊主页 `https://spj.science.org/journal/cbs`。
   - 新闻正文写明任期为 2026 年 7 月 1 日至 2028 年 6 月 30 日，并附期刊简介：`Cyborg and Bionic Systems` 是由 AAAS 出版的 Science Partner Journal，合作机构为北京理工大学，聚焦机器人学、控制论、仿生学、生物医学工程、神经工程与生物材料等交叉方向。期刊基础信息由 Crossref / DOAJ 公开元数据交叉确认，期刊官网脚本直连返回 403，但页面链接保留给浏览器访问。
