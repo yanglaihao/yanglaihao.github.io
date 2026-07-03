@@ -2,10 +2,15 @@
 
 ## 最新更新
 
-更新时间：2026-07-02 10:24 CST
+更新时间：2026-07-03 17:43 CST
 
 本文件已更新到当前项目状态。最新一轮已完成并部署：
 
+- 按用户提供的 Cyborg and Bionic Systems 聘书截图新增团队动态新闻：
+  - `index.html` 团队动态新增 2026-06-30 新闻“杨来浩受聘担任 Cyborg and Bionic Systems Young Editor”，标题链接到期刊主页 `https://spj.science.org/journal/cbs`。
+  - 新闻正文写明任期为 2026 年 7 月 1 日至 2028 年 6 月 30 日，并附期刊简介：`Cyborg and Bionic Systems` 是由 AAAS 出版的 Science Partner Journal，合作机构为北京理工大学，聚焦机器人学、控制论、仿生学、生物医学工程、神经工程与生物材料等交叉方向。期刊基础信息由 Crossref / DOAJ 公开元数据交叉确认，期刊官网脚本直连返回 403，但页面链接保留给浏览器访问。
+  - `script.js` 同步新增英文翻译；`tests/site-checks.js` 更新新闻总数为 17，并新增新新闻、任期、期刊简介、官网链接和英文翻译校验。
+  - 本地验证通过：`node --check script.js`、`node tests/site-checks.js`；本地 Chrome 复验通过：1440×1000 视口下新增新闻为第一条新闻，中文内容与英文翻译正常，英文条目中文字符数为 0。复验截图：`/private/tmp/feigong-news-cbs-zh.png`、`/private/tmp/feigong-news-cbs-en.png`。
 - 按用户截图反馈修正页脚二维码说明换行问题：
   - `styles.css` 中 `.site-qr` 增加 `min-width: max-content`，`.site-qr figcaption` 增加 `white-space: nowrap`，确保“扫码访问团队主页 / Scan to visit the team site”保持单行显示。
   - `tests/site-checks.js` 新增二维码说明单行样式回归校验。

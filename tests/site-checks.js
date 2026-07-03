@@ -345,6 +345,11 @@ assert.ok(handoff.includes("中英文切换"), "handoff should mention the langu
 
 assert.ok(html.includes("团队关于触觉传感和灵巧操作的研究工作发表于Science 子刊"), "news should include current profile news from the school site");
 assert.ok(html.includes("https://faculty.xjtu.edu.cn/content.jsp?urltype=news.NewsContentUrl"), "news should retain source links");
+assert.ok(html.includes("杨来浩受聘担任 Cyborg and Bionic Systems Young Editor"), "news should include the Cyborg and Bionic Systems Young Editor appointment");
+assert.ok(html.includes("<time>2026-06-30</time>"), "Cyborg and Bionic Systems Young Editor appointment should use the certificate date");
+assert.ok(html.includes("任期为 2026 年 7 月 1 日至 2028 年 6 月 30 日"), "Cyborg and Bionic Systems news should include the appointment term");
+assert.ok(html.includes("由 AAAS 出版的 Science Partner Journal，合作机构为北京理工大学"), "Cyborg and Bionic Systems news should include the journal profile");
+assert.ok(html.includes("https://spj.science.org/journal/cbs"), "Cyborg and Bionic Systems news should link to the journal homepage");
 assert.ok(html.includes("杨来浩受邀担任 IEEE Sensors Reviews Associate Editor"), "news should include the IEEE Sensors Reviews Associate Editor appointment from the provided PDF");
 assert.ok(html.includes("根据 IEEE Sensors Reviews 主编 Eui-Hyeok Yang 的邀请函"), "news should summarize the provided IEEE Sensors Reviews appointment letter");
 assert.ok(html.includes("<time>2026-06-23</time>"), "IEEE Sensors Reviews appointment news should use the PDF saved date");
@@ -358,7 +363,7 @@ assert.ok(html.includes('data-news-filter="highlight"'), "news section should in
 assert.ok(html.includes(">亮点报道</button>"), "news filter label should be highlight reports");
 assert.ok(!html.includes(">亮点工作</button>"), "news filter label should no longer be highlight work");
 assert.equal(matchAll(/<article class="news-card(?: news-card-featured)?" data-news-type="highlight">/g).length, 3, "news section should include 3 highlight work items");
-assert.equal(matchAll(/<article class="news-card" data-news-type="news">/g).length, 16, "news section should include 16 current news items after adding the IEEE Sensors Reviews appointment");
+assert.equal(matchAll(/<article class="news-card" data-news-type="news">/g).length, 17, "news section should include 17 current news items after adding the Cyborg and Bionic Systems appointment");
 assert.equal(matchAll(/<article class="news-card" data-news-type="notice">/g).length, 4, "news section should include 4 notice items");
 assert.ok(html.includes("http://www.snrtv.com/snr_sxxwlb/a/2024/10/10/22818371.html"), "highlight work should cite the Shaanxi News source");
 assert.ok(html.includes("https://www.163.com/dy/article/JGIRJRQ90530TBVC.html"), "highlight work should cite the Silk Road Weekly source");
@@ -395,6 +400,8 @@ assert.ok(script.includes('"杨来浩受邀赴重庆交通大学航空学院作�
 assert.ok(script.includes('"杨来浩受邀赴深圳大学作机器人具身智能学术讲座"'), "English mode should translate the Shenzhen University invited lecture title");
 assert.ok(script.includes('"杨来浩受邀在 UNIfied 2026-SMMI 青年科学家论坛作报告"'), "English mode should translate the completed Youth Scientists Forum title");
 assert.ok(script.includes("Laihao Yang was invited to the Youth Scientists Forum of the 2026 International Conference on Advanced Sensing, Condition Monitoring, and Intelligent Maintenance Innovations"), "English mode should translate the completed Youth Scientists Forum summary");
+assert.ok(script.includes('"杨来浩受聘担任 Cyborg and Bionic Systems Young Editor"'), "English mode should translate the Cyborg and Bionic Systems Young Editor appointment title");
+assert.ok(script.includes("Cyborg and Bionic Systems is a Science Partner Journal published by AAAS"), "English mode should translate the Cyborg and Bionic Systems journal profile");
 assert.ok(script.includes('"杨来浩受邀担任 IEEE Sensors Reviews Associate Editor"'), "English mode should translate the IEEE Sensors Reviews Associate Editor appointment title");
 assert.ok(script.includes('"通知": "Notices"'), "English mode should translate the notice filter");
 assert.ok(script.includes('"杨来浩副研究员获首届“太行杯”航空动力创新大赛优胜奖"'), "English mode should translate the latest news titles");
