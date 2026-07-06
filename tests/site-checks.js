@@ -438,14 +438,29 @@ assert.ok(script.includes('"航空发动机进气道叶片检测机器人及检�
 assert.ok(script.includes('"首届“太行杯”航空动力创新大赛优胜奖"'), "English mode should translate the Taihang Cup award directly");
 
 const publicationCount = matchAll(/<article class="achievement" data-output-type="paper-/g).length;
-assert.equal(publicationCount, 95, `expected 95 classified representative publications after adding saved CNKI and Google Scholar records, found ${publicationCount}`);
-assert.equal(matchAll(/<article class="achievement" data-output-type="paper-other">/g).length, 2, "other papers should keep only two verified records");
+assert.equal(publicationCount, 104, `expected 104 classified representative publications after adding saved CNKI historical records, found ${publicationCount}`);
+assert.equal(matchAll(/<article class="achievement" data-output-type="paper-other">/g).length, 7, "other papers should include verified Chinese journal and conference records from the saved CNKI page");
 assert.ok(html.includes("Unified Teeter-Totter Active Compliance Enables Multi-Surface Locomotion for a Miniature Inspection Robot"), "Google Scholar Teeter-Totter SSRN preprint should be included");
 assert.ok(html.includes("G1LcEO4AAAAJ:jU7OWUQzBzMC"), "Teeter-Totter record should keep the saved Google Scholar citation link");
 assert.ok(html.includes("多模态振动下裂纹对叶片动应变重构的影响"), "CNKI EI journal record for multi-mode vibration dynamic strain reconstruction should be included");
 assert.ok(script.includes('"多模态振动下裂纹对叶片动应变重构的影响": "Effect of Cracks on Dynamic Strain Reconstruction of Blades Under Multi-Mode Vibration"'), "English mode should translate the new CNKI Chinese paper title");
-assert.ok(html.includes("Frequency estimation method for blade tip timing using continuous compressed sensing"), "Google Scholar Acta Aeronautica et Astronautica Sinica record should be included");
-assert.ok(html.includes("G1LcEO4AAAAJ:SdhP9T11ey4C"), "Acta Aeronautica et Astronautica Sinica record should keep the saved Google Scholar citation link");
+assert.ok(html.includes("连续压缩感知叶端定时频率估计方法"), "CNKI Acta Aeronautica et Astronautica Sinica record should use the saved Chinese title");
+assert.ok(script.includes('"连续压缩感知叶端定时频率估计方法": "Frequency estimation method for blade tip timing using continuous compressed sensing"'), "English mode should translate the CNKI Acta Aeronautica et Astronautica Sinica title");
+for (const title of [
+  "工程专业认证驱动下的思政元素挖掘与教学实践——以“工程有限元与数值计算”课程为例",
+  "单传感叶端定时信号固有频率动态提取方法",
+  "新工科视域下“工程有限元与数值计算”双语课程体系探索与实践",
+  "介电液体增强的静电驱动仿生章鱼吸盘",
+  "裂纹叶盘转子系统振动建模、机理分析与监测诊断",
+  "高模态密度结构宽频振动分析的小波有限元方法实现",
+  "叶端定时中多重信号分类法的滤波特性研究",
+  "齿轮磨损故障动态响应特征与诊断指标研究",
+  "增强稀疏分解及其在叶片振动参数识别中的应用",
+]) {
+  assert.ok(html.includes(title), `saved CNKI historical publication should be included: ${title}`);
+}
+assert.ok(html.includes("EI 期刊 · 振动与冲击"), "CNKI Journal of Vibration and Shock record should be classified as EI journal");
+assert.ok(html.includes("其他会议 · 第15届全国转子动力学学术大会摘要集"), "CNKI rotor dynamics abstract should be classified as other conference");
 assert.ok(!html.includes("叶端定时欠采样信号重构方法综述"), "incorrect 2022 other-paper record should be removed");
 assert.ok(!html.includes("齿轮磨损对齿轮传动动态响应特征的影响"), "incorrect 2022 other-paper record should be removed");
 assert.ok(!styles.includes("embodied-focus"), "research directions should use video assets directly");
