@@ -4,7 +4,22 @@
 
 更新时间：2026-07-07 00:00 CST
 
-本文件已更新到当前项目状态。最新一轮按用户要求调整 `Cyborg and Bionic Systems` 社会任职条目，并已部署：
+本文件已更新到当前项目状态。最新一轮按用户要求根据本地保存的知网与 Google Scholar 页面补齐论文成果条目：
+
+- 按本地保存的 Google Scholar 结果补齐 2026 年预印本：
+  - `Unified Teeter-Totter Active Compliance Enables Multi-Surface Locomotion for a Miniature Inspection Robot`
+  - 分类为 `paper-preprint`，来源显示为 `预印本 · SSRN 7025048`，链接保留用户提供的 Google Scholar citation 链接 `G1LcEO4AAAAJ:jU7OWUQzBzMC`。
+- 按本地保存的知网检索结果补齐 2026 年 EI 期刊论文：
+  - `多模态振动下裂纹对叶片动应变重构的影响`
+  - 知网页面显示期刊为 `应用基础与工程科学学报`，日期 `2026-04-15`，并带 `EI检索` 标记；页面成果条目分类为 `paper-ei-journal`。
+- 按本地保存的 Google Scholar 结果补齐 2025 年航空学报条目：
+  - `Frequency estimation method for blade tip timing using continuous compressed sensing`
+  - 分类为 `paper-ei-journal`，来源显示为 `Acta Aeronautica et Astronautica Sinica`，链接保留 Google Scholar citation 链接 `G1LcEO4AAAAJ:SdhP9T11ey4C`。
+- `script.js` 同步新增“多模态振动下裂纹对叶片动应变重构的影响”及新增中文作者的英文翻译。
+- `tests/site-checks.js` 将论文成果数量从 92 更新为 95，并新增三条补齐记录及链接的回归检查。
+- `README.md` 同步将代表性论文数量更新为 95，并补充知网保存页作为论文列表来源。
+
+上一轮按用户要求调整 `Cyborg and Bionic Systems` 社会任职条目，并已部署：
 
 - 按用户截图反馈修正团队成果“社会任职”中的 `Cyborg and Bionic Systems` 条目：
   - 将该条移动到社会任职列表最前面，排在 `IEEE Sensors Reviews Associate Editor` 之前。
@@ -12,6 +27,9 @@
   - 标题改为 `Cyborg and Bionic Systems（Science Partner Journal）Young Editor`，将 `Science Partner Journal` 放在期刊名后的括号中。
   - `script.js` 同步英文翻译为 `Young Editor, Cyborg and Bionic Systems (Science Partner Journal)`。
   - `tests/site-checks.js` 新增该条格式、无任期说明和排序在 IEEE Sensors Reviews 前面的回归校验。
+  - 本地验证通过：`node --check script.js`、`node tests/site-checks.js`。
+  - 线上部署提交：`f7ef8855a81e5c886e63c962808578a6c788e5ed`；GitHub Pages run `28826377548` 构建成功。
+  - 线上核验通过：`https://yanglaihao.github.io/?verify=f7ef8855b` 中社会任职条目顺序为 `Cyborg and Bionic Systems（Science Partner Journal）Young Editor` 在 `IEEE Sensors Reviews Associate Editor` 前，且不再显示 `任期 2026.07.01-2028.06.30`。
 
 上一轮按用户要求撤回 Product Design 预览样式，仅保留内容更新，并已部署：
 

@@ -761,6 +761,7 @@ const achievementPhraseTranslations = {
   "科技服务": "Technology Service",
   "学术组织": "Academic Organization",
   "应用基础与工程科学学报": "Journal of Basic Science and Engineering",
+  "航空学报": "Acta Aeronautica et Astronautica Sinica",
   "机械工程学报": "Journal of Mechanical Engineering",
   "振动、测试与诊断": "Journal of Vibration, Measurement & Diagnosis",
   "自动化与信息工程": "Automation & Information Engineering",
@@ -789,6 +790,13 @@ const achievementPhraseTranslations = {
   "彭银冲": "Yinchong Peng",
   "杜祖鹏": "Zupeng Du",
   "郑毅": "Yi Zheng",
+  "多模态振动下裂纹对叶片动应变重构的影响": "Effect of Cracks on Dynamic Strain Reconstruction of Blades Under Multi-Mode Vibration",
+  "贺长波": "Changbo He",
+  "许文杰": "Wenjie Xu",
+  "何刘海": "Liuhai He",
+  "曹正": "Zheng Cao",
+  "樊薇": "Wei Fan",
+  "李宏坤": "Hongkun Li",
 };
 
 const staticTextNodes = [];

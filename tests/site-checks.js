@@ -438,8 +438,14 @@ assert.ok(script.includes('"航空发动机进气道叶片检测机器人及检�
 assert.ok(script.includes('"首届“太行杯”航空动力创新大赛优胜奖"'), "English mode should translate the Taihang Cup award directly");
 
 const publicationCount = matchAll(/<article class="achievement" data-output-type="paper-/g).length;
-assert.equal(publicationCount, 92, `expected 92 classified representative publications after removing two incorrect 2022 other-paper records, found ${publicationCount}`);
+assert.equal(publicationCount, 95, `expected 95 classified representative publications after adding saved CNKI and Google Scholar records, found ${publicationCount}`);
 assert.equal(matchAll(/<article class="achievement" data-output-type="paper-other">/g).length, 2, "other papers should keep only two verified records");
+assert.ok(html.includes("Unified Teeter-Totter Active Compliance Enables Multi-Surface Locomotion for a Miniature Inspection Robot"), "Google Scholar Teeter-Totter SSRN preprint should be included");
+assert.ok(html.includes("G1LcEO4AAAAJ:jU7OWUQzBzMC"), "Teeter-Totter record should keep the saved Google Scholar citation link");
+assert.ok(html.includes("多模态振动下裂纹对叶片动应变重构的影响"), "CNKI EI journal record for multi-mode vibration dynamic strain reconstruction should be included");
+assert.ok(script.includes('"多模态振动下裂纹对叶片动应变重构的影响": "Effect of Cracks on Dynamic Strain Reconstruction of Blades Under Multi-Mode Vibration"'), "English mode should translate the new CNKI Chinese paper title");
+assert.ok(html.includes("Frequency estimation method for blade tip timing using continuous compressed sensing"), "Google Scholar Acta Aeronautica et Astronautica Sinica record should be included");
+assert.ok(html.includes("G1LcEO4AAAAJ:SdhP9T11ey4C"), "Acta Aeronautica et Astronautica Sinica record should keep the saved Google Scholar citation link");
 assert.ok(!html.includes("叶端定时欠采样信号重构方法综述"), "incorrect 2022 other-paper record should be removed");
 assert.ok(!html.includes("齿轮磨损对齿轮传动动态响应特征的影响"), "incorrect 2022 other-paper record should be removed");
 assert.ok(!styles.includes("embodied-focus"), "research directions should use video assets directly");
