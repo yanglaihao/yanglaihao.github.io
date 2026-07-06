@@ -701,6 +701,8 @@ const textTranslations = {
   "社会任职 · 编辑任职": "Academic Service · Editorial Role",
   "社会任职 · 科技服务": "Academic Service · Technology Service",
   "社会任职 · 学术组织": "Academic Service · Academic Organization",
+  "Cyborg and Bionic Systems Young Editor": "Young Editor, Cyborg and Bionic Systems",
+  "任期 2026.07.01-2028.06.30 · Science Partner Journal": "Term: July 1, 2026-June 30, 2028 · Science Partner Journal",
   "SmartBot 青年编委": "Young Editorial Board Member, SmartBot",
   "南航学报（自科版、英文版）青年编委": "Young Editorial Board Member, Journal of Nanjing University of Aeronautics and Astronautics (Chinese and English editions)",
   "西安交通大学学报（EI，核心）青年编委": "Young Editorial Board Member, Journal of Xi'an Jiaotong University",
