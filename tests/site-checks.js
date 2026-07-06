@@ -177,8 +177,13 @@ assertDescending(achievementYearsFor((type) => type === "award-student"), "stude
 const serviceCount = matchAll(/<article class="achievement" data-output-type="service">/g).length;
 assert.equal(serviceCount, 13, `expected 13 social service entries after adding the Cyborg and Bionic Systems Young Editor role, found ${serviceCount}`);
 assert.ok(html.includes('<p class="pub-venue">社会任职 · 编辑任职</p>\n              <h3>IEEE Sensors Reviews Associate Editor</h3>'), "service entries should include the IEEE Sensors Reviews Associate Editor role");
-assert.ok(html.includes('<p class="pub-venue">社会任职 · 青年编委</p>\n              <h3>Cyborg and Bionic Systems Young Editor</h3>'), "service entries should include the Cyborg and Bionic Systems Young Editor role");
-assert.ok(script.includes('"Cyborg and Bionic Systems Young Editor": "Young Editor, Cyborg and Bionic Systems"'), "English mode should translate the Cyborg and Bionic Systems Young Editor service entry");
+assert.ok(html.includes('<p class="pub-venue">社会任职 · 青年编委</p>\n              <h3>Cyborg and Bionic Systems（Science Partner Journal）Young Editor</h3>'), "service entries should include the Cyborg and Bionic Systems Young Editor role with the journal profile in parentheses");
+assert.ok(!html.includes("任期 2026.07.01-2028.06.30 · Science Partner Journal"), "Cyborg and Bionic Systems service entry should not show the appointment term");
+assert.ok(
+  html.indexOf("<h3>Cyborg and Bionic Systems（Science Partner Journal）Young Editor</h3>") < html.indexOf("<h3>IEEE Sensors Reviews Associate Editor</h3>"),
+  "Cyborg and Bionic Systems service entry should be the first visible service role",
+);
+assert.ok(script.includes('"Cyborg and Bionic Systems（Science Partner Journal）Young Editor": "Young Editor, Cyborg and Bionic Systems (Science Partner Journal)"'), "English mode should translate the Cyborg and Bionic Systems Young Editor service entry");
 assertDescending(achievementYearsFor((type) => type === "service"), "service entries");
 
 assert.ok(html.includes("学术型博士（1-2人/年）"), "Sun Yu mentor card should include PhD enrollment direction details");

@@ -4,7 +4,16 @@
 
 更新时间：2026-07-07 00:00 CST
 
-本文件已更新到当前项目状态。最新一轮按用户要求撤回 Product Design 预览样式，仅保留内容更新，并已部署：
+本文件已更新到当前项目状态。最新一轮按用户要求调整 `Cyborg and Bionic Systems` 社会任职条目，并已部署：
+
+- 按用户截图反馈修正团队成果“社会任职”中的 `Cyborg and Bionic Systems` 条目：
+  - 将该条移动到社会任职列表最前面，排在 `IEEE Sensors Reviews Associate Editor` 之前。
+  - 删除该条下方任职时间说明，不再显示 `任期 2026.07.01-2028.06.30`。
+  - 标题改为 `Cyborg and Bionic Systems（Science Partner Journal）Young Editor`，将 `Science Partner Journal` 放在期刊名后的括号中。
+  - `script.js` 同步英文翻译为 `Young Editor, Cyborg and Bionic Systems (Science Partner Journal)`。
+  - `tests/site-checks.js` 新增该条格式、无任期说明和排序在 IEEE Sensors Reviews 前面的回归校验。
+
+上一轮按用户要求撤回 Product Design 预览样式，仅保留内容更新，并已部署：
 
 - 已撤回本轮 Product Design 本地预览样式：
   - 删除 `styles.css` 中 `/* Preview polish... */` 和 `/* Preview polish v2... */` 两段视觉预览样式，避免栏目顶部留白、额外导轨和加重卡片样式继续影响页面。
