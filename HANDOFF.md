@@ -4,7 +4,7 @@
 
 更新时间：2026-07-07 00:00 CST
 
-本文件已更新到当前项目状态。最新一轮按用户要求撤回 Product Design 预览样式，仅保留内容更新，尚未发布：
+本文件已更新到当前项目状态。最新一轮按用户要求撤回 Product Design 预览样式，仅保留内容更新，并已部署：
 
 - 已撤回本轮 Product Design 本地预览样式：
   - 删除 `styles.css` 中 `/* Preview polish... */` 和 `/* Preview polish v2... */` 两段视觉预览样式，避免栏目顶部留白、额外导轨和加重卡片样式继续影响页面。
@@ -15,6 +15,8 @@
   - `script.js` 同步新增英文翻译：`Young Editor, Cyborg and Bionic Systems` 和任期说明。
   - `tests/site-checks.js` 将社会任职条目数更新为 13，并新增该条目与英文翻译回归校验。
   - 本地验证通过：`node --check script.js`、`node tests/site-checks.js`。
+  - 线上部署提交：`e7b1fca4b29d835c70d1049faeeb30088902987c`；GitHub Pages run `28808727485` 构建成功。
+  - 线上核验通过：`https://yanglaihao.github.io/?verify=e7b1fca4` 已包含新闻条目与社会任职条目 `Cyborg and Bionic Systems Young Editor`；线上 `script.js` 包含英文翻译，线上 `styles.css` 未检出 `Preview polish`、`preview-polish`、`shadow-soft`、`surface-sheen` 或 `#news .section-heading` 等预览样式残留。
 
 上一轮已完成并部署：
 
