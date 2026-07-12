@@ -166,6 +166,7 @@ for (const filter of ["award-tech", "award-paper", "award-student", "award-socia
 const projectCount = matchAll(/<article class="achievement" data-output-type="project">/g).length;
 assert.equal(projectCount, 18, `expected 18 projects from the public profile, found ${projectCount}`);
 assertDescending(achievementYearsFor((type) => type === "project"), "projects");
+assert.ok(html.includes('<article class="achievement" data-output-type="book">\n            <div class="pub-year">2024</div>\n            <div class="pub-body">\n              <p class="pub-venue">专著</p>\n              <h3>钛基复合材料多尺度力学</h3>'), "monograph 钛基复合材料多尺度力学 should use the 2024 publication year");
 
 const awardCount = matchAll(/<article class="achievement" data-output-type="award-/g).length;
 assert.equal(awardCount, 18, `expected 18 categorized awards after adding the Taihang Cup item, found ${awardCount}`);
