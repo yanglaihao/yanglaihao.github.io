@@ -4,7 +4,13 @@
 
 更新时间：2026-07-07 00:00 CST
 
-本文件已更新到当前项目状态。最新一轮按用户要求修正著作年份：
+本文件已更新到当前项目状态。最新一轮按用户要求强化全站视频嵌入播放与不可下载设置：
+
+- `index.html` 中 9 个静态 `<video>` 标签均保持 `controlslist="nodownload"` 和 `oncontextmenu="return false"`，并新增 `disablepictureinpicture`、`disableremoteplayback`，覆盖研究方向、媒体报道和亮点成果视频。
+- `script.js` 中团队札记动态生成的视频模板同步新增 `disablepictureinpicture`、`disableremoteplayback`。
+- `tests/site-checks.js` 新增所有静态视频、动态视频模板和 `.mp4` 不作为直接下载链接暴露的回归检查。
+
+上一轮按用户要求修正著作年份：
 
 - 团队成果“专著”栏目中 `钛基复合材料多尺度力学` 的年份由 `2026` 改为 `2024`。
 - `tests/site-checks.js` 新增该著作年份为 2024 的回归检查。

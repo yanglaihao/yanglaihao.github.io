@@ -985,7 +985,7 @@ function renderMedia(media) {
   if (media.type === "video") {
     return `
       <figure class="note-card-media">
-        <video controls controlslist="nodownload" oncontextmenu="return false" preload="metadata" playsinline>
+        <video controls controlslist="nodownload" oncontextmenu="return false" disablepictureinpicture disableremoteplayback preload="metadata" playsinline>
           <source src="${escapeHtml(media.src)}" type="video/mp4">
         </video>
       </figure>

@@ -54,7 +54,11 @@ assert.equal(allVideoTags.length, 9, "site should keep the expected 9 local vide
 for (const attrs of allVideoTags) {
   assert.ok(attrs.includes('controlslist="nodownload"'), "videos should hide the browser download control");
   assert.ok(attrs.includes('oncontextmenu="return false"'), "videos should disable the default right-click download menu");
+  assert.ok(attrs.includes("disablepictureinpicture"), "videos should disable picture-in-picture export controls");
+  assert.ok(attrs.includes("disableremoteplayback"), "videos should stay as embedded local playback");
 }
+assert.ok(script.includes('<video controls controlslist="nodownload" oncontextmenu="return false" disablepictureinpicture disableremoteplayback preload="metadata" playsinline>'), "dynamic Lab Notes videos should use the same embedded no-download controls");
+assert.equal(matchAll(/<a[^>]+href="[^"]+\.mp4/gi).length, 0, "mp4 files should not be exposed as direct download links");
 
 const memberCategoryButtons = matchAll(/data-member-target="([^"]+)"/g);
 assert.equal(memberCategoryButtons.length, 7, "member categories should use the existing seven collapsible groups");
