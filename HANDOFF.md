@@ -16,6 +16,8 @@
 - 英文欢迎页亮点报道列表在内容超出时启用内部纵向滚动，避免英文长标题 / 长摘要被截断。
 - `script.js` 已移除团队成果筛选中旧的 `service` 兼容分组，改用独立 `applyServiceFilter` 控制社会服务筛选。
 - `tests/site-checks.js` 已改为校验独立社会服务栏目、栏目位置、4 个二级分类、15 条社会服务记录、IROS / SES 会议主席条目、江苏省科技副总分类和英文翻译。
+- 本地验证通过：`node --check script.js`、`node tests/site-checks.js`；本地 Chrome 英文窄屏复验确认 `社会服务` 位于 `团队成果` 与 `团队札记` 之间，欢迎页亮点报道容器为 `overflow-y: auto`，页面无横向溢出。
+- 线上部署已完成，GitHub Pages 构建成功；线上 HTML 已核验包含 `#service` 导航、IROS 2025、2024 SES、江苏省科技副总条目，且不再包含成果区 `data-output-type="service"`。
 
 上一轮最新一轮按用户提供的会议手册和保存的大为检索结果更新团队动态与专利成果：
 
