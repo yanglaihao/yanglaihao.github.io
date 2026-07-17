@@ -130,7 +130,7 @@ assert.ok(html.includes("中国专利"), "patent section should include a Chines
 const chinesePatentCount = matchAll(/<article class="achievement" data-output-type="patent-china">/g).length;
 const internationalPatentCount = matchAll(/<article class="achievement" data-output-type="patent-international">/g).length;
 assert.equal(internationalPatentCount, 8, `expected 8 international patent records from the saved Google Patents page, found ${internationalPatentCount}`);
-assert.equal(chinesePatentCount, 96, `expected 96 deduplicated Chinese patent records from the saved CNKI pages, found ${chinesePatentCount}`);
+assert.equal(chinesePatentCount, 97, `expected 97 deduplicated Chinese patent records after adding the saved Dawei result, found ${chinesePatentCount}`);
 const internationalPatentBlocks = matchAll(/<article class="achievement" data-output-type="patent-international">([\s\S]*?)<\/article>/g).map((match) => match[1]);
 const internationalPublishedBlocks = internationalPatentBlocks.filter((block) => block.includes("status-published"));
 const internationalGrantedBlocks = internationalPatentBlocks.filter((block) => block.includes("status-granted"));
@@ -138,14 +138,16 @@ assert.equal(internationalPublishedBlocks.length, 2, "only the two 2026 internat
 assert.ok(internationalPublishedBlocks.every((block) => block.includes('<div class="pub-year">2026</div>')), "published international patents should be the two 2026 records");
 assert.equal(internationalGrantedBlocks.length, 6, "all international patents before 2026 should be marked granted");
 assert.equal(matchAll(/class="status-tag status-granted"/g).length, 58, "patent status tags should mark 58 granted records");
-assert.equal(matchAll(/class="status-tag status-published"/g).length, 46, "patent status tags should mark 46 published records");
+assert.equal(matchAll(/class="status-tag status-published"/g).length, 47, "patent status tags should mark 47 published records");
 assert.ok(html.includes("US12370671B2"), "international patent list should include Google Patents granted records");
 assert.ok(html.includes("US20260072429A1"), "international patent list should include current Google Patents published records");
 assert.ok(html.includes("CN116968041B"), "Chinese patent list should include CNKI granted records");
+assert.ok(html.includes("CN122378663A"), "Chinese patent list should include the newly saved Dawei patent record");
 assert.ok(html.includes("CN122087890A"), "Chinese patent list should include CNKI published records");
 assert.ok(html.includes("CN118907257B"), "Chinese patent list should include records from the additional saved CNKI pages");
 assert.ok(html.includes("CN110608710B"), "Chinese patent list should include older granted records from the additional saved CNKI pages");
 assert.ok(html.includes("航空发动机进气道叶片检测机器人及检测方法"), "Chinese patent list should include current CNKI page items");
+assert.ok(html.includes("一种用于管阵列巡检的五自由度爬杆机器人及方法"), "Chinese patent list should include the Dawei tube-array inspection robot patent");
 assert.ok(!html.includes("CN119334645A"), "Chinese patent list should drop published records when a granted record exists");
 assert.ok(!html.includes("CN120134362A"), "Chinese patent list should keep only the granted version for duplicate patent families");
 assert.ok(!html.includes("访问受限"), "patent section should not keep the old access-limited placeholder");
@@ -370,6 +372,10 @@ assert.ok(html.includes("<time>2026-06-23</time>"), "IEEE Sensors Reviews appoin
 assert.ok(html.includes("《自然-机械工程》主编苏梦颖博士访问西安交通大学"), "news should include the Nature Mechanical Engineering Editor-in-Chief visit item");
 assert.ok(html.includes("应西安交通大学机械工程学院杨来浩副研究员邀请，《自然-机械工程》（Nature Mechanical Engineering）主编苏梦颖博士访问西安交通大学"), "Nature Mechanical Engineering Editor-in-Chief visit news should state that the visit was invited by Laihao Yang");
 assert.ok(html.includes("https://news.xjtu.edu.cn/info/1219/233773.htm"), "Nature Mechanical Engineering Editor-in-Chief visit news should link to the XJTU News source");
+assert.ok(html.includes("杨来浩受邀参加 ICAM 2026 并作主讲报告"), "news should include the ICAM 2026 invited keynote item from the provided conference manual");
+assert.ok(html.includes("第三届航空航天与力学国际学术会议（ICAM 2026）"), "ICAM 2026 news should name the conference from the provided manual");
+assert.ok(html.includes("机器人具身智能赋能装备智能运维：进展与挑战"), "ICAM 2026 news should include the report title from the provided manual");
+assert.ok(html.includes("<time>2026-07-04</time>"), "ICAM 2026 news should use the conference report date");
 const newsDates = matchAll(/<article class="news-card(?: news-card-featured)?" data-news-type="[^"]+">([\s\S]*?)<\/article>/g)
   .map((match) => Number(match[1].match(/<time>(\d{4})-(\d{2})-(\d{2})<\/time>/)?.slice(1).join("")));
 assertDescending(newsDates, "team news cards");
@@ -380,7 +386,7 @@ assert.ok(html.includes('data-news-filter="highlight"'), "news section should in
 assert.ok(html.includes(">亮点报道</button>"), "news filter label should be highlight reports");
 assert.ok(!html.includes(">亮点工作</button>"), "news filter label should no longer be highlight work");
 assert.equal(matchAll(/<article class="news-card(?: news-card-featured)?" data-news-type="highlight">/g).length, 3, "news section should include 3 highlight work items");
-assert.equal(matchAll(/<article class="news-card" data-news-type="news">/g).length, 18, "news section should include 18 current news items after adding the Nature Mechanical Engineering Editor-in-Chief visit");
+assert.equal(matchAll(/<article class="news-card" data-news-type="news">/g).length, 19, "news section should include 19 current news items after adding the ICAM 2026 invited keynote");
 assert.equal(matchAll(/<article class="news-card" data-news-type="notice">/g).length, 4, "news section should include 4 notice items");
 assert.ok(html.includes("http://www.snrtv.com/snr_sxxwlb/a/2024/10/10/22818371.html"), "highlight work should cite the Shaanxi News source");
 assert.ok(html.includes("https://www.163.com/dy/article/JGIRJRQ90530TBVC.html"), "highlight work should cite the Silk Road Weekly source");
@@ -423,6 +429,8 @@ assert.ok(!script.includes("According to the appointment certificate issued by C
 assert.ok(script.includes('"杨来浩受邀担任 IEEE Sensors Reviews Associate Editor"'), "English mode should translate the IEEE Sensors Reviews Associate Editor appointment title");
 assert.ok(script.includes('"《自然-机械工程》主编苏梦颖博士访问西安交通大学"'), "English mode should translate the Nature Mechanical Engineering Editor-in-Chief visit title");
 assert.ok(script.includes("Nature Mechanical Engineering Editor-in-Chief Dr. Mengying Su visited Xi'an Jiaotong University"), "English mode should translate the Nature Mechanical Engineering Editor-in-Chief visit summary");
+assert.ok(script.includes('"杨来浩受邀参加 ICAM 2026 并作主讲报告"'), "English mode should translate the ICAM 2026 invited keynote title");
+assert.ok(script.includes("Laihao Yang was invited to the 2026 3rd International Conference on Aerospace and Mechanics"), "English mode should translate the ICAM 2026 invited keynote summary");
 assert.ok(script.includes('"通知": "Notices"'), "English mode should translate the notice filter");
 assert.ok(script.includes('"杨来浩副研究员获首届“太行杯”航空动力创新大赛优胜奖"'), "English mode should translate the latest news titles");
 assert.ok(script.includes('"欢迎新同学加入课题组"'), "English mode should translate notice titles");
@@ -445,6 +453,7 @@ assert.ok(script.includes("attributeTranslations"), "language switching should t
 assert.ok(script.includes("translateAttributes"), "language switching should update image alt text and aria labels");
 assert.ok(script.includes('"meta.description"'), "English mode should translate the page meta description");
 assert.ok(script.includes('"航空发动机进气道叶片检测机器人及检测方法"'), "English mode should translate representative Chinese patent titles directly");
+assert.ok(script.includes('"一种用于管阵列巡检的五自由度爬杆机器人及方法"'), "English mode should translate the Dawei tube-array inspection robot patent title");
 assert.ok(script.includes('"首届“太行杯”航空动力创新大赛优胜奖"'), "English mode should translate the Taihang Cup award directly");
 
 const publicationCount = matchAll(/<article class="achievement" data-output-type="paper-/g).length;
