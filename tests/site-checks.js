@@ -461,6 +461,10 @@ assert.equal(publicationCount, 104, `expected 104 classified representative publ
 assert.equal(matchAll(/<article class="achievement" data-output-type="paper-other">/g).length, 7, "other papers should include verified Chinese journal and conference records from the saved CNKI page");
 assert.ok(html.includes("Unified Teeter-Totter Active Compliance Enables Multi-Surface Locomotion for a Miniature Inspection Robot"), "Google Scholar Teeter-Totter SSRN preprint should be included");
 assert.ok(html.includes("G1LcEO4AAAAJ:jU7OWUQzBzMC"), "Teeter-Totter record should keep the saved Google Scholar citation link");
+assert.ok(html.includes("Logarithmic reordering kurtogram: An automatic resonance demodulation method for bearing fault diagnosis"), "Measurement 2026 logarithmic reordering kurtogram paper should be included");
+assert.ok(html.includes("10.1016/j.measurement.2026.120975"), "Measurement 2026 logarithmic reordering kurtogram paper should keep the DOI resolved from the ScienceDirect PII");
+assert.ok(html.includes("Xin Zhang, Xin Xiong, Siqian Feng, Jiaxu Wang, Laihao Yang"), "Measurement 2026 logarithmic reordering kurtogram paper should use the Crossref author list");
+assert.ok(!html.includes("Fan Duan, Yu Sun, Shu Wang, Xuefeng Chen, Laihao Yang"), "Measurement 2026 logarithmic reordering kurtogram paper should not keep the mismatched author list");
 assert.ok(html.includes("多模态振动下裂纹对叶片动应变重构的影响"), "CNKI EI journal record for multi-mode vibration dynamic strain reconstruction should be included");
 assert.ok(script.includes('"多模态振动下裂纹对叶片动应变重构的影响": "Effect of Cracks on Dynamic Strain Reconstruction of Blades Under Multi-Mode Vibration"'), "English mode should translate the new CNKI Chinese paper title");
 assert.ok(html.includes("连续压缩感知叶端定时频率估计方法"), "CNKI Acta Aeronautica et Astronautica Sinica record should use the saved Chinese title");
