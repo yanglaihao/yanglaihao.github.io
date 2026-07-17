@@ -15,6 +15,8 @@ const outputItems = document.querySelectorAll("[data-output-type]");
 const paperSubfilters = document.querySelector("[data-paper-subfilters]");
 const patentSubfilters = document.querySelector("[data-patent-subfilters]");
 const awardSubfilters = document.querySelector("[data-award-subfilters]");
+const serviceFilters = document.querySelectorAll("[data-service-filter]");
+const serviceItems = document.querySelectorAll("[data-service-type]");
 const researchTabs = document.querySelectorAll("[data-research-target]");
 const researchPanels = document.querySelectorAll("[data-research-panel]");
 const memberTabs = document.querySelectorAll("[data-member-target]");
@@ -44,6 +46,7 @@ const translations = {
     "nav.blog": "团队札记",
     "nav.members": "团队成员",
     "nav.achievements": "团队成果",
+    "nav.service": "社会服务",
     "nav.contact": "联系方式",
     "hero.title": "非攻机器人实验室",
     "hero.subtitle": "取“非攻”一器多形之巧，造因境而变、入微而作的具身智能机器人；以一器多形、因境而变、入微而作的机构学寓意，面向航空发动机等高端装备内部深腔、狭窄通道和复杂曲面损伤，发展软体/连续体机器人、爬行机器人、触觉传感与灵巧操作，以尽量少拆解、少损伤、少停机的方式完成高端装备在位诊断、进入和维护。",
@@ -118,6 +121,7 @@ const translations = {
     "nav.blog": "Lab Notes",
     "nav.members": "People",
     "nav.achievements": "Outputs",
+    "nav.service": "Service",
     "nav.contact": "Contact",
     "hero.title": "Feigong Robotics Laboratory",
     "hero.subtitle": "Feigong Robotics Laboratory develops embodied robotic systems that change form with the task, adapt to constrained environments, and operate at fine scale. Targeting deep cavities, narrow passages, and damaged complex surfaces inside aero-engines and other advanced equipment, the lab advances soft and continuum robots, crawling robots, tactile sensing, and dexterous manipulation for in-situ inspection, access, and maintenance with reduced disassembly, damage, and downtime.",
@@ -207,6 +211,7 @@ const attributeTranslations = [
   { selector: "[data-paper-subfilters]", attribute: "aria-label", zh: "论文二级分类", en: "Publication subcategories" },
   { selector: "[data-patent-subfilters]", attribute: "aria-label", zh: "专利二级分类", en: "Patent subcategories" },
   { selector: "[data-award-subfilters]", attribute: "aria-label", zh: "获奖二级分类", en: "Award subcategories" },
+  { selector: "[data-service-filters]", attribute: "aria-label", zh: "社会服务分类", en: "Service categories" },
   { selector: '.site-qr img', attribute: "alt", zh: "团队主页二维码", en: "QR code for the team website" },
   { selector: ".visitor-stats", attribute: "aria-label", zh: "站点访问统计", en: "Site visit statistics" },
 ];
@@ -268,6 +273,28 @@ const textTranslations = {
   "多维力触觉电子皮肤、柔性传感与操作反馈": "Multidimensional tactile electronic skin, flexible sensing, and manipulation feedback",
   "灵巧手和人形机器人辅助的精细操作策略": "Fine manipulation strategies assisted by dexterous hands and humanoid robots",
   "视觉-触觉-力控融合的具身智能任务执行": "Embodied task execution with vision, touch, and force-control fusion",
+  "社会服务": "Service",
+  "围绕机器人、智能装备与工程科学共同体，参与期刊编委、学会委员、会议主席和地方科技服务等工作。": "Service to the robotics, intelligent equipment, and engineering-science communities, including journal editorial boards, society committees, conference chairing, and public technology roles.",
+  "期刊编委": "Editorial Boards",
+  "学会委员": "Society Committees",
+  "会议主席": "Conference Chairing",
+  "社会兼职": "Public Service",
+  "期刊编委 · 青年编委": "Editorial Boards · Young Editorial Board Member",
+  "期刊编委 · 编辑任职": "Editorial Boards · Editorial Role",
+  "学会委员 · 学术组织": "Society Committees · Academic Organization",
+  "会议主席 · IROS 2025": "Conference Chairing · IROS 2025",
+  "会议主席 · 2024 SES Annual Technical Meeting": "Conference Chairing · 2024 SES Annual Technical Meeting",
+  "社会兼职 · 科技服务": "Public Service · Technology Service",
+  "IROS 2025 Soft Robot Materials and Design 3 分会 Co-Chair": "Co-Chair, IROS 2025 Soft Robot Materials and Design 3 Session",
+  "Track 5.5 Mini-Invasive Robotic Manipulation 专题组织者": "Organizer, Track 5.5 Mini-Invasive Robotic Manipulation",
+  "China Daily 报道昆明长水机场航空维修基地建设并引用杨来浩观点": "China Daily Quotes Laihao Yang on the Kunming Changshui Aircraft Maintenance Base",
+  "China Daily 报道昆明长水国际机场航空维修基地建设进展，文中引用杨来浩关于我国航空发动机自主维修能力、原位维护需求与智能化维修体系建设的观点。": "China Daily reported progress on the aircraft maintenance base at Kunming Changshui International Airport and quoted Laihao Yang on China's independent aero-engine maintenance capability, the need for in-situ maintenance, and intelligent maintenance systems.",
+  "杨来浩担任 IROS 2025 Soft Robot Materials and Design 3 分会 Co-Chair": "Laihao Yang Serves as Co-Chair of the IROS 2025 Soft Robot Materials and Design 3 Session",
+  "IROS 2025 会议日程显示，杨来浩担任 2025 IEEE/RSJ International Conference on Intelligent Robots and Systems（IROS 2025）“Soft Robot Materials and Design 3”分会 Co-Chair。": "The IROS 2025 program lists Laihao Yang as Co-Chair of the “Soft Robot Materials and Design 3” session at the 2025 IEEE/RSJ International Conference on Intelligent Robots and Systems.",
+  "China Daily Hong Kong 报道团队蛇形机器人与微型机器人研究": "China Daily Hong Kong Reports the Team's Snake-like and Miniature Robots",
+  "China Daily Hong Kong 以“Snake-like, miniature robots redefine limits of engineering”为题报道团队面向高端装备检修的蛇形机器人和昆虫尺度机器人研究，并引用杨来浩关于连续体机器人在航空发动机复杂深腔检测中应用潜力的介绍。": "China Daily Hong Kong reported the team's snake-like and insect-scale robots for advanced-equipment maintenance under the title “Snake-like, miniature robots redefine limits of engineering,” quoting Laihao Yang on the potential of continuum robots for inspecting complex deep cavities in aero-engines.",
+  "杨来浩担任 2024 SES “Mini-Invasive Robotic Manipulation”专题组织者": "Laihao Yang Serves as Organizer of the 2024 SES Mini-Invasive Robotic Manipulation Symposium",
+  "2024 SES Annual Technical Meeting 专题页面显示，杨来浩与孙瑜、申亚京共同担任 Track 5.5 “Mini-Invasive Robotic Manipulation: from Medical to Industrial Applications”专题组织者。": "The 2024 SES Annual Technical Meeting symposium page lists Laihao Yang, Yu Sun, and Yajing Shen as organizers of Track 5.5, “Mini-Invasive Robotic Manipulation: from Medical to Industrial Applications.”",
   "团队动态": "Team News",
   "全部": "All",
   "亮点报道": "Highlight Reports",
@@ -462,7 +489,7 @@ const textTranslations = {
   "专利": "Patents",
   "专著": "Book",
   "获奖": "Awards",
-  "社会任职": "Academic Service",
+  "社会服务": "Service",
   "全部论文": "All Papers",
   "SCI 期刊": "SCI Journals",
   "EI 期刊": "EI Journals",
@@ -703,10 +730,6 @@ const textTranslations = {
   "学位论文获奖": "Thesis Award",
   "中国机械行业卓越工程师教育联盟第八届“精雕杯”毕业设计大赛铜奖": "Bronze Award, 8th Jingdiao Cup Graduation Design Competition of the China Mechanical Industry Excellent Engineer Education Alliance",
   "西安交通大学优秀硕士学位论文": "Outstanding Master's Thesis, Xi'an Jiaotong University",
-  "社会任职 · 青年编委": "Academic Service · Young Editorial Board Member",
-  "社会任职 · 编辑任职": "Academic Service · Editorial Role",
-  "社会任职 · 科技服务": "Academic Service · Technology Service",
-  "社会任职 · 学术组织": "Academic Service · Academic Organization",
   "Cyborg and Bionic Systems（Science Partner Journal）Young Editor": "Young Editor, Cyborg and Bionic Systems (Science Partner Journal)",
   "SmartBot 青年编委": "Young Editorial Board Member, SmartBot",
   "南航学报（自科版、英文版）青年编委": "Young Editorial Board Member, Journal of Nanjing University of Aeronautics and Astronautics (Chinese and English editions)",
@@ -761,7 +784,11 @@ const achievementPhraseTranslations = {
   "学生竞赛获奖": "Student Competition Award",
   "社会奖励": "Professional Award",
   "学位论文获奖": "Thesis Award",
-  "社会任职": "Academic Service",
+  "社会服务": "Service",
+  "期刊编委": "Editorial Board",
+  "学会委员": "Society Committee",
+  "会议主席": "Conference Chairing",
+  "社会兼职": "Public Service",
   "青年编委": "Young Editorial Board Member",
   "编辑任职": "Editorial Role",
   "科技服务": "Technology Service",
@@ -1449,8 +1476,7 @@ function applyFilter(buttons, items, buttonAttr, itemAttr, selected) {
     const isPatentGroup = selected === "patent" && itemValue?.startsWith("patent");
     const isAwardGroup = selected === "award" && itemValue?.startsWith("award");
     const isProjectGroup = selected === "project" && itemValue?.startsWith("project");
-    const isServiceGroup = selected === "service" && itemValue?.startsWith("service");
-    item.hidden = selected !== "all" && itemValue !== selected && !isPaperGroup && !isPatentGroup && !isAwardGroup && !isProjectGroup && !isServiceGroup;
+    item.hidden = selected !== "all" && itemValue !== selected && !isPaperGroup && !isPatentGroup && !isAwardGroup && !isProjectGroup;
   });
 }
 
@@ -1468,6 +1494,17 @@ function showOutputCategory(selected) {
     awardSubfilters.hidden = !isAwardSelection;
   }
   applyFilter(outputFilters, outputItems, "outputFilter", "outputType", selected);
+}
+
+function applyServiceFilter(selected) {
+  serviceFilters.forEach((button) => {
+    const isActive = button.dataset.serviceFilter === selected;
+    button.classList.toggle("active", isActive);
+  });
+
+  serviceItems.forEach((item) => {
+    item.hidden = selected !== "all" && item.dataset.serviceType !== selected;
+  });
 }
 
 function showResearchPanel(selected) {
@@ -1535,6 +1572,12 @@ newsFilters.forEach((filter) => {
 outputFilters.forEach((filter) => {
   filter.addEventListener("click", () => {
     showOutputCategory(filter.dataset.outputFilter);
+  });
+});
+
+serviceFilters.forEach((filter) => {
+  filter.addEventListener("click", () => {
+    applyServiceFilter(filter.dataset.serviceFilter);
   });
 });
 

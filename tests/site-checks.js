@@ -40,6 +40,12 @@ function achievementYearsFor(predicate) {
     .map((match) => Number(match[2].match(/<div class="pub-year">(\d+)<\/div>/)?.[1]));
 }
 
+function serviceYearsFor(predicate) {
+  return matchAll(/<article class="service-entry" data-service-type="([^"]+)">([\s\S]*?)<\/article>/g)
+    .filter((match) => predicate(match[1], match[2]))
+    .map((match) => Number(match[2].match(/<div class="pub-year">(\d+)<\/div>/)?.[1]));
+}
+
 const researchVideos = matchAll(/<figure class="research-media">\s*<video([^>]*)>[\s\S]*?<source src="([^"]+)"/g).map((match) => ({
   attrs: match[1],
   src: match[2],
@@ -74,7 +80,7 @@ for (const filter of ["paper-sci", "paper-ei-journal", "paper-ei-conference", "p
   assert.ok(html.includes(`data-output-type="${filter}"`), `missing publication items for: ${filter}`);
 }
 
-for (const filter of ["highlight-output", "paper", "project", "patent", "book", "award", "service"]) {
+for (const filter of ["highlight-output", "paper", "project", "patent", "book", "award"]) {
   assert.ok(html.includes(`data-output-filter="${filter}"`), `missing achievement board filter: ${filter}`);
 }
 const primaryFilterOrder = matchAll(/class="filter(?: active)?" type="button" role="tab" aria-selected="(?:true|false)" data-output-filter="([^"]+)"/g).map((match) => match[1]);
@@ -181,17 +187,32 @@ assert.ok(html.includes('<div class="pub-year">2026</div>\n            <div clas
 assertDescending(achievementYearsFor((type) => type.startsWith("award-")), "awards");
 assertDescending(achievementYearsFor((type) => type === "award-student"), "student awards");
 
-const serviceCount = matchAll(/<article class="achievement" data-output-type="service">/g).length;
-assert.equal(serviceCount, 13, `expected 13 social service entries after adding the Cyborg and Bionic Systems Young Editor role, found ${serviceCount}`);
-assert.ok(html.includes('<p class="pub-venue">社会任职 · 编辑任职</p>\n              <h3>IEEE Sensors Reviews Associate Editor</h3>'), "service entries should include the IEEE Sensors Reviews Associate Editor role");
-assert.ok(html.includes('<p class="pub-venue">社会任职 · 青年编委</p>\n              <h3>Cyborg and Bionic Systems（Science Partner Journal）Young Editor</h3>'), "service entries should include the Cyborg and Bionic Systems Young Editor role with the journal profile in parentheses");
+assert.ok(!html.includes('data-output-filter="service"'), "social service should be separated from the Team Outputs filters");
+assert.equal(matchAll(/<article class="achievement" data-output-type="service">/g).length, 0, "social service entries should not remain inside Team Outputs");
+assert.ok(html.includes('href="#service" data-i18n="nav.service"'), "navigation should include the independent Service section");
+assert.ok(html.indexOf('id="service"') > html.indexOf('id="achievements"'), "Service section should follow Team Outputs");
+assert.ok(html.indexOf('id="service"') < html.indexOf('id="blog"'), "Service section should be placed before Lab Notes");
+for (const filter of ["all", "service-editorial", "service-society", "service-conference", "service-social"]) {
+  assert.ok(html.includes(`data-service-filter="${filter}"`), `missing Service filter: ${filter}`);
+}
+const serviceCount = matchAll(/<article class="service-entry" data-service-type="[^"]+">/g).length;
+assert.equal(serviceCount, 15, `expected 15 independent social service entries, found ${serviceCount}`);
+assert.ok(html.includes('<p class="pub-venue">期刊编委 · 编辑任职</p>\n              <h3>IEEE Sensors Reviews Associate Editor</h3>'), "Service section should include the IEEE Sensors Reviews Associate Editor role");
+assert.ok(html.includes('<p class="pub-venue">期刊编委 · 青年编委</p>\n              <h3>Cyborg and Bionic Systems（Science Partner Journal）Young Editor</h3>'), "Service section should include the Cyborg and Bionic Systems Young Editor role with the journal profile in parentheses");
 assert.ok(!html.includes("任期 2026.07.01-2028.06.30 · Science Partner Journal"), "Cyborg and Bionic Systems service entry should not show the appointment term");
 assert.ok(
   html.indexOf("<h3>Cyborg and Bionic Systems（Science Partner Journal）Young Editor</h3>") < html.indexOf("<h3>IEEE Sensors Reviews Associate Editor</h3>"),
   "Cyborg and Bionic Systems service entry should be the first visible service role",
 );
+assert.ok(html.includes("IROS 2025 Soft Robot Materials and Design 3 分会 Co-Chair"), "Service section should include the IROS 2025 co-chair role");
+assert.ok(html.includes("Track 5.5 Mini-Invasive Robotic Manipulation 专题组织者"), "Service section should include the 2024 SES session organizer role as conference chairing");
+assert.ok(html.includes("社会兼职 · 科技服务"), "Service section should categorize Jiangsu technology role as public service");
+assert.ok(html.includes("<h3>江苏省科技副总</h3>"), "Service section should include Jiangsu Science and Technology Vice General Manager");
 assert.ok(script.includes('"Cyborg and Bionic Systems（Science Partner Journal）Young Editor": "Young Editor, Cyborg and Bionic Systems (Science Partner Journal)"'), "English mode should translate the Cyborg and Bionic Systems Young Editor service entry");
-assertDescending(achievementYearsFor((type) => type === "service"), "service entries");
+assert.ok(script.includes("function applyServiceFilter"), "script should support filtering the independent Service section");
+assertDescending(serviceYearsFor(() => true), "service entries");
+assertDescending(serviceYearsFor((type) => type === "service-editorial"), "editorial service entries");
+assertDescending(serviceYearsFor((type) => type === "service-conference"), "conference chairing service entries");
 
 assert.ok(html.includes("学术型博士（1-2人/年）"), "Sun Yu mentor card should include PhD enrollment direction details");
 assert.ok(!html.includes("学硕型硕士"), "Sun Yu mentor card should normalize the master's enrollment label");
@@ -353,7 +374,7 @@ assert.ok(script.includes("translateAchievementText"), "English achievement view
 assert.ok(!script.includes("return year ? `${label} (${year})` : label;"), "English achievement view should not fall back to generic placeholders like Publication (2026)");
 assert.ok(script.includes('"团队主持国家自然科学基金项目 2 项、大科学装置培育项目等 10 余项'), "English mode should translate the achievement intro instead of stripping it to numbers");
 assert.ok(script.includes('"国家自然科学基金项目 2 项、大科学装置培育项目等，主持经费 3400 万+。'), "English mode should translate the projects overview card instead of stripping it to numbers");
-assert.ok(handoff.includes("亮点成果、项目、论文、专利、专著、获奖、社会任职"), "handoff should describe the updated achievement categories");
+assert.ok(handoff.includes("团队成果当前保留 `亮点成果、项目、论文、专利、专著、获奖`，社会服务独立排序"), "handoff should describe the separated achievement and service categories");
 assert.ok(handoff.includes("孙瑜"), "handoff should mention the added Sun Yu mentor entry");
 assert.ok(handoff.includes("中英文切换"), "handoff should mention the language toggle");
 
@@ -386,7 +407,7 @@ assert.ok(html.includes('data-news-filter="highlight"'), "news section should in
 assert.ok(html.includes(">亮点报道</button>"), "news filter label should be highlight reports");
 assert.ok(!html.includes(">亮点工作</button>"), "news filter label should no longer be highlight work");
 assert.equal(matchAll(/<article class="news-card(?: news-card-featured)?" data-news-type="highlight">/g).length, 3, "news section should include 3 highlight work items");
-assert.equal(matchAll(/<article class="news-card" data-news-type="news">/g).length, 19, "news section should include 19 current news items after adding the ICAM 2026 invited keynote");
+assert.equal(matchAll(/<article class="news-card" data-news-type="news">/g).length, 23, "news section should include 23 current news items after adding the China Daily, IROS 2025, and SES 2024 updates");
 assert.equal(matchAll(/<article class="news-card" data-news-type="notice">/g).length, 4, "news section should include 4 notice items");
 assert.ok(html.includes("http://www.snrtv.com/snr_sxxwlb/a/2024/10/10/22818371.html"), "highlight work should cite the Shaanxi News source");
 assert.ok(html.includes("https://www.163.com/dy/article/JGIRJRQ90530TBVC.html"), "highlight work should cite the Silk Road Weekly source");

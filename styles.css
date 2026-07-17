@@ -777,6 +777,12 @@ h3 {
   overflow: hidden;
 }
 
+html[lang="en"] .home-dynamic-panel .welcome-report-strip {
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  padding-right: 0.25rem;
+}
+
 .welcome-report-strip article {
   display: grid;
   align-content: start;
@@ -791,6 +797,10 @@ h3 {
   overflow: hidden;
 }
 
+html[lang="en"] .home-dynamic-panel .welcome-report-strip article {
+  min-height: 220px;
+}
+
 .home-dynamic-panel .welcome-report-strip h3 {
   display: -webkit-box;
   overflow: hidden;
@@ -803,6 +813,11 @@ h3 {
   overflow: hidden;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 3;
+}
+
+html[lang="en"] .home-dynamic-panel .welcome-report-strip p {
+  display: block;
+  -webkit-line-clamp: unset;
 }
 
 .welcome-report-strip span,
@@ -1670,6 +1685,11 @@ h3 {
   gap: 1rem;
 }
 
+.service-list {
+  display: grid;
+  gap: 1rem;
+}
+
 .achievement-overview {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
@@ -1780,6 +1800,31 @@ h3 {
   grid-template-columns: 92px minmax(0, 1fr);
   gap: 1.25rem;
   padding: 1rem;
+}
+
+.service-entry {
+  position: relative;
+  display: grid;
+  grid-template-columns: 92px minmax(0, 1fr);
+  gap: 1.25rem;
+  padding: 1rem;
+  border: 1px solid var(--line);
+  background:
+    linear-gradient(180deg, color-mix(in srgb, var(--surface), transparent 0%), color-mix(in srgb, var(--surface-strong), transparent 54%));
+  box-shadow: 0 14px 34px rgba(13, 39, 33, 0.06);
+  overflow: hidden;
+}
+
+.service-entry::after {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto;
+  height: 3px;
+  background: linear-gradient(90deg, var(--accent), var(--blue), var(--rust));
+}
+
+.service-entry[hidden] {
+  display: none;
 }
 
 .achievement-featured-output {
