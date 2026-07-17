@@ -4,7 +4,15 @@
 
 更新时间：2026-07-07 00:00 CST
 
-本文件已更新到当前项目状态。最新一轮按用户要求强化全站视频嵌入播放与不可下载设置：
+本文件已更新到当前项目状态。最新一轮按用户提供的西安交大新闻网链接新增团队动态：
+
+- 新增 2026-07-17 新闻 `IEEE Sensors Reviews 主编 Eui-Hyeok Yang 受邀来访西安交通大学`，标题链接至 `https://news.xjtu.edu.cn/info/1219/233773.htm`。
+- 简讯正文按用户要求写明：受杨来浩副研究员邀请，IEEE Sensors Reviews 主编 Eui-Hyeok Yang 来访西安交通大学，并围绕智能传感、机器人与高端装备健康管理等方向开展学术交流。
+- `script.js` 同步新增该新闻标题和正文的英文翻译。
+- `tests/site-checks.js` 将新闻数量更新为 18，并新增标题、正文、原文链接和英文翻译回归检查。
+- 注：当前环境直连 `news.xjtu.edu.cn` 返回连接拒绝 / TLS 中断，新闻正文按用户明确要求的事实点和链接保守撰写。
+
+上一轮按用户要求强化全站视频嵌入播放与不可下载设置：
 
 - `index.html` 中 9 个静态 `<video>` 标签均保持 `controlslist="nodownload"` 和 `oncontextmenu="return false"`，并新增 `disablepictureinpicture`、`disableremoteplayback`，覆盖研究方向、媒体报道和亮点成果视频。
 - `script.js` 中团队札记动态生成的视频模板同步新增 `disablepictureinpicture`、`disableremoteplayback`。
