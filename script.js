@@ -1041,8 +1041,8 @@ const labNotePosts = [
     categoryKey: "research",
     category: { zh: "研究札记", en: "Research Note" },
     title: {
-      zh: "高水平工程论文写作：苏梦颖博士讲座札记",
-      en: "Writing for Leading Engineering Journals: Notes from Dr. Mengying Su's Lecture",
+      zh: "《Nature Mechanical Engineering》主编苏梦颖博士讲座札记",
+      en: "Lecture Notes from Dr. Mengying Su, Chief Editor of Nature Mechanical Engineering",
     },
     dek: { zh: "", en: "" },
     media: { type: "image", src: "assets/lab-notes/nature-engineering-publishing-lecture.png" },

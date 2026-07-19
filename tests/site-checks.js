@@ -334,7 +334,7 @@ assert.ok(script.includes("activeLabNoteYear"), "Lab Notes should support year f
 assert.ok(!script.includes('data-output-type^="award-"'), "Lab Notes should not duplicate the awards list by automatic aggregation");
 assert.ok(!script.includes('article[data-news-type="news"]'), "Lab Notes should not duplicate the news list by automatic aggregation");
 for (const title of [
-  "高水平工程论文写作：苏梦颖博士讲座札记",
+  "《Nature Mechanical Engineering》主编苏梦颖博士讲座札记",
   "从贴得住到过得去：粘附如何支撑爬行机器人",
   "触觉不止于感知：扭矩如何进入灵巧操作",
   "把接触变成支点：连续体机器人进入深腔的另一种思路",
