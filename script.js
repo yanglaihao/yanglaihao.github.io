@@ -25,7 +25,7 @@ const memberPanels = document.querySelectorAll("[data-member-panel]");
 let currentTheme = localStorage.getItem("theme") || "light";
 let currentLanguage = localStorage.getItem("language") || "zh";
 let researchRotation;
-let activeLabNoteId = "adhesion-robots";
+let activeLabNoteId = "top-journal-writing";
 let activeLabNoteCategory = "all";
 let activeLabNoteYear = "all";
 let activeWelcomeHighlightIndex = 0;
@@ -1034,6 +1034,55 @@ function renderMedia(media) {
 
 const labNotePosts = [
   {
+    id: "top-journal-writing",
+    date: "2026-07-13",
+    year: "2026",
+    minutes: 4,
+    categoryKey: "research",
+    category: { zh: "研究札记", en: "Research Note" },
+    title: {
+      zh: "高水平工程论文写作：苏梦颖博士讲座札记",
+      en: "Writing for Leading Engineering Journals: Notes from Dr. Mengying Su's Lecture",
+    },
+    dek: { zh: "", en: "" },
+    media: { type: "image", src: "assets/lab-notes/nature-engineering-publishing-lecture.png" },
+    sections: [
+      {
+        heading: { zh: "报告介绍了什么", en: "What the lecture covered" },
+        body: {
+          zh: "苏梦颖博士从《自然》创刊历史和 Nature Portfolio 期刊体系讲起，介绍了《自然-机械工程》的办刊定位、选题范围和编辑流程。该刊面向全球工程领域，关注从空间与海洋工程到健康、可持续能源等议题，并重视机械工程与材料、能源、信息、生命科学等领域的交叉融合。",
+          en: "Dr. Su began with the history of Nature and the Nature Portfolio, then introduced the positioning, scope, and editorial process of Nature Mechanical Engineering. The journal covers engineering topics ranging from space and ocean engineering to health and sustainable energy, with an emphasis on links between mechanical engineering and materials, energy, information science, and the life sciences.",
+        },
+      },
+      {
+        heading: { zh: "编辑如何判断稿件", en: "How editors assess a manuscript" },
+        body: {
+          zh: "报告结合编辑工作实例，说明了稿件从编辑分配、文献调研、内部讨论到送审决策的主要环节。编辑在初筛中不仅关注研究是否严谨可靠，也会考量工作能否开辟新的研究方向、是否实现实质性推进、是否具有广泛学术兴趣，以及实际应用潜力和技术有效性。清晰凝练地提出科学问题，并说明研究相较于已有工作的增量和影响，有助于编辑和审稿人理解论文价值。",
+          en: "Using examples from editorial practice, the lecture described the main stages from editor assignment and literature assessment to internal discussion and the decision on peer review. Initial assessment considers not only rigor and reliability, but also whether the work opens a new direction, represents a substantive advance, has broad scholarly interest, and demonstrates application potential and technical effectiveness. A clear scientific question and an accurate account of the advance and its impact help editors and reviewers understand the value of the paper.",
+        },
+      },
+      {
+        heading: { zh: "论文表达与修改回复", en: "Manuscript presentation and revision" },
+        body: {
+          zh: "苏梦颖博士围绕论文写作、审稿人选择、修改回复、申诉机制和审稿人职责作了说明。她建议作者在摘要和引言中建立清楚的逻辑主线，用准确、克制的语言阐明核心发现及其意义；在回复审稿意见时，应逐条回应关键问题，并通过新增分析、实验或论证形成可核查的证据链。",
+          en: "Dr. Su discussed manuscript writing, reviewer selection, revision and response, appeals, and reviewer responsibilities. She recommended establishing a clear line of reasoning in the abstract and introduction and using precise, restrained language to explain the principal findings and their significance. Responses to reviewers should address the main points individually and provide verifiable support through additional analysis, experiments, or argument where needed.",
+        },
+      },
+      {
+        heading: { zh: "现场交流", en: "Discussion with the audience" },
+        body: {
+          zh: "交流环节中，与会师生围绕工程类研究的创新性判断、跨学科成果的定位、理论研究与工程应用的平衡、稿件送审标准，以及青年学者参与国际同行评议等问题提问。苏梦颖博士结合具体情形逐一回应，并鼓励科研人员在扎实工作的基础上凝练具有普遍意义的科学问题。",
+          en: "During the discussion, participants asked about judging innovation in engineering research, positioning interdisciplinary work, balancing theory and engineering application, standards for sending manuscripts to review, and opportunities for early-career researchers to participate in international peer review. Dr. Su responded with examples and encouraged researchers to formulate questions of broader significance on the basis of solid research.",
+        },
+      },
+    ],
+    links: [
+      { label: { zh: "西安交通大学新闻网：苏梦颖主编来访", en: "XJTU News: Chief Editor Mengying Su Visits" }, href: "https://news.xjtu.edu.cn/info/1219/233773.htm" },
+      { label: { zh: "《自然-机械工程》编辑与同行评议流程", en: "Nature Mechanical Engineering: Editorial Process and Peer Review" }, href: "https://www.nature.com/natmecheng/submission-guidelines/editorial-process" },
+      { label: { zh: "《自然-机械工程》办刊范围", en: "Nature Mechanical Engineering: Aims and Scope" }, href: "https://www.nature.com/natmecheng/aims" },
+    ],
+  },
+  {
     id: "adhesion-robots",
     date: "2026-07-02",
     year: "2026",
@@ -1352,7 +1401,7 @@ function renderLabNotesFeed() {
       <span>${escapeHtml(post.category[currentLanguage])}</span>
       <strong>${escapeHtml(post.title[currentLanguage])}</strong>
       <time>${escapeHtml(post.date)} · ${escapeHtml(String(post.minutes))} ${escapeHtml(translations[currentLanguage]["blog.meta.reading"])}</time>
-      <em>${escapeHtml(post.dek[currentLanguage])}</em>
+      ${post.dek?.[currentLanguage] ? `<em>${escapeHtml(post.dek[currentLanguage])}</em>` : ""}
     </button>
   `).join("");
 
@@ -1373,7 +1422,7 @@ function renderLabNotesFeed() {
     <header class="blog-detail-header">
       <p class="project-tag">${escapeHtml(post.category[currentLanguage])}</p>
       <h3>${escapeHtml(post.title[currentLanguage])}</h3>
-      <p>${escapeHtml(post.dek[currentLanguage])}</p>
+      ${post.dek?.[currentLanguage] ? `<p>${escapeHtml(post.dek[currentLanguage])}</p>` : ""}
       <div class="blog-meta">
         <span>${escapeHtml(translations[currentLanguage]["blog.meta.author"])}</span>
         <time>${escapeHtml(post.date)}</time>

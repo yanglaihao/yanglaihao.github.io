@@ -334,6 +334,7 @@ assert.ok(script.includes("activeLabNoteYear"), "Lab Notes should support year f
 assert.ok(!script.includes('data-output-type^="award-"'), "Lab Notes should not duplicate the awards list by automatic aggregation");
 assert.ok(!script.includes('article[data-news-type="news"]'), "Lab Notes should not duplicate the news list by automatic aggregation");
 for (const title of [
+  "高水平工程论文写作：苏梦颖博士讲座札记",
   "从贴得住到过得去：粘附如何支撑爬行机器人",
   "触觉不止于感知：扭矩如何进入灵巧操作",
   "把接触变成支点：连续体机器人进入深腔的另一种思路",
@@ -345,7 +346,12 @@ for (const title of [
 assert.ok(script.includes("10.1109/LRA.2026.3664598"), "Lab Notes should link the 2026 RA-L K-Track adhesion paper from Zotero");
 assert.ok(script.includes("10.1109/LRA.2024.3484157"), "Lab Notes should link the 2024 RA-L rigid-soft suction cup paper from Zotero");
 assert.ok(script.includes("assets/paper-highlights/adhesion-robots-visual.png"), "adhesion Lab Note should include a paper visual image");
-assert.ok(script.includes('let activeLabNoteId = "adhesion-robots"'), "Lab Notes should open the new adhesion discussion by default");
+assert.ok(script.includes("assets/lab-notes/nature-engineering-publishing-lecture.png"), "top-journal writing Lab Note should include the downloaded lecture photo");
+assert.ok(script.includes("https://news.xjtu.edu.cn/info/1219/233773.htm"), "top-journal writing Lab Note should link to the XJTU News source");
+assert.ok(script.includes("https://www.nature.com/natmecheng/submission-guidelines/editorial-process"), "top-journal writing Lab Note should link to the journal editorial process");
+assert.ok(!script.includes("整理稿件初筛、论文表达、修改回复和现场交流中的主要内容"), "top-journal writing Lab Note should not keep explanatory subtitle copy");
+assert.ok(script.includes('post.dek?.[currentLanguage] ? `<em>'), "Lab Notes index should omit empty explanatory copy without leaving a placeholder");
+assert.ok(script.includes('let activeLabNoteId = "top-journal-writing"'), "Lab Notes should open the latest top-journal writing discussion by default");
 assert.ok(script.includes("blog.detail.onPage"), "Lab Notes details should include an on-page guide like a post page");
 for (const figure of [
   "assets/paper-highlights/torque-dexterity-visual.png",

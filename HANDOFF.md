@@ -2,7 +2,16 @@
 
 ## 最新更新
 
-更新时间：2026-07-18 00:00 CST
+更新时间：2026-07-19 19:10 CST
+
+本轮根据西安交通大学新闻网报道及苏梦颖博士当日讲座照片新增团队札记：
+
+- 新增 2026-07-13 研究札记 `高水平工程论文写作：苏梦颖博士讲座札记`，并设为团队札记默认打开项；英文标题为 `Writing for Leading Engineering Journals: Notes from Dr. Mengying Su's Lecture`。
+- 按用户反馈删除自行扩展的方法论判断，内容忠于苏梦颖博士在西安交通大学所作报告 `The Nature of engineering publishing—introducing Nature Mechanical Engineering` 和交大新闻网原文，仅整理报告介绍、编辑初筛、论文表达与修改回复、现场交流四部分。
+- 按页面批注删除该札记标题下方的来源说明副标题；左侧索引与右侧详情均不再重复显示注释性文字，中英文同步移除，模板在说明为空时不生成占位元素。
+- 下载西安交通大学新闻网当日讲座现场原图，保存为 `assets/lab-notes/nature-engineering-publishing-lecture.png`；图片为 1534×800 PNG，页面按原始比例完整显示，不裁切、不拉伸。
+- 资源区链接至西安交通大学新闻网原文、《自然-机械工程》编辑与同行评议流程、期刊办刊范围；中英文内容均已补齐。
+- 本地验证通过：`node --check script.js`、`node tests/site-checks.js`；Chrome 复验覆盖 1440×1000 桌面端与 390×850 移动端，确认中英文标题、图片比例、详情区内部滚动和页面横向溢出均正常。
 
 本轮按用户要求调整社会服务栏目位置与结构，并同步中英文内容和回归检查：
 
