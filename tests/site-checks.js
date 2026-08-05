@@ -196,7 +196,8 @@ for (const filter of ["all", "service-editorial", "service-society", "service-co
   assert.ok(html.includes(`data-service-filter="${filter}"`), `missing Service filter: ${filter}`);
 }
 const serviceCount = matchAll(/<article class="service-entry" data-service-type="[^"]+">/g).length;
-assert.equal(serviceCount, 15, `expected 15 independent social service entries, found ${serviceCount}`);
+assert.equal(serviceCount, 16, `expected 16 independent social service entries, found ${serviceCount}`);
+assert.ok(html.includes("<h3>中国自动化学会机器人专业委员会委员</h3>"), "Service section should include the Chinese Association of Automation robotics committee role");
 assert.ok(html.includes('<p class="pub-venue">期刊编委 · 编辑任职</p>\n              <h3>IEEE Sensors Reviews Associate Editor</h3>'), "Service section should include the IEEE Sensors Reviews Associate Editor role");
 assert.ok(html.includes('<p class="pub-venue">期刊编委 · 青年编委</p>\n              <h3>Cyborg and Bionic Systems（Science Partner Journal）Young Editor</h3>'), "Service section should include the Cyborg and Bionic Systems Young Editor role with the journal profile in parentheses");
 assert.ok(!html.includes("任期 2026.07.01-2028.06.30 · Science Partner Journal"), "Cyborg and Bionic Systems service entry should not show the appointment term");
@@ -209,6 +210,7 @@ assert.ok(html.includes("Track 5.5 Mini-Invasive Robotic Manipulation 专题组�
 assert.ok(html.includes("社会兼职 · 科技服务"), "Service section should categorize Jiangsu technology role as public service");
 assert.ok(html.includes("<h3>江苏省科技副总</h3>"), "Service section should include Jiangsu Science and Technology Vice General Manager");
 assert.ok(script.includes('"Cyborg and Bionic Systems（Science Partner Journal）Young Editor": "Young Editor, Cyborg and Bionic Systems (Science Partner Journal)"'), "English mode should translate the Cyborg and Bionic Systems Young Editor service entry");
+assert.ok(script.includes('"中国自动化学会机器人专业委员会委员": "Member, Technical Committee on Robotics, Chinese Association of Automation"'), "English mode should translate the Chinese Association of Automation robotics committee role");
 assert.ok(script.includes("function applyServiceFilter"), "script should support filtering the independent Service section");
 assertDescending(serviceYearsFor(() => true), "service entries");
 assertDescending(serviceYearsFor((type) => type === "service-editorial"), "editorial service entries");
@@ -397,6 +399,10 @@ assert.ok(html.includes("杨来浩受邀担任 IEEE Sensors Reviews Associate Ed
 assert.ok(html.includes("根据 IEEE Sensors Reviews 主编 Eui-Hyeok Yang 的邀请函"), "news should summarize the provided IEEE Sensors Reviews appointment letter");
 assert.ok(html.includes("<time>2026-06-23</time>"), "IEEE Sensors Reviews appointment news should use the PDF saved date");
 assert.ok(html.includes("《自然-机械工程》主编苏梦颖博士访问西安交通大学"), "news should include the Nature Mechanical Engineering Editor-in-Chief visit item");
+assert.ok(html.includes("<time>2026-07-31</time>"), "Chinese Association of Automation committee news should use the election date from the provided meeting notice");
+assert.ok(html.includes("杨来浩入选中国自动化学会机器人专业委员会委员"), "news should include the Chinese Association of Automation robotics committee election");
+assert.ok(html.includes("2026 年，杨来浩入选中国自动化学会机器人专业委员会委员。"), "news should keep the confirmed committee appointment wording concise");
+assert.ok(script.includes('"杨来浩入选中国自动化学会机器人专业委员会委员": "Laihao Yang Elected to the Technical Committee on Robotics of the Chinese Association of Automation"'), "English mode should translate the Chinese Association of Automation committee news");
 assert.ok(html.includes("应西安交通大学机械工程学院杨来浩副研究员邀请，《自然-机械工程》（Nature Mechanical Engineering）主编苏梦颖博士访问西安交通大学"), "Nature Mechanical Engineering Editor-in-Chief visit news should state that the visit was invited by Laihao Yang");
 assert.ok(html.includes("https://news.xjtu.edu.cn/info/1219/233773.htm"), "Nature Mechanical Engineering Editor-in-Chief visit news should link to the XJTU News source");
 assert.ok(html.includes("杨来浩受邀参加 ICAM 2026 并作主讲报告"), "news should include the ICAM 2026 invited keynote item from the provided conference manual");
@@ -413,7 +419,7 @@ assert.ok(html.includes('data-news-filter="highlight"'), "news section should in
 assert.ok(html.includes(">亮点报道</button>"), "news filter label should be highlight reports");
 assert.ok(!html.includes(">亮点工作</button>"), "news filter label should no longer be highlight work");
 assert.equal(matchAll(/<article class="news-card(?: news-card-featured)?" data-news-type="highlight">/g).length, 3, "news section should include 3 highlight work items");
-assert.equal(matchAll(/<article class="news-card" data-news-type="news">/g).length, 23, "news section should include 23 current news items after adding the China Daily, IROS 2025, and SES 2024 updates");
+assert.equal(matchAll(/<article class="news-card" data-news-type="news">/g).length, 24, "news section should include 24 current news items after adding the Chinese Association of Automation committee update");
 assert.equal(matchAll(/<article class="news-card" data-news-type="notice">/g).length, 4, "news section should include 4 notice items");
 assert.ok(html.includes("http://www.snrtv.com/snr_sxxwlb/a/2024/10/10/22818371.html"), "highlight work should cite the Shaanxi News source");
 assert.ok(html.includes("https://www.163.com/dy/article/JGIRJRQ90530TBVC.html"), "highlight work should cite the Silk Road Weekly source");
