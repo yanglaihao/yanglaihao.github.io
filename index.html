@@ -495,39 +495,44 @@
 
         <div class="member-layout">
           <div class="member-directory" data-member-switcher>
-            <div class="member-tabs" role="tablist" aria-label="团队成员分组">
-              <button class="member-category-toggle active" type="button" role="tab" aria-selected="true" aria-controls="member-panel-leader" id="member-tab-leader" data-member-target="leader">
-                <span>Leader</span>
-                <strong>团队领导</strong>
+            <div class="member-primary-tabs" role="group" aria-label="团队成员一级分类">
+              <button class="member-primary-toggle active" type="button" aria-pressed="true" data-member-group-target="staff">
+                <span>Staff</span>
+                <strong>教职工</strong>
               </button>
-              <button class="member-category-toggle" type="button" role="tab" aria-selected="false" aria-controls="member-panel-teachers" id="member-tab-teachers" data-member-target="teachers">
-                <span>Teachers</span>
-                <strong>教师 / 合作导师</strong>
+              <button class="member-primary-toggle" type="button" aria-pressed="false" data-member-group-target="students">
+                <span>Students</span>
+                <strong>在校生</strong>
               </button>
-              <button class="member-category-toggle" type="button" role="tab" aria-selected="false" aria-controls="member-panel-postdocs" id="member-tab-postdocs" data-member-target="postdocs">
-                <span>Postdocs</span>
-                <strong>博士后</strong>
-              </button>
-              <button class="member-category-toggle" type="button" role="tab" aria-selected="false" aria-controls="member-panel-phd" id="member-tab-phd" data-member-target="phd">
-                <span>PhD Students</span>
-                <strong>博士研究生</strong>
-              </button>
-              <button class="member-category-toggle" type="button" role="tab" aria-selected="false" aria-controls="member-panel-master" id="member-tab-master" data-member-target="master">
-                <span>Master Students</span>
-                <strong>硕士研究生</strong>
-              </button>
-              <button class="member-category-toggle" type="button" role="tab" aria-selected="false" aria-controls="member-panel-undergraduate" id="member-tab-undergraduate" data-member-target="undergraduate">
-                <span>Undergraduate</span>
-                <strong>本科生</strong>
-              </button>
-              <button class="member-category-toggle" type="button" role="tab" aria-selected="false" aria-controls="member-panel-alumni" id="member-tab-alumni" data-member-target="alumni">
+              <button class="member-primary-toggle" type="button" aria-pressed="false" data-member-group-target="alumni">
                 <span>Alumni</span>
                 <strong>已毕业</strong>
               </button>
             </div>
 
+            <div class="member-secondary-groups">
+              <div class="member-subtabs" role="tablist" aria-label="教职工分类" data-member-subtabs="staff">
+                <button class="member-subcategory-toggle active" type="button" role="tab" aria-selected="true" aria-controls="member-panel-faculty" id="member-tab-faculty" data-member-target="faculty" data-member-parent="staff">教师</button>
+                <button class="member-subcategory-toggle" type="button" role="tab" aria-selected="false" aria-controls="member-panel-postdocs" id="member-tab-postdocs" data-member-target="postdocs" data-member-parent="staff">博士后</button>
+              </div>
+              <div class="member-subtabs" role="tablist" aria-label="在校生分类" data-member-subtabs="students" hidden>
+                <button class="member-subcategory-toggle" type="button" role="tab" aria-selected="false" aria-controls="member-panel-student-phd" id="member-tab-student-phd" data-member-target="student-phd" data-member-parent="students">博士研究生</button>
+                <button class="member-subcategory-toggle" type="button" role="tab" aria-selected="false" aria-controls="member-panel-student-master" id="member-tab-student-master" data-member-target="student-master" data-member-parent="students">硕士研究生</button>
+                <button class="member-subcategory-toggle" type="button" role="tab" aria-selected="false" aria-controls="member-panel-student-undergraduate" id="member-tab-student-undergraduate" data-member-target="student-undergraduate" data-member-parent="students">本科生</button>
+              </div>
+              <div class="member-subtabs" role="tablist" aria-label="已毕业分类" data-member-subtabs="alumni" hidden>
+                <button class="member-subcategory-toggle" type="button" role="tab" aria-selected="false" aria-controls="member-panel-alumni-phd" id="member-tab-alumni-phd" data-member-target="alumni-phd" data-member-parent="alumni">博士研究生</button>
+                <button class="member-subcategory-toggle" type="button" role="tab" aria-selected="false" aria-controls="member-panel-alumni-master" id="member-tab-alumni-master" data-member-target="alumni-master" data-member-parent="alumni">硕士研究生</button>
+                <button class="member-subcategory-toggle" type="button" role="tab" aria-selected="false" aria-controls="member-panel-alumni-undergraduate" id="member-tab-alumni-undergraduate" data-member-target="alumni-undergraduate" data-member-parent="alumni">本科生</button>
+              </div>
+            </div>
+
             <div class="member-stage">
-              <article class="member-category active" id="member-panel-leader" role="tabpanel" aria-labelledby="member-tab-leader" data-member-panel="leader">
+              <article class="member-category active" id="member-panel-faculty" role="tabpanel" aria-labelledby="member-tab-faculty" data-member-panel="faculty">
+                <div class="member-category-head">
+                  <span>Faculty</span>
+                  <h3>教师</h3>
+                </div>
                 <div class="member-leader">
                   <img
                     src="assets/leader-yang.png"
@@ -549,14 +554,7 @@
                     </ul>
                   </div>
                 </div>
-              </article>
-
-              <article class="member-category" id="member-panel-teachers" role="tabpanel" aria-labelledby="member-tab-teachers" data-member-panel="teachers" hidden>
-                <div class="member-category-head">
-                  <span>Teachers</span>
-                  <h3>教师 / 合作导师</h3>
-                </div>
-                <div class="member-list">
+                <div class="member-list faculty-list">
                   <div class="member-person">
                     <strong>孙瑜</strong>
                     <span>副教授 · 博士生导师 / 硕士生导师</span>
@@ -579,7 +577,7 @@
                 <p class="member-note">聚焦具身操作、机器人系统集成、物理智能诊断和 AI for Science 方法拓展；公开页面暂未列出博士后姓名。</p>
               </article>
 
-              <article class="member-category" id="member-panel-phd" role="tabpanel" aria-labelledby="member-tab-phd" data-member-panel="phd" hidden>
+              <article class="member-category" id="member-panel-student-phd" role="tabpanel" aria-labelledby="member-tab-student-phd" data-member-panel="student-phd" hidden>
                 <div class="member-category-head">
                   <span>PhD Students</span>
                   <h3>博士研究生</h3>
@@ -595,16 +593,6 @@
                     <span>2021级 · 华南理工</span>
                     <p>数字孪生驱动的转子叶片健康监测</p>
                   </div>
-                  <div class="member-person">
-                    <strong>杨浙帅</strong>
-                    <span>2020级 · 西安交通大学</span>
-                    <p>深腔探入式检测机器人系统设计与控制方法</p>
-                  </div>
-                  <div class="member-person">
-                    <strong>金若尘</strong>
-                    <span>2020级 · 山东大学</span>
-                    <p>航空发动机转子叶片可解释深度智能监测诊断</p>
-                  </div>
                   <div class="member-person"><strong>郭庆凯</strong><span>郭庆凯 · 软体驱动方向</span></div>
                   <div class="member-person"><strong>汪领</strong><span>汪领 · 触觉传感方向</span></div>
                   <div class="member-person"><strong>梁浩峰</strong><span>梁浩峰 · 粘附设计方向</span></div>
@@ -612,7 +600,7 @@
                 </div>
               </article>
 
-              <article class="member-category" id="member-panel-master" role="tabpanel" aria-labelledby="member-tab-master" data-member-panel="master" hidden>
+              <article class="member-category" id="member-panel-student-master" role="tabpanel" aria-labelledby="member-tab-student-master" data-member-panel="student-master" hidden>
                 <div class="member-category-head">
                   <span>Master Students</span>
                   <h3>硕士研究生</h3>
@@ -643,19 +631,7 @@
                     <span>2024级 · 华南理工大学</span>
                     <p>插簧型连续体机器人设计与建模</p>
                   </div>
-                  <div class="member-person">
-                    <strong>薛晨菲</strong>
-                    <span>2023级 · 长安大学</span>
-                    <p>超冗余机器人动力学控制</p>
-                  </div>
-                  <div class="member-person">
-                    <strong>姚晨彧</strong>
-                    <span>2023级 · 合肥工业大学</span>
-                    <p>连续体机器人柔顺关节创新设计</p>
-                  </div>
                   <div class="member-person"><strong>任亨</strong><span>任亨 · 结构设计方向</span></div>
-                  <div class="member-person"><strong>谢时雨</strong><span>谢时雨 · 软体驱动方向</span></div>
-                  <div class="member-person"><strong>赵子攀</strong><span>赵子攀 · 软体驱动方向</span></div>
                   <div class="member-person"><strong>贾秀梅</strong><span>贾秀梅 · 智能运维方向</span></div>
                   <div class="member-person"><strong>侯传鑫</strong><span>侯传鑫 · 触觉传感方向</span></div>
                   <div class="member-person"><strong>李昊阳</strong><span>李昊阳 · 灵巧手方向</span></div>
@@ -664,67 +640,65 @@
                 </div>
               </article>
 
-              <article class="member-category" id="member-panel-undergraduate" role="tabpanel" aria-labelledby="member-tab-undergraduate" data-member-panel="undergraduate" hidden>
+              <article class="member-category" id="member-panel-student-undergraduate" role="tabpanel" aria-labelledby="member-tab-student-undergraduate" data-member-panel="student-undergraduate" hidden>
                 <div class="member-category-head">
-                  <span>Undergraduate</span>
+                  <span>Undergraduates</span>
                   <h3>本科生</h3>
                 </div>
-                <div class="member-list">
-                  <div class="member-person">
-                    <strong>吕冠桥</strong>
-                    <span>2021级本科生</span>
-                    <p>水下仿生机器人</p>
-                  </div>
+                <p class="member-note">暂无在校本科生</p>
+              </article>
+
+              <article class="member-category" id="member-panel-alumni-phd" role="tabpanel" aria-labelledby="member-tab-alumni-phd" data-member-panel="alumni-phd" hidden>
+                <div class="member-category-head">
+                  <span>Alumni · PhD</span>
+                  <h3>博士研究生</h3>
+                </div>
+                <div class="alumni-list">
+                  <p><strong>杨浙帅</strong><span>博士 · 2020级 · 毕业去向：乾元实验室</span></p>
+                  <p><strong>金若尘</strong><span>博士 · 2020级 · 毕业去向：西安热工院</span></p>
                 </div>
               </article>
 
-              <article class="member-category" id="member-panel-alumni" role="tabpanel" aria-labelledby="member-tab-alumni" data-member-panel="alumni" hidden>
+              <article class="member-category" id="member-panel-alumni-master" role="tabpanel" aria-labelledby="member-tab-alumni-master" data-member-panel="alumni-master" hidden>
                 <div class="member-category-head">
-                  <span>Alumni</span>
-                  <h3>已毕业</h3>
+                  <span>Alumni · Master's</span>
+                  <h3>硕士研究生</h3>
                 </div>
                 <div class="alumni-list">
-
+                  <p><strong>薛晨菲</strong><span>硕士 · 2023级 · 长安大学 · 超冗余机器人动力学控制</span></p>
+                  <p><strong>姚晨彧</strong><span>硕士 · 2023级 · 合肥工业大学 · 连续体机器人柔顺关节创新设计</span></p>
+                  <p><strong>谢时雨</strong><span>硕士 · 软体驱动方向</span></p>
+                  <p><strong>赵子攀</strong><span>硕士 · 软体驱动方向</span></p>
                   <p><strong>刘乙雪</strong><span>2025 · 硕士论文：折纸启发的磁性薄膜多维力触觉电子皮肤 · 毕业去向：比亚迪</span></p>
-
                   <p><strong>郑毅</strong><span>2025 · 硕士论文：多节连续体机器人控制策略研究与系统设计 · 毕业去向：华为</span></p>
-
                   <p><strong>罗旭良</strong><span>2025 · 硕士论文：模型约束下数据驱动的转子叶片监测诊断研究 · 毕业去向：中广核</span></p>
-
                   <p><strong>彭银冲</strong><span>2025 · 硕士论文：连续体机器人优化设计与高效力学建模 · 毕业去向：南瑞继保</span></p>
-
                   <p><strong>杨冬</strong><span>2024 · 硕士论文：超冗余连续型机器人高精度控制与运动规划方法研究 · 毕业去向：人本</span></p>
-
                   <p><strong>王景</strong><span>2024 · 硕士论文：基于非接触测量的航空发动机转子叶片在线监测研究 · 毕业去向：一飞院</span></p>
-
                   <p><strong>兰雨</strong><span>2023 · 硕士论文：航空发动机原位检测双芯柱连续体机器人运动控制研究 · 毕业去向：中兴</span></p>
-
                   <p><strong>庞丁</strong><span>2022 · 硕士论文：基于数字孪生的航空发动机转子叶片裂纹监测诊断研究 · 毕业去向：西安618所</span></p>
-
                   <p><strong>李应春</strong><span>李应春 · 硕士 · 2022级 · 比亚迪汽车有限公司</span></p>
-
                   <p><strong>张天祥</strong><span>张天祥 · 硕士 · 2022级 · 比亚迪汽车有限公司</span></p>
-
                   <p><strong>孙宇轩</strong><span>孙宇轩 · 硕士 · 2022级 · 西安飞行自动控制研究所</span></p>
-
                   <p><strong>宁嘉嘉</strong><span>宁嘉嘉 · 硕士 · 2022级 · 深圳市新凯来技术有限公司</span></p>
-
                   <p><strong>唐灵君</strong><span>唐灵君 · 硕士 · 2021级 · 施耐德电气（中国）有限公司上海分公司</span></p>
-
                   <p><strong>吕宇欣</strong><span>吕宇欣 · 硕士 · 2021级 · 比亚迪汽车有限公司</span></p>
-
-                  <p><strong>徐露</strong><span>2020 · 本科毕业设计：基于深度学习的冗余机器人位姿评估方法 · 毕业去向：本校直博</span></p>
-
                   <p><strong>韩天瑞</strong><span>韩天瑞 · 硕士 · 2020级 · 比亚迪汽车有限公司</span></p>
-
                   <p><strong>李芷源</strong><span>李芷源 · 硕士 · 2020级 · 中铁二院重庆勘察设计研究院有限责任公司</span></p>
-
                   <p><strong>唐鑫</strong><span>唐鑫 · 硕士 · 2020级 · 比亚迪股份有限公司</span></p>
-
                   <p><strong>赵州</strong><span>赵州 · 硕士 · 2020级 · 香港城市大学（攻读博士）</span></p>
-
                   <p><strong>王昊</strong><span>王昊 · 硕士 · 2019级 · 中铁第一勘察设计院集团有限公司</span></p>
-                
+                </div>
+              </article>
+
+              <article class="member-category" id="member-panel-alumni-undergraduate" role="tabpanel" aria-labelledby="member-tab-alumni-undergraduate" data-member-panel="alumni-undergraduate" hidden>
+                <div class="member-category-head">
+                  <span>Alumni · Undergraduate</span>
+                  <h3>本科生</h3>
+                </div>
+                <div class="alumni-list">
+                  <p><strong>吕冠桥</strong><span>本科 · 2021级 · 水下仿生机器人</span></p>
+                  <p><strong>徐露</strong><span>2020 · 本科毕业设计：基于深度学习的冗余机器人位姿评估方法 · 毕业去向：本校直博</span></p>
                 </div>
               </article>
             </div>

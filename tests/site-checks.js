@@ -66,13 +66,17 @@ for (const attrs of allVideoTags) {
 assert.ok(script.includes('<video controls controlslist="nodownload" oncontextmenu="return false" disablepictureinpicture disableremoteplayback preload="metadata" playsinline>'), "dynamic Lab Notes videos should use the same embedded no-download controls");
 assert.equal(matchAll(/<a[^>]+href="[^"]+\.mp4/gi).length, 0, "mp4 files should not be exposed as direct download links");
 
+const memberPrimaryGroups = matchAll(/data-member-group-target="([^"]+)"/g).map((match) => match[1]);
+assert.deepEqual(memberPrimaryGroups, ["staff", "students", "alumni"], "member primary categories should be staff, current students, and alumni");
 const memberCategoryButtons = matchAll(/data-member-target="([^"]+)"/g);
-assert.equal(memberCategoryButtons.length, 7, "member categories should use the existing seven collapsible groups");
-assert.ok(html.includes('data-member-panel="leader"'), "leader panel should be collapsible");
+assert.equal(memberCategoryButtons.length, 8, "member secondary categories should include two staff, three current-student, and three alumni groups");
+for (const panel of ["faculty", "postdocs", "student-phd", "student-master", "student-undergraduate", "alumni-phd", "alumni-master", "alumni-undergraduate"]) {
+  assert.ok(html.includes(`data-member-panel="${panel}"`), `member panel should be collapsible: ${panel}`);
+}
+assert.ok(!html.includes('data-member-panel="leader"'), "team lead should be grouped inside the faculty panel");
 assert.ok(!html.includes('data-member-panel="sun-team"'), "Sun Yu students should not create a separate collapsible panel");
-assert.ok(html.includes('data-member-panel="phd"'), "PhD member panel should be collapsible");
-assert.ok(html.includes('data-member-panel="master"'), "master member panel should be collapsible");
 assert.ok(script.includes("showMemberPanel"), "script should switch member panels");
+assert.ok(script.includes("memberGroupTabs"), "script should switch primary member groups");
 assert.ok(script.includes("showOutputCategory"), "script should switch achievement categories");
 
 for (const filter of ["paper-sci", "paper-ei-journal", "paper-ei-conference", "paper-preprint"]) {
@@ -106,6 +110,14 @@ for (const video of [
 ]) {
   assert.ok(html.includes(video), `featured outputs should embed local paper video: ${video}`);
 }
+for (const poster of [
+  "assets/paper-highlights/torque-dexterity-visual.png",
+  "assets/paper-highlights/contact-aided-continuum-visual.png",
+  "assets/paper-highlights/bistable-jumper-visual.png",
+]) {
+  assert.ok(fs.existsSync(path.join(root, poster)), `featured-output poster should exist: ${poster}`);
+}
+assert.ok(script.includes('element.querySelector("video[poster]")?.getAttribute("poster")'), "welcome highlights should recover their images from featured-output video posters");
 for (const doi of [
   "https://doi.org/10.1109/TRO.2024.3400944",
   "https://doi.org/10.1126/sciadv.aec3263",
@@ -246,10 +258,14 @@ assert.ok(!html.includes("孙瑜团队"), "member tabs should not create a separ
 assert.ok(!html.includes("以下名单根据学校教师主页公开成员信息整理"), "member intro should not show source-explanation text");
 assert.ok(!html.includes("来源：孙瑜老师主页学生信息"), "member panel should not show visible source-explanation buttons");
 assert.ok(!html.includes("来源：孙瑜老师主页桃李天下"), "alumni panel should not show visible source-explanation buttons");
-const phdPanel = memberPanelHtml("phd");
-const masterPanel = memberPanelHtml("master");
-orderIndex(phdPanel, ["杜祖鹏", "胡华辉", "杨浙帅", "金若尘"], "PhD students with cohort years");
-orderIndex(masterPanel, ["张亚鹏", "李昊钢", "李晨铭", "钱行健", "王怡博", "薛晨菲", "姚晨彧"], "master's students with cohort years");
+const phdPanel = memberPanelHtml("student-phd");
+const masterPanel = memberPanelHtml("student-master");
+const undergraduatePanel = memberPanelHtml("student-undergraduate");
+const alumniPhdPanel = memberPanelHtml("alumni-phd");
+const alumniMasterPanel = memberPanelHtml("alumni-master");
+const alumniUndergraduatePanel = memberPanelHtml("alumni-undergraduate");
+orderIndex(phdPanel, ["杜祖鹏", "胡华辉"], "current PhD students with cohort years");
+orderIndex(masterPanel, ["张亚鹏", "李昊钢", "李晨铭", "钱行健", "王怡博"], "current master's students with cohort years");
 for (const item of [
   "郭庆凯 · 软体驱动方向",
   "汪领 · 触觉传感方向",
@@ -262,8 +278,6 @@ for (const item of [
 }
 for (const item of [
   "任亨 · 结构设计方向",
-  "谢时雨 · 软体驱动方向",
-  "赵子攀 · 软体驱动方向",
   "贾秀梅 · 智能运维方向",
   "侯传鑫 · 触觉传感方向",
   "李昊阳 · 灵巧手方向",
@@ -273,6 +287,18 @@ for (const item of [
   assert.ok(html.includes(item), `Sun Yu current students should include ${item}`);
   assert.ok(masterPanel.includes(item), `${item} should be merged into the master's student group`);
 }
+for (const name of ["杨浙帅", "金若尘"]) {
+  assert.ok(!phdPanel.includes(`<strong>${name}</strong>`), `${name} should not remain among current PhD students`);
+  assert.ok(alumniPhdPanel.includes(`<strong>${name}</strong>`), `${name} should move to alumni PhD students`);
+}
+assert.ok(alumniPhdPanel.includes("毕业去向：乾元实验室"), "Zheshuai Yang alumni entry should include Qianyuan Laboratory");
+assert.ok(alumniPhdPanel.includes("毕业去向：西安热工院"), "Ruochen Jin alumni entry should include Xi'an Thermal Power Research Institute");
+for (const name of ["薛晨菲", "姚晨彧", "谢时雨", "赵子攀"]) {
+  assert.ok(!masterPanel.includes(`<strong>${name}</strong>`), `${name} should not remain among current master's students`);
+  assert.ok(alumniMasterPanel.includes(`<strong>${name}</strong>`), `${name} should move to alumni master's students`);
+}
+assert.ok(!undergraduatePanel.includes("<strong>吕冠桥</strong>"), "Guanqiao Lu should not remain among current undergraduate students");
+assert.ok(alumniUndergraduatePanel.includes("<strong>吕冠桥</strong>"), "Guanqiao Lu should move to alumni undergraduates");
 for (const note of ["金点子选手", "行动力达人", "求知欲满满", "控制硬件担当", "结构设计与系统思维", "软体驱动与系统实验", "软体驱动与实验验证", "智能运维与细致实验", "触觉硬件与论文研读", "灵巧操作与机器人手系统", "触觉感知与传感器系统", "软体驱动与机器人机构"]) {
   assert.ok(!html.includes(note), `student profile should omit personality-style note: ${note}`);
 }
@@ -288,14 +314,15 @@ assert.ok(!html.includes("王景 · 硕士 · 2021级 · 航空工业第一飞�
 assert.ok(!html.includes("刘乙雪 · 硕士 · 2022级 · 比亚迪汽车有限公司"), "duplicate Liu Yixue alumni entry from the new source should be removed");
 assert.ok(html.includes("2024 · 硕士论文：基于非接触测量的航空发动机转子叶片在线监测研究 · 毕业去向：一飞院"), "existing Wang Jing alumni entry should be retained");
 assert.ok(html.includes("2025 · 硕士论文：折纸启发的磁性薄膜多维力触觉电子皮肤 · 毕业去向：比亚迪"), "existing Liu Yixue alumni entry should be retained");
-const alumniPanel = memberPanelHtml("alumni");
 orderIndex(
-  alumniPanel,
-  ["刘乙雪", "杨冬", "兰雨", "庞丁", "吕宇欣", "赵州", "王昊"],
-  "alumni entries"
+  alumniMasterPanel,
+  ["薛晨菲", "姚晨彧", "谢时雨", "赵子攀", "刘乙雪", "杨冬", "兰雨", "庞丁", "吕宇欣", "赵州", "王昊"],
+  "master's alumni entries"
 );
 assert.ok(script.includes('"郭庆凯 · 软体驱动方向": "Qingkai Guo · Soft actuation"'), "English mode should translate Sun Yu current student entries");
 assert.ok(script.includes('"王昊 · 硕士 · 2019级 · 中铁第一勘察设计院集团有限公司"'), "English mode should translate Sun Yu alumni entries");
+assert.ok(script.includes('"博士 · 2020级 · 毕业去向：乾元实验室": "PhD · 2020 cohort · Destination: Qianyuan Laboratory"'), "English mode should translate Zheshuai Yang's alumni destination");
+assert.ok(script.includes('"博士 · 2020级 · 毕业去向：西安热工院": "PhD · 2020 cohort · Destination: Xi\'an Thermal Power Research Institute"'), "English mode should translate Ruochen Jin's alumni destination");
 assert.ok(script.includes("embodied robots that adapt to their environment and operate at fine scale"), "English mode should translate the Feigong concept as adaptive embodied robots");
 assert.ok(styles.includes(".hero h1") && styles.includes("white-space: nowrap"), "hero title should be constrained to one line");
 assert.ok(html.includes("data-language-toggle"), "home page should include a Chinese/English language toggle");

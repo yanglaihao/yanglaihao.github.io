@@ -19,6 +19,8 @@ const serviceFilters = document.querySelectorAll("[data-service-filter]");
 const serviceItems = document.querySelectorAll("[data-service-type]");
 const researchTabs = document.querySelectorAll("[data-research-target]");
 const researchPanels = document.querySelectorAll("[data-research-panel]");
+const memberGroupTabs = document.querySelectorAll("[data-member-group-target]");
+const memberSubtabGroups = document.querySelectorAll("[data-member-subtabs]");
 const memberTabs = document.querySelectorAll("[data-member-target]");
 const memberPanels = document.querySelectorAll("[data-member-panel]");
 
@@ -206,7 +208,10 @@ const attributeTranslations = [
   { selector: 'video[data-paper-video="contact-aided-continuum"]', attribute: "aria-label", zh: "接触辅助连续体机器人论文视频", en: "Video for the contact-aided continuum robotic system paper" },
   { selector: 'video[data-paper-video="torque-dexterity"]', attribute: "aria-label", zh: "扭矩触觉灵巧操作论文视频", en: "Video for the torque-enabled robotic dexterity paper" },
   { selector: 'video[data-paper-video="bistable-jumper"]', attribute: "aria-label", zh: "双稳态昆虫尺度跳跃机器人论文视频", en: "Video for the bistable insect-scale jumper paper" },
-  { selector: ".member-tabs", attribute: "aria-label", zh: "团队成员分组", en: "Team member groups" },
+  { selector: ".member-primary-tabs", attribute: "aria-label", zh: "团队成员一级分类", en: "Primary team member categories" },
+  { selector: '[data-member-subtabs="staff"]', attribute: "aria-label", zh: "教职工分类", en: "Staff categories" },
+  { selector: '[data-member-subtabs="students"]', attribute: "aria-label", zh: "在校生分类", en: "Current student categories" },
+  { selector: '[data-member-subtabs="alumni"]', attribute: "aria-label", zh: "已毕业分类", en: "Alumni categories" },
   { selector: ".output-primary-filters", attribute: "aria-label", zh: "成果一级板块", en: "Primary output categories" },
   { selector: "[data-paper-subfilters]", attribute: "aria-label", zh: "论文二级分类", en: "Publication subcategories" },
   { selector: "[data-patent-subfilters]", attribute: "aria-label", zh: "专利二级分类", en: "Patent subcategories" },
@@ -354,6 +359,9 @@ const textTranslations = {
   "团队成员": "Team Members",
   "团队围绕高端装备智能检修机器人形成多层次人才培养体系，覆盖团队领导、教师/合作导师、博士后、博士研究生、硕士研究生、本科生和毕业生。": "The team has a multi-level training structure around intelligent maintenance robotics for advanced equipment, covering the team lead, faculty and collaborating mentors, postdocs, PhD students, master's students, undergraduates, and alumni.",
   "团队领导": "Team Lead",
+  "教职工": "Staff",
+  "在校生": "Current Students",
+  "教师": "Faculty",
   "杨来浩": "Laihao Yang",
   "杨来浩 副研究员": "Laihao Yang, Associate Researcher",
   "副研究员，博士。西安交通大学机械工程学院、航空发动机研究所。": "Associate Researcher, PhD. School of Mechanical Engineering and Aero-engine Research Institute, Xi'an Jiaotong University.",
@@ -409,7 +417,14 @@ const textTranslations = {
   "吕冠桥": "Guanqiao Lu",
   "2021级本科生": "2021 undergraduate",
   "水下仿生机器人": "Underwater biomimetic robots",
+  "暂无在校本科生": "No current undergraduate students",
   "已毕业": "Alumni",
+  "博士 · 2020级 · 毕业去向：乾元实验室": "PhD · 2020 cohort · Destination: Qianyuan Laboratory",
+  "博士 · 2020级 · 毕业去向：西安热工院": "PhD · 2020 cohort · Destination: Xi'an Thermal Power Research Institute",
+  "硕士 · 2023级 · 长安大学 · 超冗余机器人动力学控制": "Master's · 2023 cohort · Chang'an University · Dynamics control of hyper-redundant robots",
+  "硕士 · 2023级 · 合肥工业大学 · 连续体机器人柔顺关节创新设计": "Master's · 2023 cohort · Hefei University of Technology · Innovative design of compliant joints for continuum robots",
+  "硕士 · 软体驱动方向": "Master's · Soft actuation",
+  "本科 · 2021级 · 水下仿生机器人": "Undergraduate · 2021 cohort · Underwater biomimetic robots",
   "2025 · 硕士论文：折纸启发的磁性薄膜多维力触觉电子皮肤 · 毕业去向：比亚迪": "2025 · Master's thesis: Origami-inspired magnetic thin-film multidimensional force tactile electronic skin · Destination: BYD",
   "2025 · 硕士论文：多节连续体机器人控制策略研究与系统设计 · 毕业去向：华为": "2025 · Master's thesis: Control strategy and system design of multi-section continuum robots · Destination: Huawei",
   "2025 · 硕士论文：模型约束下数据驱动的转子叶片监测诊断研究 · 毕业去向：中广核": "2025 · Master's thesis: Model-constrained data-driven monitoring and diagnosis of rotor blades · Destination: CGN",
@@ -1011,7 +1026,10 @@ function itemFromArticle(element, type) {
     summary,
     href,
     venue: venueFor(element),
-    figure: element.dataset.figure || "",
+    figure: element.dataset.figure
+      || element.querySelector("video[poster]")?.getAttribute("poster")
+      || element.querySelector("img")?.getAttribute("src")
+      || "",
     media: mediaFor(element),
   };
 }
@@ -1582,6 +1600,19 @@ function rotateResearchPanel() {
 }
 
 function showMemberPanel(selected) {
+  const selectedTab = Array.from(memberTabs).find((tab) => tab.dataset.memberTarget === selected);
+  const selectedGroup = selectedTab?.dataset.memberParent;
+
+  memberGroupTabs.forEach((tab) => {
+    const isActive = tab.dataset.memberGroupTarget === selectedGroup;
+    tab.classList.toggle("active", isActive);
+    tab.setAttribute("aria-pressed", String(isActive));
+  });
+
+  memberSubtabGroups.forEach((group) => {
+    group.hidden = group.dataset.memberSubtabs !== selectedGroup;
+  });
+
   memberTabs.forEach((tab) => {
     const isActive = tab.dataset.memberTarget === selected;
     tab.classList.toggle("active", isActive);
@@ -1646,10 +1677,19 @@ memberTabs.forEach((tab) => {
   });
 });
 
+memberGroupTabs.forEach((tab) => {
+  tab.addEventListener("click", () => {
+    const group = tab.dataset.memberGroupTarget;
+    const firstTab = Array.from(memberTabs).find((item) => item.dataset.memberParent === group);
+    if (firstTab) showMemberPanel(firstTab.dataset.memberTarget);
+  });
+});
+
 if (researchTabs.length > 1) {
   researchRotation = window.setInterval(rotateResearchPanel, 8500);
 }
 
 applyTheme(currentTheme);
 applyLanguage(currentLanguage);
+showMemberPanel("faculty");
 showOutputCategory("highlight-output");

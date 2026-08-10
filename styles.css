@@ -1532,13 +1532,13 @@ html[lang="en"] .home-dynamic-panel .welcome-report-strip p {
   gap: 1rem;
 }
 
-.member-tabs {
+.member-primary-tabs {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 0.75rem;
 }
 
-.member-category-toggle {
+.member-primary-toggle {
   min-height: 88px;
   border: 1px solid var(--line);
   border-radius: 8px;
@@ -1553,33 +1553,73 @@ html[lang="en"] .home-dynamic-panel .welcome-report-strip p {
     background 160ms ease;
 }
 
-.member-category-toggle:hover,
-.member-category-toggle:focus-visible {
+.member-primary-toggle:hover,
+.member-primary-toggle:focus-visible {
   transform: translateY(-1px);
   border-color: var(--accent);
 }
 
-.member-category-toggle.active {
+.member-primary-toggle.active {
   border-color: var(--accent);
   background: linear-gradient(135deg, var(--accent-soft), var(--surface));
 }
 
-.member-category-toggle span,
-.member-category-toggle strong {
+.member-primary-toggle span,
+.member-primary-toggle strong {
   display: block;
 }
 
-.member-category-toggle span {
+.member-primary-toggle span {
   color: var(--rust);
   font-size: 0.76rem;
   font-weight: 850;
   text-transform: uppercase;
 }
 
-.member-category-toggle strong {
+.member-primary-toggle strong {
   margin-top: 0.35rem;
   font-size: clamp(1.05rem, 1.5vw, 1.35rem);
   line-height: 1.25;
+}
+
+.member-secondary-groups {
+  min-height: 46px;
+}
+
+.member-subtabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.55rem;
+}
+
+.member-subtabs[hidden] {
+  display: none;
+}
+
+.member-subcategory-toggle {
+  min-height: 42px;
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  background: var(--surface);
+  color: var(--ink);
+  padding: 0.55rem 0.9rem;
+  font-weight: 850;
+  cursor: pointer;
+  transition:
+    border-color 160ms ease,
+    background 160ms ease,
+    color 160ms ease;
+}
+
+.member-subcategory-toggle:hover,
+.member-subcategory-toggle:focus-visible {
+  border-color: var(--accent);
+}
+
+.member-subcategory-toggle.active {
+  border-color: var(--accent);
+  background: var(--accent);
+  color: #ffffff;
 }
 
 .member-stage {
@@ -1630,6 +1670,14 @@ html[lang="en"] .home-dynamic-panel .welcome-report-strip p {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 0.75rem;
+  margin-top: 0.9rem;
+}
+
+.faculty-list {
+  grid-template-columns: 1fr;
+}
+
+.member-category > .member-leader {
   margin-top: 0.9rem;
 }
 
@@ -2291,7 +2339,7 @@ address a {
   .blog-article-grid,
   .blog-post-nav,
   .achievement-overview,
-  .member-tabs,
+  .member-primary-tabs,
   .project-grid,
   .info-grid,
   .two-column,
