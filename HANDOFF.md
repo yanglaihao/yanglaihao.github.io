@@ -11,7 +11,7 @@
 - 删除研究方向、代表性期刊、论文 / 专利 / 专著数量及旧学会任职列表，避免与欢迎页、成果页和社会服务页重复。
 - 中英文简介使用独立 `member.yang.profile` i18n 键，英文模式完整显示且不保留中文标点。
 - 本地验证通过：`node --check script.js`、`node tests/site-checks.js`、`git diff --check -- index.html script.js tests/site-checks.js`；Chrome 实测覆盖桌面端与 390 px 手机端中英文显示，无横向溢出。
-- 本轮使用 GitHub Git Data API 更新远端 `main` 并触发 GitHub Pages；最终提交与构建编号见本次部署后的状态记录。
+- 页面内容部署提交为 `701861c50a3c03d69c0a1d5ec83afdcb5fb95e80`；GitHub Pages run `31452610346` 构建与部署成功。线上 HTML 和 `script.js` 已核验包含精简后的中英文简介，且不再显示成果数量与研究成果说明。
 
 本轮重新组织团队成员分类，并修复欢迎页近期亮点工作图片：
 
