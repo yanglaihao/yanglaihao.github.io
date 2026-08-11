@@ -258,6 +258,12 @@ assert.ok(!html.includes("孙瑜团队"), "member tabs should not create a separ
 assert.ok(!html.includes("以下名单根据学校教师主页公开成员信息整理"), "member intro should not show source-explanation text");
 assert.ok(!html.includes("来源：孙瑜老师主页学生信息"), "member panel should not show visible source-explanation buttons");
 assert.ok(!html.includes("来源：孙瑜老师主页桃李天下"), "alumni panel should not show visible source-explanation buttons");
+assert.ok(!html.includes('<p class="project-tag">团队领导</p>'), "Laihao Yang's member profile should not show the team lead label");
+assert.ok(html.includes('data-i18n="member.yang.profile"'), "Laihao Yang's concise profile should use a dedicated bilingual key");
+assert.ok(html.includes("西安交通大学机械工程学院副研究员、博士。现任 IEEE Sensors Reviews Associate Editor"), "Laihao Yang's profile should keep only identity and current representative service");
+assert.ok(!html.includes("发表论文 100 余篇，公开发明专利 100 余项，出版专著 1 部"), "Laihao Yang's profile should not repeat the output summary shown elsewhere");
+assert.ok(!html.includes("主持国家自然科学基金等科研项目，代表性成果发表于"), "Laihao Yang's profile should not repeat research and publication details shown elsewhere");
+assert.ok(script.includes('"member.yang.profile": "Associate Researcher with a PhD at the School of Mechanical Engineering, Xi\'an Jiaotong University.'), "English mode should translate Laihao Yang's concise profile");
 const phdPanel = memberPanelHtml("student-phd");
 const masterPanel = memberPanelHtml("student-master");
 const undergraduatePanel = memberPanelHtml("student-undergraduate");

@@ -108,6 +108,7 @@ const translations = {
     "blog.discussion.media": "媒体采访",
     "blog.discussion.public": "公开讨论入口",
     "blog.discussion.email": "邮件联系",
+    "member.yang.profile": "西安交通大学机械工程学院副研究员、博士。现任 IEEE Sensors Reviews Associate Editor、Cyborg and Bionic Systems（Science Partner Journal）Young Editor，并担任中国自动化学会机器人专业委员会委员。",
   },
   en: {
     "meta.description": "Feigong Robotics Laboratory at Xi'an Jiaotong University develops embodied robotic systems for intelligent diagnosis, in-situ intervention, and dexterous manipulation in aero-engines and other advanced equipment.",
@@ -183,6 +184,7 @@ const translations = {
     "blog.discussion.media": "Media",
     "blog.discussion.public": "Public Discussion",
     "blog.discussion.email": "Email",
+    "member.yang.profile": "Associate Researcher with a PhD at the School of Mechanical Engineering, Xi'an Jiaotong University. He serves as an Associate Editor of IEEE Sensors Reviews, a Young Editor of Cyborg and Bionic Systems (Science Partner Journal), and a member of the Technical Committee on Robotics of the Chinese Association of Automation.",
   },
 };
 
@@ -358,17 +360,14 @@ const textTranslations = {
   "杨来浩老师团队发布团队通知，欢迎新同学加入非攻机器人实验室。": "Laihao Yang's team posted a notice welcoming new students to Feigong Robotics Laboratory.",
   "团队成员": "Team Members",
   "团队围绕高端装备智能检修机器人形成多层次人才培养体系，覆盖团队领导、教师/合作导师、博士后、博士研究生、硕士研究生、本科生和毕业生。": "The team has a multi-level training structure around intelligent maintenance robotics for advanced equipment, covering the team lead, faculty and collaborating mentors, postdocs, PhD students, master's students, undergraduates, and alumni.",
-  "团队领导": "Team Lead",
   "教职工": "Staff",
   "在校生": "Current Students",
   "教师": "Faculty",
   "杨来浩": "Laihao Yang",
   "杨来浩 副研究员": "Laihao Yang, Associate Researcher",
-  "副研究员，博士。西安交通大学机械工程学院、航空发动机研究所。": "Associate Researcher, PhD. School of Mechanical Engineering and Aero-engine Research Institute, Xi'an Jiaotong University.",
   "中国振动工程学会动态信号分析专业委员会理事": "Council member, Dynamic Signal Analysis Committee, Chinese Society for Vibration Engineering",
   "中国计算机学会智能机器人专业委员会委员": "Member, Intelligent Robotics Committee, China Computer Federation",
   "IFToMM 中国委员会委员": "Member, IFToMM China Committee",
-  "多个期刊青年编委或编辑任职": "Young editorial board member or editor for multiple journals",
   "教师 / 合作导师": "Faculty / Collaborating Mentors",
   "孙瑜": "Yu Sun",
   "副教授 · 博士生导师 / 硕士生导师": "Associate Professor · PhD and Master's Supervisor",
