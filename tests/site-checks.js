@@ -208,14 +208,14 @@ for (const filter of ["all", "service-editorial", "service-society", "service-co
   assert.ok(html.includes(`data-service-filter="${filter}"`), `missing Service filter: ${filter}`);
 }
 const serviceCount = matchAll(/<article class="service-entry" data-service-type="[^"]+">/g).length;
-assert.equal(serviceCount, 16, `expected 16 independent social service entries, found ${serviceCount}`);
+assert.equal(serviceCount, 17, `expected 17 independent social service entries, found ${serviceCount}`);
 assert.ok(html.includes("<h3>中国自动化学会机器人专业委员会委员</h3>"), "Service section should include the Chinese Association of Automation robotics committee role");
 assert.ok(html.includes('<p class="pub-venue">期刊编委 · 编辑任职</p>\n              <h3>IEEE Sensors Reviews Associate Editor</h3>'), "Service section should include the IEEE Sensors Reviews Associate Editor role");
 assert.ok(html.includes('<p class="pub-venue">期刊编委 · 青年编委</p>\n              <h3>Cyborg and Bionic Systems（Science Partner Journal）Young Editor</h3>'), "Service section should include the Cyborg and Bionic Systems Young Editor role with the journal profile in parentheses");
 assert.ok(!html.includes("任期 2026.07.01-2028.06.30 · Science Partner Journal"), "Cyborg and Bionic Systems service entry should not show the appointment term");
 assert.ok(
   html.indexOf("<h3>Cyborg and Bionic Systems（Science Partner Journal）Young Editor</h3>") < html.indexOf("<h3>IEEE Sensors Reviews Associate Editor</h3>"),
-  "Cyborg and Bionic Systems service entry should be the first visible service role",
+  "Cyborg and Bionic Systems service entry should precede the IEEE Sensors Reviews role",
 );
 assert.ok(html.includes("IROS 2025 Soft Robot Materials and Design 3 分会 Co-Chair"), "Service section should include the IROS 2025 co-chair role");
 assert.ok(html.includes("Track 5.5 Mini-Invasive Robotic Manipulation 专题组织者"), "Service section should include the 2024 SES session organizer role as conference chairing");
@@ -452,7 +452,7 @@ assert.ok(html.includes('data-news-filter="highlight"'), "news section should in
 assert.ok(html.includes(">亮点报道</button>"), "news filter label should be highlight reports");
 assert.ok(!html.includes(">亮点工作</button>"), "news filter label should no longer be highlight work");
 assert.equal(matchAll(/<article class="news-card(?: news-card-featured)?" data-news-type="highlight">/g).length, 3, "news section should include 3 highlight work items");
-assert.equal(matchAll(/<article class="news-card" data-news-type="news">/g).length, 24, "news section should include 24 current news items after adding the Chinese Association of Automation committee update");
+assert.equal(matchAll(/<article class="news-card" data-news-type="news">/g).length, 25, "news section should include 25 current news items after adding the CIMS young editorial board public notice");
 assert.equal(matchAll(/<article class="news-card" data-news-type="notice">/g).length, 4, "news section should include 4 notice items");
 assert.ok(html.includes("http://www.snrtv.com/snr_sxxwlb/a/2024/10/10/22818371.html"), "highlight work should cite the Shaanxi News source");
 assert.ok(html.includes("https://www.163.com/dy/article/JGIRJRQ90530TBVC.html"), "highlight work should cite the Silk Road Weekly source");
