@@ -418,6 +418,7 @@ const textTranslations = {
   "水下仿生机器人": "Underwater biomimetic robots",
   "暂无在校本科生": "No current undergraduate students",
   "已毕业": "Alumni",
+  "博士 · 2021级 · 毕业去向：华电电力科学研究院有限公司": "PhD · 2021 cohort · Destination: Huadian Electric Power Research Institute Co., Ltd.",
   "博士 · 2020级 · 毕业去向：乾元实验室": "PhD · 2020 cohort · Destination: Qianyuan Laboratory",
   "博士 · 2020级 · 毕业去向：西安热工院": "PhD · 2020 cohort · Destination: Xi'an Thermal Power Research Institute",
   "硕士 · 2023级 · 长安大学 · 超冗余机器人动力学控制": "Master's · 2023 cohort · Chang'an University · Dynamics control of hyper-redundant robots",

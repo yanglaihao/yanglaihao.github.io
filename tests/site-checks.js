@@ -270,7 +270,7 @@ const undergraduatePanel = memberPanelHtml("student-undergraduate");
 const alumniPhdPanel = memberPanelHtml("alumni-phd");
 const alumniMasterPanel = memberPanelHtml("alumni-master");
 const alumniUndergraduatePanel = memberPanelHtml("alumni-undergraduate");
-orderIndex(phdPanel, ["杜祖鹏", "胡华辉"], "current PhD students with cohort years");
+orderIndex(phdPanel, ["杜祖鹏"], "current PhD students with cohort years");
 orderIndex(masterPanel, ["张亚鹏", "李昊钢", "李晨铭", "钱行健", "王怡博"], "current master's students with cohort years");
 for (const item of [
   "郭庆凯 · 软体驱动方向",
@@ -293,7 +293,7 @@ for (const item of [
   assert.ok(html.includes(item), `Sun Yu current students should include ${item}`);
   assert.ok(masterPanel.includes(item), `${item} should be merged into the master's student group`);
 }
-for (const name of ["杨浙帅", "金若尘"]) {
+for (const name of ["胡华辉", "杨浙帅", "金若尘"]) {
   assert.ok(!phdPanel.includes(`<strong>${name}</strong>`), `${name} should not remain among current PhD students`);
   assert.ok(alumniPhdPanel.includes(`<strong>${name}</strong>`), `${name} should move to alumni PhD students`);
 }
