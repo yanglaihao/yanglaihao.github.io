@@ -452,7 +452,7 @@ assert.ok(html.includes('data-news-filter="highlight"'), "news section should in
 assert.ok(html.includes(">亮点报道</button>"), "news filter label should be highlight reports");
 assert.ok(!html.includes(">亮点工作</button>"), "news filter label should no longer be highlight work");
 assert.equal(matchAll(/<article class="news-card(?: news-card-featured)?" data-news-type="highlight">/g).length, 3, "news section should include 3 highlight work items");
-assert.equal(matchAll(/<article class="news-card" data-news-type="news">/g).length, 25, "news section should include 25 current news items after adding the CIMS young editorial board public notice");
+assert.equal(matchAll(/<article class="news-card" data-news-type="news">/g).length, 26, "news section should include 26 current news items after adding the CJME young editorial board announcement");
 assert.equal(matchAll(/<article class="news-card" data-news-type="notice">/g).length, 4, "news section should include 4 notice items");
 assert.ok(html.includes("http://www.snrtv.com/snr_sxxwlb/a/2024/10/10/22818371.html"), "highlight work should cite the Shaanxi News source");
 assert.ok(html.includes("https://www.163.com/dy/article/JGIRJRQ90530TBVC.html"), "highlight work should cite the Silk Road Weekly source");
