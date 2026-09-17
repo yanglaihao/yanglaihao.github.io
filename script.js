@@ -308,6 +308,8 @@ const textTranslations = {
   "亮点报道": "Highlight Reports",
   "新闻": "News",
   "通知": "Notices",
+  "团队关于非均匀采样欠采样信号恢复的研究发表于 IEEE/CAA Journal of Automatica Sinica": "Team Research on Non-Uniform Sampling for Undersampled Signal Recovery Published in IEEE/CAA Journal of Automatica Sinica",
+  "2026 年 9 月 11 日，团队关于欠采样信号恢复与不确定性降低的研究工作在线发表于 IEEE/CAA Journal of Automatica Sinica。论文揭示欠采样、不确定性与非均匀性之间的内在关系，并提出基于非均匀采样的不确定性降低方法，用于叶端定时信号的频率恢复。": "On September 11, 2026, the team's research on undersampled signal recovery and uncertainty reduction was published online in IEEE/CAA Journal of Automatica Sinica. The paper reveals the intrinsic relationship among undersampling, uncertainty, and non-uniformity, and proposes a non-uniform sampling-based uncertainty reduction method for frequency recovery from blade tip timing signals.",
   "孙瑜入选 CJME 第二届青年编委": "Yu Sun Selected for the Second CJME Young Editorial Board",
   "团队成员孙瑜入选《中国机械工程学报（英文）》（Chinese Journal of Mechanical Engineering，CJME）第二届青年编委。本届共遴选出 170 位青年学者，将参与期刊建设、学术交流与成果传播。": "Team member Yu Sun has been selected for the second young editorial board of Chinese Journal of Mechanical Engineering (CJME). The board comprises 170 early-career scholars who will contribute to journal development, academic exchange, and the dissemination of research.",
   "杨来浩入选《计算机集成制造系统》首届青年编委公示名单": "Laihao Yang Listed as a Proposed Member of the Inaugural CIMS Young Editorial Board",

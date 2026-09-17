@@ -452,7 +452,7 @@ assert.ok(html.includes('data-news-filter="highlight"'), "news section should in
 assert.ok(html.includes(">亮点报道</button>"), "news filter label should be highlight reports");
 assert.ok(!html.includes(">亮点工作</button>"), "news filter label should no longer be highlight work");
 assert.equal(matchAll(/<article class="news-card(?: news-card-featured)?" data-news-type="highlight">/g).length, 3, "news section should include 3 highlight work items");
-assert.equal(matchAll(/<article class="news-card" data-news-type="news">/g).length, 26, "news section should include 26 current news items after adding the CJME young editorial board announcement");
+assert.equal(matchAll(/<article class="news-card" data-news-type="news">/g).length, 27, "news section should include 27 current news items after adding the JAS publication announcement");
 assert.equal(matchAll(/<article class="news-card" data-news-type="notice">/g).length, 4, "news section should include 4 notice items");
 assert.ok(html.includes("http://www.snrtv.com/snr_sxxwlb/a/2024/10/10/22818371.html"), "highlight work should cite the Shaanxi News source");
 assert.ok(html.includes("https://www.163.com/dy/article/JGIRJRQ90530TBVC.html"), "highlight work should cite the Silk Road Weekly source");
@@ -523,7 +523,12 @@ assert.ok(script.includes('"一种用于管阵列巡检的五自由度爬杆机�
 assert.ok(script.includes('"首届“太行杯”航空动力创新大赛优胜奖"'), "English mode should translate the Taihang Cup award directly");
 
 const publicationCount = matchAll(/<article class="achievement" data-output-type="paper-/g).length;
-assert.equal(publicationCount, 104, `expected 104 classified representative publications after adding saved CNKI historical records, found ${publicationCount}`);
+assert.equal(publicationCount, 106, `expected 106 classified representative publications after adding the JAS and JPCS papers, found ${publicationCount}`);
+assert.ok(html.includes('data-output-type="paper-sci"><div class="pub-year">2026</div><div class="pub-body"><p class="pub-venue">SCI 期刊 · IEEE/CAA Journal of Automatica Sinica'), "JAS paper should be listed as a 2026 SCI journal paper");
+assert.ok(html.includes("10.1109/JAS.2026.126062"), "JAS publication and news should keep the DOI link");
+assert.ok(html.includes('data-output-type="paper-ei-conference"><div class="pub-year">2026</div><div class="pub-body"><p class="pub-venue">EI 会议 · Journal of Physics: Conference Series'), "JPCS paper should be listed as a 2026 EI conference paper");
+assert.ok(html.includes("10.1088/1742-6596/3291/1/012016"), "JPCS conference paper should keep the DOI link");
+assert.ok(script.includes('"团队关于非均匀采样欠采样信号恢复的研究发表于 IEEE/CAA Journal of Automatica Sinica"'), "English mode should translate the JAS publication news title");
 assert.equal(matchAll(/<article class="achievement" data-output-type="paper-other">/g).length, 7, "other papers should include verified Chinese journal and conference records from the saved CNKI page");
 assert.ok(html.includes("Unified Teeter-Totter Active Compliance Enables Multi-Surface Locomotion for a Miniature Inspection Robot"), "Google Scholar Teeter-Totter SSRN preprint should be included");
 assert.ok(html.includes("G1LcEO4AAAAJ:jU7OWUQzBzMC"), "Teeter-Totter record should keep the saved Google Scholar citation link");
