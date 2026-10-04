@@ -1,0 +1,28 @@
+name: Recover Busuanzi historical counters
+on:
+  push:
+    branches:
+      - codex/recover-busuanzi-history-20261004
+
+permissions:
+  contents: read
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 4
+    steps:
+      - name: Probe original and migration mirrors
+        shell: bash
+        run: |
+          set +e
+          probe() {
+            label="$1"
+            url="$2"
+            echo "===== ${label} ====="
+            curl --http1.1 -4 --connect-timeout 10 --max-time 70 -sS -D - "$url"               -H 'Referer: https://yanglaihao.github.io/'               -H 'User-Agent: Mozilla/5.0' || true
+            echo
+          }
+          probe original 'https://busuanzi.ibruce.info/busuanzi?jsonpCallback=Recover'
+          probe icodeq 'https://counter.busuanzi.icodeq.com/?jsonpCallback=Recover'
+          probe hee-ink 'https://counter.konnyaku.workers.dev/?jsonpCallback=Recover'
