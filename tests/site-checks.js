@@ -56,7 +56,7 @@ for (const video of researchVideos) {
   assert.ok(video.attrs.includes("controls"), "research videos should expose playback controls");
 }
 const allVideoTags = matchAll(/<video([^>]*)>/g).map((match) => match[1]);
-assert.equal(allVideoTags.length, 9, "site should keep the expected 9 local videos");
+assert.equal(allVideoTags.length, 10, "site should keep the expected 10 local videos after adding the active-compliance highlight");
 for (const attrs of allVideoTags) {
   assert.ok(attrs.includes('controlslist="nodownload"'), "videos should hide the browser download control");
   assert.ok(attrs.includes('oncontextmenu="return false"'), "videos should disable the default right-click download menu");
@@ -97,13 +97,14 @@ assert.ok(html.includes("data-patent-subfilters"), "patent section should includ
 assert.ok(html.includes("data-award-subfilters"), "award section should include clickable secondary categories");
 
 const highlightOutputBlocks = matchAll(/<article class="achievement achievement-featured-output" data-output-type="highlight-output"[^>]*>([\s\S]*?)<\/article>/g).map((match) => match[1]);
-assert.equal(highlightOutputBlocks.length, 3, "achievement section should include 3 featured outputs");
+assert.equal(highlightOutputBlocks.length, 4, "achievement section should include 4 featured outputs after adding the unified active-compliance robot");
 assert.deepEqual(
   highlightOutputBlocks.map((block) => block.match(/ · (20\d{2})<\/p>/)?.[1]),
-  ["2026", "2024", "2024"],
+  ["2026", "2026", "2024", "2024"],
   "featured outputs should be sorted newest first"
 );
 for (const video of [
+  "assets/paper-highlights/unified-active-compliance.mp4",
   "assets/paper-highlights/contact-aided-continuum.mp4",
   "assets/paper-highlights/torque-dexterity.mp4",
   "assets/paper-highlights/bistable-jumper.mp4",
@@ -111,6 +112,7 @@ for (const video of [
   assert.ok(html.includes(video), `featured outputs should embed local paper video: ${video}`);
 }
 for (const poster of [
+  "assets/paper-highlights/unified-active-compliance-visual.png",
   "assets/paper-highlights/torque-dexterity-visual.png",
   "assets/paper-highlights/contact-aided-continuum-visual.png",
   "assets/paper-highlights/bistable-jumper-visual.png",
@@ -119,6 +121,7 @@ for (const poster of [
 }
 assert.ok(script.includes('element.querySelector("video[poster]")?.getAttribute("poster")'), "welcome highlights should recover their images from featured-output video posters");
 for (const doi of [
+  "https://doi.org/10.1016/j.ijmecsci.2026.112141",
   "https://doi.org/10.1109/TRO.2024.3400944",
   "https://doi.org/10.1126/sciadv.aec3263",
   "https://doi.org/10.1002/advs.202404404",
@@ -126,6 +129,7 @@ for (const doi of [
   assert.ok(html.includes(doi), `featured outputs should link to paper DOI: ${doi}`);
 }
 for (const title of [
+  "Unified Active Compliance Enables Miniature Robots to Traverse Diverse Surfaces",
   "A Novel Contact-Aided Continuum Robotic System: Design, Modeling, and Validation",
   "Touching with torque enables human-level robotic dexterity",
   "Bistable Insect-Scale Jumpers with Tunable Energy Barriers for Multimodal Locomotion",
@@ -134,9 +138,11 @@ for (const title of [
   assert.ok(script.includes(`"${title}"`), `English mode should preserve/translate featured output title: ${title}`);
 }
 assert.ok(html.includes("接触辅助连续体机器人面向航空发动机等受限深腔"), "featured output should briefly introduce the contact-aided continuum robot work");
+assert.ok(html.includes("统一的“跷跷板”主动顺应机制让 6 cm 级微型气动爬行机器人"), "featured output should briefly introduce the unified active-compliance robot work");
 assert.ok(html.includes("扭矩触觉让机器人达到接近人类水平的灵巧操作"), "featured output should briefly introduce the torque tactile dexterity work");
 assert.ok(html.includes("可调能垒双稳态跳跃机器人实现昆虫尺度多模态运动"), "featured output should briefly introduce the bistable jumper work");
 assert.ok(script.includes('"亮点成果": "Featured Outputs"'), "English mode should translate the featured outputs filter");
+assert.ok(script.includes('"查看论文": "View Paper"'), "English mode should translate featured-output paper links");
 
 for (const filter of ["patent-international", "patent-china"]) {
   assert.ok(html.includes(`data-output-filter="${filter}"`), `missing patent filter: ${filter}`);
@@ -452,7 +458,7 @@ assert.ok(html.includes('data-news-filter="highlight"'), "news section should in
 assert.ok(html.includes(">亮点报道</button>"), "news filter label should be highlight reports");
 assert.ok(!html.includes(">亮点工作</button>"), "news filter label should no longer be highlight work");
 assert.equal(matchAll(/<article class="news-card(?: news-card-featured)?" data-news-type="highlight">/g).length, 3, "news section should include 3 highlight work items");
-assert.equal(matchAll(/<article class="news-card" data-news-type="news">/g).length, 27, "news section should include 27 current news items after adding the JAS publication announcement");
+assert.equal(matchAll(/<article class="news-card" data-news-type="news">/g).length, 28, "news section should include 28 current news items after adding the active-compliance robot publication announcement");
 assert.equal(matchAll(/<article class="news-card" data-news-type="notice">/g).length, 4, "news section should include 4 notice items");
 assert.ok(html.includes("http://www.snrtv.com/snr_sxxwlb/a/2024/10/10/22818371.html"), "highlight work should cite the Shaanxi News source");
 assert.ok(html.includes("https://www.163.com/dy/article/JGIRJRQ90530TBVC.html"), "highlight work should cite the Silk Road Weekly source");
@@ -524,14 +530,20 @@ assert.ok(script.includes('"首届“太行杯”航空动力创新大赛优胜�
 
 const publicationCount = matchAll(/<article class="achievement" data-output-type="paper-/g).length;
 assert.equal(publicationCount, 106, `expected 106 classified representative publications after adding the JAS and JPCS papers, found ${publicationCount}`);
+assert.ok(html.includes('data-output-type="paper-sci"><div class="pub-year">2026</div><div class="pub-body"><p class="pub-venue">SCI 期刊 · International Journal of Mechanical Sciences'), "active-compliance robot paper should be listed as a 2026 SCI journal paper");
+assert.ok(html.includes("10.1016/j.ijmecsci.2026.112141"), "active-compliance robot publication, news, and highlight should keep the final DOI link");
+assert.ok(html.includes("Unified Active Compliance Enables Miniature Robots to Traverse Diverse Surfaces"), "active-compliance robot paper should use its final journal title");
+assert.ok(!html.includes("Unified Teeter-Totter Active Compliance Enables Multi-Surface Locomotion for a Miniature Inspection Robot"), "superseded SSRN preprint title should be removed after final journal publication");
+assert.ok(!html.includes("SSRN 7025048"), "superseded SSRN preprint venue should be removed after final journal publication");
+assert.ok(html.includes("团队微型爬壁机器人多表面运动研究发表于 International Journal of Mechanical Sciences"), "news should announce the active-compliance robot journal publication");
+assert.ok(html.includes("<time>2026-09-25</time>"), "active-compliance robot publication news should use the online publication date");
+assert.ok(script.includes('"团队微型爬壁机器人多表面运动研究发表于 International Journal of Mechanical Sciences"'), "English mode should translate the active-compliance robot publication news title");
 assert.ok(html.includes('data-output-type="paper-sci"><div class="pub-year">2026</div><div class="pub-body"><p class="pub-venue">SCI 期刊 · IEEE/CAA Journal of Automatica Sinica'), "JAS paper should be listed as a 2026 SCI journal paper");
 assert.ok(html.includes("10.1109/JAS.2026.126062"), "JAS publication and news should keep the DOI link");
 assert.ok(html.includes('data-output-type="paper-ei-conference"><div class="pub-year">2026</div><div class="pub-body"><p class="pub-venue">EI 会议 · Journal of Physics: Conference Series'), "JPCS paper should be listed as a 2026 EI conference paper");
 assert.ok(html.includes("10.1088/1742-6596/3291/1/012016"), "JPCS conference paper should keep the DOI link");
 assert.ok(script.includes('"团队关于非均匀采样欠采样信号恢复的研究发表于 IEEE/CAA Journal of Automatica Sinica"'), "English mode should translate the JAS publication news title");
 assert.equal(matchAll(/<article class="achievement" data-output-type="paper-other">/g).length, 7, "other papers should include verified Chinese journal and conference records from the saved CNKI page");
-assert.ok(html.includes("Unified Teeter-Totter Active Compliance Enables Multi-Surface Locomotion for a Miniature Inspection Robot"), "Google Scholar Teeter-Totter SSRN preprint should be included");
-assert.ok(html.includes("G1LcEO4AAAAJ:jU7OWUQzBzMC"), "Teeter-Totter record should keep the saved Google Scholar citation link");
 assert.ok(html.includes("Logarithmic reordering kurtogram: An automatic resonance demodulation method for bearing fault diagnosis"), "Measurement 2026 logarithmic reordering kurtogram paper should be included");
 assert.ok(html.includes("10.1016/j.measurement.2026.120975"), "Measurement 2026 logarithmic reordering kurtogram paper should keep the DOI resolved from the ScienceDirect PII");
 assert.ok(html.includes("Xin Zhang, Xin Xiong, Siqian Feng, Jiaxu Wang, Laihao Yang"), "Measurement 2026 logarithmic reordering kurtogram paper should use the Crossref author list");
