@@ -1,7 +1,6 @@
 """Preserve public aggregate totals; probes never increment the replacement counter."""
 
 import argparse
-import concurrent.futures
 import datetime
 import json
 import re
@@ -9,10 +8,21 @@ import urllib.request
 from pathlib import Path
 
 MINIMUM = {"pageViews": 1163, "visitors": 830}
-COUNTERS = {
-    "pageViews": "https://counterapi.com/api/yanglaihao.github.io/recovered-pageview-20261004/site?readOnly=true",
-    "visitors": "https://counterapi.com/api/yanglaihao.github.io/recovered-visitor-20261004/site?unique=true&readOnly=true",
-}
+MODERN_STATS_URL = "https://www.busuanzi.cc/count.php?search=yanglaihao.github.io"
+
+
+def parse_counter_stats(html):
+    if "站点 yanglaihao.github.io 的统计信息" not in html:
+        raise ValueError("The statistics page is not for the production domain")
+    counts = {}
+    for key, label in (("pageViews", "站点总访问量"), ("visitors", "站点总访客数")):
+        match = re.search(label + r'\s*<e[^>]*>\s*<span>([0-9,]+)</span>', html)
+        if not match:
+            raise ValueError("The statistics page has no valid aggregate totals")
+        counts[key] = int(match[1].replace(",", ""))
+    if counts["visitors"] > counts["pageViews"]:
+        raise ValueError("Inconsistent upstream totals")
+    return counts
 
 
 def valid_count(value):
@@ -57,9 +67,9 @@ def update_snapshot(baseline, counts, now):
         if not valid_count(offset):
             raise ValueError("Invalid saved counter offset")
         if valid_count(previous) and count < previous:
-            # Resume above the durable total if the provider loses its counter.
-            offset = max(offset + previous, snapshot[key] - baseline[key], 0)
-            offsets[key] = offset
+            # A stale response or reset is not evidence of new visits. Keep
+            # the last verified count instead of inventing a restart offset.
+            continue
         total = baseline[key] + offset + count
         if not valid_count(total):
             continue
@@ -86,6 +96,8 @@ def update_html(html, baseline):
         "data-baseline-visitors": baseline["visitors"],
         "data-counter-offset-page-views": baseline["counterOffsets"]["pageViews"],
         "data-counter-offset-visitors": baseline["counterOffsets"]["visitors"],
+        "data-counter-start-page-views": baseline["counterStart"]["pageViews"],
+        "data-counter-start-visitors": baseline["counterStart"]["visitors"],
         "data-snapshot-page-views": snapshot["pageViews"],
         "data-snapshot-visitors": snapshot["visitors"],
         "data-snapshot-updated-at": snapshot["updatedAt"],
@@ -116,13 +128,16 @@ def request_text(url, headers=None):
         return response.read(65536).decode("utf-8")
 
 
-def read_counter(item):
-    key, url = item
+def read_counter_stats(baseline):
     try:
-        return key, json.loads(request_text(url)).get("value")
+        raw = parse_counter_stats(request_text(MODERN_STATS_URL))
+        start = baseline["counterStart"]
+        if not all(valid_count(start[key]) and raw[key] >= start[key] for key in MINIMUM):
+            raise ValueError("Upstream totals are below the verified deployment checkpoint")
+        return {key: raw[key] - start[key] for key in MINIMUM}
     except (OSError, ValueError) as error:
-        print(f"{key}: live service unavailable ({type(error).__name__}); preserving saved totals.")
-        return key, None
+        print(f"Live statistics unavailable ({type(error).__name__}); preserving saved totals.")
+        return {}
 
 
 def main():
@@ -134,8 +149,7 @@ def main():
     if not valid_totals(baseline):
         raise ValueError("Historical baseline is invalid")
     now = datetime.datetime.now(datetime.timezone.utc).isoformat()
-    with concurrent.futures.ThreadPoolExecutor(max_workers=2) as pool:
-        counts = dict(pool.map(read_counter, COUNTERS.items()))
+    counts = read_counter_stats(baseline)
     if baseline.get("legacyRecovery", {}).get("status") != "captured":
         try:
             text = request_text(

@@ -1656,13 +1656,12 @@ function showMemberPanel(selected) {
   });
 }
 
-const visitorBaselineUrl = "visitor-baseline.json?v=20261004-preserved-totals";
-const visitorCounterUrls = {
-  pageViews: "https://counterapi.com/api/yanglaihao.github.io/recovered-pageview-20261004/site",
-  visitors: "https://counterapi.com/api/yanglaihao.github.io/recovered-visitor-20261004/site?unique=true",
-};
-const visitorStatsStorageKey = "feigong-visitor-stats-history-v3";
-const visitorStatsSource = "busuanzi-history+counterapi-20261004";
+const visitorBaselineUrl = "visitor-baseline.json?v=20261004-durable-counts";
+const visitorCounterUrl = "https://cdn.busuanzi.cc/api.php";
+const visitorStatsStorageKey = "feigong-visitor-stats-history-v4";
+const visitorStatsSource = "busuanzi-history+busuanzi.cc-20261004";
+// Counts observed before deployment, including excluded diagnostic requests.
+const visitorCounterStart = { pageViews: 3, visitors: 1 };
 // Verified original response, dated 2026-10-01 23:30:23 UTC; never a guessed seed.
 const visitorHistoricalMinimum = { pageViews: 1163, visitors: 830 };
 let latestVisitorStats = null;
@@ -1694,6 +1693,10 @@ function readEmbeddedVisitorBaseline() {
     counterOffsets: {
       pageViews: Number(data.counterOffsetPageViews) || 0,
       visitors: Number(data.counterOffsetVisitors) || 0,
+    },
+    counterStart: {
+      pageViews: isVisitorCount(Number(data.counterStartPageViews)) ? Number(data.counterStartPageViews) : visitorCounterStart.pageViews,
+      visitors: isVisitorCount(Number(data.counterStartVisitors)) ? Number(data.counterStartVisitors) : visitorCounterStart.visitors,
     },
     snapshot: isPreservedVisitorStats(snapshot) ? snapshot : visitorHistoricalMinimum,
   };
@@ -1735,7 +1738,7 @@ function preserveVisitorStats(stats, state = "saved") {
 function readCachedVisitorStats() {
   try {
     const cached = JSON.parse(localStorage.getItem(visitorStatsStorageKey));
-    if (cached?.schema === 3 && cached.source === visitorStatsSource && isPreservedVisitorStats(cached)) {
+    if (cached?.schema === 4 && cached.source === visitorStatsSource && isPreservedVisitorStats(cached)) {
       return cached;
     }
   } catch (_error) {
@@ -1769,27 +1772,28 @@ async function withVisitorTimeout(operation) {
   }
 }
 
-async function fetchVisitorCount(url, startNumber, signal) {
-  const isProductionSite = window.location.protocol === "https:"
-    && window.location.hostname === "yanglaihao.github.io"
-    && new URLSearchParams(window.location.search).get("counterPreview") !== "1";
-  const requestUrl = new URL(url);
-  requestUrl.searchParams.set("startNumber", String(startNumber));
-  if (!isProductionSite) requestUrl.searchParams.set("readOnly", "true");
-  const response = await fetch(requestUrl.toString(), {
+async function fetchLiveVisitorStats(baseline, signal) {
+  const response = await fetch(visitorCounterUrl, {
+    method: "POST",
     cache: "no-store",
     mode: "cors",
     signal,
+    body: JSON.stringify({ url: "https://yanglaihao.github.io/", referrer: document.referrer || "" }),
   });
-  if (!response.ok) {
-    throw new Error(`Visitor counter returned ${response.status}`);
-  }
+  if (!response.ok) throw new Error(`Visitor counter returned ${response.status}`);
   const result = await response.json();
-  const value = result.value;
-  if (!isVisitorCount(value) || value < startNumber) {
-    throw new Error("Visitor counter returned an invalid value");
+  const raw = { pageViews: result.busuanzi_site_pv, visitors: result.busuanzi_site_uv };
+  const start = baseline.counterStart || visitorCounterStart;
+  const stats = {};
+  for (const key of ["pageViews", "visitors"]) {
+    if (!isVisitorCount(raw[key]) || !isVisitorCount(start[key]) || raw[key] < start[key]) {
+      throw new Error("Visitor counter returned invalid or decreasing totals");
+    }
+    const offset = isVisitorCount(baseline.counterOffsets?.[key]) ? baseline.counterOffsets[key] : 0;
+    stats[key] = baseline[key] + offset + raw[key] - start[key];
   }
-  return value;
+  if (!isPreservedVisitorStats(stats)) throw new Error("Visitor counter returned inconsistent totals");
+  return stats;
 }
 
 async function updateVisitorStats() {
@@ -1808,19 +1812,19 @@ async function updateVisitorStats() {
   } catch (_error) {
     // Embedded, verified totals also cover a missing or unavailable JSON file.
   }
-  const results = await Promise.allSettled([
-    withVisitorTimeout((signal) => fetchVisitorCount(visitorCounterUrls.pageViews,
-      baseline.pageViews + (isVisitorCount(baseline.counterOffsets?.pageViews) ? baseline.counterOffsets.pageViews : 0), signal)),
-    withVisitorTimeout((signal) => fetchVisitorCount(visitorCounterUrls.visitors,
-      baseline.visitors + (isVisitorCount(baseline.counterOffsets?.visitors) ? baseline.counterOffsets.visitors : 0), signal)),
-  ]);
-  const stats = { ...latestVisitorStats };
-  if (results[0].status === "fulfilled") stats.pageViews = results[0].value;
-  if (results[1].status === "fulfilled") stats.visitors = results[1].value;
-  preserveVisitorStats(stats, results.every((result) => result.status === "fulfilled") ? "live" : "saved");
+  const isProductionSite = window.location.protocol === "https:"
+    && window.location.hostname === "yanglaihao.github.io"
+    && new URLSearchParams(window.location.search).get("counterPreview") !== "1";
+  if (!isProductionSite) return;
+  try {
+    const stats = await withVisitorTimeout((signal) => fetchLiveVisitorStats(baseline, signal));
+    preserveVisitorStats(stats, "live");
+  } catch (_error) {
+    // An outage cannot replace verified totals with a new counter or zero.
+  }
   try {
     localStorage.setItem(visitorStatsStorageKey, JSON.stringify({
-      ...latestVisitorStats, schema: 3, source: visitorStatsSource,
+      ...latestVisitorStats, schema: 4, source: visitorStatsSource,
     }));
   } catch (_error) {
     // Storage restrictions never prevent the saved totals from rendering.

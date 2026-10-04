@@ -55,33 +55,40 @@ async function check() {
   assert.equal(offline.elements.busuanzi_value_site_pv.textContent, "1,163");
   assert.equal(offline.requests.length, 0, "opening the local file must not create production visits");
 
-  const cached = JSON.stringify({ schema: 3, source: "busuanzi-history+counterapi-20261004", pageViews: 1200, visitors: 840 });
-  const regression = await runScenario({ stored: { "feigong-visitor-stats-history-v3": cached }, fetcher: async (url) => {
+  const cached = JSON.stringify({ schema: 4, source: "busuanzi-history+busuanzi.cc-20261004", pageViews: 1200, visitors: 840 });
+  const regression = await runScenario({ stored: { "feigong-visitor-stats-history-v4": cached }, fetcher: async (url) => {
     if (url.startsWith("visitor-baseline")) throw new Error("baseline offline");
-    return { ok: true, json: async () => ({ value: url.includes("pageview") ? 1164 : 831 }) };
+    return { ok: true, json: async () => ({ busuanzi_site_pv: 4, busuanzi_site_uv: 2 }) };
   } });
   assert.equal(regression.elements.busuanzi_value_site_pv.textContent, "1,200", "stale provider responses must not lower a preserved total");
   assert.equal(regression.elements.busuanzi_value_site_uv.textContent, "840");
 
-  const live = await runScenario({ hostname: "localhost", storageBlocked: true, fetcher: async (url) => {
-    if (url.startsWith("visitor-baseline")) return { ok: true, json: async () => ({ status: "recovered", pageViews: 1163, visitors: 830 }) };
-    assert.equal(new URL(url).searchParams.get("readOnly"), "true", "preview environments must use read-only production totals");
-    return { ok: true, json: async () => ({ value: url.includes("pageview") ? 1170 : 832 }) };
+  const live = await runScenario({ storageBlocked: true, fetcher: async (url, options) => {
+    if (url.startsWith("visitor-baseline")) return { ok: true, json: async () => ({ status: "recovered", pageViews: 1163, visitors: 830, counterStart: { pageViews: 3, visitors: 1 } }) };
+    assert.equal(options.method, "POST", "a real page load must record exactly one visit");
+    assert.equal(JSON.parse(options.body).url, "https://yanglaihao.github.io/", "tracking must stay attached to the production domain");
+    return { ok: true, json: async () => ({ busuanzi_site_pv: 10, busuanzi_site_uv: 3 }) };
   } });
-  assert.equal(live.elements.busuanzi_value_site_pv.textContent, "1,170", "blocked storage must not disable live display");
-  assert.equal(live.elements.busuanzi_value_site_uv.textContent, "832");
+  assert.equal(live.elements.busuanzi_value_site_pv.textContent, "1,170", "diagnostic counts must be excluded while preserving historical page views");
+  assert.equal(live.elements.busuanzi_value_site_uv.textContent, "832", "blocked storage must not disable live display or server visitor deduplication");
+  assert.equal(live.requests.filter((url) => url.includes("api.php")).length, 1);
   vm.runInContext('currentLanguage = "en"; renderVisitorStats(latestVisitorStats)', live.context);
   assert.match(live.container.title, /verified historical totals/, "saved-count explanations must switch language");
 
-  const partial = await runScenario({ fetcher: async (url) => {
-    if (url.startsWith("visitor-baseline")) return { ok: true, json: async () => ({ status: "recovered", pageViews: null, visitors: null }) };
-    if (url.includes("visitor-")) throw new Error("one metric offline");
-    return { ok: true, json: async () => ({ value: 1171 }) };
+  const preview = await runScenario({ hostname: "localhost", fetcher: async (url) => {
+    assert.ok(url.startsWith("visitor-baseline"), "a preview must not record a production visit");
+    return { ok: true, json: async () => ({ status: "recovered", pageViews: 1163, visitors: 830, snapshot: { pageViews: 1170, visitors: 832 } }) };
   } });
-  assert.equal(partial.elements.busuanzi_value_site_pv.textContent, "1,171", "one failed metric must not discard the successful metric");
-  assert.equal(partial.elements.busuanzi_value_site_uv.textContent, "830", "null baseline values must never become zero");
+  assert.equal(preview.elements.busuanzi_value_site_pv.textContent, "1,170");
 
-  const invalid = await runScenario({ stored: { "feigong-visitor-stats-history-v3": JSON.stringify({ pageViews: 1, visitors: 1 }) }, fetcher: async () => ({ ok: true, json: async () => ({ value: null }) }) });
+  const missingBaseline = await runScenario({ fetcher: async (url) => {
+    if (url.startsWith("visitor-baseline")) return { ok: true, json: async () => ({ status: "recovered", pageViews: null, visitors: null }) };
+    return { ok: true, json: async () => ({ busuanzi_site_pv: 11, busuanzi_site_uv: 1 }) };
+  } });
+  assert.equal(missingBaseline.elements.busuanzi_value_site_pv.textContent, "1,171", "the embedded baseline must support valid live data when the JSON file is invalid");
+  assert.equal(missingBaseline.elements.busuanzi_value_site_uv.textContent, "830", "null baseline values must never become zero");
+
+  const invalid = await runScenario({ stored: { "feigong-visitor-stats-history-v4": JSON.stringify({ pageViews: 1, visitors: 1 }) }, fetcher: async () => ({ ok: true, json: async () => ({ value: null }) }) });
   assert.equal(invalid.elements.busuanzi_value_site_pv.textContent, "1,163", "invalid values and the reset cache must not replace historical totals");
 
   const timedOut = await runScenario({ fastTimeouts: true, fetcher: async (_url, { signal }) => new Promise((_resolve, reject) => {

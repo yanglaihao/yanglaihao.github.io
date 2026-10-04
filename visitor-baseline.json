@@ -19,12 +19,18 @@
     "visitors": 0
   },
   "counterCheckpoint": {
-    "pageViews": 0,
-    "visitors": 0
+    "pageViews": null,
+    "visitors": null
   },
   "snapshot": {
     "pageViews": 1163,
     "visitors": 830,
-    "updatedAt": "2026-10-04T02:57:47.668520+00:00"
-  }
+    "updatedAt": "2026-10-04T03:23:53.647874+00:00"
+  },
+  "counterProvider": "busuanzi.cc",
+  "counterStart": {
+    "pageViews": 3,
+    "visitors": 1
+  },
+  "counterStartedAt": "2026-10-04T03:23:53.647874+00:00"
 }

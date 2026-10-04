@@ -12,7 +12,7 @@ now = "2026-10-04T04:00:00Z"
 
 # Start each simulation at the evidenced history, independent of future backups.
 fixture = copy.deepcopy(original)
-fixture.update(pageViews=1163, visitors=830, legacyRecovery={"status": "pending"}, counterOffsets={"pageViews": 0, "visitors": 0}, counterCheckpoint={"pageViews": None, "visitors": None}, snapshot={"pageViews": 1163, "visitors": 830, "updatedAt": fixture["historicalSnapshotAt"]})
+fixture.update(pageViews=1163, visitors=830, legacyRecovery={"status": "pending"}, counterStart={"pageViews": 3, "visitors": 1}, counterOffsets={"pageViews": 0, "visitors": 0}, counterCheckpoint={"pageViews": None, "visitors": None}, snapshot={"pageViews": 1163, "visitors": 830, "updatedAt": fixture["historicalSnapshotAt"]})
 baseline = backup.update_snapshot(copy.deepcopy(fixture), {"pageViews": 12, "visitors": 3}, now)
 assert baseline["snapshot"]["pageViews"] == 1175
 assert baseline["snapshot"]["visitors"] == 833
@@ -20,11 +20,20 @@ unavailable = backup.update_snapshot(copy.deepcopy(baseline), {"pageViews": None
 assert unavailable == baseline, "an outage must preserve the complete durable backup"
 
 reset = backup.update_snapshot(copy.deepcopy(baseline), {"pageViews": 1, "visitors": 1}, now)
-assert reset["snapshot"]["pageViews"] == 1176, "a reset must resume above the saved page-view count"
-assert reset["snapshot"]["visitors"] == 834
-continued = backup.update_snapshot(reset, {"pageViews": 2, "visitors": 1}, now)
-assert continued["snapshot"]["pageViews"] == 1177
-assert continued["snapshot"]["visitors"] == 834, "repeated visitors must not increment the unique total"
+assert reset == baseline, "a reset or stale response must preserve saved counts without inventing increments"
+continued = backup.update_snapshot(reset, {"pageViews": 13, "visitors": 3}, now)
+assert continued["snapshot"]["pageViews"] == 1176
+assert continued["snapshot"]["visitors"] == 833, "repeated visitors must not increment the unique total"
+
+sample = '<title>站点 yanglaihao.github.io 的统计信息 - 不蒜子</title>站点总访问量<e class="example-count"><span>15</span> 次</e>站点总访客数<e class="example-count"><span>4</span> 人</e>'
+assert backup.parse_counter_stats(sample) == {"pageViews": 15, "visitors": 4}
+backup.request_text = lambda _url: sample
+assert backup.read_counter_stats(fixture) == {"pageViews": 12, "visitors": 3}, "diagnostic requests must be excluded from durable backups"
+try:
+    backup.parse_counter_stats(sample.replace("yanglaihao.github.io", "another.example"))
+    raise AssertionError("wrong-domain data must be rejected")
+except ValueError:
+    pass
 
 invalid = backup.update_snapshot(copy.deepcopy(baseline), {"pageViews": False, "visitors": "9"}, now)
 assert invalid == baseline
