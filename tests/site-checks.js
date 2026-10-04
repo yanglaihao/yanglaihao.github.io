@@ -519,7 +519,11 @@ assert.ok(html.includes('src="assets/team-profile.jpg"'), "hero image should kee
 assert.ok(!html.includes("/.netlify/images?url="), "GitHub Pages deployment should not depend on Netlify Image CDN URLs");
 assert.ok(html.includes("busuanzi_value_site_pv"), "footer should expose site page-view statistics");
 assert.ok(html.includes("busuanzi_value_site_uv"), "footer should expose site visitor statistics");
-assert.ok(html.includes("busuanzi.pure.mini.js"), "static site should load the Busuanzi counter script");
+assert.ok(!html.includes("busuanzi.pure.mini.js"), "static site should not depend on the unresponsive Busuanzi data service");
+assert.ok(script.includes("https://counterapi.com/api/yanglaihao.github.io/view/site"), "page-view statistics should use the responsive CounterAPI endpoint");
+assert.ok(script.includes("https://counterapi.com/api/yanglaihao.github.io/visit/site?unique=true"), "visitor statistics should request unique users from CounterAPI");
+assert.ok(script.includes("AbortController"), "visitor statistics should stop waiting when the counter service times out");
+assert.ok(script.includes("feigong-visitor-stats"), "visitor statistics should keep the last successful result as a temporary fallback");
 assert.ok(styles.includes(".site-qr figcaption") && styles.includes("white-space: nowrap"), "QR caption should stay on one line");
 assert.ok(script.includes("attributeTranslations"), "language switching should translate important accessibility attributes and metadata");
 assert.ok(script.includes("translateAttributes"), "language switching should update image alt text and aria labels");

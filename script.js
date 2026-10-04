@@ -1639,6 +1639,85 @@ function showMemberPanel(selected) {
   });
 }
 
+const visitorCounterUrls = {
+  pageViews: "https://counterapi.com/api/yanglaihao.github.io/view/site",
+  visitors: "https://counterapi.com/api/yanglaihao.github.io/visit/site?unique=true",
+};
+const visitorStatsStorageKey = "feigong-visitor-stats";
+
+function formatVisitorCount(value) {
+  return new Intl.NumberFormat(currentLanguage === "en" ? "en-US" : "zh-CN").format(value);
+}
+
+function renderVisitorStats(stats) {
+  const pageViews = document.getElementById("busuanzi_value_site_pv");
+  const visitors = document.getElementById("busuanzi_value_site_uv");
+  if (pageViews && Number.isFinite(stats.pageViews)) {
+    pageViews.textContent = formatVisitorCount(stats.pageViews);
+  }
+  if (visitors && Number.isFinite(stats.visitors)) {
+    visitors.textContent = formatVisitorCount(stats.visitors);
+  }
+}
+
+function readCachedVisitorStats() {
+  try {
+    const cached = JSON.parse(localStorage.getItem(visitorStatsStorageKey));
+    if (Number.isFinite(cached?.pageViews) && Number.isFinite(cached?.visitors)) {
+      return cached;
+    }
+  } catch (_error) {
+    // Storage can be unavailable in privacy-restricted browsing contexts.
+  }
+  return null;
+}
+
+async function fetchVisitorCount(url, signal) {
+  const isProductionSite = window.location.hostname === "yanglaihao.github.io";
+  const requestUrl = isProductionSite
+    ? url
+    : `${url}${url.includes("?") ? "&" : "?"}readOnly=true`;
+  const response = await fetch(requestUrl, {
+    cache: "no-store",
+    mode: "cors",
+    signal,
+  });
+  if (!response.ok) {
+    throw new Error(`Visitor counter returned ${response.status}`);
+  }
+  const result = await response.json();
+  const value = Number(result.value);
+  if (!Number.isFinite(value)) {
+    throw new Error("Visitor counter returned an invalid value");
+  }
+  return value;
+}
+
+async function updateVisitorStats() {
+  const cached = readCachedVisitorStats();
+  if (cached) renderVisitorStats(cached);
+
+  const controller = new AbortController();
+  const timeout = window.setTimeout(() => controller.abort(), 8000);
+  try {
+    const [pageViews, visitors] = await Promise.all([
+      fetchVisitorCount(visitorCounterUrls.pageViews, controller.signal),
+      fetchVisitorCount(visitorCounterUrls.visitors, controller.signal),
+    ]);
+    const stats = { pageViews, visitors };
+    renderVisitorStats(stats);
+    try {
+      localStorage.setItem(visitorStatsStorageKey, JSON.stringify(stats));
+    } catch (_error) {
+      // The live values still render when storage is unavailable.
+    }
+  } catch (_error) {
+    // Keep the last successful values, or the existing placeholder if none exist.
+  } finally {
+    window.clearTimeout(timeout);
+  }
+}
+
 themeButton?.addEventListener("click", () => {
   applyTheme(currentTheme === "light" ? "dark" : "light");
 });
@@ -1706,3 +1785,4 @@ applyTheme(currentTheme);
 applyLanguage(currentLanguage);
 showMemberPanel("faculty");
 showOutputCategory("highlight-output");
+updateVisitorStats();
