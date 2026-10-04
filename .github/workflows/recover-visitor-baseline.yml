@@ -1,0 +1,98 @@
+name: Recover historical visitor baseline
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - .github/workflows/recover-visitor-baseline.yml
+  schedule:
+    - cron: "17,47 * * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: recover-historical-visitor-baseline
+  cancel-in-progress: false
+
+jobs:
+  recover:
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Check whether recovery is already complete
+        id: state
+        shell: bash
+        run: |
+          if python3 -c 'import json; raise SystemExit(0 if json.load(open("visitor-baseline.json"))["status"] == "recovered" else 1)'; then
+            echo "complete=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "complete=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Read the original Busuanzi totals
+        id: probe
+        if: steps.state.outputs.complete != 'true'
+        shell: bash
+        run: |
+          if ! curl --http1.1 -4 --connect-timeout 10 --max-time 70 --fail --silent --show-error \
+              'https://busuanzi.ibruce.info/busuanzi?jsonpCallback=RecoverHistoricalVisitorStats' \
+              -H 'Referer: https://yanglaihao.github.io/' \
+              -H 'User-Agent: Mozilla/5.0' \
+              --output /tmp/busuanzi-response.js; then
+            echo "available=false" >> "$GITHUB_OUTPUT"
+            echo "The original counter is still unavailable; recovery will retry on schedule."
+            exit 0
+          fi
+
+          if ! python3 - <<'PY'
+          import datetime
+          import json
+          import re
+          from pathlib import Path
+
+          response = Path('/tmp/busuanzi-response.js').read_text(encoding='utf-8')
+          match = re.search(r'RecoverHistoricalVisitorStats\((\{.*?\})\)', response)
+          if not match:
+              raise SystemExit('The original counter did not return a valid JSONP payload.')
+
+          data = json.loads(match.group(1))
+          page_views = int(data['site_pv'])
+          visitors = int(data['site_uv'])
+          if page_views < 1 or visitors < 1:
+              raise SystemExit('The original counter returned invalid totals.')
+
+          baseline = {
+              'status': 'recovered',
+              # The recovery request itself is counted once by Busuanzi.
+              'pageViews': page_views - 1,
+              'visitors': visitors - 1,
+              'source': 'busuanzi.ibruce.info',
+              'recoveredAt': datetime.datetime.now(datetime.timezone.utc).isoformat(),
+          }
+          Path('visitor-baseline.json').write_text(
+              json.dumps(baseline, ensure_ascii=False, indent=2) + '\n',
+              encoding='utf-8',
+          )
+          PY
+          then
+            echo "available=false" >> "$GITHUB_OUTPUT"
+            echo "The original counter returned an unusable response; recovery will retry on schedule."
+            exit 0
+          fi
+
+          echo "available=true" >> "$GITHUB_OUTPUT"
+
+      - name: Save the recovered baseline
+        if: steps.state.outputs.complete != 'true' && steps.probe.outputs.available == 'true'
+        shell: bash
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add visitor-baseline.json
+          git commit -m 'fix: preserve historical visitor totals'
+          git push

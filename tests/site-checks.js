@@ -7,6 +7,8 @@ const html = fs.readFileSync(path.join(root, "index.html"), "utf8");
 const script = fs.readFileSync(path.join(root, "script.js"), "utf8");
 const styles = fs.readFileSync(path.join(root, "styles.css"), "utf8");
 const handoff = fs.readFileSync(path.join(root, "HANDOFF.md"), "utf8");
+const visitorBaseline = JSON.parse(fs.readFileSync(path.join(root, "visitor-baseline.json"), "utf8"));
+const visitorRecoveryWorkflow = fs.readFileSync(path.join(root, ".github/workflows/recover-visitor-baseline.yml"), "utf8");
 
 function matchAll(pattern, source = html) {
   return Array.from(source.matchAll(pattern));
@@ -520,11 +522,22 @@ assert.ok(!html.includes("/.netlify/images?url="), "GitHub Pages deployment shou
 assert.ok(html.includes("busuanzi_value_site_pv"), "footer should expose site page-view statistics");
 assert.ok(html.includes("busuanzi_value_site_uv"), "footer should expose site visitor statistics");
 assert.ok(!html.includes("busuanzi.pure.mini.js"), "static site should not depend on the unresponsive Busuanzi data service");
-assert.ok(html.includes('src="script.js?v=20261004-counter-fix"'), "counter repair should bypass stale cached copies of the site script");
-assert.ok(script.includes("https://counterapi.com/api/yanglaihao.github.io/view/site"), "page-view statistics should use the responsive CounterAPI endpoint");
-assert.ok(script.includes("https://counterapi.com/api/yanglaihao.github.io/visit/site?unique=true"), "visitor statistics should request unique users from CounterAPI");
+assert.ok(html.includes('src="script.js?v=20261004-history-recovery"'), "history recovery should bypass stale cached copies of the site script");
+assert.ok(script.includes("visitor-baseline.json?v=20261004-history-recovery"), "visitor statistics should load the preserved historical baseline");
+assert.ok(script.includes("https://busuanzi.ibruce.info/busuanzi?jsonpCallback=BusuanziCallback"), "visitor statistics should keep a direct recovery path to the original Busuanzi dataset");
+assert.ok(script.includes("https://counterapi.com/api/yanglaihao.github.io/recovered-pageview-20261004/site"), "page views should use a fresh delta counter after the historical baseline is recovered");
+assert.ok(script.includes("https://counterapi.com/api/yanglaihao.github.io/recovered-visitor-20261004/site?unique=true"), "visitors should use a fresh unique delta counter after the historical baseline is recovered");
+assert.ok(script.includes('searchParams.set("startNumber"'), "recovered historical counts should be added to all future counter reads");
 assert.ok(script.includes("AbortController"), "visitor statistics should stop waiting when the counter service times out");
-assert.ok(script.includes("feigong-visitor-stats"), "visitor statistics should keep the last successful result as a temporary fallback");
+assert.ok(script.includes("feigong-visitor-stats-history-v2"), "visitor statistics should keep only recovered values in a separate cache");
+assert.ok(!script.includes("https://counterapi.com/api/yanglaihao.github.io/view/site"), "the reset page-view counter must not be reused");
+assert.ok(!script.includes("https://counterapi.com/api/yanglaihao.github.io/visit/site?unique=true"), "the reset visitor counter must not be reused");
+assert.equal(visitorBaseline.status, "pending", "historical statistics must remain pending until the original service returns authoritative values");
+assert.equal(visitorBaseline.pageViews, null, "the historical page-view baseline must not be guessed");
+assert.equal(visitorBaseline.visitors, null, "the historical visitor baseline must not be guessed");
+assert.ok(visitorRecoveryWorkflow.includes('cron: "17,47 * * * *"'), "recovery should retry the original service twice per hour");
+assert.ok(visitorRecoveryWorkflow.includes("'pageViews': page_views - 1"), "the automated recovery probe itself must not inflate historical page views");
+assert.ok(visitorRecoveryWorkflow.includes("'visitors': visitors - 1"), "the automated recovery probe itself must not inflate historical visitors");
 assert.ok(styles.includes(".site-qr figcaption") && styles.includes("white-space: nowrap"), "QR caption should stay on one line");
 assert.ok(script.includes("attributeTranslations"), "language switching should translate important accessibility attributes and metadata");
 assert.ok(script.includes("translateAttributes"), "language switching should update image alt text and aria labels");

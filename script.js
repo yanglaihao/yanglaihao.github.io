@@ -1639,11 +1639,13 @@ function showMemberPanel(selected) {
   });
 }
 
+const legacyVisitorCounterUrl = "https://busuanzi.ibruce.info/busuanzi?jsonpCallback=BusuanziCallback";
+const visitorBaselineUrl = "visitor-baseline.json?v=20261004-history-recovery";
 const visitorCounterUrls = {
-  pageViews: "https://counterapi.com/api/yanglaihao.github.io/view/site",
-  visitors: "https://counterapi.com/api/yanglaihao.github.io/visit/site?unique=true",
+  pageViews: "https://counterapi.com/api/yanglaihao.github.io/recovered-pageview-20261004/site",
+  visitors: "https://counterapi.com/api/yanglaihao.github.io/recovered-visitor-20261004/site?unique=true",
 };
-const visitorStatsStorageKey = "feigong-visitor-stats";
+const visitorStatsStorageKey = "feigong-visitor-stats-history-v2";
 
 function formatVisitorCount(value) {
   return new Intl.NumberFormat(currentLanguage === "en" ? "en-US" : "zh-CN").format(value);
@@ -1660,6 +1662,14 @@ function renderVisitorStats(stats) {
   }
 }
 
+function renderVisitorRecoveryStatus() {
+  const statusText = currentLanguage === "en" ? "recovering" : "恢复中";
+  const pageViews = document.getElementById("busuanzi_value_site_pv");
+  const visitors = document.getElementById("busuanzi_value_site_uv");
+  if (pageViews) pageViews.textContent = statusText;
+  if (visitors) visitors.textContent = statusText;
+}
+
 function readCachedVisitorStats() {
   try {
     const cached = JSON.parse(localStorage.getItem(visitorStatsStorageKey));
@@ -1672,12 +1682,73 @@ function readCachedVisitorStats() {
   return null;
 }
 
-async function fetchVisitorCount(url, signal) {
+async function fetchVisitorBaseline(signal) {
+  const response = await fetch(visitorBaselineUrl, {
+    cache: "no-store",
+    signal,
+  });
+  if (!response.ok) {
+    throw new Error(`Visitor baseline returned ${response.status}`);
+  }
+  const baseline = await response.json();
+  const pageViews = Number(baseline.pageViews);
+  const visitors = Number(baseline.visitors);
+  if (baseline.status !== "recovered" || !Number.isFinite(pageViews) || !Number.isFinite(visitors)) {
+    return null;
+  }
+  return { pageViews, visitors };
+}
+
+function fetchLegacyVisitorStats(timeoutMs = 8000) {
+  return new Promise((resolve, reject) => {
+    const callbackName = `BusuanziCallback_${Math.floor(Math.random() * 1099511627776)}`;
+    const script = document.createElement("script");
+    let settled = false;
+
+    const cleanup = () => {
+      window.clearTimeout(timeout);
+      script.remove();
+      try {
+        delete window[callbackName];
+      } catch (_error) {
+        window[callbackName] = undefined;
+      }
+    };
+
+    const finish = (handler, value) => {
+      if (settled) return;
+      settled = true;
+      cleanup();
+      handler(value);
+    };
+
+    window[callbackName] = (result) => {
+      const pageViews = Number(result?.site_pv);
+      const visitors = Number(result?.site_uv);
+      if (!Number.isFinite(pageViews) || !Number.isFinite(visitors)) {
+        finish(reject, new Error("Busuanzi returned invalid historical statistics"));
+        return;
+      }
+      finish(resolve, { pageViews, visitors });
+    };
+
+    const timeout = window.setTimeout(() => {
+      finish(reject, new Error("Busuanzi historical statistics timed out"));
+    }, timeoutMs);
+    script.async = true;
+    script.referrerPolicy = "no-referrer-when-downgrade";
+    script.onerror = () => finish(reject, new Error("Busuanzi historical statistics failed to load"));
+    script.src = legacyVisitorCounterUrl.replace("BusuanziCallback", callbackName);
+    document.head.appendChild(script);
+  });
+}
+
+async function fetchVisitorCount(url, startNumber, signal) {
   const isProductionSite = window.location.hostname === "yanglaihao.github.io";
-  const requestUrl = isProductionSite
-    ? url
-    : `${url}${url.includes("?") ? "&" : "?"}readOnly=true`;
-  const response = await fetch(requestUrl, {
+  const requestUrl = new URL(url);
+  requestUrl.searchParams.set("startNumber", String(startNumber));
+  if (!isProductionSite) requestUrl.searchParams.set("readOnly", "true");
+  const response = await fetch(requestUrl.toString(), {
     cache: "no-store",
     mode: "cors",
     signal,
@@ -1695,14 +1766,30 @@ async function fetchVisitorCount(url, signal) {
 
 async function updateVisitorStats() {
   const cached = readCachedVisitorStats();
-  if (cached) renderVisitorStats(cached);
+  if (cached) {
+    renderVisitorStats(cached);
+  } else {
+    renderVisitorRecoveryStatus();
+  }
 
   const controller = new AbortController();
   const timeout = window.setTimeout(() => controller.abort(), 8000);
   try {
+    const baseline = await fetchVisitorBaseline(controller.signal);
+    if (!baseline) {
+      const legacyStats = await fetchLegacyVisitorStats();
+      renderVisitorStats(legacyStats);
+      try {
+        localStorage.setItem(visitorStatsStorageKey, JSON.stringify(legacyStats));
+      } catch (_error) {
+        // The recovered values still render when storage is unavailable.
+      }
+      return;
+    }
+
     const [pageViews, visitors] = await Promise.all([
-      fetchVisitorCount(visitorCounterUrls.pageViews, controller.signal),
-      fetchVisitorCount(visitorCounterUrls.visitors, controller.signal),
+      fetchVisitorCount(visitorCounterUrls.pageViews, baseline.pageViews, controller.signal),
+      fetchVisitorCount(visitorCounterUrls.visitors, baseline.visitors, controller.signal),
     ]);
     const stats = { pageViews, visitors };
     renderVisitorStats(stats);
@@ -1712,7 +1799,7 @@ async function updateVisitorStats() {
       // The live values still render when storage is unavailable.
     }
   } catch (_error) {
-    // Keep the last successful values, or the existing placeholder if none exist.
+    // Keep the last recovered values, or the visible recovery state if none exist.
   } finally {
     window.clearTimeout(timeout);
   }
