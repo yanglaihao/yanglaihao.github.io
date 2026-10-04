@@ -1,7 +1,30 @@
 {
-  "status": "pending",
-  "pageViews": null,
-  "visitors": null,
+  "status": "recovered",
+  "pageViews": 1163,
+  "visitors": 830,
   "source": "busuanzi.ibruce.info",
-  "recoveredAt": null
+  "recoveryMethod": "browser-cache",
+  "historicalSnapshotAt": "2026-10-01T23:30:23Z",
+  "recoveredAt": "2026-10-04T02:47:27.998121+00:00",
+  "evidence": {
+    "response": "try{BusuanziCallback_844905044133({\"site_uv\":830,\"page_pv\":1161,\"version\":2.4,\"site_pv\":1163});}catch(e){}",
+    "responseDate": "Thu, 01 Oct 2026 23:30:23 GMT",
+    "responseSha256": "d7da366b61222c0698badb5c718528252549337cbba3bad3ef0d097bec6c8053"
+  },
+  "legacyRecovery": {
+    "status": "pending"
+  },
+  "counterOffsets": {
+    "pageViews": 0,
+    "visitors": 0
+  },
+  "counterCheckpoint": {
+    "pageViews": null,
+    "visitors": null
+  },
+  "snapshot": {
+    "pageViews": 1163,
+    "visitors": 830,
+    "updatedAt": "2026-10-01T23:30:23Z"
+  }
 }

@@ -24,8 +24,24 @@ const memberSubtabGroups = document.querySelectorAll("[data-member-subtabs]");
 const memberTabs = document.querySelectorAll("[data-member-target]");
 const memberPanels = document.querySelectorAll("[data-member-panel]");
 
-let currentTheme = localStorage.getItem("theme") || "light";
-let currentLanguage = localStorage.getItem("language") || "zh";
+function readStoredPreference(key, fallback) {
+  try {
+    return localStorage.getItem(key) || fallback;
+  } catch (_error) {
+    return fallback;
+  }
+}
+
+function saveStoredPreference(key, value) {
+  try {
+    localStorage.setItem(key, value);
+  } catch (_error) {
+    // The page still works when the browser blocks storage.
+  }
+}
+
+let currentTheme = readStoredPreference("theme", "light");
+let currentLanguage = readStoredPreference("language", "zh");
 let researchRotation;
 let activeLabNoteId = "top-journal-writing";
 let activeLabNoteCategory = "all";
@@ -1508,14 +1524,14 @@ function renderLabNotesFeed() {
 function applyTheme(theme) {
   currentTheme = theme;
   root.dataset.theme = theme;
-  localStorage.setItem("theme", theme);
+  saveStoredPreference("theme", theme);
 }
 
 function applyLanguage(language) {
   currentLanguage = language;
   root.lang = language === "en" ? "en" : "zh-CN";
   root.dataset.language = language;
-  localStorage.setItem("language", language);
+  saveStoredPreference("language", language);
 
   i18nElements.forEach((element) => {
     const key = element.dataset.i18n;
@@ -1538,6 +1554,7 @@ function applyLanguage(language) {
     languageLabel.textContent = language === "en" ? "ZH" : "EN";
   }
   languageButton?.setAttribute("aria-pressed", String(language === "en"));
+  if (latestVisitorStats) renderVisitorStats(latestVisitorStats);
 }
 
 function applyFilter(buttons, items, buttonAttr, itemAttr, selected) {
@@ -1639,41 +1656,86 @@ function showMemberPanel(selected) {
   });
 }
 
-const legacyVisitorCounterUrl = "https://busuanzi.ibruce.info/busuanzi?jsonpCallback=BusuanziCallback";
-const visitorBaselineUrl = "visitor-baseline.json?v=20261004-history-recovery";
+const visitorBaselineUrl = "visitor-baseline.json?v=20261004-preserved-totals";
 const visitorCounterUrls = {
   pageViews: "https://counterapi.com/api/yanglaihao.github.io/recovered-pageview-20261004/site",
   visitors: "https://counterapi.com/api/yanglaihao.github.io/recovered-visitor-20261004/site?unique=true",
 };
-const visitorStatsStorageKey = "feigong-visitor-stats-history-v2";
+const visitorStatsStorageKey = "feigong-visitor-stats-history-v3";
+const visitorStatsSource = "busuanzi-history+counterapi-20261004";
+// Verified original response, dated 2026-10-01 23:30:23 UTC; never a guessed seed.
+const visitorHistoricalMinimum = { pageViews: 1163, visitors: 830 };
+let latestVisitorStats = null;
+
+function isVisitorCount(value) {
+  return Number.isSafeInteger(value) && value >= 0;
+}
+
+function isPreservedVisitorStats(stats) {
+  return isVisitorCount(stats?.pageViews) && isVisitorCount(stats?.visitors)
+    && stats.pageViews >= visitorHistoricalMinimum.pageViews
+    && stats.visitors >= visitorHistoricalMinimum.visitors
+    && stats.visitors <= stats.pageViews;
+}
+
+function readEmbeddedVisitorBaseline() {
+  const data = document.querySelector(".visitor-stats")?.dataset || {};
+  const baseline = {
+    pageViews: Number(data.baselinePageViews),
+    visitors: Number(data.baselineVisitors),
+  };
+  const snapshot = {
+    pageViews: Number(data.snapshotPageViews),
+    visitors: Number(data.snapshotVisitors),
+    updatedAt: data.snapshotUpdatedAt,
+  };
+  return {
+    ...(isPreservedVisitorStats(baseline) ? baseline : visitorHistoricalMinimum),
+    counterOffsets: {
+      pageViews: Number(data.counterOffsetPageViews) || 0,
+      visitors: Number(data.counterOffsetVisitors) || 0,
+    },
+    snapshot: isPreservedVisitorStats(snapshot) ? snapshot : visitorHistoricalMinimum,
+  };
+}
 
 function formatVisitorCount(value) {
   return new Intl.NumberFormat(currentLanguage === "en" ? "en-US" : "zh-CN").format(value);
 }
 
 function renderVisitorStats(stats) {
+  if (!isPreservedVisitorStats(stats)) return;
   const pageViews = document.getElementById("busuanzi_value_site_pv");
   const visitors = document.getElementById("busuanzi_value_site_uv");
-  if (pageViews && Number.isFinite(stats.pageViews)) {
+  if (pageViews) {
     pageViews.textContent = formatVisitorCount(stats.pageViews);
   }
-  if (visitors && Number.isFinite(stats.visitors)) {
+  if (visitors) {
     visitors.textContent = formatVisitorCount(stats.visitors);
+  }
+  const container = document.querySelector(".visitor-stats");
+  if (container) {
+    container.dataset.counterState = stats.state || "saved";
+    container.setAttribute("title", currentLanguage === "en"
+      ? "Includes verified historical totals. Saved totals remain visible when live statistics are unavailable."
+      : "包含已核实的历史累计数据；实时统计暂不可用时显示已保存的累计值。");
   }
 }
 
-function renderVisitorRecoveryStatus() {
-  const statusText = currentLanguage === "en" ? "recovering" : "恢复中";
-  const pageViews = document.getElementById("busuanzi_value_site_pv");
-  const visitors = document.getElementById("busuanzi_value_site_uv");
-  if (pageViews) pageViews.textContent = statusText;
-  if (visitors) visitors.textContent = statusText;
+function preserveVisitorStats(stats, state = "saved") {
+  if (!isPreservedVisitorStats(stats)) return;
+  latestVisitorStats = {
+    pageViews: Math.max(latestVisitorStats?.pageViews || 0, stats.pageViews),
+    visitors: Math.max(latestVisitorStats?.visitors || 0, stats.visitors),
+    state,
+  };
+  renderVisitorStats(latestVisitorStats);
 }
 
 function readCachedVisitorStats() {
   try {
     const cached = JSON.parse(localStorage.getItem(visitorStatsStorageKey));
-    if (Number.isFinite(cached?.pageViews) && Number.isFinite(cached?.visitors)) {
+    if (cached?.schema === 3 && cached.source === visitorStatsSource && isPreservedVisitorStats(cached)) {
       return cached;
     }
   } catch (_error) {
@@ -1691,60 +1753,26 @@ async function fetchVisitorBaseline(signal) {
     throw new Error(`Visitor baseline returned ${response.status}`);
   }
   const baseline = await response.json();
-  const pageViews = Number(baseline.pageViews);
-  const visitors = Number(baseline.visitors);
-  if (baseline.status !== "recovered" || !Number.isFinite(pageViews) || !Number.isFinite(visitors)) {
-    return null;
+  if (baseline.status !== "recovered" || !isPreservedVisitorStats(baseline)) {
+    throw new Error("Visitor baseline has no verified historical totals");
   }
-  return { pageViews, visitors };
+  return baseline;
 }
 
-function fetchLegacyVisitorStats(timeoutMs = 8000) {
-  return new Promise((resolve, reject) => {
-    const callbackName = `BusuanziCallback_${Math.floor(Math.random() * 1099511627776)}`;
-    const script = document.createElement("script");
-    let settled = false;
-
-    const cleanup = () => {
-      window.clearTimeout(timeout);
-      script.remove();
-      try {
-        delete window[callbackName];
-      } catch (_error) {
-        window[callbackName] = undefined;
-      }
-    };
-
-    const finish = (handler, value) => {
-      if (settled) return;
-      settled = true;
-      cleanup();
-      handler(value);
-    };
-
-    window[callbackName] = (result) => {
-      const pageViews = Number(result?.site_pv);
-      const visitors = Number(result?.site_uv);
-      if (!Number.isFinite(pageViews) || !Number.isFinite(visitors)) {
-        finish(reject, new Error("Busuanzi returned invalid historical statistics"));
-        return;
-      }
-      finish(resolve, { pageViews, visitors });
-    };
-
-    const timeout = window.setTimeout(() => {
-      finish(reject, new Error("Busuanzi historical statistics timed out"));
-    }, timeoutMs);
-    script.async = true;
-    script.referrerPolicy = "no-referrer-when-downgrade";
-    script.onerror = () => finish(reject, new Error("Busuanzi historical statistics failed to load"));
-    script.src = legacyVisitorCounterUrl.replace("BusuanziCallback", callbackName);
-    document.head.appendChild(script);
-  });
+async function withVisitorTimeout(operation) {
+  const controller = new AbortController();
+  const timeout = window.setTimeout(() => controller.abort(), 8000);
+  try {
+    return await operation(controller.signal);
+  } finally {
+    window.clearTimeout(timeout);
+  }
 }
 
 async function fetchVisitorCount(url, startNumber, signal) {
-  const isProductionSite = window.location.hostname === "yanglaihao.github.io";
+  const isProductionSite = window.location.protocol === "https:"
+    && window.location.hostname === "yanglaihao.github.io"
+    && new URLSearchParams(window.location.search).get("counterPreview") !== "1";
   const requestUrl = new URL(url);
   requestUrl.searchParams.set("startNumber", String(startNumber));
   if (!isProductionSite) requestUrl.searchParams.set("readOnly", "true");
@@ -1757,51 +1785,45 @@ async function fetchVisitorCount(url, startNumber, signal) {
     throw new Error(`Visitor counter returned ${response.status}`);
   }
   const result = await response.json();
-  const value = Number(result.value);
-  if (!Number.isFinite(value)) {
+  const value = result.value;
+  if (!isVisitorCount(value) || value < startNumber) {
     throw new Error("Visitor counter returned an invalid value");
   }
   return value;
 }
 
 async function updateVisitorStats() {
+  let baseline = readEmbeddedVisitorBaseline();
+  preserveVisitorStats(baseline.snapshot);
   const cached = readCachedVisitorStats();
   if (cached) {
-    renderVisitorStats(cached);
-  } else {
-    renderVisitorRecoveryStatus();
+    preserveVisitorStats(cached);
   }
-
-  const controller = new AbortController();
-  const timeout = window.setTimeout(() => controller.abort(), 8000);
+  // A file preview displays saved totals without creating production visits.
+  if (window.location.protocol === "file:") return;
   try {
-    const baseline = await fetchVisitorBaseline(controller.signal);
-    if (!baseline) {
-      const legacyStats = await fetchLegacyVisitorStats();
-      renderVisitorStats(legacyStats);
-      try {
-        localStorage.setItem(visitorStatsStorageKey, JSON.stringify(legacyStats));
-      } catch (_error) {
-        // The recovered values still render when storage is unavailable.
-      }
-      return;
-    }
-
-    const [pageViews, visitors] = await Promise.all([
-      fetchVisitorCount(visitorCounterUrls.pageViews, baseline.pageViews, controller.signal),
-      fetchVisitorCount(visitorCounterUrls.visitors, baseline.visitors, controller.signal),
-    ]);
-    const stats = { pageViews, visitors };
-    renderVisitorStats(stats);
-    try {
-      localStorage.setItem(visitorStatsStorageKey, JSON.stringify(stats));
-    } catch (_error) {
-      // The live values still render when storage is unavailable.
-    }
+    baseline = await withVisitorTimeout(fetchVisitorBaseline);
+    preserveVisitorStats(baseline);
+    preserveVisitorStats(baseline.snapshot);
   } catch (_error) {
-    // Keep the last recovered values, or the visible recovery state if none exist.
-  } finally {
-    window.clearTimeout(timeout);
+    // Embedded, verified totals also cover a missing or unavailable JSON file.
+  }
+  const results = await Promise.allSettled([
+    withVisitorTimeout((signal) => fetchVisitorCount(visitorCounterUrls.pageViews,
+      baseline.pageViews + (isVisitorCount(baseline.counterOffsets?.pageViews) ? baseline.counterOffsets.pageViews : 0), signal)),
+    withVisitorTimeout((signal) => fetchVisitorCount(visitorCounterUrls.visitors,
+      baseline.visitors + (isVisitorCount(baseline.counterOffsets?.visitors) ? baseline.counterOffsets.visitors : 0), signal)),
+  ]);
+  const stats = { ...latestVisitorStats };
+  if (results[0].status === "fulfilled") stats.pageViews = results[0].value;
+  if (results[1].status === "fulfilled") stats.visitors = results[1].value;
+  preserveVisitorStats(stats, results.every((result) => result.status === "fulfilled") ? "live" : "saved");
+  try {
+    localStorage.setItem(visitorStatsStorageKey, JSON.stringify({
+      ...latestVisitorStats, schema: 3, source: visitorStatsSource,
+    }));
+  } catch (_error) {
+    // Storage restrictions never prevent the saved totals from rendering.
   }
 }
 
