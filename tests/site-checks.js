@@ -520,6 +520,7 @@ assert.ok(!html.includes("/.netlify/images?url="), "GitHub Pages deployment shou
 assert.ok(html.includes("busuanzi_value_site_pv"), "footer should expose site page-view statistics");
 assert.ok(html.includes("busuanzi_value_site_uv"), "footer should expose site visitor statistics");
 assert.ok(!html.includes("busuanzi.pure.mini.js"), "static site should not depend on the unresponsive Busuanzi data service");
+assert.ok(html.includes('src="script.js?v=20261004-counter-fix"'), "counter repair should bypass stale cached copies of the site script");
 assert.ok(script.includes("https://counterapi.com/api/yanglaihao.github.io/view/site"), "page-view statistics should use the responsive CounterAPI endpoint");
 assert.ok(script.includes("https://counterapi.com/api/yanglaihao.github.io/visit/site?unique=true"), "visitor statistics should request unique users from CounterAPI");
 assert.ok(script.includes("AbortController"), "visitor statistics should stop waiting when the counter service times out");
