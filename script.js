@@ -51,10 +51,10 @@ let welcomeHighlightTimer;
 
 const translations = {
   zh: {
-    "meta.description": "西安交通大学非攻机器人实验室，面向航空发动机等高端装备，发展少拆解、少损伤、少停机的在位具身智能机器人。",
-    "meta.ogTitle": "非攻机器人实验室 | 西安交通大学",
+    "meta.description": "西安交通大学高端装备智能检修机器人实验室，面向航空发动机等高端装备，发展少拆解、少损伤、少停机的在位具身智能机器人。",
+    "meta.ogTitle": "高端装备智能检修机器人实验室 | 西安交通大学",
     "meta.ogDescription": "面向航空发动机等高端装备，开展智能诊断、原位介入、具身操作、智能传感与健康管理研究。",
-    "brand.title": "非攻机器人实验室",
+    "brand.title": "高端装备智能检修机器人实验室",
     "brand.unit": "西安交通大学 · 机械工程学院",
     "nav.home": "首页",
     "nav.welcome": "欢迎页",
@@ -66,8 +66,8 @@ const translations = {
     "nav.achievements": "团队成果",
     "nav.service": "社会服务",
     "nav.contact": "联系方式",
-    "hero.title": "非攻机器人实验室",
-    "hero.subtitle": "取“非攻”一器多形之巧，造因境而变、入微而作的具身智能机器人；以一器多形、因境而变、入微而作的机构学寓意，面向航空发动机等高端装备内部深腔、狭窄通道和复杂曲面损伤，发展软体/连续体机器人、爬行机器人、触觉传感与灵巧操作，以尽量少拆解、少损伤、少停机的方式完成高端装备在位诊断、进入和维护。",
+    "hero.title": "高端装备智能检修机器人实验室",
+    "hero.subtitle": "面向航空发动机等高端装备内部深腔、狭窄通道和复杂曲面损伤，围绕“一器多形、因境而变、入微而作”的研究理念，发展软体/连续体机器人、爬行机器人、触觉传感与灵巧操作，以尽量少拆解、少损伤、少停机的方式完成高端装备在位诊断、进入和维护。",
     "hero.meta.continuum": "软体/连续体机器人",
     "hero.meta.crawling": "爬行机器人",
     "hero.meta.embodied": "具身智能",
@@ -84,7 +84,7 @@ const translations = {
     "hero.facts.outputs.value": "论文 100+ / 专利 100+",
     "welcome.eyebrow": "Welcome",
     "welcome.title": "欢迎页",
-    "welcome.note": "从实验室使命、近期亮点工作与媒体报道进入非攻机器人实验室。",
+    "welcome.note": "从实验室使命、近期亮点工作与媒体报道进入高端装备智能检修机器人实验室。",
     "welcome.manifesto.tag": "Lab Compass",
     "welcome.manifesto.title": "造因境而变、入微而作的具身智能机器人",
     "welcome.manifesto.body": "实验室将“一器多形、因境而变、入微而作”的机构学寓意转化为具身智能机器人能力，面向航空发动机等高端装备内部深腔、狭窄通道和复杂曲面损伤，发展软体/连续体机器人、爬行机器人、触觉传感与灵巧操作，让机器人在受限空间里完成感知、进入、接触和处置，以尽量少拆解、少损伤、少停机的方式完成高端装备在位诊断、进入和维护。",
@@ -109,7 +109,7 @@ const translations = {
     "blog.category.research": "研究札记",
     "blog.category.field": "现场札记",
     "blog.category.resource": "开放资源",
-    "blog.meta.author": "非攻机器人实验室",
+    "blog.meta.author": "高端装备智能检修机器人实验室",
     "blog.meta.reading": "分钟阅读",
     "blog.detail.onPage": "本文导览",
     "blog.detail.resources": "相关资源",
@@ -127,10 +127,10 @@ const translations = {
     "member.yang.profile": "西安交通大学机械工程学院副研究员、博士。现任 IEEE Sensors Reviews Associate Editor、Cyborg and Bionic Systems（Science Partner Journal）Young Editor，并担任中国自动化学会机器人专业委员会委员。",
   },
   en: {
-    "meta.description": "Feigong Robotics Laboratory at Xi'an Jiaotong University develops embodied robotic systems for intelligent diagnosis, in-situ intervention, and dexterous manipulation in aero-engines and other advanced equipment.",
-    "meta.ogTitle": "Feigong Robotics Laboratory | Xi'an Jiaotong University",
+    "meta.description": "Advanced Equipment Inspection and Maintenance Robotics Laboratory at Xi'an Jiaotong University develops embodied robotic systems for intelligent diagnosis, in-situ intervention, and dexterous manipulation in aero-engines and other advanced equipment.",
+    "meta.ogTitle": "Advanced Equipment Inspection and Maintenance Robotics Laboratory | Xi'an Jiaotong University",
     "meta.ogDescription": "Research on intelligent diagnosis, in-situ intervention, embodied manipulation, tactile sensing, and health management for aero-engines and other advanced equipment.",
-    "brand.title": "Feigong Robotics Laboratory",
+    "brand.title": "Advanced Equipment Inspection and Maintenance Robotics Laboratory",
     "brand.unit": "Xi'an Jiaotong University · School of Mechanical Engineering",
     "nav.home": "Home",
     "nav.welcome": "Welcome",
@@ -142,8 +142,8 @@ const translations = {
     "nav.achievements": "Outputs",
     "nav.service": "Service",
     "nav.contact": "Contact",
-    "hero.title": "Feigong Robotics Laboratory",
-    "hero.subtitle": "Feigong Robotics Laboratory develops embodied robotic systems that change form with the task, adapt to constrained environments, and operate at fine scale. Targeting deep cavities, narrow passages, and damaged complex surfaces inside aero-engines and other advanced equipment, the lab advances soft and continuum robots, crawling robots, tactile sensing, and dexterous manipulation for in-situ inspection, access, and maintenance with reduced disassembly, damage, and downtime.",
+    "hero.title": "Advanced Equipment Inspection and Maintenance Robotics Laboratory",
+    "hero.subtitle": "Advanced Equipment Inspection and Maintenance Robotics Laboratory develops embodied robotic systems that change form with the task, adapt to constrained environments, and operate at fine scale. Targeting deep cavities, narrow passages, and damaged complex surfaces inside aero-engines and other advanced equipment, the lab advances soft and continuum robots, crawling robots, tactile sensing, and dexterous manipulation for in-situ inspection, access, and maintenance with reduced disassembly, damage, and downtime.",
     "hero.meta.continuum": "Soft / Continuum Robotics",
     "hero.meta.crawling": "Crawling Robots",
     "hero.meta.embodied": "Embodied Intelligence",
@@ -160,7 +160,7 @@ const translations = {
     "hero.facts.outputs.value": "100+ papers / 100+ patents",
     "welcome.eyebrow": "Welcome",
     "welcome.title": "Welcome",
-    "welcome.note": "Enter Feigong Robotics Laboratory through its mission, recent research highlights, and featured media reports.",
+    "welcome.note": "Enter Advanced Equipment Inspection and Maintenance Robotics Laboratory through its mission, recent research highlights, and featured media reports.",
     "welcome.manifesto.tag": "Lab Compass",
     "welcome.manifesto.title": "Embodied robots for adaptive, fine-scale operation",
     "welcome.manifesto.body": "The lab translates multi-form mechanisms, environment-responsive adaptation, and fine-scale operation into embodied robotic capabilities. For deep cavities, narrow passages, and damaged complex surfaces inside aero-engines and other advanced equipment, it develops soft and continuum robots, crawling robots, tactile sensing, and dexterous manipulation so robots can perceive, access, contact, and intervene in constrained spaces while completing in-situ inspection and maintenance with reduced disassembly, damage, and downtime.",
@@ -185,7 +185,7 @@ const translations = {
     "blog.category.research": "Research Notes",
     "blog.category.field": "Field Notes",
     "blog.category.resource": "Open Resources",
-    "blog.meta.author": "Feigong Robotics Laboratory",
+    "blog.meta.author": "Advanced Equipment Inspection and Maintenance Robotics Laboratory",
     "blog.meta.reading": "min read",
     "blog.detail.onPage": "On this page",
     "blog.detail.resources": "Resources",
@@ -205,6 +205,8 @@ const translations = {
 };
 
 const attributeTranslations = [
+  { selector: '#highlight-torsion-texture img', attribute: 'alt', zh: '论文图 11：探针与纹理样件、三角及矩形凸起和扭转信号', en: 'Paper Fig. 11: probe and texture specimens, triangular and rectangular protrusions, and torsional signals' },
+  { selector: '#highlight-torsion-texture .featured-output-image a', attribute: 'aria-label', zh: '查看纹理识别实验原图', en: 'View the original texture-recognition experiment figure' },
   { selector: ".brand", attribute: "aria-label", zh: "回到首页", en: "Back to home" },
   { selector: ".meta-list", attribute: "aria-label", zh: "团队概览", en: "Team overview" },
   { selector: ".hero-visual", attribute: "aria-label", zh: "团队研究图像", en: "Team research image" },
@@ -241,20 +243,20 @@ const attributeTranslations = [
 ];
 
 const textTranslations = {
-  "非攻机器人实验室": "Feigong Robotics Laboratory",
+  "高端装备智能检修机器人实验室": "Advanced Equipment Inspection and Maintenance Robotics Laboratory",
   "欢迎页": "Welcome",
   "团队札记": "Lab Notes",
   "开放讨论区": "Open Discussion",
   "实验室简介": "About the Lab",
   "团队简介": "About the Team",
-  "取“非攻”一器多形之巧，造因境而变、入微而作的具身智能机器人。实验室面向航空发动机等高端装备内部深腔、狭窄通道和复杂曲面损伤，发展智能诊断、原位介入与具身操作机器人，让装备维护从大拆大修走向少拆解、少损伤、少停机的在位微创处置。": "Drawing on Feigong's idea of one device taking many forms, the lab develops embodied robots that adapt to their environment and operate at fine scale. For deep cavities, narrow passages, and damaged complex surfaces inside aero-engines and other advanced equipment, the lab advances intelligent diagnosis, in-situ intervention, and embodied manipulation so maintenance can move from major disassembly toward minimally invasive in-situ inspection and repair with reduced disassembly, damage, and downtime.",
+  "面向高端装备智能检修，发展因境而变、入微而作的具身智能机器人。实验室面向航空发动机等高端装备内部深腔、狭窄通道和复杂曲面损伤，发展智能诊断、原位介入与具身操作机器人，让装备维护从大拆大修走向少拆解、少损伤、少停机的在位微创处置。": "Drawing on reconfigurable mechanisms, the lab develops embodied robots that adapt to their environment and operate at fine scale. For deep cavities, narrow passages, and damaged complex surfaces inside aero-engines and other advanced equipment, the lab advances intelligent diagnosis, in-situ intervention, and embodied manipulation so maintenance can move from major disassembly toward minimally invasive in-situ inspection and repair with reduced disassembly, damage, and downtime.",
   "面向航空发动机等高端装备内部深腔、狭窄通道和复杂曲面损伤，团队构建“状态感知-原位进入-精准操作”一体化智能检修机器人体系，让装备维护从外部拆解走向在位、微创和智能化处置。": "For deep cavities, narrow passages, and damaged complex surfaces inside aero-engines and other advanced equipment, the team builds an integrated intelligent inspection and maintenance robotics system spanning condition awareness, in-situ access, and precise manipulation.",
   "团队负责人": "Team Lead",
   "杨来浩 副研究员": "Laihao Yang, Associate Researcher",
   "依托单位": "Affiliation",
   "西安交通大学机械工程学院": "School of Mechanical Engineering, Xi'an Jiaotong University",
   "论文 100+ / 专利 100+": "100+ papers / 100+ patents",
-  "取“非攻”一器多形之巧，造因境而变、入微而作的具身智能机器人。实验室将“一器多形、因境而变、入微而作”的机构学寓意转化为高端装备智能检修能力：面向航空发动机、燃机、航天器等复杂装备内部深腔、狭窄通道、遮挡区域和复杂曲面损伤，发展可重构、柔顺、可感知、可操作的具身智能机器人系统，围绕智能诊断、原位介入、具身操作三条主线，让机器人在装备内部看得清、进得去、稳得住、修得准，以尽量少拆解、少损伤、少停机的方式完成在位诊断、进入和维护。": "The lab turns the mechanism ideas of multi-form structure, environment-responsive adaptation, and fine-scale operation into intelligent inspection and maintenance capabilities for advanced equipment. It develops reconfigurable, compliant, perceptive, and operable embodied robotic systems for deep cavities, narrow passages, occluded regions, and complex-surface damage inside aero-engines, gas turbines, spacecraft, and other complex equipment. The three research threads are intelligent diagnosis, in-situ intervention, and embodied manipulation, enabling robots to perceive, access, stabilize, and repair inside equipment with reduced disassembly, damage, and downtime.",
+  "面向高端装备智能检修，发展因境而变、入微而作的具身智能机器人。实验室将“一器多形、因境而变、入微而作”的机构学寓意转化为高端装备智能检修能力：面向航空发动机、燃机、航天器等复杂装备内部深腔、狭窄通道、遮挡区域和复杂曲面损伤，发展可重构、柔顺、可感知、可操作的具身智能机器人系统，围绕智能诊断、原位介入、具身操作三条主线，让机器人在装备内部看得清、进得去、稳得住、修得准，以尽量少拆解、少损伤、少停机的方式完成在位诊断、进入和维护。": "The lab turns the mechanism ideas of multi-form structure, environment-responsive adaptation, and fine-scale operation into intelligent inspection and maintenance capabilities for advanced equipment. It develops reconfigurable, compliant, perceptive, and operable embodied robotic systems for deep cavities, narrow passages, occluded regions, and complex-surface damage inside aero-engines, gas turbines, spacecraft, and other complex equipment. The three research threads are intelligent diagnosis, in-situ intervention, and embodied manipulation, enabling robots to perceive, access, stabilize, and repair inside equipment with reduced disassembly, damage, and downtime.",
   "西安交通大学机械工程学院、航空发动机研究所。长期面向航空发动机健康管理、原位检修机器人、触觉感知与具身智能开展交叉研究，推动从装备状态识别、机器人进入到精细化维护的全链路技术落地。": "Based in the School of Mechanical Engineering and the Aero-engine Research Institute at Xi'an Jiaotong University, the team works across aero-engine health management, in-situ inspection and maintenance robotics, tactile perception, and embodied intelligence, advancing the full pathway from condition recognition and robotic access to precision maintenance.",
   "学校主页": "XJTU Profile",
   "实验室使命": "Lab Mission",
@@ -382,7 +384,7 @@ const textTranslations = {
   "孙瑜老师课题组发布毕业通知，祝贺李应春、张天祥、孙宇轩、宁嘉嘉、刘乙雪同学硕士毕业。": "Prof. Yu Sun's group posted a graduation notice congratulating Yingchun Li, Tianxiang Zhang, Yuxuan Sun, Jiajia Ning, and Yixue Liu on completing their master's degrees.",
   "孙瑜老师课题组更新团队通知，欢迎 2024 年新同学加入。": "Prof. Yu Sun's group updated its team notices to welcome the 2024 cohort of new students.",
   "欢迎新同学加入团队": "Welcome to New Team Members",
-  "杨来浩老师团队发布团队通知，欢迎新同学加入非攻机器人实验室。": "Laihao Yang's team posted a notice welcoming new students to Feigong Robotics Laboratory.",
+  "杨来浩老师团队发布团队通知，欢迎新同学加入高端装备智能检修机器人实验室。": "Laihao Yang's team posted a notice welcoming new students to Advanced Equipment Inspection and Maintenance Robotics Laboratory.",
   "团队成员": "Team Members",
   "团队围绕高端装备智能检修机器人形成多层次人才培养体系，覆盖团队领导、教师/合作导师、博士后、博士研究生、硕士研究生、本科生和毕业生。": "The team has a multi-level training structure around intelligent maintenance robotics for advanced equipment, covering the team lead, faculty and collaborating mentors, postdocs, PhD students, master's students, undergraduates, and alumni.",
   "教职工": "Staff",
@@ -527,6 +529,14 @@ const textTranslations = {
   "多项省部级/行业奖励": "Multiple provincial, ministerial, and industry awards",
   "获中国振动工程学会科学技术奖二等奖、陕西高校科技一等奖、机器人科学引领奖等，并被 CCTV7、China Daily、陕西新闻联播等报道。": "Recognized by the Chinese Society for Vibration Engineering Science and Technology Award, Shaanxi Higher Education Science and Technology Award, Robotics Science Leadership Award, and media coverage from CCTV7, China Daily, Shaanxi News, and others.",
   "项目": "Projects",
+  "超灵敏扭转触觉传感实现纹理定量识别": "Ultrasensitive torsion sensing for quantitative texture recognition",
+  "磁式压力–扭转触觉传感器结合探针，将表面纹理引起的振动转化为扭转信号，扭转角分辨率达 0.02°。在由 54 种纹理构成的数据集上，三角形与矩形凸起的形状分类准确率达 99%，并同步估计凸起高度、宽度和间距。": "A magnetic pressure–torsion tactile sensor and probe convert texture-induced vibrations into torsional signals, with an angular resolution of 0.02°. On a dataset of 54 textures, the system achieves 99% accuracy in classifying triangular versus rectangular protrusions while estimating their height, width, and spacing.",
+  "标准扫描速度为 5 mm/s 时，高度、宽度和间距的平均绝对误差分别为 0.022、0.180 和 0.141 mm。": "At the standard scanning speed of 5 mm/s, the mean absolute errors for height, width, and spacing are 0.022, 0.180, and 0.141 mm, respectively.",
+  "Ultrasensitive Torsion Tactile Sensor for Quantitative Texture Recognition With a Probe": "Ultrasensitive Torsion Tactile Sensor for Quantitative Texture Recognition With a Probe",
+  "团队超灵敏扭转触觉传感与纹理定量识别成果发表于 IEEE Transactions on Industrial Electronics": "Team publishes ultrasensitive torsion tactile sensing for quantitative texture recognition in IEEE Transactions on Industrial Electronics",
+  "团队在 IEEE Transactions on Industrial Electronics 发表超灵敏扭转触觉传感研究。研究提出磁式压力–扭转触觉传感器与探针相结合的纹理识别系统，通过三维霍尔元件布置解耦法向力与扭转，并利用多任务卷积神经网络同步完成凸起形状分类和几何参数估计。在包含 54 种纹理的数据集上，三角形与矩形凸起的形状分类准确率达 99%；标准扫描速度 5 mm/s 下，高度、宽度和间距的平均绝对误差分别为 0.022、0.180 和 0.141 mm。Ling Wang 与孙瑜为共同第一作者，孙瑜与杨来浩为共同通讯作者。": "The team reports ultrasensitive torsion tactile sensing in IEEE Transactions on Industrial Electronics. A magnetic pressure–torsion tactile sensor and probe use a three-dimensional Hall-element arrangement to decouple normal force and torsion. A multitask convolutional neural network jointly classifies protrusion shapes and estimates geometrical parameters. On a dataset of 54 textures, triangular versus rectangular protrusion classification reaches 99% accuracy. At the standard scanning speed of 5 mm/s, mean absolute errors for height, width, and spacing are 0.022, 0.180, and 0.141 mm. Ling Wang and Yu Sun are co-first authors; Yu Sun and Laihao Yang are co-corresponding authors.",
+  "论文图 11：探针扫描系统、纹理样件与传感信号。": "Paper Fig. 11: probe-scanning system, texture specimens, and sensing signals.",
+  "查看亮点成果": "View Featured Output",
   "亮点成果": "Featured Outputs",
   "论文": "Papers",
   "专利": "Patents",
@@ -1047,7 +1057,7 @@ function itemFromArticle(element, type) {
   const title = textContent(element, "h3");
   const date = textContent(element, "time") || textContent(element, ".pub-year");
   const summary = textContent(element, ".pub-body > p:last-child") || textContent(element, "p:not(.news-type):not(.pub-venue):not(.project-tag)") || textContent(element, ".pub-venue");
-  const href = linkFor(element);
+  const href = element.dataset.paperHref || linkFor(element);
   return {
     type,
     title,
@@ -1239,7 +1249,7 @@ const labNotePosts = [
         },
       },
       {
-        heading: { zh: "与非攻立意的关系", en: "Why it fits Feigong" },
+        heading: { zh: "与实验室研究主线的关系", en: "Connection to the lab's research" },
         body: {
           zh: "“因境而变”在这里不是口号，而是具体的机器人策略：结构随环境约束调整，控制利用环境边界，任务目标从“进入”进一步走向“可定位、可操作、可维护”。",
           en: "Here, adapting to the environment is a concrete robotic strategy: the structure responds to environmental constraints, the controller uses boundaries, and the task moves from access toward localization, operation, and maintenance.",
@@ -1897,5 +1907,8 @@ if (researchTabs.length > 1) {
 applyTheme(currentTheme);
 applyLanguage(currentLanguage);
 showMemberPanel("faculty");
+document.querySelector('a[href="#highlight-torsion-texture"]')?.addEventListener("click", () => {
+  showOutputCategory("highlight-output");
+});
 showOutputCategory("highlight-output");
 updateVisitorStats();

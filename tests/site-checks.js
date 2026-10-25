@@ -99,10 +99,10 @@ assert.ok(html.includes("data-patent-subfilters"), "patent section should includ
 assert.ok(html.includes("data-award-subfilters"), "award section should include clickable secondary categories");
 
 const highlightOutputBlocks = matchAll(/<article class="achievement achievement-featured-output" data-output-type="highlight-output"[^>]*>([\s\S]*?)<\/article>/g).map((match) => match[1]);
-assert.equal(highlightOutputBlocks.length, 4, "achievement section should include 4 featured outputs after adding the unified active-compliance robot");
+assert.equal(highlightOutputBlocks.length, 5, "achievement section should include 5 featured outputs after adding the torsion texture sensor");
 assert.deepEqual(
   highlightOutputBlocks.map((block) => block.match(/ · (20\d{2})<\/p>/)?.[1]),
-  ["2026", "2026", "2024", "2024"],
+  ["2026", "2026", "2026", "2024", "2024"],
   "featured outputs should be sorted newest first"
 );
 for (const video of [
@@ -239,9 +239,9 @@ assertDescending(serviceYearsFor((type) => type === "service-conference"), "conf
 assert.ok(html.includes("学术型博士（1-2人/年）"), "Sun Yu mentor card should include PhD enrollment direction details");
 assert.ok(!html.includes("学硕型硕士"), "Sun Yu mentor card should normalize the master's enrollment label");
 assert.ok(html.includes("航空发动机与航天器先进传感及健康管理"), "Sun Yu mentor card should include detailed recruitment directions");
-assert.ok(html.includes("非攻机器人实验室"), "site should use the updated Feigong Robotics Laboratory name");
-assert.ok(script.includes('"非攻机器人实验室": "Feigong Robotics Laboratory"'), "English mode should translate the updated laboratory name");
-assert.ok(html.includes("取“非攻”一器多形之巧，造因境而变、入微而作的具身智能机器人"), "about section should present Feigong as an embodied intelligence robotics concept");
+assert.ok(html.includes("高端装备智能检修机器人实验室"), "site should use the requested advanced-equipment inspection and maintenance laboratory name");
+assert.ok(script.includes('"高端装备智能检修机器人实验室": "Advanced Equipment Inspection and Maintenance Robotics Laboratory"'), "English mode should translate the updated laboratory name");
+assert.ok(html.includes("围绕“一器多形、因境而变、入微而作”的研究理念"), "welcome copy should present the laboratory research concept");
 assert.ok(!html.includes("取“非攻”一器多形之巧，造因境而变、入微而作的智能检修机器人"), "about section should no longer use intelligent maintenance robots in the Feigong concept sentence");
 for (const keyword of ["软体/连续体机器人", "爬行机器人", "具身智能", "灵巧操作", "触觉传感", "AI4S&amp;AI4E"]) {
   assert.ok(html.includes(`<span data-i18n="hero.meta.`) && html.includes(`>${keyword}</span>`), `hero keyword list should include ${keyword}`);
@@ -338,7 +338,7 @@ assert.ok(script.includes('"王昊 · 硕士 · 2019级 · 中铁第一勘察设
 assert.ok(script.includes('"博士 · 2020级 · 毕业去向：乾元实验室": "PhD · 2020 cohort · Destination: Qianyuan Laboratory"'), "English mode should translate Zheshuai Yang's alumni destination");
 assert.ok(script.includes('"博士 · 2020级 · 毕业去向：西安热工院": "PhD · 2020 cohort · Destination: Xi\'an Thermal Power Research Institute"'), "English mode should translate Ruochen Jin's alumni destination");
 assert.ok(script.includes("embodied robots that adapt to their environment and operate at fine scale"), "English mode should translate the Feigong concept as adaptive embodied robots");
-assert.ok(styles.includes(".hero h1") && styles.includes("white-space: nowrap"), "hero title should be constrained to one line");
+assert.ok(styles.includes("text-wrap: balance"), "the longer laboratory title should wrap without overflow");
 assert.ok(html.includes("data-language-toggle"), "home page should include a Chinese/English language toggle");
 assert.ok(html.includes('href="#home" data-i18n="nav.welcome"'), "navigation should put the welcome page first at the home anchor");
 assert.ok(!html.includes('href="#welcome"'), "welcome page should not be a separate second section");
@@ -460,7 +460,7 @@ assert.ok(html.includes('data-news-filter="highlight"'), "news section should in
 assert.ok(html.includes(">亮点报道</button>"), "news filter label should be highlight reports");
 assert.ok(!html.includes(">亮点工作</button>"), "news filter label should no longer be highlight work");
 assert.equal(matchAll(/<article class="news-card(?: news-card-featured)?" data-news-type="highlight">/g).length, 3, "news section should include 3 highlight work items");
-assert.equal(matchAll(/<article class="news-card" data-news-type="news">/g).length, 28, "news section should include 28 current news items after adding the active-compliance robot publication announcement");
+assert.equal(matchAll(/<article class="news-card" data-news-type="news"[^>]*>/g).length, 29, "news section should include 29 current news items after adding the torsion texture publication announcement");
 assert.equal(matchAll(/<article class="news-card" data-news-type="notice">/g).length, 4, "news section should include 4 notice items");
 assert.ok(html.includes("http://www.snrtv.com/snr_sxxwlb/a/2024/10/10/22818371.html"), "highlight work should cite the Shaanxi News source");
 assert.ok(html.includes("https://www.163.com/dy/article/JGIRJRQ90530TBVC.html"), "highlight work should cite the Silk Road Weekly source");
@@ -522,7 +522,7 @@ assert.ok(!html.includes("/.netlify/images?url="), "GitHub Pages deployment shou
 assert.ok(html.includes("busuanzi_value_site_pv"), "footer should expose site page-view statistics");
 assert.ok(html.includes("busuanzi_value_site_uv"), "footer should expose site visitor statistics");
 assert.ok(!html.includes("busuanzi.pure.mini.js"), "static site should not depend on the unresponsive Busuanzi data service");
-assert.ok(html.includes('src="script.js?v=20261004-durable-counts"'), "restored counts should bypass the stale incident script");
+assert.ok(html.includes('src="script.js?v=20261025-torsion-texture"'), "restored counts should bypass the stale incident script");
 assert.ok(script.includes("visitor-baseline.json?v=20261004-durable-counts"), "live statistics should load the saved historical baseline");
 assert.ok(script.includes("https://cdn.busuanzi.cc/api.php"), "future visits should use the persistence-verified active counter");
 assert.ok(script.includes("feigong-visitor-stats-history-v4"), "cached totals must be separated from unverified fallback data");
@@ -546,7 +546,7 @@ assert.ok(script.includes('"一种用于管阵列巡检的五自由度爬杆机�
 assert.ok(script.includes('"首届“太行杯”航空动力创新大赛优胜奖"'), "English mode should translate the Taihang Cup award directly");
 
 const publicationCount = matchAll(/<article class="achievement" data-output-type="paper-/g).length;
-assert.equal(publicationCount, 106, `expected 106 classified representative publications after adding the JAS and JPCS papers, found ${publicationCount}`);
+assert.equal(publicationCount, 107, `expected 107 classified representative publications after adding the torsion texture sensor paper, found ${publicationCount}`);
 assert.ok(html.includes('data-output-type="paper-sci"><div class="pub-year">2026</div><div class="pub-body"><p class="pub-venue">SCI 期刊 · International Journal of Mechanical Sciences'), "active-compliance robot paper should be listed as a 2026 SCI journal paper");
 assert.ok(html.includes("10.1016/j.ijmecsci.2026.112141"), "active-compliance robot publication, news, and highlight should keep the final DOI link");
 assert.ok(html.includes("Unified Active Compliance Enables Miniature Robots to Traverse Diverse Surfaces"), "active-compliance robot paper should use its final journal title");
