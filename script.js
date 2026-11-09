@@ -205,8 +205,6 @@ const translations = {
 };
 
 const attributeTranslations = [
-  { selector: '#news-wyss-2026-tactile img[src$="excellent-paper.jpg"]', attribute: 'alt', zh: '2026 世界青年科学家峰会优秀论文证书', en: '2026 World Young Scientist Summit Excellent Paper certificate' },
-  { selector: '#news-wyss-2026-tactile img[src$="premiere-presentation.jpg"]', attribute: 'alt', zh: '杨来浩 2026 世界青年科学家峰会首发报告证书', en: 'Certificate of Premiere Presentation for Laihao Yang at the 2026 World Young Scientist Summit' },
   { selector: '#highlight-torsion-texture img', attribute: 'alt', zh: '论文图 11：探针与纹理样件、三角及矩形凸起和扭转信号', en: 'Paper Fig. 11: probe and texture specimens, triangular and rectangular protrusions, and torsional signals' },
   { selector: '#highlight-torsion-texture .featured-output-image a', attribute: 'aria-label', zh: '查看纹理识别实验原图', en: 'View the original texture-recognition experiment figure' },
   { selector: ".brand", attribute: "aria-label", zh: "回到首页", en: "Back to home" },
@@ -250,7 +248,7 @@ const textTranslations = {
   "团队综述《柔性触觉传感器：感知机理与具身应用》发表于《科技通报》": "Team publishes a review of flexible tactile sensors and embodied applications in Bulletin of Science and Technology",
   "2026 年 10 月 15 日，杨来浩、胡可、汪领、孙瑜的综述《柔性触觉传感器：感知机理与具身应用》发表于《科技通报》42 卷第 10 期。文章比较七类柔性触觉传感器，梳理触觉在识别、交互、抓持、接触作业和机器人训练中的应用，讨论多维解耦、阵列串扰、可靠性及模型泛化等问题。": "The review by Laihao Yang, Ke Hu, Ling Wang, and Yu Sun appeared in volume 42, issue 10 of Bulletin of Science and Technology on October 15, 2026. It compares seven sensor families, connects tactile sensing with recognition, interaction, grasping, contact tasks, and robot training, and examines decoupling, crosstalk, reliability, and generalization.",
   "团队综述获世界青年科学家峰会优秀论文，杨来浩作首发报告": "Team review receives WYSS Excellent Paper recognition; Laihao Yang gives a premiere presentation",
-  "2026 年 10 月，杨来浩、胡可、汪领、孙瑜的《柔性触觉传感器：感知机理与具身应用》获评 2026 世界青年科学家峰会优秀论文。杨来浩同时以该题目作首发报告，并获颁首发报告证书；证书记载该报告于本届峰会首次发布。": "In October 2026, the review by Laihao Yang, Ke Hu, Ling Wang, and Yu Sun received Excellent Paper recognition at the 2026 World Young Scientist Summit. Laihao Yang also gave a premiere presentation on this topic and received a Certificate of Premiere Presentation, documenting its first presentation at this edition of the summit.",
+  "2026 年 10 月 24 日，杨来浩、胡可、汪领、孙瑜的《柔性触觉传感器：感知机理与具身应用》获评 2026 世界青年科学家峰会优秀论文。杨来浩同时以该题目作首发报告，并获颁首发报告证书；证书记载该报告于本届峰会首次发布。": "On October 24, 2026, the review by Laihao Yang, Ke Hu, Ling Wang, and Yu Sun received Excellent Paper recognition at the 2026 World Young Scientist Summit. Laihao Yang also gave a premiere presentation on this topic and received a Certificate of Premiere Presentation, documenting its first presentation at this edition of the summit.",
   "柔性触觉传感器：感知机理与具身应用": "Flexible Tactile Sensors for Embodied Intelligence: from Sensing Principles to Applications",
   "《柔性触觉传感器：感知机理与具身应用》": "Flexible Tactile Sensors for Embodied Intelligence: from Sensing Principles to Applications",
   "杨来浩, 胡可, 汪领, 孙瑜": "Laihao Yang, Ke Hu, Ling Wang, Yu Sun",

@@ -522,7 +522,7 @@ assert.ok(!html.includes("/.netlify/images?url="), "GitHub Pages deployment shou
 assert.ok(html.includes("busuanzi_value_site_pv"), "footer should expose site page-view statistics");
 assert.ok(html.includes("busuanzi_value_site_uv"), "footer should expose site visitor statistics");
 assert.ok(!html.includes("busuanzi.pure.mini.js"), "static site should not depend on the unresponsive Busuanzi data service");
-assert.ok(html.includes('src="script.js?v=20261109-publications-honors"'), "restored counts should bypass the stale incident script");
+assert.ok(html.includes('src="script.js?v=20261110-wyss-date"'), "restored counts should bypass the stale incident script");
 assert.ok(script.includes("visitor-baseline.json?v=20261004-durable-counts"), "live statistics should load the saved historical baseline");
 assert.ok(script.includes("https://cdn.busuanzi.cc/api.php"), "future visits should use the persistence-verified active counter");
 assert.ok(script.includes("feigong-visitor-stats-history-v4"), "cached totals must be separated from unverified fallback data");
