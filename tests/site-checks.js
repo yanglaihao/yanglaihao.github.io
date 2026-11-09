@@ -201,7 +201,7 @@ assertDescending(achievementYearsFor((type) => type === "project"), "projects");
 assert.ok(html.includes('<article class="achievement" data-output-type="book">\n            <div class="pub-year">2024</div>\n            <div class="pub-body">\n              <p class="pub-venue">专著</p>\n              <h3>钛基复合材料多尺度力学</h3>'), "monograph 钛基复合材料多尺度力学 should use the 2024 publication year");
 
 const awardCount = matchAll(/<article class="achievement" data-output-type="award-/g).length;
-assert.equal(awardCount, 18, `expected 18 categorized awards after adding the Taihang Cup item, found ${awardCount}`);
+assert.equal(awardCount, 19, `expected 19 categorized awards after adding the WYSS Excellent Paper, found ${awardCount}`);
 assert.ok(html.includes("首届“太行杯”航空动力创新大赛优胜奖"), "student competition awards should include the first Taihang Cup aviation power innovation award");
 assert.ok(html.includes('<div class="pub-year">2026</div>\n            <div class="pub-body">\n              <p class="pub-venue">学生竞赛获奖</p>\n              <h3>首届“太行杯”航空动力创新大赛优胜奖</h3>'), "Taihang Cup award should use the 2026 award year format");
 assertDescending(achievementYearsFor((type) => type.startsWith("award-")), "awards");
@@ -460,7 +460,7 @@ assert.ok(html.includes('data-news-filter="highlight"'), "news section should in
 assert.ok(html.includes(">亮点报道</button>"), "news filter label should be highlight reports");
 assert.ok(!html.includes(">亮点工作</button>"), "news filter label should no longer be highlight work");
 assert.equal(matchAll(/<article class="news-card(?: news-card-featured)?" data-news-type="highlight">/g).length, 3, "news section should include 3 highlight work items");
-assert.equal(matchAll(/<article class="news-card" data-news-type="news"[^>]*>/g).length, 29, "news section should include 29 current news items after adding the torsion texture publication announcement");
+assert.equal(matchAll(/<article class="news-card" data-news-type="news"[^>]*>/g).length, 32, "news section should include 32 current news items after the review, summit recognition and CCF update");
 assert.equal(matchAll(/<article class="news-card" data-news-type="notice">/g).length, 4, "news section should include 4 notice items");
 assert.ok(html.includes("http://www.snrtv.com/snr_sxxwlb/a/2024/10/10/22818371.html"), "highlight work should cite the Shaanxi News source");
 assert.ok(html.includes("https://www.163.com/dy/article/JGIRJRQ90530TBVC.html"), "highlight work should cite the Silk Road Weekly source");
@@ -522,7 +522,7 @@ assert.ok(!html.includes("/.netlify/images?url="), "GitHub Pages deployment shou
 assert.ok(html.includes("busuanzi_value_site_pv"), "footer should expose site page-view statistics");
 assert.ok(html.includes("busuanzi_value_site_uv"), "footer should expose site visitor statistics");
 assert.ok(!html.includes("busuanzi.pure.mini.js"), "static site should not depend on the unresponsive Busuanzi data service");
-assert.ok(html.includes('src="script.js?v=20261025-torsion-texture"'), "restored counts should bypass the stale incident script");
+assert.ok(html.includes('src="script.js?v=20261109-publications-honors"'), "restored counts should bypass the stale incident script");
 assert.ok(script.includes("visitor-baseline.json?v=20261004-durable-counts"), "live statistics should load the saved historical baseline");
 assert.ok(script.includes("https://cdn.busuanzi.cc/api.php"), "future visits should use the persistence-verified active counter");
 assert.ok(script.includes("feigong-visitor-stats-history-v4"), "cached totals must be separated from unverified fallback data");
@@ -546,7 +546,7 @@ assert.ok(script.includes('"一种用于管阵列巡检的五自由度爬杆机�
 assert.ok(script.includes('"首届“太行杯”航空动力创新大赛优胜奖"'), "English mode should translate the Taihang Cup award directly");
 
 const publicationCount = matchAll(/<article class="achievement" data-output-type="paper-/g).length;
-assert.equal(publicationCount, 107, `expected 107 classified representative publications after adding the torsion texture sensor paper, found ${publicationCount}`);
+assert.equal(publicationCount, 108, `expected 108 classified representative publications after adding the flexible tactile review, found ${publicationCount}`);
 assert.ok(html.includes('data-output-type="paper-sci"><div class="pub-year">2026</div><div class="pub-body"><p class="pub-venue">SCI 期刊 · International Journal of Mechanical Sciences'), "active-compliance robot paper should be listed as a 2026 SCI journal paper");
 assert.ok(html.includes("10.1016/j.ijmecsci.2026.112141"), "active-compliance robot publication, news, and highlight should keep the final DOI link");
 assert.ok(html.includes("Unified Active Compliance Enables Miniature Robots to Traverse Diverse Surfaces"), "active-compliance robot paper should use its final journal title");
@@ -560,7 +560,7 @@ assert.ok(html.includes("10.1109/JAS.2026.126062"), "JAS publication and news sh
 assert.ok(html.includes('data-output-type="paper-ei-conference"><div class="pub-year">2026</div><div class="pub-body"><p class="pub-venue">EI 会议 · Journal of Physics: Conference Series'), "JPCS paper should be listed as a 2026 EI conference paper");
 assert.ok(html.includes("10.1088/1742-6596/3291/1/012016"), "JPCS conference paper should keep the DOI link");
 assert.ok(script.includes('"团队关于非均匀采样欠采样信号恢复的研究发表于 IEEE/CAA Journal of Automatica Sinica"'), "English mode should translate the JAS publication news title");
-assert.equal(matchAll(/<article class="achievement" data-output-type="paper-other">/g).length, 7, "other papers should include verified Chinese journal and conference records from the saved CNKI page");
+assert.equal(matchAll(/<article class="achievement" data-output-type="paper-other">/g).length, 8, "other papers should include the verified flexible tactile review and existing Chinese journal and conference records");
 assert.ok(html.includes("Logarithmic reordering kurtogram: An automatic resonance demodulation method for bearing fault diagnosis"), "Measurement 2026 logarithmic reordering kurtogram paper should be included");
 assert.ok(html.includes("10.1016/j.measurement.2026.120975"), "Measurement 2026 logarithmic reordering kurtogram paper should keep the DOI resolved from the ScienceDirect PII");
 assert.ok(html.includes("Xin Zhang, Xin Xiong, Siqian Feng, Jiaxu Wang, Laihao Yang"), "Measurement 2026 logarithmic reordering kurtogram paper should use the Crossref author list");
